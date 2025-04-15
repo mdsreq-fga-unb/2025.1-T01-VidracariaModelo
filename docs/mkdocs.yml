@@ -1,1 +1,5 @@
-site_name: My Docs
+site_name: Meu Projeto
+theme: material       
+nav:                 
+  - Início: index.md
+  - Contato: contato.md
