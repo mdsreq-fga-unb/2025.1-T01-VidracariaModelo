@@ -1,24 +1,17 @@
 site_name: Meu Projeto
 theme:
-  name: material
-  # Paleta de cores (escolha uma combinação)
-  palette:
-    - scheme: default
-      primary: indigo       # Cor principal (navbar)
-      accent: pink          # Cor de destaques
-      toggle:
-        icon: material/brightness-4  # Ícone de tema
-        name: Alternar tema
-  # Barra superior personalizada
+  name: mkdocs
   features:
-    - navigation.tabs       # Abas no topo
-    - navigation.top        # Barra fixa no topo
+    - navigation.tabs  # Habilita abas de navegação superiores
+    - navigation.top   # Fixa a navbar no topo
+  
+  # Personalização de cores (opcional)
+  palette:
+    primary: indigo
+    accent: blue
 
-# Navegação
 nav:
-  - Início: index.md
-  - Contato: contato.md
-
-# CSS/JS extra (opcional)
-extra_css:
-  - stylesheets/extra.css   # Para mais personalizações
+  - Home: index.md
+  - Documentação: Documentação/VPP.md
+  - Atas de Reuniao: 
+    - 15/04: Atas/15_04.md
