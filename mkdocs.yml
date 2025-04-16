@@ -5,20 +5,25 @@ repo_url: https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo
 theme:
   name: material
   features:
-    - navigation.tabs
-    - navigation.top
+    - navigation.sections
   palette:
     primary: indigo
     accent: blue
-  # Não expande automaticamente os subitens no menu lateral
   navigation:
     expand: false
 
 extra_css:
-  - overrides/extra.css  # Se quiser manter o CSS da sidebar
+  - overrides/extra.css
 
 nav:
   - Home: index.md
-  - Documentação: docs/Documentação/VPP.md
-  - Atas de Reuniao: 
-    - 15/04: docs/Atas/15_04.md
+  - Visão de Projeto: 
+    - 1. Cenário Atual do Cliente e do Negócio: docs/VisaodeProduto/Cenario_atual.md
+    - 2. Solução Proposta: docs/VisaodeProduto/Solucao_proposta.md
+    - 3. Estratégias de Engenharia de Software: docs/VisaodeProduto/Estrategias.md
+    - 4.Cronograma e Entregas: docs/VisaodeProduto/Cronograma.md
+    - 5.Interação entre Equipe e Cliente: docs/VisaodeProduto/Interacao.md
+    - 6. Lições Aprendidas: docs/VisaodeProduto/licoes.md
+
+  - Atas de Reunião:
+      - 15/04: docs/Atas/15_04.md
