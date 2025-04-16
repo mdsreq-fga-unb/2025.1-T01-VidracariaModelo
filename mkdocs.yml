@@ -1,19 +1,21 @@
 site_name: VidracariaModelo
+site_url: https://mdsreq-fga-unb.github.io/2025.1-T01-VidracariaModelo/
 repo_url: https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo
 
-site_url: https://mdsreq-fga-unb.github.io/2025.1-T01-VidracariaModelo/
-
-
 theme:
-  name: mkdocs
+  name: material
   features:
-    - navigation.tabs  # Habilita abas de navegação superiores
-    - navigation.top   # Fixa a navbar no topo
-  
-  # Personalização de cores (opcional)
+    - navigation.tabs
+    - navigation.top
   palette:
     primary: indigo
     accent: blue
+  # Não expande automaticamente os subitens no menu lateral
+  navigation:
+    expand: false
+
+extra_css:
+  - overrides/extra.css  # Se quiser manter o CSS da sidebar
 
 nav:
   - Home: index.md
