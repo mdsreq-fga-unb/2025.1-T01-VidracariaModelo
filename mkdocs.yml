@@ -1,4 +1,9 @@
-site_name: Meu Projeto
+site_name: VidracariaModelo
+repo_url: https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo
+
+site_url: https://mdsreq-fga-unb.github.io/2025.1-T01-VidracariaModelo/
+
+
 theme:
   name: mkdocs
   features:
@@ -12,6 +17,6 @@ theme:
 
 nav:
   - Home: index.md
-  - Documentação: Documentação/VPP.md
+  - Documentação: docs/Documentação/VPP.md
   - Atas de Reuniao: 
-    - 15/04: Atas/15_04.md
+    - 15/04: docs/Atas/15_04.md
