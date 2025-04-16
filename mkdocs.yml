@@ -5,7 +5,12 @@ repo_url: https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo
 theme:
   name: material
   features:
-    - navigation.sections
+    - content.code.annotate
+    - content.tabs.link
+    - header.autohide
+    - navigation.instant
+    - navigation.top
+    - navigation.tracking
   palette:
     primary: indigo
     accent: blue
