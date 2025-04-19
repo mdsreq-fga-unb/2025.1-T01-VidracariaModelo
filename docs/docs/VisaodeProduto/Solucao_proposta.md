@@ -20,15 +20,11 @@ da empresa.
 - **Banco de dados:** MySQL
 
 ### 2.4 Pesquisa de Mercado e Análise Competitiva
-No ramo das vidraçarias são exemplos de concorrentes desta plataforma o site da
-Vidraçaria Irmãos Cunha e da Vidro luz , que são empresas já consolidadas no mercado,
-porém apresentam falhas semelhantes e consideráveis visto que tem sites com design
-defasado e a possibilidade de orçamento apenas via preenchimento de formulário e contato
-via telefone e whatsapp.
+No ramo das vidraçarias, são exemplos de concorrentes desta plataforma o site da Vidraçaria Irmãos Cunha e da Vidro Luz, que são empresas já consolidadas no mercado. Porém, apresentam falhas semelhantes e consideráveis, visto que possuem sites com um design defasado  — com elementos visuais ultrapassados, ausência de responsividade para dispositivos móveis, tipografia pouco legível e navegação pouco intuitiva. Além disso, oferecem a possibilidade de orçamento apenas via preenchimento de formulário e contato via telefone e WhatsApp.
 
 A solução da Vidraçaria Modelo irá se diferenciar das demais por:
 
-- Permitir o contato do cliente com a empresa através de uma plataforma dedicada e robusta;
+- Permitir o contato do cliente com a empresa através de uma plataforma dedicada e bem desenvolvida;
 - Design atual e chamativo para o cliente;
 - Calculadora de orçamento integrada para acelerar o fechamento do serviço;
 - possibilidade de gerenciamento pelo administrador da empresa.
@@ -47,6 +43,7 @@ Modelo.
 ### 2.6 Impacto da Solução
 **Posicionamento online e melhora nas vendas:** A plataforma irá permitir que a Vidraçaria Modelo esteja presente no meio digital e alcance novos públicos e fidelize seus clientes.
 
-**Melhora na credibilidade da empresa:** Tendo uma plataforma robusta de atendimento ao cliente a empresa mostra profissionalismo e compromisso com seus possíveis clientes melhorando a visão da empresa por pessoas desconhecidas.
+**Melhora na credibilidade da empresa:** Ao contar com uma plataforma robusta de atendimento ao cliente, isto é, com uma estrutura estável e funcionalidades completas, a empresa mostra profissionalismo e compromisso com seus possíveis clientes melhorando a visão da empresa por pessoas desconhecidas.
+
 
 **Eficiência na gestão de orçamentos e controle da carga de trabalho:** A solução permitirá um maior controle das demandas por parte da empresa, diminuindo a incidência de orçamentos não atendidos e vendas não captadas.
