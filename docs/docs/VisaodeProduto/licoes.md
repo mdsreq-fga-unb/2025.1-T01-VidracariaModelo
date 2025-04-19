@@ -1,17 +1,18 @@
-## 1.1 Introdução ao Negócio e Contexto
+## Unidade 1
+Nesta Unidade aprendemos sobre a importância de se utilizar o processo, ciclo de vida e a abordagem mais adequada para cada tipo de projeto, levando em conta escopo, tipo de problema, tipos e complexidades de regras de negócio, habilidades da equipe, disponibilidade do stakeholder, sua familiaridade com tecnologia, a forma da interação dele com o time de desenvolvimento e outros inúmeros aspectos. A forma como o time lidou com isso foi rever as filosofias e técnicas de diferentes abordagens e processos comparando com o a situação-problema apresentada pelo cliente, o que nos levou a escolher a abordagem ágil XP. Com isto, uma importante lição aprendida foi que qualquer software deve existir para resolver um problema de pessoas, por isso promove uma intervenção social e portanto sua elaboração e construção devem ser feitas de forma colaborativa entre os stakeholders e equipe. 
 
-A Vidraçaria Modelo é uma empresa do setor de construção civil fundada em 2020,
-especializada em serviços de instalação e manutenção de vidros comuns, temperados e
-espelhos. Opera em uma loja física localizada no Gama-DF e tem sua área de atuação
-principal na cidade do Gama e regiões mais próximas, mas não se limita e pode atuar em
-todas as Regiões Administrativas do DF. Seu objetivo é entregar o máximo de valor ao
-cliente através do desenvolvimento de soluções inovadoras em vidros comuns e
-temperados. Têm o cliente final como seu principal público alvo, realizando serviços em
-residências, escritórios e demais localidades. Também atende empresas de pequeno e médio
-porte, porém com menor frequência.
+Durante a fase incial do projeto, algumas lições importantes foram aprendidas, as quais contribuirão para o avanço do projeto em suas próximas etapas. Em seguida estão descritas algumas lições selecionadas pelo time como as mais relevantes:
 
-Seu posicionamento online é muito reduzido, contando apenas com uma conta no instagram
-e uma página de anúncios feita pela plataforma do Google e não utiliza ferramentas digitais
-para organização interna da empresa.
+**Desafio:** Em alguns momentos foi identificado que as informações relevantes sobre o projeto não estavam claras e homogêneas para todos os integrantes.
+
+**Solução:** Foi decidido a criação de atas referentes as reuniões e definido que ao final das aulas presenciais serão realizadas reuniões no estilo stand-up meeting.
+
+**Desafio:** O horário de disponibilidade dos integrantes não estava claro e isso dificultou o agendamento de reuniões.
+
+**Solução:** Foi realizado um mapa de calor com os horários disponíveis do time.
+
+
+
+
 
 ---
