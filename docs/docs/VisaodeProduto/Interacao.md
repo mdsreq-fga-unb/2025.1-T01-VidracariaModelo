@@ -1,6 +1,13 @@
 ## 5.1 Composição da Equipe
 
----
+| Papel                   | Descrição                                                                                                                                         | Responsável           | Participantes                            |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|------------------------------------------|
+| Product Owner           | Responsável por gerenciar o progresso do projeto, atuando como ponto de conexão entre o cliente e a equipe. Além disso, monitora prazos e prioridades. | Cayo Alencar       | --                                       |
+| Analista de QA          | Deve testar o produto para averiguar se o software, e todas suas aplicações, estão funcionando da maneira que o cliente final espera.              | Pedro Henrique            | --                                       |
+| Desenvolvedor Frontend  | Desenvolve a interface visual, design e garante a integração com o servidor.                                                                      | Samara Alves    | Igor Daniel, Maria Eduarda                |
+| Desenvolvedor Backend   | Desenvolve a lógica do servidor, gerencia banco de dados e integrações.                                                                          | João Filipe       | Cayo Alencar, Pedro Henrique                       |
+| Analista de Requisitos  | Identifica, documenta e gerencia as necessidades e expectativas do cliente.                                                                       | Cayo Alencar           | Igor Daniel, João Filipe, Maria Eduarda, Pedro Henrique, Samara|
+
 
 ## 5.2 Comunicação
 
@@ -40,3 +47,15 @@ A plataforma Discord será utilizada para a realização das reuniões por víde
 ---
 
 ## 5.3 Processo de Validação
+
+Antes de começarem a ser desenvolvidas, as funcionalidades da Sprint serão avaliadas com base na Definition of Ready (DoR). Nessa checagem, será verificado se a história de usuário está bem escrita, se há documentação suficiente e se os critérios de aceitação foram definidos em conjunto com o cliente.
+
+Ao final de cada Sprint, as funcionalidades também passarão pela Definition of Done (DoD). Esse processo verifica se os protótipos foram validados pelo cliente, se o código recebeu aprovação dos revisores e se os stakeholders conseguiram testar e confirmar todos os critérios de aceitação durante o Deploy do software.
+
+## Histórico de Versão
+
+| Data       | Versão | Descrição                  | Autor          | Revisores      | 
+| ---------- | ------ | -------------------------- | -------------- | -------------- | 
+| 19/04/2025 | 1.0    | Adição do Tópico 5.2       | Maria Eduarda  | Pedro Henrique |   
+| 19/04/2025 | 1.1    | Inclusão tópico 5.1 e 5.3                 | Pedro Henrique | Maria Eduarda  |  
+
