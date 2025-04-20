@@ -24,14 +24,19 @@ No ramo das vidraçarias são exemplos de concorrentes desta plataforma o site d
 Vidraçaria Irmãos Cunha e da Vidro luz , que são empresas já consolidadas no mercado,
 porém apresentam falhas semelhantes e consideráveis visto que tem sites com design
 defasado e a possibilidade de orçamento apenas via preenchimento de formulário e contato
-via telefone e whatsapp.
+via telefone e whatsapp. Com isto, no mercado atual existem diversas soluções que atenderiam as necessidades de ambos os negócios, como plataformas de CRM, plataformas para captar feedbacks, geradores de recibo automatizados, plataformas de análise de dados e criação de gráficos financeiros, ferramentas de agendamento, ferramentas de controle de tarefas, dentre outras. Entre os principais candidatos já existentes para solução dos problemas estão o Excel e Power BI para controle de gastos e criação de gráficos, Google Forms para a captação de reclamações e elogios, Microsoft Outlook para organização de atendimentos e controle de tarefas. Contudo, estas são plataformas independentes e não necessariamente possuem uma integração já estabelecida, além de necessitarem de diversas capacitações para cada funcionário que fosse realizar qualquer processo dentro da empresa, podendo inclusive gerar inconsistência nos dados, por não serem integrados, sem contar o custo para se ter total acesso as plataformas, que ainda não possuem qualquer compromisso de se alinhar com as regras de negócio da empresa para uma futura escalabilidade de atuação da mesma. Assim, uma plataforma que integre todas essas funcionalidades e se adeque especificamente as necessidades da empresa se torna essencial para fortalecer o negócio e reforçar a integridade de seus processos internos.
 
-A solução da Vidraçaria Modelo irá se diferenciar das demais por:
+A solução da Vidraçaria Modelo irá se diferenciar das demais por em uma só plataforma possuir todas as necessidades da empresa, como:
 
-- Permitir o contato do cliente com a empresa através de uma plataforma dedicada e robusta;
+- Contato do cliente com a empresa através de uma plataforma dedicada;
 - Design atual e chamativo para o cliente;
 - Calculadora de orçamento integrada para acelerar o fechamento do serviço;
-- possibilidade de gerenciamento pelo administrador da empresa.
+- Possibilidade de gerenciamento pelo administrador da empresa.
+- Sistema direto de avaliação dos serviços por parte dos clientes.
+- Ferramenta para registrar, acompanhar e organizar o histórico de interação com clientes.
+- Tabelas e gráficos financeiros operacionais com relação receita X despesa.
+- Notificações automatizadas para clientes e funcionários sobre o andamento ou agendamento dos serviços.
+- Página de portifólio com imagens e descrições personalizadas dos serviços.
 
 ### 2.5 Análise de Viabilidade
 A solução proposta apresenta uma boa viabilidade técnica, uma vez que as tecnologias necessárias para seu desenvolvimento são conhecidas e dominadas pela equipe de desenvolvimento. O projeto prevê o uso de tecnologias web modernas e de fácil integração, garantindo uma plataforma responsiva intuitiva e escalável.
