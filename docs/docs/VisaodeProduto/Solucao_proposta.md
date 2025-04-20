@@ -1,11 +1,21 @@
 ### 2.1 Objetivos do Produto
-O objetivo do produto é ampliar a capacidade de captação de clientes pela empresa por
-meio de um site comercial, chamativo e informativo, que permita o agendamento e a
-realização de orçamentos pelo cliente e que permita o administrador da empresa ter acesso
-a esses orçamentos e realizar o gerenciamento necessário da carga de trabalho para otimizar
-a mão de obra e o tempo de serviço. A solução fornecerá a estrutura necessária para o
-posicionamento online do empreendimento e a plataforma para a melhor organização da
-empresa.
+O produto tem como objetivo resolver o problema central identificado no Diagrama de Ishikawa: o baixo desempenho operacional da Vidraçaria Modelo.
+
+A solução proposta busca melhorar esse desempenho por meio da criação de uma plataforma digital que aumente a organização, facilite os processos internos e otimize o relacionamento com os clientes.
+
+Este objetivo será alcançado com a resolução de algumas das causas mapeadas no diagrama, tais como:
+
+- **Inexistência de site institucional ou plataforma online:** será desenvolvido um site comercial, moderno e informativo, que funcione como o principal ponto de contato com os clientes;
+
+- **Ausência de sistema de agendamento ou controle financeiro digital:** será implementado um sistema que permita agendamentos e orçamentos online, centralizando as informações e automatizando processos;
+
+- **Uso exclusivo do WhatsApp para negociações e agendamentos:** a plataforma permitirá registrar atendimentos e formalizar interações com os clientes;
+
+- **Marketing restrito a meios tradicionais:** o site contribuirá para a presença digital da empresa e facilitará ações de marketing online;
+
+- **Dificuldade de organização e priorização de demandas:** o sistema ajudará o administrador a distribuir melhor as tarefas e organizar a carga de trabalho da equipe.
+
+Como resultado, espera-se uma maior eficiência nos processos da empresa, melhor aproveitamento da mão de obra, maior satisfação do cliente e aumento da capacidade de atendimento da vidraçaria.
 
 ### 2.2 Características da Solução
 - O processo de agendamento e realização de orçamentos será facilitado por meio do site tendo uma calculadora de orçamentos e uma ferramenta de agendamento que disponibiliza os orçamentos marcados para o administrador.
