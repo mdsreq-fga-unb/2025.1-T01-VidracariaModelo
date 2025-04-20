@@ -27,24 +27,21 @@ dificuldade de gerenciar orçamentos e o repasse de demandas à equipe, visto qu
 trâmite é feito via WhatsApp ou de maneira presencial, implicando em muitos orçamentos
 marcados e não atendidos, além de uma sobrecarga de demandas em dias específicos
 devido à impossibilidade de gerência eficiente dos dados.
-Além disso, não há uma estrutura organizada de gestão financeira e de vendas: não
+Além disso, não há uma estrutura organizada de gestão financeira e de vendas, não
 existem registros digitalizados de despesas, não há geração formal de recibos para os
-serviços prestados, nem uma análise visual clara do desempenho da empresa ao longo do
+serviços prestados nem uma análise visual clara do desempenho da empresa ao longo do
 tempo. O relacionamento com os clientes também não é sistematizado, dificultando o
 acompanhamento de atendimentos anteriores, preferências de compra ou estratégias de
 fidelização.
 Esses fatores indicam não apenas a existência de obstáculos operacionais, mas também
 oportunidades estratégicas que podem ser exploradas. O posicionamento online tímido de
 empresas desse ramo revela uma lacuna de mercado que pode ser aproveitada com o uso
-de ferramentas digitais. A adoção de soluções como uma plataforma com funcionalidades
-de CRM, emissão de recibos, controle de despesas e geração de gráficos financeiros
-poderá não apenas organizar internamente os processos da empresa, mas também
-alavancar suas vendas, fortalecer o relacionamento com os clientes e aumentar sua
-competitividade.
+de ferramentas digitais. 
 
 Segue a Figura com o diagrama de Ishikawa utilizando a organização pelos 6Ms para representar as causas e o problema da Vidraçaria modelo:
 
-![SDiagrama de Ishikawa](imagens/IshikawaVidracariaModelo.jpg)
+![Ishikawa](../imagens/IshikawaVidracariaModelo.jpg)
+
 
 ---
 
