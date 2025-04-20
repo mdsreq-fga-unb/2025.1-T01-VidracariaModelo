@@ -24,7 +24,7 @@ No ramo das vidraçarias, são exemplos de concorrentes desta plataforma o site 
 
 A solução da Vidraçaria Modelo irá se diferenciar das demais por:
 
-- Permitir o contato do cliente com a empresa através de uma plataforma dedicada e bem desenvolvida;
+- Permitir o contato do cliente com a empresa através de uma plataforma dedicada;
 - Design atual e chamativo para o cliente;
 - Calculadora de orçamento integrada para acelerar o fechamento do serviço;
 - possibilidade de gerenciamento pelo administrador da empresa.
