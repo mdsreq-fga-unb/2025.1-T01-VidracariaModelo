@@ -35,9 +35,8 @@ faturamento.
 
 ## 1.3 Desafios do Projeto
 
-O software deverá resolver a falta de um canal digital estruturado para o gerenciamento de vendas, orçamentos e administração interna na empresa. O principal desafio é o desenvolvimento da ferramenta que irá permitir ao próprio cliente realizar orçamentos online, reduzindo a perda de atendimentos e aumentando a eficiência no fechamento de vendas. Além disso, o sistema deverá incluir funcionalidades voltadas à administração interna, como o controle de despesas por meio de tabelas e gráficos, e o acompanhamento dos serviços prestados, contribuindo para uma gestão mais eficiente e estratégica.
-Outro desafio a ser considerado é a diferença de conhecimento da equipe com as tecnologias escolhidas para o desenvolvimento. Como alguns membros possuem mais experiência que outros, será necessário adotar estratégias de nivelamento de conhecimento para garantir uma distribuição equilibrada das atividades e assegurar o progresso eficiente do projeto.
-
+O principal desafio do projeto é garantir que a Vidraçaria Modelo supere a atual falta de uma ferramenta integrada que auxilie na organização da empresa, abrangendo desde a administração interna até a gestão financeira. Atualmente, a empresa não utiliza nenhuma solução online para organizar seus orçamentos ou controlar suas finanças, repassando informações sobre as vendas e orçamentos de maneira informal, o que tem resultado em perdas de oportunidades, como orçamentos não realizados e clientes insatisfeitos.
+Outro desafio a ser considerado é a diferença de conhecimento da equipe com as tecnologias escolhidas para o desenvolvimento. Como alguns membros possuem mais experiência que outros, será necessário adotar estratégias de nivelamento de conhecimento para garantir uma distribuição equilibrada das atividades e assegurar o progresso eficiente do projeto.
 
 ---
 
