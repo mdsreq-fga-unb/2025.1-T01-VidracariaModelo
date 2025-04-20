@@ -44,7 +44,7 @@ competitividade.
 
 Segue a Figura com o diagrama de Ishikawa utilizando a organização pelos 6Ms para representar as causas e o problema da Vidraçaria modelo:
 
-![SDiagrama de Ishikawa](imagens/vidracaria.jpg)
+![SDiagrama de Ishikawa](imagens/IshikawaVidracariaModelo.jpg)
 
 ---
 
