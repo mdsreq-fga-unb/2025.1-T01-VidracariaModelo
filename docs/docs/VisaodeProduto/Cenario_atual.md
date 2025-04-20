@@ -35,14 +35,8 @@ faturamento.
 
 ## 1.3 Desafios do Projeto
 
-O principal desafio técnico do projeto é a implementação de um site que facilite o contato do
-possível cliente com a empresa através da internet, além de permitir que um orçamento seja
-marcado e gerenciado pela empresa com a possibilidade de que se o cliente estiver com os
-dados necessários para a realização do cálculo, consiga fazer o orçamento automaticamente,
-permitindo o ajuste de demanda e o aceleramento dos processos no dia de trabalho.
-Outro desafio é a diferença de conhecimento relativo à tecnologia adotada dentro da equipe de
-desenvolvimento, visto que alguns membros do time tem mais experiência com determinadas
-tecnologias e processos, fazendo-se necessárias estratégias de nivelamento de conhecimento.
+O principal desafio do projeto é garantir que a Vidraçaria Modelo supere a atual falta de uma ferramenta integrada que auxilie na organização da empresa, abrangendo desde a administração interna até a gestão financeira. Atualmente, a empresa não utiliza nenhuma solução online para organizar seus orçamentos ou controlar suas finanças, repassando informações sobre as vendas e orçamentos de maneira informal, o que tem resultado em perdas de oportunidades, como orçamentos não realizados e clientes insatisfeitos.
+Outro desafio a ser considerado é a diferença de conhecimento da equipe com as tecnologias escolhidas para o desenvolvimento. Como alguns membros possuem mais experiência que outros, será necessário adotar estratégias de nivelamento de conhecimento para garantir uma distribuição equilibrada das atividades e assegurar o progresso eficiente do projeto.
 
 ---
 
