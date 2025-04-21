@@ -1,11 +1,21 @@
 ### 2.1 Objetivos do Produto
-O objetivo do produto é ampliar a capacidade de captação de clientes pela empresa por
-meio de um site comercial, chamativo e informativo, que permita o agendamento e a
-realização de orçamentos pelo cliente e que permita o administrador da empresa ter acesso
-a esses orçamentos e realizar o gerenciamento necessário da carga de trabalho para otimizar
-a mão de obra e o tempo de serviço. A solução fornecerá a estrutura necessária para o
-posicionamento online do empreendimento e a plataforma para a melhor organização da
-empresa.
+O produto tem como objetivo resolver o problema central identificado no Diagrama de Ishikawa: o baixo desempenho operacional da Vidraçaria Modelo.
+
+A solução proposta busca melhorar esse desempenho por meio da criação de uma plataforma digital que aumente a organização, facilite os processos internos e otimize o relacionamento com os clientes.
+
+Este objetivo será alcançado com a resolução de algumas das causas mapeadas no diagrama, tais como:
+
+- **Inexistência de site institucional ou plataforma online:** será desenvolvido um site comercial, moderno e informativo, que funcione como o principal ponto de contato com os clientes;
+
+- **Ausência de sistema de agendamento ou controle financeiro digital:** será implementado um sistema que permita agendamentos e orçamentos online, centralizando as informações e automatizando processos;
+
+- **Uso exclusivo do WhatsApp para negociações e agendamentos:** a plataforma permitirá registrar atendimentos e formalizar interações com os clientes;
+
+- **Marketing restrito a meios tradicionais:** o site contribuirá para a presença digital da empresa e facilitará ações de marketing online;
+
+- **Dificuldade de organização e priorização de demandas:** o sistema ajudará o administrador a distribuir melhor as tarefas e organizar a carga de trabalho da equipe.
+
+Como resultado, espera-se uma maior eficiência nos processos da empresa, melhor aproveitamento da mão de obra, maior satisfação do cliente e aumento da capacidade de atendimento da vidraçaria.
 
 ### 2.2 Características da Solução
 - O processo de agendamento e realização de orçamentos será facilitado por meio do site tendo uma calculadora de orçamentos e uma ferramenta de agendamento que disponibiliza os orçamentos marcados para o administrador.
@@ -27,6 +37,7 @@ defasado e a possibilidade de orçamento apenas via preenchimento de formulário
 via telefone e whatsapp. Com isto, no mercado atual existem diversas soluções que atenderiam as necessidades de ambos os negócios, como plataformas de CRM, plataformas para captar feedbacks, geradores de recibo automatizados, plataformas de análise de dados e criação de gráficos financeiros, ferramentas de agendamento, ferramentas de controle de tarefas, dentre outras. Entre os principais candidatos já existentes para solução dos problemas estão o Excel e Power BI para controle de gastos e criação de gráficos, Google Forms para a captação de reclamações e elogios, Microsoft Outlook para organização de atendimentos e controle de tarefas. Contudo, estas são plataformas independentes e não necessariamente possuem uma integração já estabelecida, além de necessitarem de diversas capacitações para cada funcionário que fosse realizar qualquer processo dentro da empresa, podendo inclusive gerar inconsistência nos dados, por não serem integrados, sem contar o custo para se ter total acesso as plataformas, que ainda não possuem qualquer compromisso de se alinhar com as regras de negócio da empresa para uma futura escalabilidade de atuação da mesma. Assim, uma plataforma que integre todas essas funcionalidades e se adeque especificamente as necessidades da empresa se torna essencial para fortalecer o negócio e reforçar a integridade de seus processos internos.
 
 A solução da Vidraçaria Modelo irá se diferenciar das demais por em uma só plataforma possuir todas as necessidades da empresa, como:
+
 
 - Contato do cliente com a empresa através de uma plataforma dedicada;
 - Design atual e chamativo para o cliente;
@@ -52,6 +63,7 @@ Modelo.
 ### 2.6 Impacto da Solução
 **Posicionamento online e melhora nas vendas:** A plataforma irá permitir que a Vidraçaria Modelo esteja presente no meio digital e alcance novos públicos e fidelize seus clientes.
 
-**Melhora na credibilidade da empresa:** Tendo uma plataforma robusta de atendimento ao cliente a empresa mostra profissionalismo e compromisso com seus possíveis clientes melhorando a visão da empresa por pessoas desconhecidas.
+**Melhora na credibilidade da empresa:** Ao contar com uma plataforma robusta de atendimento ao cliente, isto é, com uma estrutura estável e funcionalidades completas, a empresa mostra profissionalismo e compromisso com seus possíveis clientes melhorando a visão da empresa por pessoas desconhecidas.
+
 
 **Eficiência na gestão de orçamentos e controle da carga de trabalho:** A solução permitirá um maior controle das demandas por parte da empresa, diminuindo a incidência de orçamentos não atendidos e vendas não captadas.
