@@ -2,12 +2,13 @@
 
 | Papel                   | Descrição                                                                                                                                         | Responsável           | Participantes                            |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|------------------------------------------|
-| Product Owner           | Responsável por gerenciar o progresso do projeto, atuando como ponto de conexão entre o cliente e a equipe. Além disso, monitora prazos e prioridades. | Cayo Alencar       | --                                       |
+| Líder de Projeto          | Responsável por gerenciar o progresso do projeto, atuando como ponto de conexão entre o cliente e a equipe. Além disso, monitora prazos e prioridades. | Cayo Alencar       | --                                       |
 | Analista de QA          | Deve testar o produto para averiguar se o software, e todas suas aplicações, estão funcionando da maneira que o cliente final espera.              | Pedro Henrique            | --                                       |
 | Desenvolvedor Frontend  | Desenvolve a interface visual, design e garante a integração com o servidor.                                                                      | Samara Alves    | Igor Daniel, Maria Eduarda                |
 | Desenvolvedor Backend   | Desenvolve a lógica do servidor, gerencia banco de dados e integrações.                                                                          | João Filipe       | Cayo Alencar, Pedro Henrique                       |
 | Analista de Requisitos  | Identifica, documenta e gerencia as necessidades e expectativas do cliente.                                                                       | Cayo Alencar           | Igor Daniel, João Filipe, Maria Eduarda, Pedro Henrique, Samara|
 
+---
 
 ## 5.2 Comunicação
 
