@@ -19,17 +19,12 @@ para organização interna da empresa.
 
 ## 1.2 Identificação da Oportunidade ou Problema
 
-Os principais problemas identificados na Vidraçaria modelo são a falta de
-posicionamento online que implica na dependência exclusiva de meios tradicionais de
-marketing e negociação, retardando o possível crescimento da empresa. Existe ainda
-um gargalo de vendas causado pela dificuldade de gerenciar orçamentos e o repasse de
-demandas a equipe, visto que todo o trâmite é feito via whatsapp ou de maneira
-presencial. Implicando em muitos orçamentos marcados e não atendidos, além de uma
-sobrecarga de demandas em dias específicos devido a impossibilidade de gerência dos
-dados. Apresenta-se também uma oportunidade de mercado gerada pelo
-posicionamento online tímido de empresas deste ramo, desta forma ao utilizar
-estratégias de marketing digital o empreendimento pode alavancar suas vendas e
-faturamento.
+O principal problema identificado na Vidraçaria Modelo é o baixo desempenho operacional do empreendimento, observado em diversas fases do negócio, especialmente na falta de posicionamento online, o que implica na dependência exclusiva de meios tradicionais de marketing e negociação, retardando o possível crescimento da empresa. Esse desempenho comprometido também se manifesta na forma como são gerenciados os orçamentos e a comunicação interna, atualmente realizados via WhatsApp ou presencialmente. Essa limitação operacional acaba resultando em orçamentos marcados que não são atendidos, dificuldades no repasse de demandas para a equipe e uma sobrecarga de trabalho concentrada em determinados dias, devido à ausência de um sistema eficiente de gerenciamento de dados. No que tange à falta de sistematização a organização sofre com a inexistência de uma estrutura organizada para a gestão financeira e de vendas: não há registros digitalizados de despesas, tampouco emissão formal de recibos pelos serviços prestados, o que compromete o controle financeiro e a análise do desempenho da empresa ao longo do tempo. O relacionamento com os clientes também sofre com a falta de sistematização, dificultando o acompanhamento de atendimentos anteriores, a identificação de preferências e a implementação de estratégias de fidelização. Esses fatores, todos derivados do baixo desempenho operacional, revelam não apenas os obstáculos enfrentados atualmente, mas também oportunidades estratégicas que podem ser exploradas por meio da adoção de ferramentas digitais especialmente em um setor onde o posicionamento online ainda é pouco explorado.
+
+Segue a Figura com o diagrama de Ishikawa utilizando a organização pelos 6Ms para representar as causas e o problema da Vidraçaria modelo:
+
+![Ishikawa](../imagens/IshikawaVidracariaModelo.jpg)
+
 
 ---
 
