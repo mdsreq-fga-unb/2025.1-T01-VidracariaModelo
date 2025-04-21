@@ -18,11 +18,42 @@ Este objetivo será alcançado com a resolução de algumas das causas mapeadas 
 Como resultado, espera-se uma maior eficiência nos processos da empresa, melhor aproveitamento da mão de obra, maior satisfação do cliente e aumento da capacidade de atendimento da vidraçaria.
 
 ### 2.2 Características da Solução
-- O processo de agendamento e realização de orçamentos será facilitado por meio do site tendo uma calculadora de orçamentos e uma ferramenta de agendamento que disponibiliza os orçamentos marcados para o administrador.
-- O site enviará notificações ao ter um orçamento agendado.
-- O design será focado para fornecer facilidade para os usuários ao utilizar a ferramenta de orçamentos, além de contar com informações relevantes sobre a empresa e um portfólio de serviços realizados previamente.
-- O site permitirá o contato direto do cliente com a empresa, direcionando-o para os meios de comunicação
-da empresa.
+2.2 Características da Solução
+A solução proposta consiste em um sistema web para a Vidraçaria Modelo, com foco na modernização do atendimento, automação de orçamentos e melhoria na gestão administrativa e financeira da empresa. A seguir, estão listadas as principais funcionalidades que serão incorporadas:
+
+1. Ferramenta de Agendamento de Orçamentos/Agendamento de visitas técnicas com controle de datas e horários disponíveis.
+
+2. Calculadora de Orçamentos Online/Simulação de preços com base em tipos de vidro, medidas, acabamentos e instalação.
+
+3. Painel Administrativo de Orçamentos/Visualização e gerenciamento de orçamentos por parte dos administradores.
+
+4. Notificações Automatizadas Alertas via e-mail ou WhatsApp para agendamentos, confirmações e alterações.
+
+5. Histórico de Orçamentos e Serviços/Consulta de registros de atendimentos anteriores por parte do cliente.
+
+6. Cadastro e Autenticação de Usuários/Login com perfis distintos: cliente, técnico e administrador.
+
+7. Canal de Comunicação Direta com a Empresa/Integração com WhatsApp, formulário de contato e redes sociais.
+
+8. Gestão de Portfólio de Serviços Realizados/Galeria com imagens e descrições dos serviços executados.
+
+9. Sistema de Avaliação de Serviços/Clientes avaliam os serviços prestados após a conclusão.
+
+10. Área de Dúvidas Frequentes (FAQ)/Informações úteis sobre orçamentos, agendamentos e produtos.
+
+11. Sistema CRM (Customer Relationship Management)/Ferramentas para registrar, acompanhar e organizar o histórico de interação com cada cliente, facilitando o relacionamento e personalização do atendimento.
+
+12. Cadastro de Produtos e Serviços/Tipos de vidros, molduras, espelhos e serviços poderão ser cadastrados para uso na calculadora de orçamento.
+
+13. Dashboard de Indicadores/Gráficos com dados de orçamentos, conversões, clientes atendidos, entre outros.
+
+14. Gerenciador de Vendas/Controle de vendas realizadas com detalhes de produto, cliente e status da entrega/execução.
+
+15. Emissão de Recibos/Geração de comprovantes para serviços prestados e vendas realizadas.
+
+16. Tabelas de Despesas/Ferramenta para registro e acompanhamento das despesas operacionais da empresa.
+
+17. Gráficos Financeiros/Visualização clara e organizada da Receita vs Despesas, auxiliando no controle financeiro e tomada de decisões.
 
 ### 2.3 Tecnologias a Serem Utilizadas
 - **Frontend:** React.js
