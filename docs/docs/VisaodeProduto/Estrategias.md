@@ -35,7 +35,9 @@ A escolha do **XP** como estratégia prioritária baseia-se nos seguintes fatore
    - A equipe possui experiência utilizando XP devido a disciplinas anteriores do curso  
 
 3.3.5. **Contato com o cliente**:  
-   - Teremos um contato frequente com o cliente, facilitando feedbacks contínuos  \
+   - Teremos um contato frequente com o cliente, facilitando feedbacks contínuos
+   
+3.3.6 **Escopo do Projeto é variavel** 
 
 ## Referencias: 
 MARSICANO, George. Requisitos de Software: Fundamentos, Evolução e Praticas 2025. Material interno não publicado.
