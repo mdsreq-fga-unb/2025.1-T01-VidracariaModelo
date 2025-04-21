@@ -18,7 +18,6 @@ Este objetivo será alcançado com a resolução de algumas das causas mapeadas 
 Como resultado, espera-se uma maior eficiência nos processos da empresa, melhor aproveitamento da mão de obra, maior satisfação do cliente e aumento da capacidade de atendimento da vidraçaria.
 
 ### 2.2 Características da Solução
-2.2 Características da Solução
 A solução proposta consiste em um sistema web para a Vidraçaria Modelo, com foco na modernização do atendimento, automação de orçamentos e melhoria na gestão administrativa e financeira da empresa. A seguir, estão listadas as principais funcionalidades que serão incorporadas:
 
 1. Ferramenta de Agendamento de Orçamentos/Agendamento de visitas técnicas com controle de datas e horários disponíveis.
