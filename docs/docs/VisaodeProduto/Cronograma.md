@@ -1,4 +1,4 @@
-## Cronograma de Sprints e Entregas
+## Cronograma de Ciclos e Entregas
 
 Este cronograma é uma **versão premilinar** do projeto.  
 
@@ -20,7 +20,7 @@ Este cronograma é uma **versão premilinar** do projeto.
 
 | Data       | Versão | Descrição                          | Autor         | Revisores               |
 |------------|-----|------------------------------------|----------------|--------------------------|
-| 19/04/2025 | 1.0 | Criação do documento               | Samara Alves  |    |
-| 19/04/2025 | 1.1 | Atualizações e alterações no cronograma de sprints e entregas|Samara Alves  |          |
+| 19/04/2025 | 1.0 | Criação do documento               | Samara Alves  | Maria Eduarda |
+| 19/04/2025 | 1.1 | Atualizações e alterações no cronograma de sprints e entregas|Samara Alves  | Maria Eduarda         |
 
 
