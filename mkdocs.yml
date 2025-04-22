@@ -29,6 +29,9 @@ nav:
     - 4.Cronograma e Entregas: docs/VisaodeProduto/Cronograma.md
     - 5.Interação entre Equipe e Cliente: docs/VisaodeProduto/Interacao.md
     - 6. Lições Aprendidas: docs/VisaodeProduto/licoes.md
+  
+  - Entregas: 
+    - 1º Entrega: docs/Entregas/1.md
 
   - Atas de Reunião:
       - 15/04: docs/Atas/15_04.md
