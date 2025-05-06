@@ -1,21 +1,25 @@
 ### 2.1 Objetivos do Produto
 O produto tem como objetivo resolver o problema central identificado no Diagrama de Ishikawa: o baixo desempenho operacional da Vidraçaria Modelo.
 
-A solução proposta busca melhorar esse desempenho por meio da criação de uma plataforma digital que aumente a organização, facilite os processos internos e otimize o relacionamento com os clientes.
+A solução proposta tem como **objetivo geral** melhorar esse desempenho por meio da criação de uma plataforma digital que aumente a organização, facilite os processos internos e otimize o relacionamento com os clientes.
 
-Este objetivo será alcançado com a resolução de algumas das causas mapeadas no diagrama, tais como:
+#### Objetivos específicos da solução:
 
-- **Inexistência de site institucional ou plataforma online:** será desenvolvido um site comercial, moderno e informativo, que funcione como o principal ponto de contato com os clientes;
+**1. Sofisticar o Marketing proporcionando  posicionamento online:** 
 
-- **Ausência de sistema de agendamento ou controle financeiro digital:** será implementado um sistema que permita agendamentos e orçamentos online, centralizando as informações e automatizando processos;
+Devido a Inexistência de presença online da empresa que restringe as possibilidades de marketing a meios tradicionais,  mostra-se oportuna a  utilização de um site institucional que permitirá o contato do cliente diretamente com a empresa através de integração com plataformas de contato e redes sociais. 
 
-- **Uso exclusivo do WhatsApp para negociações e agendamentos:** a plataforma permitirá registrar atendimentos e formalizar interações com os clientes;
+**2. Otimizar gestão de orçamentos e agendamentos:**
 
-- **Marketing restrito a meios tradicionais:** o site contribuirá para a presença digital da empresa e facilitará ações de marketing online;
+Devido a falta de centralização das informações pertinentes ao orçamento na empresa, é vantajosa a utilização de um sistema que permitirá agendamentos e orçamentos online, centralizando as informações de todos os orçamentos e automatizando processos.
 
-- **Dificuldade de organização e priorização de demandas:** o sistema ajudará o administrador a distribuir melhor as tarefas e organizar a carga de trabalho da equipe.
+**3. Viabilizar gestão de demandas:**
 
-Como resultado, espera-se uma maior eficiência nos processos da empresa, melhor aproveitamento da mão de obra, maior satisfação do cliente e aumento da capacidade de atendimento da vidraçaria.
+Observando a Dificuldade de organização e priorização de demandas, o sistema ajudará o administrador a distribuir melhor as tarefas e organizar a carga de trabalho da equipe.
+
+**4. Aprimorar gestão financeira e de vendas:**
+
+Com a falta de uma estrutura organizada de gestão financeira é adequada a utilização de um sistema que fornece as funcionalidades pertinentes, como por exemplo: geração de relatórios com indicadores, automatização de geração de recibos, entre outras funcionalidades relacionadas.
 
 ### 2.2 Características da Solução
 A solução proposta consiste em um sistema web para a Vidraçaria Modelo, com foco na modernização do atendimento, automação de orçamentos e melhoria na gestão administrativa e financeira da empresa. A seguir, estão listadas as principais funcionalidades que serão incorporadas:
