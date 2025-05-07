@@ -1,3 +1,4 @@
+## Requisitos Funcionais (RF)
 | ID    | Nome do Requisito                                       | Descrição do Requisito                                                                 | Objetivo Específico Relacionado                                       |
 |-------|---------------------------------------------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------|
 | RF01  | Selecionar data e horário para agendamento              | Permitir que o cliente selecione data e horário disponíveis para agendamento.         | Otimizar gestão de orçamentos e agendamentos                          |
@@ -48,3 +49,18 @@
 | RF46  | Registrar novas despesas                                 | Permitir entrada de novas despesas operacionais.                                      | Aprimorar gestão financeira e de vendas                               |
 | RF47  | Avaliar atendimento e serviço prestado                   | Permitir que o cliente avalie o serviço após a execução com nota e comentário.        | Viabilizar gestão de demandas                                         |
 | RF48  | Gerenciar comentários internos sobre cliente             | Permitir que administradores registrem anotações internas no perfil do cliente.       | Viabilizar gestão de demandas                                         |
+
+
+
+
+
+
+
+
+## Requisitos Não Funcionais (RNF)
+| ID    | Nome do Requisito                                       | Descrição do Requisito                                                                 | Classificação URPS+                                       |
+|-------|---------------------------------------------------------|----------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| RNF1  | Consultar histórico de despesas             | As consultas ao histórico de despesas devem ter tempo de resposta inferior a 2 segundos.       | Performance                                                                |
+| RNF2  | Garantir  Lei Geral de Proteção de Dados           | A plataforma deve garantir a segurança das informações e a conformidade com a Lei Geral de Proteção de Dados (LGPD).       | Implementação                                                          |
+| RNF3  | Adaptar a diferentes telas            | A interface deve se adaptar dinamicamente aos tamanhos de tela: 720x1280, 1080x1920 e 1920x1080.       | Interface                                                          |
+| RNF4  | Exibir categorias            | A interface da página principal deverá introduzir os usuários às principais informações para as demais navegações: Portifolio da vidraçaria, além do rodapé e cabeçalho com as demais navegações.       | Usabilidade               |                                                          
