@@ -29,6 +29,7 @@ nav:
     - 4.Cronograma e Entregas: docs/VisaodeProduto/Cronograma.md
     - 5.Interação entre Equipe e Cliente: docs/VisaodeProduto/Interacao.md
     - 6. Lições Aprendidas: docs/VisaodeProduto/licoes.md
+  - Requisitos: docs/requsitos/requisitos.md
   
   - Entregas: 
     - 1º Entrega: docs/Entregas/1.md
