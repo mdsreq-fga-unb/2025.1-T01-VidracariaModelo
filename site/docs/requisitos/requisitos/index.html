@@ -1,0 +1,1132 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mdsreq-fga-unb.github.io/2025.1-T01-VidracariaModelo/docs/requisitos/requisitos/">
+      
+      
+        <link rel="prev" href="../../VisaodeProduto/licoes/">
+      
+      
+        <link rel="next" href="../../Entregas/1/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
+    
+    
+      
+        <title>Requisitos - VidracariaModelo</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.2afb09e1.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#requisitos-funcionais-rf" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="VidracariaModelo" class="md-header__button md-logo" aria-label="VidracariaModelo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VidracariaModelo
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Requisitos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="VidracariaModelo" class="md-nav__button md-logo" aria-label="VidracariaModelo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VidracariaModelo
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Visão de Projeto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Visão de Projeto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Cenario_atual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Cenário Atual do Cliente e do Negócio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Solucao_proposta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Solução Proposta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Estrategias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Estratégias de Engenharia de Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Cronograma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4.Cronograma e Entregas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Interacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5.Interação entre Equipe e Cliente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/licoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. Lições Aprendidas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Requisitos
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requisitos
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-funcionais-rf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos Funcionais (RF)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-nao-funcionais-rnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos Não Funcionais (RNF)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Entregas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Entregas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Atas de Reunião
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de Reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/15_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15/04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/29_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    29/04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-funcionais-rf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos Funcionais (RF)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-nao-funcionais-rnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos Não Funcionais (RNF)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Requisitos</h1>
+
+<h2 id="requisitos-funcionais-rf">Requisitos Funcionais (RF)</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Nome do Requisito</th>
+<th>Descrição do Requisito</th>
+<th>Objetivo Específico Relacionado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RF01</td>
+<td>Selecionar data e horário para agendamento</td>
+<td>Permitir que o cliente selecione data e horário disponíveis para agendamento.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF02</td>
+<td>Exibir calendário com disponibilidade de agendamento</td>
+<td>Exibir calendário com dias e horários já ocupados e disponíveis para agendamento.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF03</td>
+<td>Enviar confirmação de agendamento por email e WhatsApp</td>
+<td>Enviar confirmação de agendamento ao cliente pelos canais selecionados.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF04</td>
+<td>Notificar administradores sobre novos agendamentos</td>
+<td>Notificar os administradores sempre que um novo agendamento for feito.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+<tr>
+<td>RF05</td>
+<td>Cancelar ou remarcar agendamento por administradores</td>
+<td>Permitir que administradores cancelem ou remarquem agendamentos realizados.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+<tr>
+<td>RF06</td>
+<td>Cancelar ou remarcar agendamento por clientes</td>
+<td>Permitir que clientes cancelem ou remarquem seus próprios agendamentos.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF07</td>
+<td>Exibir resumo do orçamento online</td>
+<td>Apresentar um resumo claro e acessível do orçamento solicitado pelo cliente.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF08</td>
+<td>Permitir envio de orçamento para análise</td>
+<td>Permitir que o cliente envie orçamentos para análise pela equipe.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF09</td>
+<td>Listar orçamentos com filtros predefinidos</td>
+<td>Listar orçamentos solicitados com filtros como status, tipo de serviço, etc.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF10</td>
+<td>Editar orçamentos</td>
+<td>Permitir edição de valores, prazos e observações dos orçamentos.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF11</td>
+<td>Notificar sobre expiração de orçamento</td>
+<td>Enviar alertas ao cliente e à equipe quando um orçamento estiver próximo de expirar.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF12</td>
+<td>Vincular orçamento a agendamento de visita técnica</td>
+<td>Relacionar diretamente um orçamento a um agendamento de visita técnica.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF13</td>
+<td>Registrar e acompanhar histórico de interações</td>
+<td>Registrar todas as interações feitas com o cliente, como atendimentos, orçamentos etc.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+<tr>
+<td>RF14</td>
+<td>Personalizar atendimento com base no histórico</td>
+<td>Ajustar o atendimento conforme o histórico de interações e preferências do cliente.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+<tr>
+<td>RF15</td>
+<td>Cadastrar produtos e serviços</td>
+<td>Permitir o cadastro de produtos e serviços oferecidos pela empresa.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF16</td>
+<td>Listar e gerenciar produtos e serviços</td>
+<td>Listar e permitir a edição dos produtos e serviços cadastrados.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF17</td>
+<td>Exibir produtos e serviços no portfólio</td>
+<td>Exibir os produtos e serviços cadastrados no portfólio online da empresa.</td>
+<td>Sofisticar o Marketing proporcionando posicionamento online</td>
+</tr>
+<tr>
+<td>RF18</td>
+<td>Exibir gráficos de indicadores operacionais</td>
+<td>Exibir gráficos com métricas de desempenho como orçamentos, conversões e atendimentos.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF19</td>
+<td>Gerar gráficos financeiros para tomada de decisão</td>
+<td>Gerar gráficos que comparem receita e despesas para auxiliar decisões financeiras.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF20</td>
+<td>Controlar vendas realizadas</td>
+<td>Controlar vendas incluindo detalhes de produtos, clientes e status.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF21</td>
+<td>Cadastrar usuários por perfil</td>
+<td>Permitir o cadastro de usuários com diferentes tipos de permissão.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+<tr>
+<td>RF22</td>
+<td>Alterar senha</td>
+<td>Permitir que usuários alterem sua senha.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+<tr>
+<td>RF23</td>
+<td>Recuperar senha</td>
+<td>Permitir que usuários recuperem a senha esquecida.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+<tr>
+<td>RF24</td>
+<td>Listar vendas realizadas</td>
+<td>Apresentar a lista de vendas feitas pela empresa.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF25</td>
+<td>Gerenciar detalhes de venda</td>
+<td>Permitir visualização e edição dos detalhes de cada venda.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF26</td>
+<td>Enviar lembrete de agendamento via WhatsApp</td>
+<td>Enviar mensagem automática para lembrar o cliente de agendamentos futuros.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF27</td>
+<td>Oferecer canal de contato com a empresa</td>
+<td>Permitir comunicação por WhatsApp, formulário e redes sociais.</td>
+<td>Sofisticar o Marketing proporcionando posicionamento online</td>
+</tr>
+<tr>
+<td>RF28</td>
+<td>Notificar cliente sobre alterações em agendamentos</td>
+<td>Enviar notificação ao cliente se um agendamento for alterado ou cancelado.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF29</td>
+<td>Configurar canais de notificação</td>
+<td>Permitir que o usuário selecione se prefere email, WhatsApp ou ambos.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF30</td>
+<td>Cancelar envio de notificações</td>
+<td>Permitir que o usuário cancele notificações futuras.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF31</td>
+<td>Visualizar histórico de orçamentos</td>
+<td>Permitir que o cliente consulte todos os orçamentos feitos anteriormente.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF32</td>
+<td>Filtrar registros</td>
+<td>Permitir filtrar dados por data, tipo de serviço ou status.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF33</td>
+<td>Ver detalhamento de orçamentos</td>
+<td>Apresentar valores, datas e tipo de serviço nos orçamentos.</td>
+<td>Otimizar gestão de orçamentos e agendamentos</td>
+</tr>
+<tr>
+<td>RF34</td>
+<td>Exibir FAQ</td>
+<td>Exibir uma área de dúvidas frequentes sobre serviços e processos.</td>
+<td>Sofisticar o Marketing proporcionando posicionamento online</td>
+</tr>
+<tr>
+<td>RF35</td>
+<td>Atualizar conteúdo da FAQ</td>
+<td>Permitir que administradores editem o conteúdo da FAQ.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+<tr>
+<td>RF36</td>
+<td>Exibir perguntas e respostas</td>
+<td>Ter uma área para perguntas abertas e respostas da equipe.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+<tr>
+<td>RF37</td>
+<td>Excluir perguntas inadequadas</td>
+<td>Permitir que administradores removam perguntas inapropriadas.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+<tr>
+<td>RF38</td>
+<td>Registrar recibo</td>
+<td>Permitir o registro de recibos com dados do serviço prestado.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF39</td>
+<td>Editar informações do recibo</td>
+<td>Permitir alteração dos dados registrados em um recibo.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF40</td>
+<td>Exportar recibo em PDF</td>
+<td>Gerar arquivo PDF com os dados do recibo preenchido.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF41</td>
+<td>Registrar despesas operacionais</td>
+<td>Permitir que usuários autorizados registrem novas despesas.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF42</td>
+<td>Categorizar despesas</td>
+<td>Classificar despesas por tipo (ex: aluguel, transporte).</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF43</td>
+<td>Editar ou excluir despesas</td>
+<td>Permitir edição ou exclusão de despesas, com base nas permissões.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF44</td>
+<td>Anexar comprovantes às despesas</td>
+<td>Permitir incluir notas fiscais e recibos às despesas.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF45</td>
+<td>Exportar dados de despesas</td>
+<td>Permitir exportação dos dados registrados das despesas.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF46</td>
+<td>Registrar novas despesas</td>
+<td>Permitir entrada de novas despesas operacionais.</td>
+<td>Aprimorar gestão financeira e de vendas</td>
+</tr>
+<tr>
+<td>RF47</td>
+<td>Avaliar atendimento e serviço prestado</td>
+<td>Permitir que o cliente avalie o serviço após a execução com nota e comentário.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+<tr>
+<td>RF48</td>
+<td>Gerenciar comentários internos sobre cliente</td>
+<td>Permitir que administradores registrem anotações internas no perfil do cliente.</td>
+<td>Viabilizar gestão de demandas</td>
+</tr>
+</tbody>
+</table>
+<h2 id="requisitos-nao-funcionais-rnf">Requisitos Não Funcionais (RNF)</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Nome do Requisito</th>
+<th>Descrição do Requisito</th>
+<th>Classificação URPS+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF1</td>
+<td>Consultar histórico de despesas</td>
+<td>As consultas ao histórico de despesas devem ter tempo de resposta inferior a 2 segundos.</td>
+<td>Performance</td>
+</tr>
+<tr>
+<td>RNF2</td>
+<td>Garantir  Lei Geral de Proteção de Dados</td>
+<td>A plataforma deve garantir a segurança das informações e a conformidade com a Lei Geral de Proteção de Dados (LGPD).</td>
+<td>Implementação</td>
+</tr>
+<tr>
+<td>RNF3</td>
+<td>Adaptar a diferentes telas</td>
+<td>A interface deve se adaptar dinamicamente aos tamanhos de tela: 720x1280, 1080x1920 e 1920x1080.</td>
+<td>Interface</td>
+</tr>
+<tr>
+<td>RNF4</td>
+<td>Exibir categorias</td>
+<td>A interface da página principal deverá introduzir os usuários às principais informações para as demais navegações: Portifolio da vidraçaria, além do rodapé e cabeçalho com as demais navegações.</td>
+<td>Usabilidade</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.tabs.link", "header.autohide", "navigation.instant", "navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
