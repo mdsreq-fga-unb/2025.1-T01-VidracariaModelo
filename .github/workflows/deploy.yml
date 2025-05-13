@@ -3,7 +3,7 @@ name: Deploy MkDocs para gh-pages
 on:
   push:
     branches:
-      - deploy
+      - main
 
 jobs:
   deploy:
