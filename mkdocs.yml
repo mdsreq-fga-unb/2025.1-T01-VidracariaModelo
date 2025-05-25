@@ -26,14 +26,17 @@ nav:
     - 1. Cenário Atual do Cliente e do Negócio: docs/VisaodeProduto/Cenario_atual.md
     - 2. Solução Proposta: docs/VisaodeProduto/Solucao_proposta.md
     - 3. Estratégias de Engenharia de Software: docs/VisaodeProduto/Estrategias.md
-    - 4.Cronograma e Entregas: docs/VisaodeProduto/Cronograma.md
-    - 5.Interação entre Equipe e Cliente: docs/VisaodeProduto/Interacao.md
-    - 6. Lições Aprendidas: docs/VisaodeProduto/licoes.md
+    - 4. Engenharia de Requisitos: docs/VisaodeProduto/Engenharia_de_Requisitos
+    - 5.Cronograma e Entregas: docs/VisaodeProduto/Cronograma.md
+    - 6.Interação entre Equipe e Cliente: docs/VisaodeProduto/Interacao.md
+    - 7. Requisitos de Software: docs/VisaodeProduto/Requisitos_de_Software
+    - 8. DoR e DoD: docs/VisaodeProduto/DorDoD
+    - 9. Backlog de Produto: docs/VisaodeProduto/Backlog.md
+    - 10. Lições Aprendidas: docs/VisaodeProduto/licoes.md
   - Requisitos: docs/requisitos/requisitos.md
-  
+  - DOR e DOD: docs/DOR_DOD/dor_dod.md
   - Entregas: 
     - 1º Entrega: docs/Entregas/1.md
-  - DOR e DOD: docs/DOR_DOD/dor_dod.md
 
   - Atas de Reunião:
       - 15/04: docs/Atas/15_04.md
