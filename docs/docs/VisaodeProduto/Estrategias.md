@@ -1,18 +1,20 @@
 # 3. Estratégias de Engenharia de Software
 
 ## 3.1 Estratégia Priorizada
-- **Abordagem de desenvolvimento de software**: Ágil  
-- **Ciclo de vida**: Iterativo e incremental  
-- **Processo de engenharia de software**: XP  
+- **Abordagem de desenvolvimento de software**: Hibrido
+- **Ciclo de vida**: Adaptativo 
+- **Processo de engenharia de software**: RAD
 
-## 3.2 Quadro Comparativo
-| Critério | XP | FDD |
-|----------|----|-----|
-| **Estrutura de organização de requisitos** | Histórias de Usuário, Critérios de Aceitação | Áreas, Conjuntos, Features, Tarefas |
-| **Forças** | Alta adaptabilidade, Feedbacks rápidos e contínuos, Validação precoce, Redução de documentação | Clareza organizacional, Equilíbrio cliente/técnico, Sistema de relatórios detalhado, Revisões formais para qualidade |
-| **Limitações** | Dependência do envolvimento do cliente, Desafio com documentação para conformidade, Escalabilidade limitada | Menos foco em requisitos não funcionais, Menor adaptabilidade a mudanças, Potencialmente documento-orientado | 
-| **Cenários Adequados para Uso** | Projetos com requisitos voláteis, Ambiente que prioriza feedback rápido, Sistemas que evoluem incrementalmente, Equipes pequenas com cliente presente | Sistemas de médio/grande porte, Equipes experientes em OO, Projetos que requerem visibilidade detalhada, Ambiente que valoriza responsabilidade individual |
-| **Tendências** | Integração com outros frameworks, Adoção de práticas técnicas específicas, Adaptações para equipes distribuídas | Integração com outras práticas ágeis, Adaptação para desenvolvimento contínuo, Automação de relatórios, Simplificação para projetos menores |
+## 3.2 Quadro Comparativo: RAD vs XP
+
+| Critério | **XP** | **RAD** |
+|----------|--------|---------|
+| **Estrutura de organização de requisitos** | Histórias de Usuário, Critérios de Aceitação | Requisitos de Negócio, Modelos de Interface, Modelos de Dados, Processos |
+| **Forças** | Alta adaptabilidade, Feedbacks rápidos e contínuos, Validação precoce, Redução de documentação | Redução no tempo de elicitação, Visualização precoce, Alta satisfação do usuário, Detecção precoce de problemas |
+| **Limitações** | Dependência do envolvimento do cliente, Desafio com documentação para conformidade, Escalabilidade limitada | Menos adequado para sistemas complexos, Risco de foco em interfaces, Dependência de ferramentas CASE, Necessidade de comprometimento intenso |
+| **Cenários Adequados para Uso** | Projetos com requisitos voláteis, Ambiente que prioriza feedback rápido, Sistemas que evoluem incrementalmente, Equipes pequenas com cliente presente | Sistemas de informação corporativos, Projetos com prazos curtos, Requisitos difíceis de articular, Validação de conceito |
+| **Tendências** | Integração com outros frameworks, Adoção de práticas técnicas específicas, Adaptações para equipes distribuídas | Integração com DevOps, Ferramentas low-code/no-code, Adaptação para mobile-first, Evolução para COD |
+
 
 ## 3.3 Justificativa
 A escolha do **XP** como estratégia prioritária baseia-se nos seguintes fatores:  
