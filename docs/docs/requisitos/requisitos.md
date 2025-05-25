@@ -33,7 +33,7 @@
 |**RF30**|Gerar gráfico de desempenho|O sistema deve gerar um gráfico com métricas como orçamento, conversões e atendimentos para apoiar o planejamento estratégico.|**RN17**|Objetivo 4: Aprimorar gestão financeira e de vendas.|
 |**RF31**|Gerar gráficos comparativos financeiros|O sistema deve gerar gráficos de receitas vs despesas para apoiar a tomada de decisão financeira.|**RN17, RN14**|Objetivo 4: Aprimorar gestão financeira e de vendas.|
 
-## Requisitos Não Funcionais (RF)
+## Requisitos Não Funcionais (RNF)
 | ID    | Nome do Requisito                                          | Descrição do Requisito                                                                                                                                          | Classificação URPS+  |
 |-------|------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
 | RNF1  | Consultar histórico de despesas                            | As consultas ao histórico de despesas devem ter tempo de resposta inferior a 2 segundos.                                                                       | Performance           |
@@ -45,7 +45,7 @@
 | RNF7  | Exibir FAQ                                                 | Exibir uma área de dúvidas frequentes sobre serviços e processos.                                                                                              | Usabilidade           |
 | RNF8  | Exibir produtos e serviços cadastrados no portfólio online da empresa. | Exibir os produtos e serviços cadastrados no portfólio online da empresa.                                                                      | Usabilidade           |
 
-## Regras de Negócio (RF)
+## Regras de Negócio (RN)
 | ID | Regra de Negócio |
 |---|---|
 | RN01 | Os agendamentos listados tem que ter sido feitos no máximo com uma semana. |
