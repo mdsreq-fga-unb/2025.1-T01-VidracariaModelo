@@ -26,37 +26,35 @@ A solução proposta consiste em um sistema web para a Vidraçaria Modelo, com f
 
 1. Ferramenta de Agendamento de Orçamentos/Agendamento de visitas técnicas com controle de datas e horários disponíveis.
 
-2. Calculadora de Orçamentos Online/Simulação de preços com base em tipos de vidro, medidas, acabamentos e instalação.
+2. Painel Administrativo de Orçamentos/Visualização e gerenciamento de orçamentos por parte dos administradores.
 
-3. Painel Administrativo de Orçamentos/Visualização e gerenciamento de orçamentos por parte dos administradores.
+3. Notificações AutomatizadasAlertas via e-mail ou WhatsApp para agendamentos, confirmações e alterações.
 
-4. Notificações Automatizadas Alertas via e-mail ou WhatsApp para agendamentos, confirmações e alterações.
+4. Histórico de Orçamentos e Serviços/Consulta de registros de atendimentos anteriores por parte do cliente.
 
-5. Histórico de Orçamentos e Serviços/Consulta de registros de atendimentos anteriores por parte do cliente.
+5. Cadastro e Autenticação de Usuários/Login com perfis distintos: cliente, técnico e administrador.
 
-6. Cadastro e Autenticação de Usuários/Login com perfis distintos: cliente, técnico e administrador.
+6. Canal de Comunicação Direta com a Empresa/Integração com WhatsApp, formulário de contato e redes sociais.
 
-7. Canal de Comunicação Direta com a Empresa/Integração com WhatsApp, formulário de contato e redes sociais.
+7. Gestão de Portfólio de Serviços Realizados/Galeria com imagens e descrições dos serviços executados.
 
-8. Gestão de Portfólio de Serviços Realizados/Galeria com imagens e descrições dos serviços executados.
+8. Sistema de Avaliação de Serviços/Clientes avaliam os serviços prestados após a conclusão.
 
-9. Sistema de Avaliação de Serviços/Clientes avaliam os serviços prestados após a conclusão.
+9. Área de Dúvidas Frequentes (FAQ)/Informações úteis sobre orçamentos, agendamentos e produtos.
 
-10. Área de Dúvidas Frequentes (FAQ)/Informações úteis sobre orçamentos, agendamentos e produtos.
+10. Sistema CRM (Customer Relationship Management)/Ferramentas para registrar, acompanhar e organizar o histórico de interação com cada cliente, facilitando o relacionamento e personalização do atendimento.
 
-11. Sistema CRM (Customer Relationship Management)/Ferramentas para registrar, acompanhar e organizar o histórico de interação com cada cliente, facilitando o relacionamento e personalização do atendimento.
+11. Cadastro de Produtos e Serviços/Tipos de vidros, molduras, espelhos e serviços poderão ser cadastrados para uso na calculadora de orçamento.
 
-12. Cadastro de Produtos e Serviços/Tipos de vidros, molduras, espelhos e serviços poderão ser cadastrados para uso na calculadora de orçamento.
+12. Dashboard de Indicadores/Gráficos com dados de orçamentos, conversões, clientes atendidos, entre outros.
 
-13. Dashboard de Indicadores/Gráficos com dados de orçamentos, conversões, clientes atendidos, entre outros.
+13. Gerenciador de Vendas/Controle de vendas realizadas com detalhes de produto, cliente e status da entrega/execução.
 
-14. Gerenciador de Vendas/Controle de vendas realizadas com detalhes de produto, cliente e status da entrega/execução.
+14. Emissão de Recibos/Geração de comprovantes para serviços prestados e vendas realizadas.
 
-15. Emissão de Recibos/Geração de comprovantes para serviços prestados e vendas realizadas.
+15. Tabelas de Despesas/Ferramenta para registro e acompanhamento das despesas operacionais da empresa.
 
-16. Tabelas de Despesas/Ferramenta para registro e acompanhamento das despesas operacionais da empresa.
-
-17. Gráficos Financeiros/Visualização clara e organizada da Receita vs Despesas, auxiliando no controle financeiro e tomada de decisões.
+16. Gráficos Financeiros/Visualização clara e organizada da Receita vs Despesas, auxiliando no controle financeiro e tomada de decisões.
 
 ### 2.3 Tecnologias a Serem Utilizadas
 
@@ -77,7 +75,6 @@ A solução da Vidraçaria Modelo irá se diferenciar das demais por em uma só 
 
 - Contato do cliente com a empresa através de uma plataforma dedicada;
 - Design atual e chamativo para o cliente;
-- Calculadora de orçamento integrada para acelerar o fechamento do serviço;
 - Possibilidade de gerenciamento pelo administrador da empresa.
 - Sistema direto de avaliação dos serviços por parte dos clientes.
 - Ferramenta para registrar, acompanhar e organizar o histórico de interação com clientes.
