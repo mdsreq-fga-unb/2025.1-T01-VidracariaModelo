@@ -11,7 +11,21 @@ Durante a fase inicial do projeto, algumas lições importantes foram aprendidas
 
 **Solução:** Foi realizado um mapa de calor com os horários disponíveis do time.
 
+## Unidade 2
 
+Nesta unidade, aprendemos a importância de aplicar técnicas adequadas de Engenharia de Requisitos para garantir clareza, alinhamento e qualidade no desenvolvimento do projeto. Compreendemos melhor como conduzir a elicitação de requisitos por meio de métodos como entrevistas e brainstorming, garantindo que as necessidades reais do cliente sejam captadas. Aprendemos também a realizar análises e consensos com técnicas como negociação, priorização (MoSCoW, WSJF). Por fim, aprendemos a importância da verificação e validação e também a necessidade de manter os requisitos organizados e atualizados ao longo do projeto, usando o backlog como ferramenta central.
+
+**Desafio:** O Scrum/XP não estava sendo utilizado da maneira correta.
+
+**Solução:** Optamos por mudar para o RAD para que se adequasse melhor ao projeto no geral.
+
+
+## Histórico de Versões
+
+| Data       | Versão | Descrição                          | Autor         | Revisores               |
+|------------|-----|------------------------------------|----------------|--------------------------|
+| 19/04/2025 | 1.0 | Criação do documento               | Igor Daniel  | Maria Eduarda |
+| 26/05/2025 | 1.1 | Atualizações e alterações | Pedro Henrique   | Samara Alves         |
 
 
 
