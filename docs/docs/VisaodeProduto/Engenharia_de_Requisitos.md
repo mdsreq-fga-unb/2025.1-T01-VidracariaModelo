@@ -3,17 +3,20 @@
 ### Brainstorming
 
 Técnica de geração livre de ideias, usada para levantar funcionalidades, problemas ou soluções com a participação de stakeholders, desenvolvedores e usuários.
-*Objetivo:* explorar diferentes visões, mesmo sem filtrar ou julgar.
+
+**Objetivo:** explorar diferentes visões, mesmo sem filtrar ou julgar.
 
 ### Prompt IA
 
 Uso de ferramentas de IA (como ChatGPT) para explorar ideias iniciais, levantar possíveis funcionalidades, ou simular entrevistas com clientes ou usuários.
-*Objetivo:* acelerar a geração de requisitos iniciais com apoio automatizado.
+
+**Objetivo:** acelerar a geração de requisitos iniciais com apoio automatizado.
 
 ### Entrevista com o cliente
 
 Conversa estruturada ou semiestruturada com stakeholders para entender necessidades, problemas e objetivos do sistema.
-*Objetivo:* captar requisitos diretos da fonte.
+
+**Objetivo:** captar requisitos diretos da fonte.
 
 ---
 
@@ -30,7 +33,8 @@ Aprofundamento nas entrevistas anteriores para esclarecer requisitos complexos, 
 ### Negociação
 
 Processo de ajustar requisitos conflitantes ou que excedem recursos disponíveis (tempo, custo, tecnologia).
-*Exemplo:* o cliente quer uma funcionalidade agora, mas ela será priorizada para a próxima versão por impacto no cronograma.
+
+**Exemplo:** o cliente quer uma funcionalidade agora, mas ela será priorizada para a próxima versão por impacto no cronograma.
 
 ### Prompt IA
 
@@ -82,12 +86,14 @@ Avaliação se os requisitos são *completos, consistentes, claros, testáveis, 
 ### Definition of Done (DoD)
 
 Critérios que definem quando um requisito está completamente implementado e pronto para entrega.
-*Exemplo:* Testado, documentado, aprovado pelo PO.
+
+**Exemplo:** Testado, documentado, aprovado pelo PO.
 
 ### Definition of Ready (DoR)
 
 Critérios mínimos para que um requisito esteja pronto para ser implementado.
-*Exemplo:* Está bem descrito, tem critérios de aceitação, foi priorizado.
+
+**Exemplo:** Está bem descrito, tem critérios de aceitação, foi priorizado.
 
 ### Prompt IA
 
@@ -109,30 +115,37 @@ Técnica formal e mais rigorosa de revisão, feita em grupo e seguindo um roteir
 
 Critérios para manter um backlog saudável:
 
-* *D:* Detalhado o suficiente
-* *E:* Requisitos emergem conforme entendimento cresce
-* *E:* Estimado com esforço ou pontos
-* *P:* Priorizado por valor e necessidade
+| Letra | Significado                              |
+|-------|-------------------------------------------|
+| D     | Detalhado o suficiente                    |
+| E     | Requisitos emergem conforme entendimento cresce |
+| E     | Estimado com esforço ou pontos            |
+| P     | Priorizado por valor e necessidade        |
+
 
 ### MoSCoW
 
 Técnica de priorização:
 
-* *M:* Must have (deve ter)
-* *S:* Should have (deveria ter)
-* *C:* Could have (poderia ter)
-* *W:* Won’t have (não terá agora)
+| Letra | Significado                    |
+|-------|--------------------------------|
+| M     | Must have (deve ter)          |
+| S     | Should have (deveria ter)     |
+| C     | Could have (poderia ter)      |
+| W     | Won’t have (não terá agora)   |
+
 
 ### Pontos por Histórias: WSJF (Weighted Shortest Job First)
 
 Usado para priorizar requisitos com base em *valor de negócio, urgência, risco e esforço*.
 Fórmula:
-*WSJF = (Valor do negócio + Urgência + Redução de risco) / Tamanho (Esforço)*
+
+**WSJF = (Valor do negócio + Urgência + Redução de risco) / Tamanho (Esforço)**
+
 Mais alto = maior prioridade.
 
 ---
 
-Se quiser, posso transformar isso em um *documento de referência, **template de backlog* ou *material visual* para seu projeto. Deseja isso?
 
 | **Fases do Processo** | **Atividades ER** | **Prática** | **Técnica** | **Resultado Esperado** |
 |:-----------------------------|:---------------------------------------|:------------------------------------------|:---------------------------------------------------------------------------|:-------------------------------------------------------------------------|
@@ -146,3 +159,11 @@ Se quiser, posso transformar isso em um *documento de referência, **template de
 |                 | Organização e atualização  | Priorização e detalhamento dos requisitos |MosCoW, Wjsf | Revisão dos requisitos a partir dos protótipos  |
 | **Construção** | Verificação e validação  | Inspeção | Revisão por pares | Encontrar defeitos e problemas  |
 |                | Verificação e validação de produto  | Inspeção | DoD | Validar o produto desenvolvido  |
+
+## Histórico de Versões
+
+| Data       | Versão | Descrição                          | Autor         | Revisores               |
+|------------|-----|------------------------------------|----------------|--------------------------|
+| 19/04/2025 | 1.0 | Criação do documento               | Samara Alves  | Maria Eduarda |
+| 26/05/2025 | 1.1 | Atualizações e alterações |Igor Daniel, Pedro Henrique   | Cayo Alencar         |
+

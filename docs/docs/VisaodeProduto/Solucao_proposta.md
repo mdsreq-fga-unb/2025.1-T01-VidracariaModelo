@@ -59,6 +59,8 @@ A solução proposta consiste em um sistema web para a Vidraçaria Modelo, com f
 17. Gráficos Financeiros/Visualização clara e organizada da Receita vs Despesas, auxiliando no controle financeiro e tomada de decisões.
 
 ### 2.3 Tecnologias a Serem Utilizadas
+
+- **Prototipação:** Figma e LucidChart
 - **Frontend:** React.js
 - **Backend:** Node.js
 - **Banco de dados:** MySQL
