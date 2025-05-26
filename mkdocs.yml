@@ -33,7 +33,10 @@ nav:
     - 8. DoR e DoD: docs/VisaodeProduto/DorDoD
     - 9. Backlog de Produto: docs/VisaodeProduto/Backlog.md
     - 10. Lições Aprendidas: docs/VisaodeProduto/licoes.md
-  - Requisitos: docs/requisitos/requisitos.md
+  - Requisitos: 
+    - 1. Lista de requisitos: docs/requisitos/requisitos.md
+    - 2. Backlog de requisitos: 
+    
   - DOR e DOD: docs/DOR_DOD/dor_dod.md
   - Entregas: 
     - 1º Entrega: docs/Entregas/1.md
