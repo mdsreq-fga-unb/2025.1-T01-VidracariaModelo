@@ -30,11 +30,10 @@ nav:
     - 5.Cronograma e Entregas: docs/VisaodeProduto/Cronograma.md
     - 6.Interação entre Equipe e Cliente: docs/VisaodeProduto/Interacao.md
     - 7. Requisitos de Software: docs/VisaodeProduto/Requisitos_de_Software
-    - 8. Backlog de Produto: docs/VisaodeProduto/Backlog.md
-    - 9. Lições Aprendidas: docs/VisaodeProduto/licoes.md
+    - 8. Lições Aprendidas: docs/VisaodeProduto/licoes.md
   - Requisitos: 
     - 1. Lista de requisitos: docs/requisitos/requisitos.md
-    - 2. Backlog de requisitos: 
+    - 2. Backlog de requisitos: docs/Backlog/Baclog.md
     
   - DOR e DOD: docs/DOR_DOD/dor_dod.md
   - Entregas: 
