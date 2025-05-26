@@ -47,12 +47,11 @@ Documento que descreve o propósito, escopo, público-alvo e funcionalidades pri
 
 ### Especificação de Requisitos ARO (Atores, Requisitos e Objetivos)
 
-Modelo de especificação estruturada que organiza os requisitos com foco nos *atores envolvidos, **funcionalidades esperadas* e *objetivos de negócio*.
-*Exemplo:*
-
-* Atores: Cliente, Sistema, Administrador
-* Requisitos: RF01, RF02…
-* Objetivos: Aumentar eficiência, melhorar experiência, etc.
+| Elemento     | Descrição                                                                                                          |
+| ------------ | ------------------------------------------------------------------------------------------------------------------ |
+| *Ação*     | O que o sistema fará (verbo no infinitivo: cadastrar, listar, validar, emitir, etc.).                              |
+| *Recurso*  | Qual entidade ou item será manipulado (ex: cliente, pedido, agendamento, recibo).                                  |
+| *Objetivo* | Qual é a finalidade do requisito (ex: para registrar vendas, para controle financeiro, para histórico do cliente). |
 
 ---
 
@@ -62,16 +61,15 @@ Modelo de especificação estruturada que organiza os requisitos com foco nos *a
 
 Incluem:
 
-* *Casos de uso*
-* *Diagramas de classes*
-* *Diagramas de atividades*
-* *Fluxogramas*
-  Usados para representar requisitos de forma visual e compreensível.
+* *Diagrama Entidade Relacionamento*
+* *Diagrama lógico do Banco de Dados*
+* *Diagramas de fluxo de uso*
+
 
 ### Prototipagem
 
-Criação de *interfaces simuladas* (baixa ou alta fidelidade) para validar requisitos com usuários antes da codificação.
-*Ferramentas comuns:* Figma, Adobe XD, Balsamiq.
+Criação de *interfaces simuladas* (alta fidelidade) para validar requisitos com usuários antes da codificação.
+*Ferramenta:* Figma.
 
 ---
 
@@ -102,7 +100,6 @@ Membros da equipe revisam requisitos uns dos outros para verificar coerência, v
 ### Inspeção
 
 Técnica formal e mais rigorosa de revisão, feita em grupo e seguindo um roteiro.
-Mais comum em projetos críticos (ex.: aviação, medicina).
 
 ---
 
@@ -131,7 +128,7 @@ Técnica de priorização:
 Usado para priorizar requisitos com base em *valor de negócio, urgência, risco e esforço*.
 Fórmula:
 *WSJF = (Valor do negócio + Urgência + Redução de risco) / Tamanho (Esforço)*
-Mais alto = mais prioridade.
+Mais alto = maior prioridade.
 
 ---
 
