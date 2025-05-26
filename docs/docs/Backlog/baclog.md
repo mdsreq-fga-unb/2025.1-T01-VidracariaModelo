@@ -3,7 +3,7 @@
 
 ## MoSCoW
 
-O **MoSCoW** é usado para coletar a percepção de importância do cliente, informando o **valor do negócio** sobre cada item (requisito, funcionalidade, épico etc.). Essa prioridade qualitativa é convertida em números para compor os elementos da fórmula do **WSJF**, enquanto os outros fatores da fórmula são estimados pela equipe.
+O **MoSCoW** é usado para coletar a percepção de importância do cliente, informando o **valor do negócio** sobre cada item (requisito, funcionalidade, etc.). Essa prioridade qualitativa é convertida em números para compor os elementos da fórmula do **WSJF**, enquanto os outros fatores da fórmula são estimados pela equipe.
 
 **MoSCoW** é um acrônimo que representa quatro níveis de prioridade:
 
@@ -30,9 +30,7 @@ O **MoSCoW** é usado para coletar a percepção de importância do cliente, inf
 
 ### Fórmula:
 
-\[
-\text{WSJF} = \frac{\text{Valor do Negócio} + \text{Urgência} + \text{Redução de Risco}}{\text{Tamanho do Trabalho}}
-\]
+WSJF = (Valor do Negócio + Urgência + Redução de Risco) / Tamanho do Trabalho
 
 > Quanto maior o WSJF, maior a prioridade do requisito.
 
