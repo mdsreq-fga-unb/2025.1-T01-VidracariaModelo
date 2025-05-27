@@ -1,4 +1,4 @@
-## 5.1 Composição da Equipe
+## 6.1 Composição da Equipe
 
 | Papel                   | Descrição                                                                                                                                         | Responsável           | Participantes                            |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|------------------------|------------------------------------------|
@@ -10,7 +10,7 @@
 
 ---
 
-## 5.2 Comunicação
+## 6.2 Comunicação
 
 ### > Ferramentas de Comunicação:
 
@@ -28,14 +28,8 @@ A plataforma Discord será utilizada para a realização das reuniões por víde
 - **Reuniões Semanais:**  
   Realizadas toda semana antes da reunião com o cliente, essas reuniões servirão como um momento de alinhamento interno da equipe, permitindo revisar o andamento das tarefas, identificar possíveis obstáculos, distribuir novas responsabilidades e garantir que todos estejam preparados para apresentar os avanços de forma clara e coerente ao cliente.
 
-- **Reunião de Planejamento de Ciclo:**  
-  Realizada ao início de cada Ciclo, a Reunião de Planejamento vai expor ao time de desenvolvimento as demandas requisitadas para a semana.
-
-- **Reunião de Revisão de Ciclo:**  
-  Ao final de cada Ciclo, haverá uma Reunião de Revisão. Nessa reunião, a equipe irá repassar pelas atividades previamente estabelecidas durante a Reunião de Planejamento de Ciclo. Este processo contribuirá para a organização e o acompanhamento do status do *Backlog* do produto, além de facilitar a mediação de soluções diante de pendências ou atrasos nas atividades.
-
-- **Reunião de Retrospectiva:**  
-  As reuniões de retrospectiva serão realizadas ao final de cada Ciclo, com o objetivo de analisar os principais acertos e falhas ocorridos durante a semana. Ao final, será elaborado um plano de ação, visando prevenir riscos a longo prazo e evitar a desmotivação da equipe.
+- **Reuniões de Planejamento:**  
+  Realizada ao início de cada iteração na fase de user design e ao inicio de cada fase de excecução na fase de construção.
 
 ### > Frequência de Reuniões com o Cliente:
 
@@ -47,11 +41,11 @@ A plataforma Discord será utilizada para a realização das reuniões por víde
 
 ---
 
-## 5.3 Processo de Validação
+## 6.3 Processo de Validação
 
 Antes de começarem a ser desenvolvidas, as funcionalidades do Ciclo serão avaliadas com base na Definition of Ready (DoR). Nessa checagem, será verificado se a história de usuário está bem escrita, se há documentação suficiente e se os critérios de aceitação foram definidos em conjunto com o cliente.
 
-Ao final de cada Ciclo, as funcionalidades também passarão pela Definition of Done (DoD). Esse processo verifica se os protótipos foram validados pelo cliente, se o código recebeu aprovação dos revisores e se os stakeholders conseguiram testar e confirmar todos os critérios de aceitação durante o Deploy do software.
+Ao final de cada iteração, as funcionalidades também passarão pela Definition of Done (DoD). Esse processo verifica se os protótipos foram validados pelo cliente, se o código recebeu aprovação dos revisores e se os stakeholders conseguiram testar e confirmar todos os critérios de aceitação.
 
 ## Histórico de Versão
 
