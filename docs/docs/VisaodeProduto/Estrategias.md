@@ -24,7 +24,7 @@
 A escolha do **RAD (Rapid Application Development)** como estratégia prioritária baseia-se nos seguintes fatores:
 
 - **Necessidade de entregas rápidas e visuais**  
-  O projeto envolve funcionalidades com forte apelo visual e foco na experiência do usuário. O RAD facilita a entrega de protótipos de alta fidelidade desde as primeiras sprints, permitindo validação rápida com o cliente.
+  O projeto envolve funcionalidades com forte apelo visual e foco na experiência do usuário. O RAD facilita a entrega de protótipos de alta fidelidade desde as primeiras iterações, permitindo validação rápida com o cliente.
 
 - **Disponibilidade intermitente do cliente**  
   Embora o XP dependa de contato constante com o cliente, a realidade do projeto mostrou que o cliente nem sempre estaria disponível para feedback contínuo. O RAD se adapta melhor a essa limitação ao concentrar interações em ciclos de validação específicos.
