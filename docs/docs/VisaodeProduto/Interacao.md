@@ -18,7 +18,7 @@
 A ferramenta será utilizada com dois propósitos principais: facilitar a comunicação diária entre os membros da equipe de desenvolvimento e permitir uma comunicação ágil com os stakeholders. O software possibilita a segmentação dos destinatários por meio da criação de grupos específicos, além de oferecer recursos como envio de mensagens, links e arquivos. O WhatsApp será o canal central para avisos sobre novos pedidos de revisão e para discussões rápidas no decorrer do projeto.
 
 **Discord:**  
-A plataforma Discord será utilizada para a realização das reuniões por vídeo, incluindo as *Revisões de Ciclo*, *Planejamento de Ciclo* e *Retrospectiva* semanais, além das reuniões a cada dez dias de validação com os stakeholders. Nessas reuniões, serão centralizadas as validações das entregas realizadas, o planejamento dos próximos Ciclos, a revisão das tarefas atribuídas e a troca de feedbacks sobre os acertos e pontos de melhoria da equipe. As reuniões informais, isto é, que não foram oficializadas pelo Líder de Projeto ou que visam apenas realizar atividades de Ciclos, também serão realizadas pela plataforma.
+A plataforma Discord será utilizada para a realização das reuniões por vídeo, incluindo as de *Planejamento* , além das reuniões de validação com os stakeholders. Nessas reuniões, serão centralizadas as validações das entregas realizadas, o planejamento das próximas Iterações ou Fases de execução, a revisão das tarefas atribuídas e a troca de feedbacks sobre os acertos e pontos de melhoria da equipe. As reuniões informais, isto é, que não foram oficializadas pelo Líder de Projeto ou que visam apenas realizar atividades de Iteração, também serão realizadas pela plataforma.
 
 ### > Métodos de Frequência de Reuniões:
 
@@ -37,7 +37,7 @@ A plataforma Discord será utilizada para a realização das reuniões por víde
   As reuniões com a presença do cliente, onde ele poderá validar as entregas ou fornecer feedback. Esse modelo foi adotado para se adaptar à agenda dos stakeholders, que terá uma boa disponibilidade para se encontrar com a equipe.
 
 - **Interações Adicionais por WhatsApp:**  
-  Outras validações ocorrerão assincronamente via WhatsApp, para quaisquer avisos adicionais acerca de novas demandas. Essa interação surgiu para compensar os Ciclos que, por qualquer motivo, não contarão com a presença do cliente.
+  Outras validações ocorrerão assincronamente via WhatsApp, para quaisquer avisos adicionais acerca de novas demandas. Essa interação surgiu para compensar as Iterações que, por qualquer motivo, não contarão com a presença do cliente.
 
 ---
 
