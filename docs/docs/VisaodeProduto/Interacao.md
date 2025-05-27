@@ -43,7 +43,7 @@ A plataforma Discord será utilizada para a realização das reuniões por víde
 
 ## 6.3 Processo de Validação
 
-Antes de começarem a ser desenvolvidas, as funcionalidades do Ciclo serão avaliadas com base na Definition of Ready (DoR). Nessa checagem, será verificado se a história de usuário está bem escrita, se há documentação suficiente e se os critérios de aceitação foram definidos em conjunto com o cliente.
+Antes de começarem a ser desenvolvidas, as funcionalidades de cada iteração serão avaliadas com base na Definition of Ready (DoR). Nessa checagem, será verificado se o requisito está bem escrito, se há documentação suficiente e se os critérios de aceitação foram definidos em conjunto com o cliente. 
 
 Ao final de cada iteração, as funcionalidades também passarão pela Definition of Done (DoD). Esse processo verifica se os protótipos foram validados pelo cliente, se o código recebeu aprovação dos revisores e se os stakeholders conseguiram testar e confirmar todos os critérios de aceitação.
 
@@ -51,6 +51,8 @@ Ao final de cada iteração, as funcionalidades também passarão pela Definitio
 
 | Data       | Versão | Descrição                  | Autor          | Revisores      | 
 | ---------- | ------ | -------------------------- | -------------- | -------------- | 
-| 19/04/2025 | 1.0    | Adição do Tópico 5.2       | Maria Eduarda  | Pedro Henrique |   
-| 19/04/2025 | 1.1    | Inclusão tópico 5.1 e 5.3                 | Pedro Henrique | Maria Eduarda  |  
+| 19/04/2025 | 1.0    | Adição do Tópico 6.2       | Maria Eduarda  | Pedro Henrique |   
+| 19/04/2025 | 1.1    | Inclusão tópico 6.1 e 6.3                 | Pedro Henrique | Maria Eduarda  |  
+| 26/05/2025 | 1.2    | Inclusão tópico 6.1 e 6.3                 | Samara Alves | Maria Eduarda  | 
+
 
