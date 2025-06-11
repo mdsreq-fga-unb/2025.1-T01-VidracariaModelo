@@ -1,0 +1,26 @@
+{
+  "name": "2025.1-t01-vidracariamodelo-4",
+  "version": "1.0.0",
+  "description": "Repositório de projeto da disciplina de REQ-T1.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo/issues"
+  },
+  "homepage": "https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
