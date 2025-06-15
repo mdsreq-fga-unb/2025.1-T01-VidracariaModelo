@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile # Caminho para o Dockerfile do backend
+    ports:
+      - "3000:3000" # Mapeia a porta 3000 do host para a porta 3000 do contêiner
+    volumes:
+      - ./backend:/app # Mapeia o diretório local do backend para /app no contêiner
+      - /app/node_modules # Impede que o diretório node_modules local sobrescreva o do contêiner
+    restart: always # Reinicia o contêiner se ele parar
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile # Caminho para o Dockerfile do frontend
+    ports:
+      - "80:80" # Mapeia a porta 80 do host para a porta 80 do contêiner (para acesso ao site)
+    volumes:
+      - ./frontend:/app # Mapeia o diretório local do frontend para /app no contêiner
+      - /app/node_modules # Impede que o diretório node_modules local sobrescreva o do contêiner
+    restart: always # Reinicia o contêiner se ele parar
+    # O frontend pode precisar se comunicar com o backend, se houver chamadas de API.
+    # Se o frontend estiver embutido no Dockerfile (como parece ser o caso com Nginx servindo estáticos),
+    # você precisará configurar o Nginx ou o código do frontend para apontar para o serviço 'backend'
+    # usando o nome do serviço (por exemplo, http://backend:3000).
+    depends_on:
+      - backend # Garante que o backend seja iniciado antes do frontend (boa prática, mas não obrigatório para estáticos)

@@ -1,0 +1,17 @@
+FROM node:20 -alpine
+
+# Diretório de trabalho
+WORKDIR /app
+
+# Copiar apenas os arquivos de dependência e instalar
+COPY ./backend/package*.json ./
+RUN npm install
+
+# Copiar o restante do código
+COPY ./backend .
+
+# Expor a porta da API (ajuste conforme necessário)
+EXPOSE 5000
+
+# Comando para iniciar o servidor
+CMD ["node", "Server.js"]
