@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+body {
+    font-family: 'K2D', sans-serif;
+}
+
+.App, .Home, main {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.map-section {
+  text-align: center;
+  padding: 20px;
+  background-color: #f4f3f2;
+}
+
+.map-section h2 {
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.map-section p {
+  margin-bottom: 10px;
+  color: #222;
+}
+.sessao-servicos {
+  padding: 40px 20px;
+  background-color:  #f4f3f2;
+  text-align: center;
+}
+
+.sessao-servicos h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #222;
+  font-weight: bold;
+}
+
+.grid-servicos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+  justify-items: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.card-servico {
+  background: #f4f3f2;
+  border-radius: 16px;
+  padding: 20px;
+  max-width: 260px;
+  width: 100%;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideUp 0.8s ease forwards;
+  opacity: 0;
+}
+
+.card-servico:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+.card-servico:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+.card-servico:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+
+.card-servico img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  border: 2px solid #e0e0e0;
+}
+
+.card-servico h3 {
+  font-size: 1.1rem;
+  margin: 10px 0 8px;
+  color: #111;
+  font-weight: 600;
+}
+
+.card-servico p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.botao-orcamento-destaque {
+  margin-top: 40px;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  background-color: #ff7b00;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: background 0.3s, transform 0.2s;
+}
+
+.botao-orcamento-destaque:hover,
+.botao-orcamento-destaque:focus {
+  background-color: #e36c00;
+  transform: scale(1.03);
+  outline: none;
+}
+
+@media (max-width: 480px) {
+  .card-servico {
+    padding: 15px;
+  }
+
+  .card-servico img {
+    width: 90px;
+    height: 90px;
+  }
+
+  .sessao-servicos h2 {
+    font-size: 1.5rem;
+  }
+
+  .botao-orcamento-destaque {
+    font-size: 1rem;
+    padding: 14px 24px;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
