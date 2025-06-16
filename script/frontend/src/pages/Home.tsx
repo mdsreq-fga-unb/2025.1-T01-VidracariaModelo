@@ -1,5 +1,4 @@
 import LocalizacaoMapa from "../components/LocalizacaoMapa";
-import Carrossel from "../components/carrossel";
 import Servicos from "../components/Servicos";
 import "./Home.css"
 
