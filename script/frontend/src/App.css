@@ -11,6 +11,21 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
+.logo-section {
+  overflow: hidden;
+}
+.cabecalho-section{
+  width: 100%;
+  height: 100;
+}
+
+.logo-cabecalho-section{
+  height: 200px;
+  max-width: 400px;
+  overflow: hidden;
+}
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
