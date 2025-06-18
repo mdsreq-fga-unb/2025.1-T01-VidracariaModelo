@@ -1,35 +1,43 @@
+import FechamentoPia from '../assets/servicos/Fechamento_de_pia.jpg';
+import PortaVidro from '../assets/servicos/Porta_Vidro_Temperado.png';
+import JanelaVidro from '../assets/servicos/Janela_Vidro_Temperado.jpg';
+import FechamentoVarandas from '../assets/servicos/Fechamento_Varandas.png';
+import EspelhosGeral from '../assets/servicos/Espelhos_Geral.png';
+import VidrosGeral from '../assets/servicos/Vidros_Geral.png';
+
 const servicos = [
   {
     titulo: "Fechamento de pia",
-    img: "/servicos/pia.jpg",
+    img: FechamentoPia,
     desc: "Transforme sua cozinha com nosso fechamento de vidro, unindo design moderno e funcionalidade.",
   },
   {
     titulo: "Portas de vidro temperado",
-    img: "/servicos/porta.jpg",
+    img: PortaVidro,
     desc: "Oferece segurança e sofisticação para seus ambientes. Durabilidade e fácil manutenção.",
   },
   {
     titulo: "Janelas de vidro temperado",
-    img: "/servicos/janela.jpg",
+    img: JanelaVidro,
     desc: "Luminosidade com design moderno. Segurança, praticidade e valorização do imóvel.",
   },
   {
     titulo: "Fechamento de varandas",
-    img: "/servicos/varanda.jpg",
+    img: FechamentoVarandas,
     desc: "Conforto com proteção térmica e acústica. Valorize seu espaço.",
   },
   {
     titulo: "Espelhos em geral",
-    img: "/servicos/espelho.jpg",
+    img: EspelhosGeral,
     desc: "Beleza e funcionalidade com soluções sob medida. Ideal para ampliação visual e estilo.",
   },
   {
     titulo: "Vidros comuns",
-    img: "/servicos/vidro.jpg",
+    img: VidrosGeral,
     desc: "Com diversas opções de texturas, proporcionam luminosidade e privacidade.",
   },
 ];
+
 
 export default function SessaoServico() {
   return (
