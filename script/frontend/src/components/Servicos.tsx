@@ -47,6 +47,11 @@ export default function SessaoServico() {
       <button className="botao-orcamento-destaque">
         Solicite um orçamento agora !
       </button>
+
+      {/* <div className="rodape-icons">
+        <img src="/assets/whatsapp.png" alt="WhatsApp" />
+        <img src="/assets/instagram.png" alt="Instagram" />
+      </div> */}
     </section>
   );
 }
