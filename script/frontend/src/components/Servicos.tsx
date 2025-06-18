@@ -1,32 +1,32 @@
 const servicos = [
   {
     titulo: "Fechamento de pia",
-    img: "/servicos/pia.jpg",
+    img: "/assets/teste.jpg",
     desc: "Transforme sua cozinha com nosso fechamento de vidro, unindo design moderno e funcionalidade.",
   },
   {
     titulo: "Portas de vidro temperado",
-    img: "/servicos/porta.jpg",
+    img: "/assets/teste.jpg",
     desc: "Oferece segurança e sofisticação para seus ambientes. Durabilidade e fácil manutenção.",
   },
   {
     titulo: "Janelas de vidro temperado",
-    img: "/servicos/janela.jpg",
+    img: "/assets/teste.jpg",
     desc: "Luminosidade com design moderno. Segurança, praticidade e valorização do imóvel.",
   },
   {
     titulo: "Fechamento de varandas",
-    img: "/servicos/varanda.jpg",
+    img: "/assets/teste.jpg",
     desc: "Conforto com proteção térmica e acústica. Valorize seu espaço.",
   },
   {
     titulo: "Espelhos em geral",
-    img: "/servicos/espelho.jpg",
+    img: "/assets/teste.jpg",
     desc: "Beleza e funcionalidade com soluções sob medida. Ideal para ampliação visual e estilo.",
   },
   {
     titulo: "Vidros comuns",
-    img: "/servicos/vidro.jpg",
+    img: "/assets/teste.jpg",
     desc: "Com diversas opções de texturas, proporcionam luminosidade e privacidade.",
   },
 ];
@@ -49,8 +49,8 @@ export default function SessaoServico() {
       </button>
 
       {/* <div className="rodape-icons">
-        <img src="/assets/whatsapp.png" alt="WhatsApp" />
-        <img src="/assets/instagram.png" alt="Instagram" />
+        <img src="/assets/wpp.jpg" alt="WhatsApp" className="icon" />
+        <img src="/assets/inst.jpg" alt="Instagram" className="icon" />
       </div> */}
     </section>
   );

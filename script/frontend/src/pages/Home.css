@@ -135,7 +135,7 @@ body {
 }
 
 .cabecalho {
-  padding: 40px 20px;
+  padding: 10px 20px;
   background-color:  #000000;
   text-align: center;
 
@@ -146,11 +146,20 @@ body {
   align-items: center;
   position: absolute;
   display: flex;
-  left: 550px;
+  left: 800px;
   gap: 12px;
-  top: 210%;
+  top: 215%;
   color: #111;
 } */
+
+.icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+  object-fit: contain;
+}
+
 
 /* responsividade (mobile) */
 @media (max-width: 480px) {

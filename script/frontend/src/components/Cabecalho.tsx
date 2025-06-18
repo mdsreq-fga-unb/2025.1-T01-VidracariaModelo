@@ -3,7 +3,12 @@ const Cabecalho = () => {
     <div>
       
       <div>
-        <div className="cabecalho"></div>
+        <div className="cabecalho">
+        <div>
+            <img src= "assets/logo.jpg" alt= "teste" className="cabecalho-icon" />
+        </div>
+
+        </div>
       </div>
     </div>
    
