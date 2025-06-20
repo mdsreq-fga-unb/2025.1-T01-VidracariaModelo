@@ -1,7 +1,8 @@
 import Slider from "react-slick";
-import React, { useState, useRef } from "react"; // Adicione useRef
+import React, { useState, useRef } from "react"; 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "./carrossel.css";
 
 interface SimpleSliderProps {
   images: string[];
@@ -25,7 +26,7 @@ export default function SimpleSlider({
     autoplaySpeed: 4000, 
     arrows: true,
     fade: true,
-    beforeChange: (current: number, next: number) => setCurrentSlide(next),
+    beforeChange: ( next: number) => setCurrentSlide(next),
     customPaging: (i: number) => (
       <button 
         onClick={() => sliderRef.current?.slickGoTo(i)} 
@@ -62,18 +63,13 @@ export default function SimpleSlider({
     ),
   };
 
+
   const slides = images.map((img, index) => (
     <div key={index}>
       <img 
         src={img} 
         alt={`${altText} ${index + 1}`} 
-        style={{  /*estiliza as imagens */
-          width: "100%",
-          height: "auto",
-          maxHeight: "700px",
-          objectFit: "cover",
-          opacity: 1,
-        }}
+        className="carousel-image" 
       />
     </div>
   ));

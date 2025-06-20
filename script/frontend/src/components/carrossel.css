@@ -1,0 +1,14 @@
+.carousel-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  opacity: 1;
+  max-height: 80vh; 
+}
+
+@media (max-width: 480px) {
+  .carousel-image {
+    
+    max-height: 44vh; 
+  }
+}

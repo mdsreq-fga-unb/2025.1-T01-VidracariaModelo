@@ -1,0 +1,44 @@
+/* Estilos base para o nosso botão, extraídos do seu objeto de estilo */
+.action-button {
+  background-color: #FF7514;
+  color: #000000;
+  font-weight: bold;
+  font-size: 35px;
+  font-family: Arial, sans-serif;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 20px 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  outline: none;
+
+  /* A transição agora vive aqui, aplicada a todas as propriedades */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* O efeito de hover é feito com a pseudo-classe :hover */
+.action-button:hover {
+  background-color: #E57D00;
+  transform: scale(1.03);
+}
+
+/* --- AQUI ESTÁ A RESPONSIVIDADE --- */
+/* Para telas com largura máxima de 768px (tablets e celulares) */
+@media (max-width: 768px) {
+  .action-button {
+    /* Vamos diminuir o botão em telas menores */
+    font-size: 24px;
+    padding: 15px 35px;
+  }
+}
+
+/* Para telas com largura máxima de 480px (celulares) */
+@media (max-width: 480px) {
+  .action-button {
+    /* Diminuímos ainda mais para telas bem pequenas */
+    font-size: 18px;
+    padding: 12px 25px;
+    width: 100%; /* Opcional: faz o botão ocupar a largura toda */
+    box-sizing: border-box;
+  }
+}

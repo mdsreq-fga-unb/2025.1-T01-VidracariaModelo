@@ -5,16 +5,48 @@ body {
     text-align: center;
 }
 
-.quadrado-descricao {
+.info-carrossel-section {
   position: absolute;
+  display: grid;
+  justify-items: start;
   margin-left: 1%;
   margin-top: 1%;
-  width: 800px;
-  height: 400px;
-  background-color: black;
-  border-radius: 12%;
-  opacity: 40%;
   z-index: 2;
+  gap: 10%;
+}
+
+.quadrado-descricao {
+  width: 100%;
+  max-width: 900px;
+  height: 40vh;
+  background-color: rgba(0, 0, 0, 0.4); /* Preto com 70% de opacidade */
+  border-radius: 66px;
+  padding: 30px;
+  color: white; 
+  box-sizing: border-box;
+  text-align: justify;
+}
+
+.quadrado-descricao h1 {
+  color: white;
+  font-family: 'K2D', bold;
+  font-weight: 1000;
+  font-size: 45px;
+  -webkit-text-stroke: 2px black;
+}
+
+.quadrado-descricao p {
+  margin-top: 5%;
+  font-family: 'K2D';
+  font-weight: 1000;
+  font-size: 27px;
+  line-height: 1.3;
+  -webkit-text-stroke: 1px black;
+}
+
+.botao-orcamento-carrossel {
+  z-index: 2;
+  margin-left: 10%;
 }
 
 .carrossel-section{
@@ -24,6 +56,16 @@ body {
 .carrossel {
   position: absolute;
   z-index: 1;
+}
+
+.botoes-section {
+  background-color: #fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+  justify-items: center;
+  padding-top: 1%;
 }
 
 .App, .Home, main {
@@ -154,6 +196,50 @@ body {
     font-size: 1rem;
     padding: 14px 24px;
   }
+
+  .info-carrossel-section {
+  position: absolute;
+  display: grid;
+  justify-items: start;
+  margin-left: 1%;
+  margin-top: 1%;
+  z-index: 2;
+  gap: 0%;
+}
+
+  .quadrado-descricao p {
+  margin-top: 10%;
+  
+}
+
+.carrossel {
+  position: absolute;
+  z-index: 1;
+}
+
+.quadrado-descricao h1 {
+  color: white;
+  font-family: 'K2D', bold;
+  font-weight: 1000;
+  font-size: 20px;
+  -webkit-text-stroke: 0px black;
+}
+
+.quadrado-descricao p {
+  margin-top: 5%;
+  font-family: 'K2D';
+  font-weight: 1000;
+  font-size: 15px;
+  line-height: 1.3;
+  -webkit-text-stroke: 0px black;
+}
+
+.botao-orcamento-carrossel {
+  z-index: 2;
+  margin-left: 18%;
+  margin-top: -20%;
+}
+
 }
 
 @keyframes fadeIn {
