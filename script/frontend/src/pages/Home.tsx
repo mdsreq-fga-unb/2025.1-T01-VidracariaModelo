@@ -4,6 +4,7 @@ import Servicos from "../components/Servicos";
 import Carrossel from '../components/carrossel';
 import Botao_arredondado from "../components/Botao_Arredondado";
 import Botao_quadrado from "../components/Botao_Quadrado";
+import Rodape from "../components/rodape";
 import "./Home.css"
 
 const Home = () => {
@@ -35,7 +36,7 @@ const Home = () => {
     }
   }; 
 
-  /*const contatosRef = useRef<HTMLDivElement>(null);
+  const contatosRef = useRef<HTMLDivElement>(null);
   const handleContatosClick = () => {
     if (contatosRef.current) {
       contatosRef.current.scrollIntoView({
@@ -43,7 +44,7 @@ const Home = () => {
         block: 'start',
       });
     }
-  };*/ 
+  }; 
 
   return (
     <div className="home-container">
@@ -77,7 +78,9 @@ const Home = () => {
           onClick={handleServicosClick}
           />
         <Botao_quadrado 
-          text = "Contato"/>    
+          text = "Contato"
+          onClick={handleContatosClick}
+          />    
 
       </div>
       <section ref={localizacaoRef}>
@@ -89,6 +92,11 @@ const Home = () => {
         <div className="servicos-section">
           <Servicos />
         </div>
+      </section>
+      <section ref = {contatosRef}>
+      <div className="rodape-section">
+        <Rodape />
+      </div>
       </section>
     </div>
   );

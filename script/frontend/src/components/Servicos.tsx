@@ -52,9 +52,6 @@ export default function SessaoServico() {
           </article>
         ))}
       </div>
-      <button className="botao-orcamento-destaque">
-        Solicite um orçamento agora !
-      </button>
     </section>
   );
 }

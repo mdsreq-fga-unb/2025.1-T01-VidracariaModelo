@@ -178,6 +178,17 @@ body {
   outline: none;
 }
 
+.barra-rodape {
+  position: relative;
+  background-color: red;
+
+}
+
+.rodape-section {
+  height: 10vh;
+
+}
+
 @media (max-width: 480px) {
   .card-servico {
     padding: 15px;
