@@ -37,13 +37,11 @@
 | ID    | Nome do Requisito                                              | Descrição do Requisito                                                                                                        | Classificação URPS |
 |-------|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|--------------------|
 | RNF1  | Consultar histórico de despesas                                | As consultas ao histórico de despesas devem ter tempo de resposta inferior a 2 segundos.                                      | Performance        |
-| RNF2  | Garantir Lei Geral de Proteção de Dados                        | O sistema deve garantir a segurança das informações e a conformidade com a Lei Geral de Proteção de Dados (LGPD).            | Implementação      |
+| RNF2  | Garantir Lei Geral de Proteção de Dados                        | O sistema deve garantir a segurança das informações e a conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018) nos artigos 6, 7, 18.| Implementação      |
 | RNF3  | Adaptar a diferentes telas                                     | A interface deve se adaptar dinamicamente aos tamanhos de tela: 720x1280, 1080x1920 e 1920x1080.                              | Interface          |
 | RNF4  | Exibir categorias                                              | A interface da página principal deverá introduzir os usuários às principais informações para as demais navegações: Portfólio da vidraçaria, além do rodapé e cabeçalho com as demais navegações. | Usabilidade        |
-| RNF5  | Exibir calendário com disponibilidade de agendamento          | O sistema deve exibir calendário com dias e horários já ocupados e disponíveis para agendamento.                             | Usabilidade        |
-| RNF6  | Exibir resumo do orçamento                                     | O sistema deve exibir um resumo do orçamento solicitado pelo cliente.                                                    | Usabilidade        |
-| RNF7  | Exibir FAQ                                                     | O sistema deve exibir uma área com dúvidas frequentes sobre serviços e processos da empresa.                             | Usabilidade        |
-| RNF8  | Exibir produtos e serviços cadastrados no portfólio online da empresa | O sistema deve exibir os produtos e serviços disponíveis no portfólio online da empresa.                                 | Usabilidade        |
+| RNF5  | Exibir FAQ         | Exibir uma área de dúvidas frequentes sobre serviços e processos.| Usabilidade        |
+| RNF6  | Exibir produtos e serviços cadastrados no portfólio online da empresa |Exibir os produtos e serviços cadastrados no portfólio online da empresa.| Usabilidade   |
 
 
 ## Regras de Negócio (RN)
