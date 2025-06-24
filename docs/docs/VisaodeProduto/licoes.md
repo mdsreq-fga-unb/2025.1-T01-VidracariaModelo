@@ -19,6 +19,15 @@ Nesta unidade, aprendemos a importância de aplicar técnicas adequadas de Engen
 
 **Solução:** Optamos por mudar para o RAD para que se adequasse melhor ao projeto no geral.
 
+## Unidade 3
+
+Na Unidade 3, estudamos técnicas voltadas para a organização e validação de requisitos de software, como o PBB (Product Backlog Building), o USM (User Story Mapping) e o BDD (Behavior-Driven Development). A atividade proposta pelo professor, com base em estudos de caso, foi fundamental para consolidar o entendimento e a aplicação prática desses conceitos.
+
+**Desafio:** Desenvolver da maneira correta os estudos de caso.
+
+**Solução:** Com as apresentações em sala de aula, conseguimos identificar os erros cometidos e, a partir disso, realizar as correções necessárias nos documentos.
+
+
 
 ## Histórico de Versões
 
@@ -26,6 +35,7 @@ Nesta unidade, aprendemos a importância de aplicar técnicas adequadas de Engen
 |------------|-----|------------------------------------|----------------|--------------------------|
 | 19/04/2025 | 1.0 | Criação do documento               | Igor Daniel  | Maria Eduarda |
 | 26/05/2025 | 1.1 | Atualizações e alterações | Pedro Henrique   | Samara Alves         |
+| 23/06/2025 | 1.2 | Atualizações e alterações | Pedro Henrique   | Cayo Alencar         |
 
 
 
