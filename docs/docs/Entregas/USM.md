@@ -11,4 +11,4 @@ Outro ponto importante é que a ComunEventos quer ser uma solução acessível, 
 
 O objetivo final é facilitar a realização desses encontros, fortalecer a participação da comunidade e criar uma experiência melhor para todos os envolvidos, desde quem ajuda a organizar até quem vai lá só para curtir o evento.
 
-O Usm está disponível no link: https://miro.com/welcomeonboard/Q0RVWkFOUlhaTlFiWDZqK09mUHRKbi9xSnA0bWJqYXBXTEZBYnVqNzRJYTlCL0dRVzdZbWhLVURldFRxRnJ0Uzcva0ZlenpYWmlvcElSUDlkY2ZBSUlrVFF1ZjMySUo0dUhFUkVFTjR5R0MrWXBRN2pWOE5xRU4waUJrNmRXdFV3VHhHVHd5UWtSM1BidUtUYmxycDRnPT0hdjE=?share_link_id=26552390155
+O Usm está disponível no link: [USM](https://miro.com/welcomeonboard/Q0RVWkFOUlhaTlFiWDZqK09mUHRKbi9xSnA0bWJqYXBXTEZBYnVqNzRJYTlCL0dRVzdZbWhLVURldFRxRnJ0Uzcva0ZlenpYWmlvcElSUDlkY2ZBSUlrVFF1ZjMySUo0dUhFUkVFTjR5R0JOeHNMaWVtTnZ4YS9NNTVmTWx6VXByVmtkMG5hNDA3dVlncnBvRVB2ZXBnPT0hdjE=?share_link_id=299698948754)
