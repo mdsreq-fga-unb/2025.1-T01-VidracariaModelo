@@ -16,7 +16,70 @@ O Canvas PBB pode ser visualizado abaixo:
 </div>
 <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGqI3k-Naw&#x2F;0td_UOMTVlHZC9-GoYHCyA&#x2F;view?utm_content=DAGqI3k-Naw&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">PBB - HealthNet</a> 
 
-## 1.3 Cenários de BDD - HealthNet:
+## 1.3. Critérios de Aceitação das Histórias de Usuários - HealthNet
+
+> **US01: Eu, como médico, quero acessar um prontuário eletrônico unificado, para que eu tenha uma visão completa do histórico clínico dos pacientes, independentemente da unidade onde foram atendidos.**
+- O sistema deve exibir o histórico completo do paciente, incluindo registros de diferentes unidades.
+- Se o paciente não possuir registros, o sistema deve exibir um prontuário vazio com uma mensagem de aviso.
+- A busca por pacientes deve ser feita de forma unificada entre unidades.
+- O acesso ao prontuário exige autenticação de um usuário médico.
+
+> **US02: Eu, como coordenador de agendamento, quero uma interface rápida de agendamento, para que eu otimize a marcação de consultas e reduza o tempo de espera dos pacientes.**
+- A interface deve permitir selecionar paciente, médico e horário disponíveis.
+- Ao confirmar, a consulta deve ser registrada imediatamente na agenda do médico.
+- Horários ocupados devem ser bloqueados para novo agendamento.
+- O sistema deve exibir mensagem de erro ao tentar agendar em horário já ocupado.
+
+> **US03: Eu, como médico, quero prescrever medicamentos digitalmente com alertas, para que eu seja avisado sobre interações perigosas e erros de dosagem.**
+- O sistema deve emitir alertas ao detectar interação entre medicamentos.
+- Alertas de interação devem ter níveis de criticidade (alta, média, baixa).
+- Alertas de alergia registrada devem ser exibidos com destaque.
+- A prescrição só deve ser confirmada após a ciência do médico sobre o alerta.
+
+> **US04: Eu, como diretor de tecnologia, quero gerar relatórios automáticos de conformidade, para que eu cumpra as exigências regulatórias com precisão e menos esforço.**
+- A funcionalidade deve estar disponível apenas para perfis de administrador.
+- Os relatórios devem ser gerados em PDF contendo trilhas de auditoria.
+- Usuários sem permissão devem receber a mensagem de acesso negado.
+- O relatório deve ser gerado a partir de parâmetros configuráveis (ex: período).
+
+> **US05: Eu, como paciente, quero acessar minhas informações de saúde via portal, para que eu acompanhe meu tratamento com mais autonomia.**
+- O acesso deve ser feito com CPF e senha cadastrados.
+- O sistema deve validar as credenciais e exibir mensagens claras de erro em caso de falha.
+- Após login, o paciente deve ser redirecionado ao painel de informações.
+- O sistema deve garantir segurança e privacidade dos dados acessados.
+
+> **US06: Eu, como diretor de tecnologia, quero garantir controle seguro aos dados dos pacientes, para que a rede esteja em conformidade com a LGPD e evite vazamentos.**
+- Perfis de acesso devem restringir funcionalidades conforme o cargo do usuário.
+- Tentativas de acesso indevido devem ser registradas em log de segurança.
+- O sistema deve forçar logout após 30 minutos de inatividade.
+- Após logout, qualquer nova ação deve redirecionar à tela de login.
+
+> **US07: Eu, como recepcionista, quero registrar e atualizar os dados dos pacientes com facilidade, para que o atendimento seja mais rápido e confiável.**
+- O sistema deve permitir edição dos dados dos pacientes.
+- Mudanças devem ser salvas apenas após validação de campos obrigatórios.
+- Deve ser exibida mensagem de sucesso ao salvar corretamente.
+- Campos obrigatórios em branco devem gerar mensagens de erro específicas.
+
+> **US08: Eu, como paciente, quero agendar consultas em diferentes unidades da HealthNet, para que eu tenha mais flexibilidade e praticidade nos meus atendimentos.**
+- O sistema deve permitir busca por especialidade e unidade.
+- Se a especialidade não estiver disponível, o sistema deve sugerir outras unidades.
+- Ao confirmar o agendamento, ele deve estar visível tanto para o paciente quanto para a unidade.
+- O paciente pode consultar os agendamentos futuros em qualquer unidade.
+
+> **US09: Eu, como farmacêutica, quero registrar automaticamente os medicamentos que entrego, para que eu controle melhor o estoque e o histórico do paciente.**
+- O sistema deve registrar a entrega com base na prescrição digital.
+- O status do medicamento deve mudar para 'Dispensado' após registro.
+- O estoque deve ser automaticamente decrementado.
+- Se não houver estoque, a entrega deve ser bloqueada e exibir erro.
+
+> **US10: Eu, como diretor de tecnologia, quero um painel com indicadores de desempenho, para que eu acompanhe a eficiência do sistema e das unidades da rede.**
+- O painel deve conter gráficos de desempenho por unidade.
+- Métricas como tempo médio de espera e número de atendimentos devem estar visíveis.
+- O usuário deve poder aplicar filtros por período (ex: últimos 7 dias).
+- Os gráficos devem atualizar automaticamente ao aplicar filtros.
+
+
+## 1.4 Cenários de BDD - HealthNet:
 
 
 ### Criar prontuário eletrônico unificado
@@ -207,4 +270,3 @@ Então o painel deve exibir gráficos atualizados com métricas como "tempo méd
 Dado que o diretor está no painel de gestão.  
 Quando ele selecionar o filtro de data para "Últimos 7 dias".  
 Então todos os gráficos e métricas no painel devem ser atualizados para refletir apenas os dados do período selecionado.
-
