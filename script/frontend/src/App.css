@@ -1,9 +1,3 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
 
 .logo {
   height: 6em;
@@ -11,6 +5,26 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
+.logo-section {
+  overflow: hidden;
+  height: 140px;
+}
+.cabecalho-section{
+  width: 100%;
+  height: 20vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-cabecalho-section{
+  margin-top: 4%;
+  height: 200px;
+  max-width: 400px;
+  overflow: hidden;
+}
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
@@ -39,4 +53,13 @@
 
 .read-the-docs {
   color: #888;
+}
+
+@media (max-width: 480px) {
+  .logo-section {
+    height: 70px;
+  }
+  .logo-cabecalho-section{
+  margin-top: 40%;
+  }
 }
