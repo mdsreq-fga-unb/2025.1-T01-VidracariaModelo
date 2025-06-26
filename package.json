@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "pg": "^8.16.2"
   }
 }
