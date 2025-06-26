@@ -39,7 +39,7 @@ cd <cd 2025.1-T01-VidracariaModelo>
 Na pasta raiz do projeto (onde está o arquivo `docker-compose.yml`), execute o comando para construir as imagens e iniciar os contêineres:
 
 ```bash
-docker compose up --build -d
+docker compose --env-file ./backend/.env up --build
 ```
 
   * **Este comando irá automaticamente instalar as dependências de cada serviço dentro dos contêineres.**
