@@ -1,0 +1,126 @@
+/* Reutilize .page-container e .page-title de ListarOrcamentos.css */
+@import './ListarOrcamentos.css';
+
+.page-container-details {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+}
+
+/* Título principal "Detalhes do orçamento" */
+.details-page-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #2d2d2d;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* O container cinza principal */
+.details-content-box {
+  background-color: #f5f5f5; /* Cinza claro do protótipo */
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+/* Cabeçalho interno (ícone + texto) */
+.details-internal-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Container do ícone placeholder */
+.placeholder-icon-container {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Textos do cabeçalho */
+.details-header-text h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 0.5rem 0;
+}
+
+.details-header-text p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Corpo com a lista de informações */
+.details-body-info {
+  padding-top: 1.5rem;
+  line-height: 1.8; /* Aumenta o espaçamento entre as linhas */
+}
+
+.details-body-info p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+/* Rótulo (ex: "Nome Completo:") */
+.details-body-info .label {
+  font-weight: 600; /* Deixa o rótulo em negrito */
+  color: #444;
+  margin-right: 0.5rem;
+}
+
+/* Estilos para as etiquetas de status (mantidos do passo anterior) */
+.status-badge {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: white;
+  text-align: center;
+}
+
+.status-badge.aprovado {
+  background-color: #28a745; /* Verde */
+}
+
+.status-badge.negado {
+  background-color: #dc3545; /* Vermelho */
+}
+
+.status-badge.aguardando-aprovação {
+  background-color: #ffc107; /* Amarelo/Laranja */
+  color: #333; /* Texto escuro para melhor contraste */
+}
+
+/* Estilo para o botão de voltar */
+.back-to-list-button {
+  display: block; /* Para que a margem automática funcione */
+  margin: 2rem auto 0; /* 2rem de espaço em cima, centralizado horizontalmente */
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  background-color: #FF7514;
+  border: 1px solid #dadada;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-to-list-button:hover {
+  background-color: #e0e0e0;
+  border-color: #c9c9c9;
+}

@@ -1,0 +1,73 @@
+/* O card de cada item da lista */
+.orcamento-item-card {
+  background-color: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.orcamento-item-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Informações do lado esquerdo (título e subtítulo) */
+.orcamento-item-info h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.orcamento-item-info p {
+  margin: 0;
+  color: #757575; /* Cinza mais escuro para o subtítulo */
+  font-size: 0.9rem;
+}
+
+/* Div que agrupa os botões */
+.orcamento-item-actions {
+  display: flex;
+  gap: 0.75rem; /* Espaçamento entre os botões */
+}
+
+/* Estilo base para os botões */
+.action-button {
+  padding: 0.7rem 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600; /* Fonte mais forte */
+  transition: all 0.2s ease;
+}
+
+/* Botão "Ver Detalhes" */
+.details-button {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #dadada;
+}
+
+.details-button:hover {
+  background-color: #e0e0e0;
+  border-color: #c9c9c9;
+}
+
+/* Botão "Editar" */
+.edit-button {
+  background-color:  #FF7514; /* Azul do Google */
+  color: white;
+  border: 1px solid  #FF7514;
+}
+
+.edit-button:hover {
+  background-color: #357ae8;
+  border-color: #357ae8;
+}

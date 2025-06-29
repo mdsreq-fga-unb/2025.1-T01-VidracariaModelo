@@ -1,0 +1,35 @@
+/* Estilos gerais para a página */
+@import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+.page-container {
+  display: flex;
+  justify-content: center; /* Centraliza o card na horizontal */
+  padding: 2rem;
+  background-color: #f7f7f7; /* Um cinza bem claro para o fundo da página */
+  min-height: 100vh;
+  font-family: 'K2D', sans-serif; 
+}
+
+/* O container branco que envolve a lista */
+.main-content {
+  width: 100%;
+  max-width: 800px;
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Título "Lista de orçamentos solicitados" */
+.page-title {
+  font-size: 2.5rem; /* Tamanho maior */
+  font-weight: 600; /* Um pouco mais forte */
+  color: #2d2d2d;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.orcamentos-list {
+  display: flex;
+  flex-direction: column;
+}
