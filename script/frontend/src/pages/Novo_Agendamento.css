@@ -120,7 +120,7 @@ body {
   background-color: #f0f0f0;
 }
 
-.footerContainer {
+.footerContainer2 {
   /* Essencial: Cria o contexto para o posicionamento da barra vermelha */
   position: relative; 
   
@@ -131,7 +131,7 @@ body {
   height: 100px; 
 }
 
-.redStripe {
+.redStripe2 {
   /* Essencial: Posiciona a barra em relação ao .footerContainer */
   position: absolute; 
   

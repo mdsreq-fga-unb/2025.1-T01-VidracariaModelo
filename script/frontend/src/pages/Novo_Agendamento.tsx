@@ -109,8 +109,8 @@ const PaginaDeAgendamento: React.FC = () => {
       </div>
 
       {/* O footer agora está FORA do container do agendamento, como um irmão */}
-      <footer className="footerContainer">
-        <div className="redStripe" />
+      <footer className="footerContainer2">
+        <div className="redStripe2" />
       </footer>
     </>
   );

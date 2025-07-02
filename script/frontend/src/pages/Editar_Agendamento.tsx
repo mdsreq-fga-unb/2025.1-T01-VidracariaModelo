@@ -96,8 +96,8 @@ const PaginaDeAgendamento: React.FC = () => {
         </form>
       </div>
 
-      <footer className="footerContainer">
-        <div className="redStripe" />
+      <footer className="footerContainer1">
+        <div className="redStripe1" />
       </footer>
     </>
   );
