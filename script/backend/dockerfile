@@ -1,17 +1,19 @@
 FROM node:20-alpine
 
-# Diretório de trabalho
+# Diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copiar apenas os arquivos de dependência e instalar
-COPY ./backend/package*.json ./
+# Copiar package.json e package-lock.json (se existir) para instalar dependências
+COPY package*.json ./
+
+# Instalar dependências
 RUN npm install
 
-# Copiar o restante do código
-COPY ./backend .
+# Copiar todo o restante do código (dentro do contexto ./backend)
+COPY . .
 
-# Expor a porta da API (ajuste conforme necessário)
+# Expor a porta usada pela aplicação
 EXPOSE 3000
 
-# Comando para iniciar o servidor
+# Comando para iniciar o servidor (confirme se seu arquivo principal é Server.js com maiúsculo S)
 CMD ["node", "Server.js"]
