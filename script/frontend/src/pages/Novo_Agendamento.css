@@ -34,6 +34,10 @@ body {
   border-radius: 8px;
 }
 
+.agendamento-form legend {
+  color: black;
+}
+
 .form-group {
   margin-bottom: 20px;
   display: flex;
