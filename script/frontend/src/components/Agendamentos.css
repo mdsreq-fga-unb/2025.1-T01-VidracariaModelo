@@ -1,0 +1,170 @@
+/* Importação da folha de estilos padrão do react-big-calendar */
+@import 'react-big-calendar/lib/css/react-big-calendar.css';
+
+/* Estilos Globais */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background-color: #EAEAEA; /* Fundo cinza claro */
+}
+
+.container-geral {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.painel-agendamentos {
+  flex-grow: 1;
+  padding: 2rem 4rem;
+  text-align: left  ;
+}
+
+.painel-agendamentos h1 {
+  color:#333;
+  font-size:  2rem;
+}
+
+/* Cabeçalho */
+.cabecalho {
+  display: flex;
+  flex-direction: column; /* 1. Empilha os itens verticalmente */
+  gap: 1rem; /* Adiciona um espaço de 16px entre os itens empilhados */
+  margin-bottom: 2rem;
+}
+.cabecalho h1 {
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center; 
+  margin: 0;
+}
+
+.cabecalho button {
+  align-self: flex-end;
+}
+
+.botao-novo-agendamento {
+  background-color: #D90429; /* Vermelho do protótipo */
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-novo-agendamento:hover {
+  background-color: #b00321;
+}
+
+/* Conteúdo Principal (Layout de 2 colunas) */
+.conteudo-principal {
+  display: grid;
+  grid-template-columns: 350px 1fr; /* Coluna da esquerda fixa, direita flexível */
+  gap: 2rem;
+  height: 600px; /* Altura fixa para o container do calendário e da lista */
+}
+
+/* Painel Esquerdo */
+.painel-esquerdo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo-busca {
+  width: 100%;
+  padding: 0.8rem;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  
+  /* Estilos atualizados */
+  background-color: #FFFFFF;
+  margin-bottom: 2rem;
+}
+
+.lista-agendamentos-container {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow-y: auto; /* Adiciona scroll se a lista for grande */
+  flex-grow: 1;
+}
+
+.lista-agendamentos-container h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.lista-agendamentos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-agendamento {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-agendamento {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-agendamento span:first-child {
+  font-weight: bold;
+  color: #555;
+}
+
+.info-agendamento span:last-child {
+  color: #777;
+}
+
+.marcador-vermelho {
+  width: 10px;
+  height: 10px;
+  background-color: #D90429;
+  border-radius: 50%;
+}
+
+.sem-agendamentos {
+  color: #888;
+  text-align: center;
+  padding-top: 2rem;
+}
+
+/* Painel Direito (Calendário) */
+.painel-direito {
+  background-color: white;
+  color: #333;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Customização do evento no calendário */
+.rbc-event.evento-calendario {
+  background-color: #28a745; /* Verde para combinar com o protótipo */
+  border-color: #1e7e34;
+}
+
+/* Rodapé */
+.rodape {
+  height: 50px;
+  background-color: #D90429; /* Vermelho do protótipo */
+}

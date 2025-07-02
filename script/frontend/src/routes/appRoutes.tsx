@@ -11,8 +11,8 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/agendamento" element={<Agendamento />} />
-        <Route path="/novo-agendamento" element={<NovoAgendamento />} />
-        <Route path="/editar-agendamento" element={<EditarAgendamento />} />
+        <Route path="/agendamento/criar" element={<NovoAgendamento />} />
+        <Route path="/agendamento/editar" element={<EditarAgendamento />} />
         
         </Routes>
     </Router>
