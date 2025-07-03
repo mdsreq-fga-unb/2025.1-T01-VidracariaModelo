@@ -6,7 +6,7 @@ const router = express.Router();
 // Listar todos os clientes
 router.get('/', async (req, res) => {
     try {
-        const result = await pool.query('SELECT * FROM clientes ORDER BY nome');
+        const result = await pool.query('SELECT * FROM cliente ORDER BY nome');
         res.json(result.rows);
     } catch (err) {
         console.error('Erro ao buscar clientes:', err);
@@ -14,12 +14,12 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Buscar cliente por ID
-router.get('/:id', async (req, res) => {
-    const id = req.params.id;
+// Buscar cliente por CPF
+router.get('/:cpf', async (req, res) => {
+    const cpf = req.params.cpf;
 
     try {
-        const result = await pool.query('SELECT * FROM clientes WHERE id_cliente = $1', [id]);
+        const result = await pool.query('SELECT * FROM cliente WHERE cpf = $1', [cpf]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Cliente não encontrado' });
@@ -34,38 +34,41 @@ router.get('/:id', async (req, res) => {
 
 // Criar novo cliente
 router.post('/', async (req, res) => {
-    const { nome, email, telefone } = req.body;
+    const { cpf, nome, telefone, endereco } = req.body;
 
-    if (!nome || !email) {
-        return res.status(400).json({ error: 'Nome e email são obrigatórios' });
+    if (!cpf || !nome) {
+        return res.status(400).json({ error: 'CPF e nome são obrigatórios' });
     }
 
     try {
         const result = await pool.query(
-            'INSERT INTO clientes (nome, email, telefone) VALUES ($1, $2, $3) RETURNING *',
-            [nome, email, telefone || null]
+            'INSERT INTO cliente (cpf, nome, telefone, endereco) VALUES ($1, $2, $3, $4) RETURNING *',
+            [cpf, nome, telefone || null, endereco || null]
         );
 
         res.status(201).json(result.rows[0]);
     } catch (err) {
         console.error('Erro ao criar cliente:', err);
+        if (err.code === '23505') {
+            return res.status(409).json({ error: 'Cliente com esse CPF já existe' });
+        }
         res.status(500).json({ error: 'Erro interno do servidor' });
     }
 });
 
 // Atualizar cliente
-router.put('/:id', async (req, res) => {
-    const id = req.params.id;
-    const { nome, email, telefone } = req.body;
+router.put('/:cpf', async (req, res) => {
+    const cpf = req.params.cpf;
+    const { nome, telefone, endereco } = req.body;
 
-    if (!nome || !email) {
-        return res.status(400).json({ error: 'Nome e email são obrigatórios' });
+    if (!nome) {
+        return res.status(400).json({ error: 'Nome é obrigatório' });
     }
 
     try {
         const result = await pool.query(
-            'UPDATE clientes SET nome = $1, email = $2, telefone = $3 WHERE id_cliente = $4 RETURNING *',
-            [nome, email, telefone || null, id]
+            'UPDATE cliente SET nome = $1, telefone = $2, endereco = $3 WHERE cpf = $4 RETURNING *',
+            [nome, telefone || null, endereco || null, cpf]
         );
 
         if (result.rows.length === 0) {
@@ -80,11 +83,11 @@ router.put('/:id', async (req, res) => {
 });
 
 // Deletar cliente
-router.delete('/:id', async (req, res) => {
-    const id = req.params.id;
+router.delete('/:cpf', async (req, res) => {
+    const cpf = req.params.cpf;
 
     try {
-        const result = await pool.query('DELETE FROM clientes WHERE id_cliente = $1 RETURNING *', [id]);
+        const result = await pool.query('DELETE FROM cliente WHERE cpf = $1 RETURNING *', [cpf]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Cliente não encontrado' });

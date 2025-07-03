@@ -6,12 +6,12 @@ const router = express.Router();
 
 // Criar agendamento - RF01
 router.post('/', async (req, res) => {
-    const { id_cliente, data, horario, observacoes } = req.body;
+    const { cpf_cliente, data, horario, observacoes } = req.body;
 
     try {
-        // Verifica se horário está disponível para a data (ver regra RN02, RN03 simplificada aqui)
+        // Verifica se horário está disponível para a data (RN02, RN03)
         const existe = await pool.query(
-            'SELECT * FROM agendamentos WHERE data = $1 AND horario = $2',
+            'SELECT * FROM agendamento WHERE data = $1 AND horario = $2',
             [data, horario]
         );
 
@@ -21,8 +21,9 @@ router.post('/', async (req, res) => {
 
         // Insere o agendamento
         const result = await pool.query(
-            `INSERT INTO agendamentos (id_cliente, data, horario, observacoes) VALUES ($1, $2, $3, $4) RETURNING *`,
-            [id_cliente, data, horario, observacoes]
+            `INSERT INTO agendamento (cpf_cliente, data, horario, observacoes)
+             VALUES ($1, $2, $3, $4) RETURNING *`,
+            [cpf_cliente, data, horario, observacoes]
         );
 
         res.status(201).json(result.rows[0]);
@@ -34,11 +35,14 @@ router.post('/', async (req, res) => {
 
 // Listar agendamentos - RF02
 router.get('/', async (req, res) => {
-    // Opcional: filtrar por data (ex: ?data=2025-03-24)
     const dataFiltro = req.query.data;
 
     try {
-        let query = 'SELECT a.*, c.nome FROM agendamentos a JOIN clientes c ON a.id_cliente = c.id_cliente';
+        let query = `
+            SELECT a.*, c.nome
+            FROM agendamento a
+            JOIN cliente c ON a.cpf_cliente = c.cpf
+        `;
         const params = [];
 
         if (dataFiltro) {
@@ -63,9 +67,10 @@ router.put('/:id', async (req, res) => {
     const { data, horario, observacoes } = req.body;
 
     try {
-        // Verifica se novo horário está livre
+        // Verifica se o novo horário está disponível (exceto para o próprio agendamento)
         const existe = await pool.query(
-            'SELECT * FROM agendamentos WHERE data = $1 AND horario = $2 AND id_agendamento <> $3',
+            `SELECT * FROM agendamento
+             WHERE data = $1 AND horario = $2 AND id_agendamento <> $3`,
             [data, horario, id]
         );
 
@@ -73,9 +78,12 @@ router.put('/:id', async (req, res) => {
             return res.status(400).json({ error: 'Novo horário já está agendado' });
         }
 
-        // Atualiza o agendamento
+        // Atualiza agendamento
         const result = await pool.query(
-            `UPDATE agendamentos SET data = $1, horario = $2, observacoes = $3 WHERE id_agendamento = $4 RETURNING *`,
+            `UPDATE agendamento
+             SET data = $1, horario = $2, observacoes = $3
+             WHERE id_agendamento = $4
+             RETURNING *`,
             [data, horario, observacoes, id]
         );
 
@@ -96,7 +104,7 @@ router.delete('/:id', async (req, res) => {
 
     try {
         const result = await pool.query(
-            'DELETE FROM agendamentos WHERE id_agendamento = $1 RETURNING *',
+            `DELETE FROM agendamento WHERE id_agendamento = $1 RETURNING *`,
             [id]
         );
 
