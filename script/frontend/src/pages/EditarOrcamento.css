@@ -1,0 +1,92 @@
+/* Reutilize .page-container e .page-title de ListarOrcamentos.css */
+@import './ListarOrcamentos.css';
+
+.edit-main-content {
+  width: 100%;
+  max-width: 700px;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.page-subtitle {
+  text-align: center;
+  color: #666;
+  margin-top: -1.5rem;
+  margin-bottom: 2rem;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #333; 
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #e53935; /* Cor principal da sua marca */
+  box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
+}
+
+.form-group select { /* Adicione aqui */
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #333; 
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-actions button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.form-actions button:hover {
+  opacity: 0.85;
+}
+
+.cancel-button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.submit-button {
+  background-color: #ff8c00; /* Laranja, como no print */
+  color: white;
+}
+
