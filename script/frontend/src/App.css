@@ -4,10 +4,10 @@
   will-change: filter;
   transition: filter 300ms;
 }
-
+/*
 header {
   background-color: #333;
-}
+}*/
 
 .icone-cabecalho {
   margin: 0 7vw;

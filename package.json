@@ -31,8 +31,7 @@
     "react-big-calendar": "^1.19.4"
   },
   "devDependencies": {
-    "@types/react-big-calendar": "^1.16.2"
-
+    "@types/react-big-calendar": "^1.16.2",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "pg": "^8.16.2"

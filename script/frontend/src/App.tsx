@@ -36,7 +36,7 @@ function App() {
         />
         <ul>
           <li><a href="/">Início</a></li>
-          <li><a href="/orçamento">Orçamentos</a></li>
+          <li><a href="/orcamentos">Orçamentos</a></li>
           <li><a href="/agendamento">Agendamentos</a></li>
         </ul>
       </div>
