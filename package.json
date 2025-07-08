@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo#readme",
   "dependencies": {
+
     "@fullcalendar/core": "^6.1.17",
     "@fullcalendar/daygrid": "^6.1.17",
     "@fullcalendar/interaction": "^6.1.17",
@@ -31,5 +32,10 @@
   },
   "devDependencies": {
     "@types/react-big-calendar": "^1.16.2"
+
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "pg": "^8.16.2"
+
   }
 }
