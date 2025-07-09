@@ -78,7 +78,6 @@ router.post('/', async (req, res) => {
         data_venda,
         forma_pagamento,
         valor,
-        cpf_admin,
         id_servico,
         id_produto,
         medida
@@ -86,10 +85,10 @@ router.post('/', async (req, res) => {
 
     try {
         const result = await pool.query(
-            `INSERT INTO venda (data_venda, forma_pagamento, valor, cpf_admin, id_servico, id_produto, medida)
-             VALUES (COALESCE($1, CURRENT_DATE), $2, $3, $4, $5, $6, $7)
+            `INSERT INTO venda (data_venda, forma_pagamento, valor, id_servico, id_produto, medida)
+             VALUES (COALESCE($1, CURRENT_DATE), $2, $3, $4, $5, $6)
              RETURNING *`,
-            [data_venda, forma_pagamento, valor, cpf_admin, id_servico, id_produto, medida]
+            [data_venda, forma_pagamento, valor, id_servico, id_produto, medida]
         );
 
         res.status(201).json({ message: "Venda criada com sucesso", venda: result.rows[0] });
