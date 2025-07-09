@@ -7,7 +7,7 @@
   background-color: #fff;
   padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .page-subtitle {
@@ -41,23 +41,25 @@
   border-radius: 5px;
   font-size: 1rem;
   background-color: #f9f9f9;
-  color: #333; 
+  color: #333;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: #e53935; /* Cor principal da sua marca */
+  border-color: #e53935;
+  /* Cor principal da sua marca */
   box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
 }
 
-.form-group select { /* Adicione aqui */
+.form-group select {
+  /* Adicione aqui */
   padding: 0.75rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
   background-color: #f9f9f9;
-  color: #333; 
+  color: #333;
 }
 
 .form-actions {
@@ -86,7 +88,24 @@
 }
 
 .submit-button {
-  background-color: #ff8c00; /* Laranja, como no print */
+  background-color: #ff8c00;
+  /* Laranja, como no print */
   color: white;
 }
 
+.voltar-button {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.voltar-button:hover {
+  background-color: #e0e0e0;
+}

@@ -86,7 +86,7 @@ const EditarOrcamento: React.FC = () => {
               onChange={handleChange}
             ></textarea>
           </div>
-           <div className="form-group">
+          <div className="form-group">
             <label htmlFor="dataDeExpiracao">Data de Expiração</label>
             <input
               type="date"

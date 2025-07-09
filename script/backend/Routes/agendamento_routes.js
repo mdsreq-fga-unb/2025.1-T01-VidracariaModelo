@@ -1,5 +1,5 @@
 const express = require('express');
-const pool = require('../Db'); // seu pool do PostgreSQL
+const pool = require('../Db');
 
 const router = express.Router();
 
@@ -39,11 +39,14 @@ router.post('/', async (req, res) => {
         // Insere o agendamento
         const result = await pool.query(
             `INSERT INTO agendamento (data, horario, status, observacoes, id_cliente)
-             VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+             VALUES ($1, $2, $3, $4, $5) RETURNING id_agendamento`,
             [data, horario, 'agendado', observacoes, id_cliente]
         );
 
-        res.status(201).json(result.rows[0]);
+        res.status(201).json({
+            id_agendamento: result.rows[0].id_agendamento,
+            message: 'Agendamento criado com sucesso'
+        });
     } catch (err) {
         console.error('Erro ao criar agendamento:', err);
         res.status(500).json({ error: 'Erro interno do servidor' });
@@ -57,7 +60,7 @@ router.get('/', async (req, res) => {
 
     try {
         let query = `
-            SELECT a.*, c.nome
+            SELECT a.id_agendamento, a.data, a.horario, a.status, a.observacoes, c.nome as nome_cliente
             FROM agendamento a
             JOIN cliente c ON a.id_cliente = c.id
         `;
@@ -79,9 +82,30 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Listar agendamento por ID - RF02
+router.get('/:id_agendamento', async (req, res) => {
+    try {
+        const { id_agendamento } = req.params; // ← Corrigido para id_agendamento
+        const result = await pool.query(
+            'SELECT a.*, c.nome FROM agendamento a JOIN cliente c ON a.id_cliente = c.id WHERE a.id_agendamento = $1',
+            [id_agendamento]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Agendamento não encontrado" });
+        }
+
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Erro interno" });
+    }
+});
+
+
 // Remarcar agendamento - RF03
-router.put('/:id', async (req, res) => {
-    const id = req.params.id;
+router.put('/:id_agendamento', async (req, res) => {
+    const id_agendamento = req.params.id_agendamento;
     const { data, horario, observacoes } = req.body;
 
     try {
@@ -89,7 +113,7 @@ router.put('/:id', async (req, res) => {
         const existe = await pool.query(
             `SELECT * FROM agendamento
              WHERE data = $1 AND horario = $2 AND id_agendamento <> $3`,
-            [data, horario, id]
+            [data, horario, id_agendamento]
         );
 
         if (existe.rows.length > 0) {
@@ -101,15 +125,18 @@ router.put('/:id', async (req, res) => {
             `UPDATE agendamento
              SET data = $1, horario = $2, observacoes = $3
              WHERE id_agendamento = $4
-             RETURNING *`,
-            [data, horario, observacoes, id]
+             RETURNING id_agendamento`,
+            [data, horario, observacoes, id_agendamento]
         );
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Agendamento não encontrado' });
         }
 
-        res.json(result.rows[0]);
+        res.json({
+            id_agendamento: result.rows[0].id_agendamento,
+            message: 'Agendamento atualizado com sucesso'
+        });
     } catch (err) {
         console.error('Erro ao remarcar agendamento:', err);
         res.status(500).json({ error: 'Erro interno do servidor' });
@@ -117,20 +144,23 @@ router.put('/:id', async (req, res) => {
 });
 
 // Cancelar agendamento - RF04
-router.delete('/:id', async (req, res) => {
-    const id = req.params.id;
+router.delete('/:id_agendamento', async (req, res) => {
+    const id_agendamento = req.params.id_agendamento;
 
     try {
         const result = await pool.query(
-            `DELETE FROM agendamento WHERE id_agendamento = $1 RETURNING *`,
-            [id]
+            `DELETE FROM agendamento WHERE id_agendamento = $1 RETURNING id_agendamento`,
+            [id_agendamento]
         );
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Agendamento não encontrado' });
         }
 
-        res.json({ mensagem: 'Agendamento cancelado com sucesso' });
+        res.json({
+            id_agendamento: result.rows[0].id_agendamento,
+            message: 'Agendamento cancelado com sucesso'
+        });
     } catch (err) {
         console.error('Erro ao cancelar agendamento:', err);
         res.status(500).json({ error: 'Erro interno do servidor' });

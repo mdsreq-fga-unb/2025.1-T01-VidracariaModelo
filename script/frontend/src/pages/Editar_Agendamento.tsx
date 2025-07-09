@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import "react-datepicker/dist/react-datepicker.css";
 import './Editar_Agendamento.css';
+import { useNavigate, useParams } from 'react-router-dom';
 
 registerLocale('pt-BR', ptBR);
 
@@ -11,49 +12,161 @@ const PaginaDeAgendamento: React.FC = () => {
   const [dataSelecionada, setDataSelecionada] = useState<Date | null>(null);
   const [horario, setHorario] = useState('');
   const [observacoes, setObservacoes] = useState('');
+  const [horariosDisponiveis, setHorariosDisponiveis] = useState<string[]>([]);
   const hoje = new Date();
   const dataMaxima = new Date();
   dataMaxima.setDate(hoje.getDate() + 30);
 
+  const { id } = useParams(); // ← Pega o ID do agendamento da URL
+  const navigate = useNavigate();
+
+  const carregandoAgendamento = useRef(true);
+
+
+
   // --- LÓGICA DO BOTÃO "SALVAR" ---
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (!dataSelecionada || !horario) {
       alert('Por favor, selecione a data e o horário.');
       return;
     }
-    const agendamento = { cliente, data: dataSelecionada, horario, observacoes };
-    console.log('Dados para SALVAR:', agendamento);
-    alert('Agendamento salvo com sucesso!');
-    // Ex: aqui você faria a chamada para a API para salvar
-  };
 
-  // --- LÓGICA DO BOTÃO "EXCLUIR" ---
-  const handleExcluirClick = () => {
-    // Pede confirmação ao usuário antes de prosseguir
-    const confirmar = window.confirm("Você tem certeza que deseja excluir este agendamento?");
+    const agendamento = {
+      nome: cliente,
+      data: dataSelecionada.toISOString().split('T')[0],
+      horario,
+      observacoes,
+    };
 
-    if (confirmar) {
-      console.log("Lógica de EXCLUSÃO executada aqui.");
-      alert("Agendamento excluído!");
-      // Ex: aqui você faria a chamada para a API para deletar
-      // e depois redirecionaria o usuário para outra página.
-    } else {
-      console.log("Exclusão cancelada pelo usuário.");
+    try {
+      const res = await fetch(`http://localhost:3000/agendamentos/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(agendamento),
+      });
+
+      if (!res.ok) throw new Error('Erro ao atualizar');
+
+      alert('Agendamento atualizado com sucesso!');
+      navigate('/agendamento');
+    } catch (err) {
+      alert('Erro ao salvar alterações.');
     }
   };
+
+
+  // --- LÓGICA DO BOTÃO "EXCLUIR" ---
+  const handleExcluirClick = async () => {
+    const confirmar = window.confirm("Você tem certeza que deseja excluir este agendamento?");
+    if (!confirmar || !id) return;
+
+    try {
+      const res = await fetch(`http://localhost:3000/agendamentos/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!res.ok) throw new Error('Erro ao excluir');
+
+      alert("Agendamento excluído!");
+      navigate('/agendamento');
+    } catch (err) {
+      alert('Erro ao excluir agendamento');
+    }
+  };
+
+
+  useEffect(() => {
+    const buscarHorarios = async () => {
+      if (!dataSelecionada) {
+        setHorariosDisponiveis([]);
+        setHorario('');
+        return;
+      }
+
+      const dataStr = dataSelecionada.toISOString().split('T')[0];
+
+      try {
+        const res = await fetch(`http://localhost:3000/horarios-disponiveis?data=${dataStr}`);
+        const data = await res.json();
+        setHorariosDisponiveis(data);
+
+        // Só limpa o horário se não estiver carregando o agendamento
+        if (!carregandoAgendamento.current) {
+          setHorario('');
+        }
+      } catch (err) {
+        alert('Erro ao buscar horários disponíveis');
+        setHorariosDisponiveis([]);
+      }
+    };
+
+    buscarHorarios();
+  }, [dataSelecionada]);
+
+
+  useEffect(() => {
+    const buscarAgendamento = async () => {
+      try {
+        const res = await fetch(`http://localhost:3000/agendamentos/${id}`);
+        if (!res.ok) throw new Error("Erro ao buscar agendamento");
+
+        const data = await res.json();
+
+        setCliente(data.nome);
+        setObservacoes(data.observacoes || '');
+
+        const [ano, mes, dia] = data.data.split('T')[0].split('-').map(Number);
+        const [hora, minuto, segundo] = data.horario.split(':').map(Number);
+        const dataHora = new Date(ano, mes - 1, dia, hora, minuto, segundo);
+
+        setDataSelecionada(dataHora); // Isso já vai disparar o fetch dos horários disponíveis
+
+        // Espera um pouco até os horários serem carregados
+        setTimeout(() => {
+          setHorario(data.horario.substring(0, 5));
+        }, 300); // pode ajustar esse delay se quiser
+      } catch (err) {
+        alert("Erro ao carregar agendamento.");
+        console.error(err);
+        navigate('/agendamento');
+      }
+    };
+
+    if (id) buscarAgendamento();
+  }, [id]);
+
+
+
+
 
   return (
     <>
       <div className="agendamento-container">
+        <button
+          type="button"
+          className="voltar-button"
+          onClick={() => navigate('/agendamento')}
+        >
+          ← Voltar
+        </button>
+
+
         <h1 className="agendamento-titulo">Agendamentos</h1>
         <form className="agendamento-form" onSubmit={handleSubmit}>
 
           {/* ... Seus campos do formulário ... */}
           {/* Campo Cliente */}
           <div className="form-group">
-            <label htmlFor="cliente">Cliente</label>
-            <input type="text" id="cliente" className="input-field" value={cliente} onChange={(e) => setCliente(e.target.value)} />
+            <label htmlFor="cliente">Cliente: </label>
+            <input
+              type="text"
+              id="cliente"
+              className="input-field"
+              value={cliente}
+              onChange={(e) => setCliente(e.target.value)}
+              readOnly
+            />
           </div>
 
           {/* Campo Data */}
@@ -65,14 +178,17 @@ const PaginaDeAgendamento: React.FC = () => {
           {/* Campo Horário */}
           <div className="form-group">
             <label htmlFor="horario">Selecione o horário</label>
-            <select id="horario" className="input-field" value={horario} onChange={(e) => setHorario(e.target.value)}>
+            <select
+              id="horario"
+              className="input-field"
+              value={horario}
+              onChange={(e) => setHorario(e.target.value)}
+              disabled={!dataSelecionada || horariosDisponiveis.length === 0}
+            >
               <option value="" disabled>Selecione o horário</option>
-              <option value="09:00">09:00</option>
-              <option value="10:00">10:00</option>
-              <option value="11:00">11:00</option>
-              <option value="14:00">14:00</option>
-              <option value="15:00">15:00</option>
-              <option value="16:00">16:00</option>
+              {horariosDisponiveis.map((h) => (
+                <option key={h} value={h}>{h}</option>
+              ))}
             </select>
           </div>
 
@@ -94,7 +210,7 @@ const PaginaDeAgendamento: React.FC = () => {
             </button>
           </div>
         </form>
-      </div>
+      </div >
 
       <footer className="footerContainer1">
         <div className="redStripe1" />

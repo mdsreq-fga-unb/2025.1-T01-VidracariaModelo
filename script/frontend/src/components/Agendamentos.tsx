@@ -40,13 +40,20 @@ const Agendamentos: React.FC = () => {
   const [acaoPendente, setAcaoPendente] = useState<'editar' | 'excluir' | null>(null);
 
   const navigate = useNavigate();
-
+  const [filtroCliente, setFiltroCliente] = useState('');
   // Filtra os agendamentos do dia para a lista da esquerda
   const agendamentosDoDia = useMemo(() => {
-    return agendamentos.filter((agendamento) =>
-      format(agendamento.inicio, 'yyyy-MM-dd') === format(dataSelecionada, 'yyyy-MM-dd')
-    );
-  }, [agendamentos, dataSelecionada]);
+    return agendamentos
+      .filter((agendamento) =>
+        format(agendamento.inicio, 'yyyy-MM-dd') === format(dataSelecionada, 'yyyy-MM-dd')
+      )
+      .filter((agendamento) =>
+        agendamento.cliente.toLowerCase().includes(filtroCliente.toLowerCase())
+      );
+  }, [agendamentos, dataSelecionada, filtroCliente]);
+
+
+
 
 
   const formatarHora = (data: Date): string => format(data, 'HH:mm');
@@ -91,18 +98,35 @@ const Agendamentos: React.FC = () => {
     setAcaoPendente(null);
   };
 
-  const handleConfirmarAcao = () => {
+  const handleConfirmarAcao = async () => {
     if (!eventoSelecionado || !acaoPendente) return;
 
     if (acaoPendente === 'editar') {
       navigate(`/agendamento/editar/${eventoSelecionado.id}`);
     } else if (acaoPendente === 'excluir') {
-      setAgendamentos(agendamentos.filter(ag => ag.id !== eventoSelecionado.id));
-      alert("Agendamento excluído!");
+      try {
+        const res = await fetch(`http://localhost:3000/agendamentos/${eventoSelecionado.id}`, {
+          method: 'DELETE',
+        });
+
+        if (!res.ok) {
+          const erro = await res.json();
+          alert(erro.error || 'Erro ao excluir agendamento');
+          return;
+        }
+
+        setAgendamentos(agendamentos.filter(ag => ag.id !== eventoSelecionado.id));
+        alert("Agendamento excluído com sucesso!");
+      } catch (error) {
+        alert('Erro ao tentar excluir o agendamento');
+      }
     }
+
 
     fecharTudo();
   };
+
+
   useEffect(() => {
     const buscarAgendamentos = async () => {
       try {
@@ -119,7 +143,7 @@ const Agendamentos: React.FC = () => {
           const fim = new Date(inicio.getTime() + 60 * 60 * 1000); // 1h de duração
           return {
             id: item.id_agendamento,
-            cliente: item.nome,
+            cliente: item.nome_cliente,
             inicio,
             fim,
             observacoes: item.observacoes,
@@ -147,7 +171,14 @@ const Agendamentos: React.FC = () => {
           <button className="botao-novo-agendamento" onClick={handleCriarAgendamento}>+ Novo agendamento</button>
         </header>
 
-        <input type="text" placeholder="Buscar por cliente" className="campo-busca" />
+        <input
+          type="text"
+          placeholder="Buscar por cliente"
+          className="campo-busca"
+          value={filtroCliente}
+          onChange={(e) => setFiltroCliente(e.target.value)}
+        />
+
 
         <main className="conteudo-principal">
           <div className="painel-esquerdo">
