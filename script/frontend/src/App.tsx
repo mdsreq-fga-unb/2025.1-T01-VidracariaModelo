@@ -3,20 +3,21 @@ import AppRoutes from './routes/appRoutes';
 import logo from './assets/Logo2.png';
 import { AiOutlineUser, AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import "./App.css";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function App() {
   const [menuAberto, setMenuAberto] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuAberto(!menuAberto);
   };
 
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: '#333' }}>
       <header>
         <div className="cabecalho-section">
-          <AiOutlineMenu size={50} className='icone-cabecalho' onClick={toggleMenu} />
+          <AiOutlineMenu size={50} color="white " className='icone-cabecalho' onClick={toggleMenu} />
           <div className="logo-cabecalho-section">
             <img
               src={logo}
@@ -24,7 +25,13 @@ function App() {
               className="logo-section"
             />
           </div>
-          <AiOutlineUser size={50} className='icone-cabecalho' />
+          <AiOutlineUser
+            size={50}
+            color="white"
+            className="icone-cabecalho"
+            onClick={() => navigate('/login')}
+          />
+
         </div>
       </header>
 

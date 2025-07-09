@@ -7,7 +7,7 @@ import Agendamento from '../pages/Agendamento';
 import ListarOrcamentos from '../pages/ListarOrcamentos';
 import DetalhesOrcamento from '../pages/DetalhesOrcamento';
 import EditarOrcamento from '../pages/EditarOrcamento';
-
+import Login from '../pages/login'
 
 const AppRoutes = () => {
   return (
@@ -17,6 +17,7 @@ const AppRoutes = () => {
       <Route path="/agendamento" element={<Agendamento />} />
       <Route path="/agendamento/criar" element={<NovoAgendamento />} />
       <Route path="/agendamento/editar/:id" element={<EditarAgendamento />} />
+      <Route path="/login" element={<Login />} />
 
       {/* NOVAS ROTAS ADICIONADAS */}
       <Route path="/orcamentos" element={<ListarOrcamentos />} />
