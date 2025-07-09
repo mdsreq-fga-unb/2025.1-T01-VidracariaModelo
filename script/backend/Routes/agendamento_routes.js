@@ -1,4 +1,3 @@
-// agendamento_routes.js
 const express = require('express');
 const pool = require('../Db'); // seu pool do PostgreSQL
 
@@ -6,10 +5,28 @@ const router = express.Router();
 
 // Criar agendamento - RF01
 router.post('/', async (req, res) => {
-    const { cpf_cliente, data, horario, observacoes } = req.body;
+    const { nome_cliente, data, horario, observacoes, telefone = '', endereco = '' } = req.body;
 
     try {
-        // Verifica se horário está disponível para a data (RN02, RN03)
+        // Busca o id do cliente pelo nome
+        let clienteResult = await pool.query(
+            'SELECT id FROM cliente WHERE nome = $1',
+            [nome_cliente]
+        );
+
+        let id_cliente;
+        if (clienteResult.rows.length === 0) {
+            // Cria o cliente se não existir
+            const insertCliente = await pool.query(
+                'INSERT INTO cliente (nome, telefone, endereco) VALUES ($1, $2, $3) RETURNING id',
+                [nome_cliente, telefone, endereco]
+            );
+            id_cliente = insertCliente.rows[0].id;
+        } else {
+            id_cliente = clienteResult.rows[0].id;
+        }
+
+        // Verifica se horário está disponível para a data
         const existe = await pool.query(
             'SELECT * FROM agendamento WHERE data = $1 AND horario = $2',
             [data, horario]
@@ -21,9 +38,9 @@ router.post('/', async (req, res) => {
 
         // Insere o agendamento
         const result = await pool.query(
-            `INSERT INTO agendamento (cpf_cliente, data, horario, observacoes)
-             VALUES ($1, $2, $3, $4) RETURNING *`,
-            [cpf_cliente, data, horario, observacoes]
+            `INSERT INTO agendamento (data, horario, status, observacoes, id_cliente)
+             VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+            [data, horario, 'agendado', observacoes, id_cliente]
         );
 
         res.status(201).json(result.rows[0]);
@@ -36,12 +53,13 @@ router.post('/', async (req, res) => {
 // Listar agendamentos - RF02
 router.get('/', async (req, res) => {
     const dataFiltro = req.query.data;
+    console.log("chamando get agendamentos");
 
     try {
         let query = `
             SELECT a.*, c.nome
             FROM agendamento a
-            JOIN cliente c ON a.cpf_cliente = c.cpf
+            JOIN cliente c ON a.id_cliente = c.id
         `;
         const params = [];
 

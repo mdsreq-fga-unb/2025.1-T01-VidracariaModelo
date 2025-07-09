@@ -1,20 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
-import { ptBR } from 'date-fns/locale/pt-BR'; 
+import { ptBR } from 'date-fns/locale/pt-BR';
 import "react-datepicker/dist/react-datepicker.css";
 import './Novo_Agendamento.css';
+import { useNavigate } from 'react-router-dom'; // Adicione esta linha
 
 registerLocale('pt-BR', ptBR);
+
 const PaginaDeAgendamento: React.FC = () => {
   const [cliente, setCliente] = useState('');
   const [dataSelecionada, setDataSelecionada] = useState<Date | null>(null);
   const [horario, setHorario] = useState('');
   const [observacoes, setObservacoes] = useState('');
+  const [horariosDisponiveis, setHorariosDisponiveis] = useState<string[]>([]);
   const hoje = new Date();
   const dataMaxima = new Date();
   dataMaxima.setDate(hoje.getDate() + 30);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const navigate = useNavigate(); // Adicione esta linha
+
+  // Buscar horários disponíveis quando a data mudar
+  useEffect(() => {
+    const buscarHorarios = async () => {
+      if (!dataSelecionada) {
+        setHorariosDisponiveis([]);
+        setHorario('');
+        return;
+      }
+      const dataStr = dataSelecionada.toISOString().split('T')[0]; // yyyy-mm-dd
+      try {
+        const res = await fetch(`http://localhost:3000/horarios-disponiveis?data=${dataStr}`);
+        const data = await res.json();
+        setHorariosDisponiveis(data); // Supondo que a API retorna ["09:00", "10:00", ...]
+        setHorario(''); // Limpa o horário selecionado ao trocar a data
+      } catch (err) {
+        alert('Erro ao buscar horários disponíveis');
+        setHorariosDisponiveis([]);
+      }
+    };
+    buscarHorarios();
+  }, [dataSelecionada]);
+
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     if (!dataSelecionada || !horario) {
@@ -23,27 +50,41 @@ const PaginaDeAgendamento: React.FC = () => {
     }
 
     const agendamento = {
-      cliente,
-      data: dataSelecionada.toLocaleDateString('pt-BR'),
+      nome_cliente: cliente,
+      data: dataSelecionada.toISOString().split('T')[0], // "YYYY-MM-DD"
       horario,
       observacoes,
     };
 
-    console.log('Dados do Agendamento:', agendamento);
-    alert(`Agendamento para ${cliente} em ${agendamento.data} às ${horario} foi criado com sucesso!`);
+    try {
+      const res = await fetch('http://localhost:3000/agendamentos', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(agendamento),
+      });
+
+      if (!res.ok) {
+        const erro = await res.json();
+        alert(erro.error || 'Erro ao criar agendamento');
+        return;
+      }
+
+      alert(`Agendamento para ${cliente} em ${agendamento.data} às ${horario} foi criado com sucesso!`);
+      setCliente('');
+      setDataSelecionada(null);
+      setHorario('');
+      setObservacoes('');
+      navigate('/agendamento'); // Redireciona para a tela de agendamentos
+    } catch (err) {
+      alert('Erro ao criar agendamento');
+    }
   };
 
   return (
-    // Usamos um Fragmento (<>) para agrupar os elementos sem adicionar uma div extra
     <>
-      {/* O container do agendamento agora só tem o título e o formulário */}
       <div className="agendamento-container">
         <h1 className="agendamento-titulo">Agendamentos</h1>
-
         <form className="agendamento-form" onSubmit={handleSubmit}>
-          {/* ... todo o seu formulário continua aqui, sem alterações ... */}
-          
-          {/* Campo Cliente */}
           <div className="form-group">
             <label htmlFor="cliente">Cliente</label>
             <input
@@ -54,8 +95,6 @@ const PaginaDeAgendamento: React.FC = () => {
               onChange={(e) => setCliente(e.target.value)}
             />
           </div>
-
-          {/* Campo Data */}
           <div className="form-group">
             <label>Selecione a data</label>
             <DatePicker
@@ -66,12 +105,10 @@ const PaginaDeAgendamento: React.FC = () => {
               locale="pt-BR"
               className="input-field"
               wrapperClassName="date-picker-wrapper"
-              minDate={hoje}      
+              minDate={hoje}
               maxDate={dataMaxima}
             />
           </div>
-
-          {/* Campo Horário */}
           <div className="form-group">
             <label htmlFor="horario">Selecione o horário</label>
             <select
@@ -79,18 +116,14 @@ const PaginaDeAgendamento: React.FC = () => {
               className="input-field"
               value={horario}
               onChange={(e) => setHorario(e.target.value)}
+              disabled={!dataSelecionada || horariosDisponiveis.length === 0}
             >
               <option value="" disabled>Selecione o horário</option>
-              <option value="09:00">09:00</option>
-              <option value="10:00">10:00</option>
-              <option value="11:00">11:00</option>
-              <option value="14:00">14:00</option>
-              <option value="15:00">15:00</option>
-              <option value="16:00">16:00</option>
+              {horariosDisponiveis.map((h) => (
+                <option key={h} value={h}>{h}</option>
+              ))}
             </select>
           </div>
-
-          {/* Campo Observações */}
           <div className="form-group">
             <label htmlFor="observacoes">Observações</label>
             <textarea
@@ -100,15 +133,11 @@ const PaginaDeAgendamento: React.FC = () => {
               onChange={(e) => setObservacoes(e.target.value)}
             />
           </div>
-
-          {/* Botão de Agendamento */}
           <button type="submit" className="agendar-button">
             Agendar
           </button>
         </form>
       </div>
-
-      {/* O footer agora está FORA do container do agendamento, como um irmão */}
       <footer className="footerContainer2">
         <div className="redStripe2" />
       </footer>

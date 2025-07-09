@@ -3,6 +3,7 @@ import AppRoutes from './routes/appRoutes';
 import logo from './assets/Logo2.png';
 import { AiOutlineUser, AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import "./App.css";
+import { Link } from 'react-router-dom';
 
 function App() {
   const [menuAberto, setMenuAberto] = useState(false);
@@ -35,9 +36,9 @@ function App() {
           onClick={toggleMenu}
         />
         <ul>
-          <li><a href="/">Início</a></li>
-          <li><a href="/orcamentos">Orçamentos</a></li>
-          <li><a href="/agendamento">Agendamentos</a></li>
+          <li><Link to="/">Início</Link></li>
+          <li><Link to="/orcamentos">Orçamentos</Link></li>
+          <li><Link to="/agendamento">Agendamentos</Link></li>
         </ul>
       </div>
 

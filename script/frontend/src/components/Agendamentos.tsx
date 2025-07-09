@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Calendar, dateFnsLocalizer, type View } from 'react-big-calendar';
 import { format } from 'date-fns/format';
@@ -16,14 +16,8 @@ interface Agendamento {
   inicio: Date;
   fim: Date;
   observacoes?: string; // Adicionei observações como opcional para o exemplo
+  status?: string;
 }
-
-// --- Dados Mockados Iniciais ---
-const agendamentosMockIniciais: Agendamento[] = [
-  { id: 1, cliente: 'Cliente Silva', inicio: new Date(new Date().setHours(9, 0, 0, 0)), fim: new Date(new Date().setHours(10, 0, 0, 0)), observacoes: 'Primeira consulta.' },
-  { id: 2, cliente: 'Mariana Costa', inicio: new Date(new Date().setHours(10, 0, 0, 0)), fim: new Date(new Date().setHours(11, 0, 0, 0)) },
-  { id: 4, cliente: 'Ana Pereira', inicio: new Date(2025, 5, 20), fim: new Date(new Date(2025, 5, 20).setHours(11, 0, 0, 0)), observacoes: 'Retorno.' },
-];
 
 // --- Configuração do Localizer ---
 const locales = { 'pt-BR': ptBR };
@@ -32,11 +26,11 @@ const localizer = dateFnsLocalizer({ format, parse, startOfWeek, getDay, locales
 // --- Componente Principal ---
 const Agendamentos: React.FC = () => {
   // Dados mockados agora dentro de um estado para permitir a exclusão
-  const [agendamentos, setAgendamentos] = useState<Agendamento[]>(agendamentosMockIniciais);
-  
+  const [agendamentos, setAgendamentos] = useState<Agendamento[]>([]);
+
   const [dataSelecionada, setDataSelecionada] = useState<Date>(new Date());
   const [view, setView] = useState<View>('month');
-  
+
   // Estados para controlar o modal principal
   const [modalAberto, setModalAberto] = useState(false);
   const [eventoSelecionado, setEventoSelecionado] = useState<Agendamento | null>(null);
@@ -49,7 +43,7 @@ const Agendamentos: React.FC = () => {
 
   // Filtra os agendamentos do dia para a lista da esquerda
   const agendamentosDoDia = useMemo(() => {
-    return agendamentos.filter((agendamento) => 
+    return agendamentos.filter((agendamento) =>
       format(agendamento.inicio, 'yyyy-MM-dd') === format(dataSelecionada, 'yyyy-MM-dd')
     );
   }, [agendamentos, dataSelecionada]);
@@ -74,7 +68,7 @@ const Agendamentos: React.FC = () => {
     setEventoSelecionado(evento);
     setModalAberto(true);
   };
-  
+
   const fecharTudo = () => {
     setModalAberto(false);
     setConfirmacaoAberta(false);
@@ -109,8 +103,43 @@ const Agendamentos: React.FC = () => {
 
     fecharTudo();
   };
+  useEffect(() => {
+    const buscarAgendamentos = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/agendamentos');
+        console.log("consultando API")
+        const data = await res.json();
+        console.log("Dados recebidos da API:", data);
+        // Transforma os dados do backend para o formato do calendário
+        const ags: Agendamento[] = data.map((item: any) => {
+          // Usa a data e o horário separadamente para criar um Date local
+          const [ano, mes, dia] = item.data.split('T')[0].split('-').map(Number);
+          const [hora, minuto, segundo] = item.horario.split(':').map(Number);
+          const inicio = new Date(ano, mes - 1, dia, hora, minuto, segundo);
+          const fim = new Date(inicio.getTime() + 60 * 60 * 1000); // 1h de duração
+          return {
+            id: item.id_agendamento,
+            cliente: item.nome,
+            inicio,
+            fim,
+            observacoes: item.observacoes,
+            status: item.status,
+          };
+        });
+        console.log("Agendamentos convertidos:", ags); // <-- Adicione este log
+        setAgendamentos(ags);
+      } catch (err) {
+        alert('Erro ao buscar agendamentos');
+      }
+    };
+    buscarAgendamentos();
+  }, []);
+
+
+
 
   return (
+
     <div className="container-geral">
       <div className="painel-agendamentos">
         <header className="cabecalho">
@@ -200,7 +229,9 @@ const Agendamentos: React.FC = () => {
         </div>
       )}
     </div>
+
   );
+
 };
 
 export default Agendamentos;

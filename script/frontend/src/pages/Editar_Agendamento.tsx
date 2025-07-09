@@ -48,7 +48,7 @@ const PaginaDeAgendamento: React.FC = () => {
       <div className="agendamento-container">
         <h1 className="agendamento-titulo">Agendamentos</h1>
         <form className="agendamento-form" onSubmit={handleSubmit}>
-          
+
           {/* ... Seus campos do formulário ... */}
           {/* Campo Cliente */}
           <div className="form-group">
@@ -81,13 +81,13 @@ const PaginaDeAgendamento: React.FC = () => {
             <label htmlFor="observacoes">Observações</label>
             <textarea id="observacoes" className="textarea-field" value={observacoes} onChange={(e) => setObservacoes(e.target.value)} />
           </div>
-          
+
           <div className="botoes-container">
             {/* Botão de Excluir com o onClick */}
             <button type="button" className="excluir-button" onClick={handleExcluirClick}>
               Excluir
             </button>
-            
+
             {/* Botão de Salvar que aciona o onSubmit */}
             <button type="submit" className="salvar-button">
               Salvar

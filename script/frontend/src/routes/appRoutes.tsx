@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
 
 import NovoAgendamento from '../pages/Novo_Agendamento';
@@ -11,21 +11,20 @@ import EditarOrcamento from '../pages/EditarOrcamento';
 
 const AppRoutes = () => {
   return (
-    <Router>
-      <Routes>
-        {/* ROTA JÁ EXISTENTE */}
-        <Route path="/" element={<Home />} />
-        <Route path="/agendamento" element={<Agendamento />} />
-        <Route path="/agendamento/criar" element={<NovoAgendamento />} />
-        <Route path="/agendamento/editar" element={<EditarAgendamento />} />
-        
-        {/* NOVAS ROTAS ADICIONADAS */}
-        <Route path="/orcamentos" element={<ListarOrcamentos />} />
-        <Route path="/orcamentos/detalhes/:id" element={<DetalhesOrcamento />} />
-        <Route path="/orcamentos/editar/:id" element={<EditarOrcamento />} />
+    <Routes>
+      {/* ROTA JÁ EXISTENTE */}
+      <Route path="/" element={<Home />} />
+      <Route path="/agendamento" element={<Agendamento />} />
+      <Route path="/agendamento/criar" element={<NovoAgendamento />} />
+      <Route path="/agendamento/editar/:id" element={<EditarAgendamento />} />
 
-      </Routes>
-    </Router>
+      {/* NOVAS ROTAS ADICIONADAS */}
+      <Route path="/orcamentos" element={<ListarOrcamentos />} />
+      <Route path="/orcamentos/detalhes/:id" element={<DetalhesOrcamento />} />
+      <Route path="/orcamentos/editar/:id" element={<EditarOrcamento />} />
+
+    </Routes>
+
   );
 };
 
