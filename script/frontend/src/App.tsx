@@ -36,9 +36,10 @@ function App() {
           onClick={toggleMenu}
         />
         <ul>
-          <li><Link to="/">Início</Link></li>
-          <li><Link to="/orcamentos">Orçamentos</Link></li>
-          <li><Link to="/agendamento">Agendamentos</Link></li>
+          <li><Link to="/" onClick={() => setMenuAberto(false)}>Início</Link></li>
+          <li><Link to="/orcamentos" onClick={() => setMenuAberto(false)}>Orçamentos</Link></li>
+          <li><Link to="/agendamento" onClick={() => setMenuAberto(false)}>Agendamentos</Link></li>
+
         </ul>
       </div>
 

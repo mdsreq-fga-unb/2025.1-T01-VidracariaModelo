@@ -15,6 +15,42 @@ const horariosPadrao = [
     '16:00'
 ];
 
+/**
+ * @swagger
+ * tags:
+ *   name: Horários
+ *   description: Endpoints para gerenciamento de agendamentos
+ */
+
+/**
+ * @swagger
+ * /Horários/horarios-disponiveis:
+ *   get:
+ *     summary: Lista horários disponíveis para uma data específica
+ *     tags: [Horários]
+ *     parameters:
+ *       - in: query
+ *         name: data
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: Data no formato YYYY-MM-DD
+ *     responses:
+ *       200:
+ *         description: Lista de horários disponíveis
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: string
+ *                 example: "08:00"
+ *       400:
+ *         description: Parâmetro obrigatório ausente ou inválido
+ *       500:
+ *         description: Erro interno do servidor
+ */
 router.get('/horarios-disponiveis', async (req, res) => {
     const data = req.query.data;
 
@@ -23,17 +59,19 @@ router.get('/horarios-disponiveis', async (req, res) => {
     }
 
     try {
-        // Busca os horários agendados para a data
+        // Busca os horários já agendados para a data informada
         const agendamentosResult = await pool.query(
             'SELECT horario FROM agendamento WHERE data = $1',
             [data]
         );
 
-        const horariosAgendados = agendamentosResult.rows.map(row => row.horario.substring(0, 5)); // pega "HH:MM"
+        // Transforma o resultado em um array com apenas os horários no formato "HH:MM"
+        const horariosAgendados = agendamentosResult.rows.map(row => row.horario.substring(0, 5));
 
         // Filtra os horários padrão que ainda não estão agendados
         const horariosDisponiveis = horariosPadrao.filter(h => !horariosAgendados.includes(h));
 
+        // Retorna os horários disponíveis
         res.json(horariosDisponiveis);
     } catch (err) {
         console.error('Erro ao buscar horários disponíveis:', err);

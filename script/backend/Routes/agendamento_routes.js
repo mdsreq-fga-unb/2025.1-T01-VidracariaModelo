@@ -1,7 +1,54 @@
+/**
+ * @swagger
+ * tags:
+ *   name: Agendamentos
+ *   description: Endpoints para gerenciar agendamentos
+ */
+
 const express = require('express');
 const pool = require('../Db');
 
 const router = express.Router();
+
+/**
+ * @swagger
+ * /agendamentos:
+ *   post:
+ *     summary: Cria um novo agendamento
+ *     tags: [Agendamentos]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - nome_cliente
+ *               - data
+ *               - horario
+ *             properties:
+ *               nome_cliente:
+ *                 type: string
+ *               data:
+ *                 type: string
+ *                 format: date
+ *               horario:
+ *                 type: string
+ *                 example: "14:00"
+ *               observacoes:
+ *                 type: string
+ *               telefone:
+ *                 type: string
+ *               endereco:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Agendamento criado com sucesso
+ *       400:
+ *         description: Horário já agendado
+ *       500:
+ *         description: Erro interno do servidor
+ */
 
 // Criar agendamento - RF01
 router.post('/', async (req, res) => {
@@ -52,6 +99,25 @@ router.post('/', async (req, res) => {
         res.status(500).json({ error: 'Erro interno do servidor' });
     }
 });
+/**
+ * @swagger
+ * /agendamentos:
+ *   get:
+ *     summary: Lista todos os agendamentos (pode filtrar por data)
+ *     tags: [Agendamentos]
+ *     parameters:
+ *       - in: query
+ *         name: data
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: Data para filtrar agendamentos
+ *     responses:
+ *       200:
+ *         description: Lista de agendamentos
+ *       500:
+ *         description: Erro interno do servidor
+ */
 
 // Listar agendamentos - RF02
 router.get('/', async (req, res) => {
@@ -81,6 +147,26 @@ router.get('/', async (req, res) => {
         res.status(500).json({ error: 'Erro interno do servidor' });
     }
 });
+/**
+ * @swagger
+ * /agendamentos/{id_agendamento}:
+ *   get:
+ *     summary: Retorna um agendamento pelo ID
+ *     tags: [Agendamentos]
+ *     parameters:
+ *       - in: path
+ *         name: id_agendamento
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Detalhes do agendamento
+ *       404:
+ *         description: Agendamento não encontrado
+ *       500:
+ *         description: Erro interno
+ */
 
 // Listar agendamento por ID - RF02
 router.get('/:id_agendamento', async (req, res) => {
@@ -102,6 +188,42 @@ router.get('/:id_agendamento', async (req, res) => {
     }
 });
 
+/**
+ * @swagger
+ * /agendamentos/{id_agendamento}:
+ *   put:
+ *     summary: Atualiza data e horário de um agendamento
+ *     tags: [Agendamentos]
+ *     parameters:
+ *       - in: path
+ *         name: id_agendamento
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               data:
+ *                 type: string
+ *                 format: date
+ *               horario:
+ *                 type: string
+ *               observacoes:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Agendamento atualizado com sucesso
+ *       400:
+ *         description: Novo horário já está agendado
+ *       404:
+ *         description: Agendamento não encontrado
+ *       500:
+ *         description: Erro interno
+ */
 
 // Remarcar agendamento - RF03
 router.put('/:id_agendamento', async (req, res) => {
@@ -142,6 +264,27 @@ router.put('/:id_agendamento', async (req, res) => {
         res.status(500).json({ error: 'Erro interno do servidor' });
     }
 });
+
+/**
+ * @swagger
+ * /agendamentos/{id_agendamento}:
+ *   delete:
+ *     summary: Cancela um agendamento
+ *     tags: [Agendamentos]
+ *     parameters:
+ *       - in: path
+ *         name: id_agendamento
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Agendamento cancelado com sucesso
+ *       404:
+ *         description: Agendamento não encontrado
+ *       500:
+ *         description: Erro interno do servidor
+ */
 
 // Cancelar agendamento - RF04
 router.delete('/:id_agendamento', async (req, res) => {

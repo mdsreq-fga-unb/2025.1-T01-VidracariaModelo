@@ -3,7 +3,31 @@ const pool = require('../Db');
 
 const router = express.Router();
 
-// Listar todos os clientes
+/**
+ * @swagger
+ * tags:
+ *   name: Clientes
+ *   description: Endpoints para gerenciamento de clientes
+ */
+
+/**
+ * @swagger
+ * /clientes:
+ *   get:
+ *     summary: Lista todos os clientes
+ *     tags: [Clientes]
+ *     responses:
+ *       200:
+ *         description: Lista de clientes
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *       500:
+ *         description: Erro interno do servidor
+ */
 router.get('/', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM cliente ORDER BY nome');
@@ -14,7 +38,27 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Buscar cliente por CPF
+/**
+ * @swagger
+ * /clientes/{cpf}:
+ *   get:
+ *     summary: Busca cliente pelo CPF
+ *     tags: [Clientes]
+ *     parameters:
+ *       - in: path
+ *         name: cpf
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: CPF do cliente
+ *     responses:
+ *       200:
+ *         description: Cliente encontrado
+ *       404:
+ *         description: Cliente não encontrado
+ *       500:
+ *         description: Erro interno do servidor
+ */
 router.get('/:cpf', async (req, res) => {
     const cpf = req.params.cpf;
 
@@ -32,7 +76,40 @@ router.get('/:cpf', async (req, res) => {
     }
 });
 
-// Criar novo cliente
+/**
+ * @swagger
+ * /clientes:
+ *   post:
+ *     summary: Cria um novo cliente
+ *     tags: [Clientes]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - cpf
+ *               - nome
+ *             properties:
+ *               cpf:
+ *                 type: string
+ *               nome:
+ *                 type: string
+ *               telefone:
+ *                 type: string
+ *               endereco:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Cliente criado com sucesso
+ *       400:
+ *         description: CPF e nome são obrigatórios
+ *       409:
+ *         description: Cliente com esse CPF já existe
+ *       500:
+ *         description: Erro interno do servidor
+ */
 router.post('/', async (req, res) => {
     const { cpf, nome, telefone, endereco } = req.body;
 
@@ -56,7 +133,44 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Atualizar cliente
+/**
+ * @swagger
+ * /clientes/{cpf}:
+ *   put:
+ *     summary: Atualiza dados de um cliente pelo CPF
+ *     tags: [Clientes]
+ *     parameters:
+ *       - in: path
+ *         name: cpf
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: CPF do cliente
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - nome
+ *             properties:
+ *               nome:
+ *                 type: string
+ *               telefone:
+ *                 type: string
+ *               endereco:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Cliente atualizado com sucesso
+ *       400:
+ *         description: Nome é obrigatório
+ *       404:
+ *         description: Cliente não encontrado
+ *       500:
+ *         description: Erro interno do servidor
+ */
 router.put('/:cpf', async (req, res) => {
     const cpf = req.params.cpf;
     const { nome, telefone, endereco } = req.body;
@@ -82,7 +196,27 @@ router.put('/:cpf', async (req, res) => {
     }
 });
 
-// Deletar cliente
+/**
+ * @swagger
+ * /clientes/{cpf}:
+ *   delete:
+ *     summary: Deleta um cliente pelo CPF
+ *     tags: [Clientes]
+ *     parameters:
+ *       - in: path
+ *         name: cpf
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: CPF do cliente
+ *     responses:
+ *       200:
+ *         description: Cliente deletado com sucesso
+ *       404:
+ *         description: Cliente não encontrado
+ *       500:
+ *         description: Erro interno do servidor
+ */
 router.delete('/:cpf', async (req, res) => {
     const cpf = req.params.cpf;
 
