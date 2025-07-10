@@ -7,7 +7,7 @@ import Agendamento from '../pages/Agendamento';
 import ListarOrcamentos from '../pages/ListarOrcamentos';
 import DetalhesOrcamento from '../pages/DetalhesOrcamento';
 import EditarOrcamento from '../pages/EditarOrcamento';
-import Login from '../pages/login'
+import Login from '../pages/Login'
 
 const AppRoutes = () => {
   return (
