@@ -1,0 +1,23 @@
+🔹 RF01 – Realizar agendamento
+Regras de Negócio não implementadas:
+
+RN39: Um agendamento deve incluir endereço e um campo para incluir o link da localização do local do serviço.
+
+🔹 RF02 – Visualizar serviços agendados
+Regras de Negócio não implementadas:
+
+RN29: O sistema deve alertar automaticamente sobre agendamentos não confirmados nos próximos 3 dias.
+
+🔹 RF03 – Remarcar agendamento
+Regras de Negócio não implementadas (todas):
+
+RN14: Clientes podem cancelar agendamentos com no mínimo 12h de antecedência. ( cliente nao tem acesso ao sistema )
+RN15: Apenas o usuário que criou o agendamento ou um administrador pode realizar a remarcação.
+RN17: Cada agendamento pode ser remarcado no máximo 4 vezes.
+RN18: O sistema deve manter um histórico com data e hora de cada remarcação, incluindo quem a realizou.
+
+
+🔹 RF04 – Cancelar agendamento
+Regras de Negócio não implementadas:
+RN28: Se o cliente não comparecer ao compromisso e não cancelar dentro do prazo, o sistema deve marcar automaticamente como "cancelado por ausência".
+

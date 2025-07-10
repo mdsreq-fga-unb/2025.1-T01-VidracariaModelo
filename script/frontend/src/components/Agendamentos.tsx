@@ -10,15 +10,13 @@ import './Agendamentos.css';
 
 interface Agendamento {
   id: number;
-  cliente: string;
+  cliente: string; // nome do cliente
   inicio: Date;
   fim: Date;
   observacoes?: string;
   status?: string;
-  criadoPor?: number; // ID do usuário que criou
 }
 
-// Localização do calendário
 const locales = { 'pt-BR': ptBR };
 const localizer = dateFnsLocalizer({ format, parse, startOfWeek, getDay, locales });
 
@@ -35,19 +33,30 @@ const Agendamentos: React.FC = () => {
 
   const navigate = useNavigate();
 
-  // Usuário logado
-  const token = localStorage.getItem("token");
-  let usuarioLogado: { tipo: string; id: number } = { tipo: '', id: -1 };
-  if (token) {
+  // Função para criar uma data local correta usando data (YYYY-MM-DD) e horário (HH:mm:ss)
+  const criarDataLocal = (dataISO: string, horario: string): Date => {
+    // dataISO: "2025-07-15T03:00:00.000Z" -> queremos só a parte YYYY-MM-DD
+    const dataParte = dataISO.slice(0, 10); // "2025-07-15"
+    // Monta string ISO local com horário correto
+    return new Date(`${dataParte}T${horario}`);
+  };
+
+  // Extrair usuário do token JWT armazenado no localStorage
+  const getUsuarioFromToken = () => {
+    const token = localStorage.getItem("token");
+    if (!token) return null;
     try {
       const payloadBase64 = token.split('.')[1];
-      const payload = JSON.parse(atob(payloadBase64));
-      usuarioLogado = { tipo: payload.tipo_usuario, id: payload.id };
-    } catch (e) {
-      console.warn("Erro ao decodificar token");
+      return JSON.parse(atob(payloadBase64)) as { id: number; tipo_usuario: string };
+    } catch {
+      return null;
     }
-  }
+  };
 
+  // Obter usuário logado para lógica interna
+  const usuarioLogado = getUsuarioFromToken() ?? { tipo_usuario: '', id: -1 };
+
+  // Filtragem e ordenação dos agendamentos
   const agendamentosFiltrados = useMemo(() => {
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
@@ -57,7 +66,7 @@ const Agendamentos: React.FC = () => {
     return agendamentos
       .filter(ag => {
         if (!dataSelecionada) {
-          if (usuarioLogado.tipo !== 'gerente') {
+          if (usuarioLogado.tipo_usuario !== 'gerente') {
             const limitePassado = new Date();
             limitePassado.setMonth(limitePassado.getMonth() - 12);
             if (ag.inicio < limitePassado) return false;
@@ -77,13 +86,17 @@ const Agendamentos: React.FC = () => {
         return ag.status?.toLowerCase() === filtroStatus.toLowerCase();
       })
       .sort((a, b) => a.inicio.getTime() - b.inicio.getTime());
-  }, [agendamentos, filtroCliente, dataSelecionada, filtroStatus]);
+  }, [agendamentos, filtroCliente, dataSelecionada, filtroStatus, usuarioLogado.tipo_usuario]);
 
+  // Formatação de hora para exibição
   const formatarHora = (data: Date): string => format(data, 'HH:mm');
+
+  // Manipuladores para calendário
   const handleSelecionarSlot = (slotInfo: { start: Date }) => setDataSelecionada(slotInfo.start);
   const handleNavegacao = (novaData: Date) => setDataSelecionada(novaData);
   const handleView = (novaView: View) => setView(novaView);
 
+  // Estilo dos eventos baseado no status
   const eventPropGetter = (event: Agendamento) => {
     let backgroundColor = 'gray';
     if (event.status) {
@@ -91,6 +104,7 @@ const Agendamentos: React.FC = () => {
         case 'concluido': backgroundColor = '#28a745'; break;
         case 'cancelado': backgroundColor = '#dc3545'; break;
         case 'agendado': backgroundColor = '#007bff'; break;
+        case 'confirmado': backgroundColor = '#17a2b8'; break; // Adicionei esse status que apareceu no seu JSON
       }
     }
     return {
@@ -104,13 +118,16 @@ const Agendamentos: React.FC = () => {
     };
   };
 
+  // Navegar para criação de agendamento
   const handleCriarAgendamento = () => navigate("/agendamento/criar");
 
+  // Ao clicar em um evento abrir modal com detalhes
   const handleSelectEvent = (evento: Agendamento) => {
     setEventoSelecionado(evento);
     setModalAberto(true);
   };
 
+  // Fechar todos os modais/confirmacoes
   const fecharTudo = () => {
     setModalAberto(false);
     setConfirmacaoAberta(false);
@@ -118,14 +135,15 @@ const Agendamentos: React.FC = () => {
     setAcaoPendente(null);
   };
 
+  // Verifica se usuário pode editar um agendamento
   const podeEditar = () => {
     if (!eventoSelecionado) return false;
     const agora = new Date();
-    const isDono = eventoSelecionado.criadoPor === usuarioLogado.id;
-    const isGerente = usuarioLogado.tipo === 'gerente';
-    return eventoSelecionado.inicio > agora && (isDono || isGerente);
+    const isGerente = usuarioLogado.tipo_usuario === 'gerente';
+    return eventoSelecionado.inicio > agora && isGerente;
   };
 
+  // Handler para iniciar edição (abre confirmação)
   const handleEditar = () => {
     if (!podeEditar()) {
       alert("Você não tem permissão para remarcar este agendamento.");
@@ -135,15 +153,14 @@ const Agendamentos: React.FC = () => {
     setConfirmacaoAberta(true);
   };
 
+  // Handler para iniciar exclusão (abre confirmação)
   const handleExcluir = () => {
-    const usuario = getUsuarioFromToken();
-    if (!usuario || !eventoSelecionado) return;
+    if (!eventoSelecionado) return;
 
     const agora = new Date();
     const diferencaHoras = (eventoSelecionado.inicio.getTime() - agora.getTime()) / (1000 * 60 * 60);
 
-    // RN14: Validação de 12h para usuários comuns
-    if (usuario.tipo_usuario !== 'gerente' && diferencaHoras < 12) {
+    if (usuarioLogado.tipo_usuario !== 'gerente' && diferencaHoras < 12) {
       alert("Cancelamento só é permitido com 12 horas de antecedência para usuários comuns.");
       return;
     }
@@ -157,24 +174,13 @@ const Agendamentos: React.FC = () => {
     setConfirmacaoAberta(true);
   };
 
+  // Cancelar confirmação
   const handleCancelarAcao = () => {
     setConfirmacaoAberta(false);
     setAcaoPendente(null);
   };
 
-  const getUsuarioFromToken = () => {
-    const token = localStorage.getItem("token");
-    if (!token) return null;
-
-    try {
-      const payloadBase64 = token.split('.')[1];
-      return JSON.parse(atob(payloadBase64)) as { id: number; tipo_usuario: string };
-    } catch (e) {
-      console.error("Erro ao decodificar token:", e);
-      return null;
-    }
-  };
-
+  // Confirmar edição ou exclusão
   const handleConfirmarAcao = async () => {
     if (!eventoSelecionado || !acaoPendente) return;
 
@@ -193,13 +199,12 @@ const Agendamentos: React.FC = () => {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
           }
         });
 
         if (!res.ok) {
           const erro = await res.json();
-          alert(erro.error || 'Erro ao excluir agendamento');
+          alert(erro.erro || erro.error || 'Erro ao excluir agendamento');
           return;
         }
 
@@ -214,6 +219,7 @@ const Agendamentos: React.FC = () => {
     }
   };
 
+  // Alterar status do agendamento (agendado -> concluido -> cancelado)
   const handleMudarStatus = async () => {
     if (!eventoSelecionado) return;
 
@@ -255,13 +261,11 @@ const Agendamentos: React.FC = () => {
     }
   };
 
+  // Buscar agendamentos ao carregar componente
   useEffect(() => {
     const buscarAgendamentos = async () => {
       try {
-
-        const res = await fetch('http://localhost:3000/agendamentos', {
-
-        });
+        const res = await fetch('http://localhost:3000/agendamentos');
 
         if (res.status === 401) {
           alert("Sessão expirada. Faça login novamente.");
@@ -270,23 +274,20 @@ const Agendamentos: React.FC = () => {
         }
 
         const data = await res.json();
-        const ags: Agendamento[] = data.map((item: any) => {
-          // Extrai só a parte YYYY-MM-DD da data (sem horário)
-          const dataISO = item.data.slice(0, 10); // "2025-07-10"
 
-          const inicio = new Date(`${dataISO}T${item.horario}`);
-          const fim = new Date(inicio.getTime() + 60 * 60 * 1000);
+        const ags: Agendamento[] = data.map((item: any) => {
+          const inicio = criarDataLocal(item.data, item.horario);
+          const fim = new Date(inicio.getTime() + 60 * 60 * 1000); // duração 1h
 
           return {
             id: item.id,
-            cliente: item.nome_cliente,
+            cliente: item.nome_cliente, // corrigido para nome_cliente
             inicio,
             fim,
             observacoes: item.observacoes,
             status: item.status,
           };
         });
-
 
         setAgendamentos(ags);
       } catch (err) {
@@ -296,10 +297,12 @@ const Agendamentos: React.FC = () => {
     };
 
     buscarAgendamentos();
-  }, []);
+  }, [navigate]);
 
+  // Resetar filtro de data
   const resetarSelecao = () => setDataSelecionada(undefined);
 
+  // Título para lista lateral de agendamentos
   const tituloLista = () => {
     if (!dataSelecionada) {
       const hoje = new Date();
@@ -319,38 +322,53 @@ const Agendamentos: React.FC = () => {
           <button className="botao-novo-agendamento" onClick={handleCriarAgendamento}>+ Novo agendamento</button>
         </header>
 
-        <input type="text" placeholder="Buscar por cliente" className="campo-busca" value={filtroCliente} onChange={(e) => setFiltroCliente(e.target.value)} />
-
+        <input
+          type="text"
+          placeholder="Buscar por cliente"
+          className="campo-busca"
+          value={filtroCliente}
+          onChange={(e) => setFiltroCliente(e.target.value)}
+        />
 
         <main className="conteudo-principal">
           <div className="painel-esquerdo">
             <div className="lista-agendamentos-container">
               <h2>{tituloLista()}</h2>
 
-              <select className="campo-busca" value={filtroStatus} onChange={(e) => setFiltroStatus(e.target.value)}>
+              <select
+                className="campo-busca"
+                value={filtroStatus}
+                onChange={(e) => setFiltroStatus(e.target.value)}
+              >
                 <option value="">Todos os status</option>
                 <option value="agendado">Agendado</option>
                 <option value="concluido">Concluído</option>
                 <option value="cancelado">Cancelado</option>
+                <option value="confirmado">Confirmado</option>
               </select>
+
               <div className="d-flex justify-content-center">
-                <button className="btn btn-sm btn-light botao-resetar" onClick={resetarSelecao}>Mostrar todos</button>
+                <button className="btn btn-sm btn-warning botao-resetar" onClick={resetarSelecao}>
+                  Mostrar todos
+                </button>
               </div>
 
               <ul className="lista-agendamentos">
-                {agendamentosFiltrados.length > 0 ? agendamentosFiltrados.map((ag) => {
-                  const marcadorClasse = ag.status?.toLowerCase() !== 'concluido' ? 'marcador-vermelho' : 'marcador-verde';
-                  return (
-                    <li key={ag.id} className="item-agendamento">
-                      <div className="info-agendamento">
-                        <span>{format(ag.inicio, 'dd/MM/yyyy')}</span>
-                        <span>{ag.cliente}</span>
-                        <span>{`${formatarHora(ag.inicio)} - ${formatarHora(ag.fim)}`}</span>
-                      </div>
-                      <span className={marcadorClasse}></span>
-                    </li>
-                  );
-                }) : (
+                {agendamentosFiltrados.length > 0 ? (
+                  agendamentosFiltrados.map((ag) => {
+                    const marcadorClasse = ag.status?.toLowerCase() !== 'concluido' ? 'marcador-vermelho' : 'marcador-verde';
+                    return (
+                      <li key={ag.id} className="item-agendamento">
+                        <div className="info-agendamento">
+                          <span>{format(ag.inicio, 'dd/MM/yyyy')}</span>
+                          <span>{ag.cliente}</span>
+                          <span>{`${formatarHora(ag.inicio)} - ${formatarHora(ag.fim)}`}</span>
+                        </div>
+                        <span className={marcadorClasse}></span>
+                      </li>
+                    );
+                  })
+                ) : (
                   <p className="sem-agendamentos">Nenhum agendamento para este dia.</p>
                 )}
               </ul>
@@ -360,13 +378,24 @@ const Agendamentos: React.FC = () => {
           <div className="painel-direito">
             <Calendar
               localizer={localizer}
-              events={agendamentos}
+              events={agendamentosFiltrados}
               startAccessor="inicio"
               endAccessor="fim"
               titleAccessor="cliente"
               style={{ height: '100%', width: '100%' }}
               culture="pt-BR"
-              messages={{ next: "Próximo", previous: "Anterior", today: "Hoje", month: "Mês", week: "Semana", day: "Dia", agenda: "Agenda", date: "Data", time: "Hora", event: "Evento" }}
+              messages={{
+                next: "Próximo",
+                previous: "Anterior",
+                today: "Hoje",
+                month: "Mês",
+                week: "Semana",
+                day: "Dia",
+                agenda: "Agenda",
+                date: "Data",
+                time: "Hora",
+                event: "Evento"
+              }}
               onSelectSlot={handleSelecionarSlot}
               selectable
               eventPropGetter={eventPropGetter}
@@ -389,7 +418,12 @@ const Agendamentos: React.FC = () => {
               <p><strong>Cliente:</strong> {eventoSelecionado.cliente}</p>
               <p><strong>Data:</strong> {format(eventoSelecionado.inicio, 'dd/MM/yyyy')}</p>
               <p><strong>Horário:</strong> {format(eventoSelecionado.inicio, 'HH:mm')}</p>
-              <p><strong>Status:</strong> <span style={{ color: eventoSelecionado.status?.toLowerCase() === 'concluido' ? 'green' : 'inherit', fontWeight: 'bold' }}>{eventoSelecionado.status}</span></p>
+              <p>
+                <strong>Status:</strong>{' '}
+                <span style={{ color: eventoSelecionado.status?.toLowerCase() === 'concluido' ? 'green' : 'inherit', fontWeight: 'bold' }}>
+                  {eventoSelecionado.status}
+                </span>
+              </p>
               {eventoSelecionado.observacoes && <p><strong>Serviço:</strong> {eventoSelecionado.observacoes}</p>}
             </div>
 
@@ -419,5 +453,3 @@ const Agendamentos: React.FC = () => {
 };
 
 export default Agendamentos;
-
-

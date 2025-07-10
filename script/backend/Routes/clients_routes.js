@@ -3,31 +3,6 @@ const pool = require('../Db');
 
 const router = express.Router();
 
-/**
- * @swagger
- * tags:
- *   name: Clientes
- *   description: Endpoints para gerenciamento de clientes
- */
-
-/**
- * @swagger
- * /clientes:
- *   get:
- *     summary: Lista todos os clientes
- *     tags: [Clientes]
- *     responses:
- *       200:
- *         description: Lista de clientes
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 type: object
- *       500:
- *         description: Erro interno do servidor
- */
 router.get('/', async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM cliente ORDER BY nome');
@@ -38,32 +13,11 @@ router.get('/', async (req, res) => {
     }
 });
 
-/**
- * @swagger
- * /clientes/{id}:
- *   get:
- *     summary: Busca cliente pelo ID
- *     tags: [Clientes]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *         description: ID do cliente
- *     responses:
- *       200:
- *         description: Cliente encontrado
- *       404:
- *         description: Cliente não encontrado
- *       500:
- *         description: Erro interno do servidor
- */
-router.get('/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
+router.get('/:cpf', async (req, res) => {
+    const cpf = req.params.cpf;
 
     try {
-        const result = await pool.query('SELECT * FROM cliente WHERE id = $1', [id]);
+        const result = await pool.query('SELECT * FROM cliente WHERE cpf = $1', [cpf]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Cliente não encontrado' });
@@ -76,46 +30,22 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-/**
- * @swagger
- * /clientes:
- *   post:
- *     summary: Cria um novo cliente
- *     tags: [Clientes]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required:
- *               - nome
- *             properties:
- *               nome:
- *                 type: string
- *               email:
- *                 type: string
- *               endereco:
- *                 type: string
- *     responses:
- *       201:
- *         description: Cliente criado com sucesso
- *       400:
- *         description: Nome é obrigatório
- *       500:
- *         description: Erro interno do servidor
- */
 router.post('/', async (req, res) => {
-    const { nome, email, endereco } = req.body;
+    let { cpf, nome, email, endereco } = req.body;
 
-    if (!nome) {
-        return res.status(400).json({ error: 'Nome é obrigatório' });
+    if (!cpf || !nome) {
+        return res.status(400).json({ error: 'CPF e nome são obrigatórios' });
     }
+
+    cpf = cpf.toUpperCase();
+    nome = nome.toUpperCase();
+    email = email ? email.toUpperCase() : null;
+    endereco = endereco ? endereco.toUpperCase() : null;
 
     try {
         const result = await pool.query(
-            'INSERT INTO cliente (nome, email, endereco) VALUES ($1, $2, $3) RETURNING *',
-            [nome, email || null, endereco || null]
+            'INSERT INTO cliente (cpf, nome, email, endereco) VALUES ($1, $2, $3, $4) RETURNING *',
+            [cpf, nome, email, endereco]
         );
 
         res.status(201).json(result.rows[0]);
@@ -125,56 +55,22 @@ router.post('/', async (req, res) => {
     }
 });
 
-/**
- * @swagger
- * /clientes/{id}:
- *   put:
- *     summary: Atualiza dados de um cliente pelo ID
- *     tags: [Clientes]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *         description: ID do cliente
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             required:
- *               - nome
- *             properties:
- *               nome:
- *                 type: string
- *               email:
- *                 type: string
- *               endereco:
- *                 type: string
- *     responses:
- *       200:
- *         description: Cliente atualizado com sucesso
- *       400:
- *         description: Nome é obrigatório
- *       404:
- *         description: Cliente não encontrado
- *       500:
- *         description: Erro interno do servidor
- */
-router.put('/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
-    const { nome, email, endereco } = req.body;
+router.put('/:cpf', async (req, res) => {
+    const cpf = req.params.cpf;
+    let { nome, email, endereco } = req.body;
 
     if (!nome) {
         return res.status(400).json({ error: 'Nome é obrigatório' });
     }
 
+    nome = nome.toUpperCase();
+    email = email ? email.toUpperCase() : null;
+    endereco = endereco ? endereco.toUpperCase() : null;
+
     try {
         const result = await pool.query(
-            'UPDATE cliente SET nome = $1, email = $2, endereco = $3 WHERE id = $4 RETURNING *',
-            [nome, email || null, endereco || null, id]
+            'UPDATE cliente SET nome = $1, email = $2, endereco = $3 WHERE cpf = $4 RETURNING *',
+            [nome, email, endereco, cpf]
         );
 
         if (result.rows.length === 0) {
@@ -188,32 +84,11 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-/**
- * @swagger
- * /clientes/{id}:
- *   delete:
- *     summary: Deleta um cliente pelo ID
- *     tags: [Clientes]
- *     parameters:
- *       - in: path
- *         name: id
- *         required: true
- *         schema:
- *           type: integer
- *         description: ID do cliente
- *     responses:
- *       200:
- *         description: Cliente deletado com sucesso
- *       404:
- *         description: Cliente não encontrado
- *       500:
- *         description: Erro interno do servidor
- */
-router.delete('/:id', async (req, res) => {
-    const id = parseInt(req.params.id);
+router.delete('/:cpf', async (req, res) => {
+    const cpf = req.params.cpf;
 
     try {
-        const result = await pool.query('DELETE FROM cliente WHERE id = $1 RETURNING *', [id]);
+        const result = await pool.query('DELETE FROM cliente WHERE cpf = $1 RETURNING *', [cpf]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Cliente não encontrado' });

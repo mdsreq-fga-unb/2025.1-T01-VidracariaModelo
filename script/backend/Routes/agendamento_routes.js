@@ -1,33 +1,50 @@
 const express = require('express');
 const pool = require('../Db');
 const { autenticar, somenteGerentes } = require('../middlewares/authMiddleware');
-const { enviarEmail } = require('../services/EmailServices') // ajuste o caminho conforme seu projeto
+const { enviarEmail } = require('../services/EmailServices');
 
 const router = express.Router();
 
 // Criar agendamento - RF01
+// ATENÇÃO: agora precisa enviar `cpf_cliente` no corpo da requisição
 router.post('/', async (req, res) => {
-    const { nome_cliente, data, horario, status, observacoes, email = '', endereco = '' } = req.body;
+    const {
+        nome_cliente,
+        cpf_cliente,
+        data,
+        horario,
+        status,
+        observacoes,
+        email = '',
+        endereco = ''
+    } = req.body;
+
+    if (!cpf_cliente || !nome_cliente || !data || !horario) {
+        return res.status(400).json({ error: 'cpf_cliente, nome_cliente, data e horario são obrigatórios' });
+    }
 
     try {
-        // Busca o id do cliente pelo nome
+        // Busca o cliente pelo CPF
         let clienteResult = await pool.query(
-            'SELECT id, email FROM cliente WHERE nome = $1',
-            [nome_cliente]
+            'SELECT cpf, email FROM cliente WHERE cpf = $1',
+            [cpf_cliente.toUpperCase().trim()]
         );
 
-        let id_cliente;
+        let cpf = cpf_cliente.toUpperCase().trim();
         let emailCliente = email;
 
         if (clienteResult.rows.length === 0) {
-            // Cria o cliente se não existir
+            // Converte para maiúsculo os campos antes de inserir
+            const nomeMaiusculo = nome_cliente.toUpperCase().trim();
+            const emailMaiusculo = email ? email.toUpperCase().trim() : null;
+            const enderecoMaiusculo = endereco ? endereco.toUpperCase().trim() : null;
+
             const insertCliente = await pool.query(
-                'INSERT INTO cliente (nome, email, endereco) VALUES ($1, $2, $3) RETURNING id',
-                [nome_cliente, email || null, endereco || null]
+                'INSERT INTO cliente (cpf, nome, email, endereco) VALUES ($1, $2, $3, $4) RETURNING cpf',
+                [cpf, nomeMaiusculo, emailMaiusculo, enderecoMaiusculo]
             );
-            id_cliente = insertCliente.rows[0].id;
+            cpf = insertCliente.rows[0].cpf;
         } else {
-            id_cliente = clienteResult.rows[0].id;
             // Se email não veio na requisição, usar o do banco
             if (!emailCliente) {
                 emailCliente = clienteResult.rows[0].email;
@@ -46,9 +63,9 @@ router.post('/', async (req, res) => {
 
         // Insere o agendamento - status fixo 'agendado'
         const result = await pool.query(
-            `INSERT INTO agendamento (data, horario, status, observacoes, id_cliente)
+            `INSERT INTO agendamento (data, horario, status, observacoes, cpf_cliente)
              VALUES ($1, $2, $3, $4, $5) RETURNING id`,
-            [data, horario, 'agendado', observacoes || null, id_cliente]
+            [data, horario, 'agendado', observacoes || null, cpf]
         );
 
         // Enviar email para o cliente
@@ -74,9 +91,9 @@ router.get('/', async (req, res) => {
     const dataFiltro = req.query.data;
     try {
         let query = `
-            SELECT a.id, a.data, a.horario, a.status, a.observacoes, c.nome as nome_cliente
+            SELECT a.id, a.data, a.horario, a.status, a.observacoes, c.nome as nome_cliente, c.cpf as cpf_cliente
             FROM agendamento a
-            JOIN cliente c ON a.id_cliente = c.id
+            JOIN cliente c ON a.cpf_cliente = c.cpf
         `;
         const params = [];
 
@@ -101,7 +118,7 @@ router.get('/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const result = await pool.query(
-            'SELECT a.*, c.nome FROM agendamento a JOIN cliente c ON a.id_cliente = c.id WHERE a.id = $1',
+            'SELECT a.*, c.nome, c.cpf FROM agendamento a JOIN cliente c ON a.cpf_cliente = c.cpf WHERE a.id = $1',
             [id]
         );
 
@@ -120,6 +137,10 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { data, horario, observacoes } = req.body;
+
+    if (!data || !horario) {
+        return res.status(400).json({ error: 'Data e horário são obrigatórios para remarcar' });
+    }
 
     try {
         // Verifica se o novo horário está disponível (exceto para o próprio agendamento)
@@ -148,7 +169,7 @@ router.put('/:id', async (req, res) => {
 
         // Pegar info do cliente para enviar email
         const agendamentoInfo = await pool.query(
-            `SELECT c.email, c.nome FROM agendamento a JOIN cliente c ON a.id_cliente = c.id WHERE a.id = $1`,
+            `SELECT c.email, c.nome FROM agendamento a JOIN cliente c ON a.cpf_cliente = c.cpf WHERE a.id = $1`,
             [id]
         );
 
@@ -206,7 +227,6 @@ router.patch('/:id/status', async (req, res) => {
 });
 
 // Cancelar agendamento - RF04
-// Rota de cancelamento (exige autenticação e aplica RN14)
 router.delete('/:id', autenticar, async (req, res) => {
     const { id } = req.params;
     const { tipo } = req.usuario; // 'gerente' ou 'usuario'
@@ -221,10 +241,9 @@ router.delete('/:id', autenticar, async (req, res) => {
             return res.status(404).json({ erro: 'Agendamento não encontrado' });
         }
 
-        // Validação de 12h para não-gerentes (RN14)
         if (tipo !== 'gerente') {
             const agora = new Date();
-            const [ano, mes, dia] = agendamento.rows[0].data.split('-');
+            const [ano, mes, dia] = agendamento.rows[0].data.toISOString().split('T')[0].split('-');
             const [hora, minuto] = agendamento.rows[0].horario.split(':');
             const dataAgendamento = new Date(ano, mes - 1, dia, hora, minuto);
 
@@ -239,7 +258,7 @@ router.delete('/:id', autenticar, async (req, res) => {
         // Buscar email e nome do cliente antes de deletar
         const agendamentoCliente = await pool.query(
             `SELECT c.email, c.nome, a.data, a.horario 
-             FROM agendamento a JOIN cliente c ON a.id_cliente = c.id WHERE a.id = $1`,
+             FROM agendamento a JOIN cliente c ON a.cpf_cliente = c.cpf WHERE a.id = $1`,
             [id]
         );
 
@@ -254,8 +273,8 @@ router.delete('/:id', autenticar, async (req, res) => {
 
         if (email) {
             const assunto = 'Agendamento Cancelado';
-            const texto = `Olá, ${nome}! Seu agendamento para o dia ${data} às ${horario} foi cancelado.`;
-            const html = `<p>Olá, <b>${nome}</b>!</p><p>Seu agendamento para o dia <b>${data}</b> às <b>${horario}</b> foi cancelado.</p>`;
+            const texto = `Olá, ${nome}! Seu agendamento para o dia ${data.toISOString().split('T')[0]} às ${horario} foi cancelado.`;
+            const html = `<p>Olá, <b>${nome}</b>!</p><p>Seu agendamento para o dia <b>${data.toISOString().split('T')[0]}</b> às <b>${horario}</b> foi cancelado.</p>`;
             enviarEmail(email, assunto, texto, html);
         }
 

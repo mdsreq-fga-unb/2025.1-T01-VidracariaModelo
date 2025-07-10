@@ -1,13 +1,14 @@
 -- 1. Enum: tipo de usuário
 CREATE TYPE tipo_usuario AS ENUM ('gerente', 'usuario');
 
+-- 2. Tabela: cliente (cpf como PK)
 CREATE TABLE cliente (
-    id SERIAL PRIMARY KEY,
+    cpf VARCHAR(14) PRIMARY KEY, -- formato com pontos e traço
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100),
     endereco TEXT,
     CONSTRAINT email_valido CHECK (
-        email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' 
+        email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'
     )
 );
 
@@ -20,17 +21,16 @@ CREATE TABLE administrador (
     tipo_usuario tipo_usuario NOT NULL
 );
 
--- 4. Tabela: agendamento
+-- 4. Tabela: agendamento (usa cpf do cliente)
 CREATE TABLE agendamento (
     id SERIAL PRIMARY KEY,
     data DATE NOT NULL,
     horario TIME NOT NULL,
     status VARCHAR(50) NOT NULL,
     observacoes TEXT,
-    id_cliente INTEGER NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id) ON DELETE CASCADE
+    cpf_cliente VARCHAR(14) NOT NULL,
+    FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf) ON DELETE CASCADE
 );
-
 -- 5. Tabela: atividade
 CREATE TABLE atividade (
     id SERIAL PRIMARY KEY,
@@ -107,22 +107,23 @@ CREATE TABLE realiza (
 
 
 
--- Inserir dados na tabela cliente
-INSERT INTO cliente (nome, email, endereco) VALUES
-('João Silva', 'joao.silva@email.com', 'Rua das Flores, 123'),
-('Maria Oliveira', 'maria.oliveira@email.com', 'Av. Brasil, 456'),
-('Carlos Pereira', 'carlos.pereira@email.com', 'Rua do Comércio, 789');
+INSERT INTO cliente (cpf, nome, email, endereco) VALUES
+('111.111.111-11', 'JOÃO SILVA', 'JOAO.SILVA@EMAIL.COM', 'Rua das Flores, 123'),
+('222.222.222-22', 'MARIA OLIVEIRA', 'MARIA.OLIVEIRA@EMAIL.COM', 'Av. Brasil, 456'),
+('333.333.333-33', 'CARLOS PEREIRA', 'CARLOS.PEREIRA@EMAIL.COM', 'Rua do Comércio, 789');
+
+-- Inserir dados na tabela agendamento (usa CPF)
+INSERT INTO agendamento (data, horario, status, observacoes, cpf_cliente) VALUES
+('2025-07-15', '09:00:00', 'agendado', 'Reunião inicial', '111.111.111-11'),
+('2025-07-16', '14:30:00', 'confirmado', 'Visita técnica', '222.222.222-22'),
+('2025-07-17', '11:00:00', 'cancelado', 'Cliente pediu cancelamento', '333.333.333-33');
 
 -- Inserir dados na tabela administrador
 INSERT INTO administrador (nome, email, senha, tipo_usuario) VALUES
 ('Ana Gerente', 'ana.gerente@email.com', 'senhaAna123', 'gerente'),
 ('Pedro Usuario', 'pedro.usuario@email.com', 'senhaPedro123', 'usuario');
 
--- Inserir dados na tabela agendamento
-INSERT INTO agendamento (data, horario, status, observacoes, id_cliente) VALUES
-('2025-07-15', '09:00:00', 'agendado', 'Reunião inicial', 1),
-('2025-07-16', '14:30:00', 'confirmado', 'Visita técnica', 2),
-('2025-07-17', '11:00:00', 'cancelado', 'Cliente pediu cancelamento', 3);
+
 
 -- Inserir dados na tabela atividade
 INSERT INTO atividade (descricao_servico, descricao_pagamento, valor_total, id_agendamento) VALUES

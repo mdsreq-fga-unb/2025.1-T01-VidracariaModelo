@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
              JOIN servico s ON v.id_servico = s.id
              JOIN atividade a ON s.id_atividade = a.id
              JOIN agendamento ag ON a.id_agendamento = ag.id
-             JOIN cliente c ON ag.id_cliente = c.id
+             JOIN cliente c ON ag.cpf_cliente = c.cpf
              JOIN produto p ON v.id_produto = p.id
              ORDER BY v.data_venda DESC`
         );
@@ -57,7 +57,7 @@ router.get('/detalhes/:id', async (req, res) => {
              JOIN servico s ON v.id_servico = s.id
              JOIN atividade a ON s.id_atividade = a.id
              JOIN agendamento ag ON a.id_agendamento = ag.id
-             JOIN cliente c ON ag.id_cliente = c.id
+             JOIN cliente c ON ag.cpf_cliente = c.cpf
              JOIN produto p ON v.id_produto = p.id
              WHERE v.id = $1`,
             [id]

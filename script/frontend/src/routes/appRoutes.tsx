@@ -8,21 +8,22 @@ import ListarOrcamentos from '../pages/ListarOrcamentos';
 import DetalhesOrcamento from '../pages/DetalhesOrcamento';
 import EditarOrcamento from '../pages/EditarOrcamento';
 import Login from '../pages/Login'
+import Clientes from '../pages/Clientes';
+
 
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* ROTA JÁ EXISTENTE */}
+
       <Route path="/" element={<Home />} />
       <Route path="/agendamento" element={<Agendamento />} />
       <Route path="/agendamento/criar" element={<NovoAgendamento />} />
       <Route path="/agendamento/editar/:id" element={<EditarAgendamento />} />
       <Route path="/login" element={<Login />} />
-
-      {/* NOVAS ROTAS ADICIONADAS */}
       <Route path="/orcamentos" element={<ListarOrcamentos />} />
       <Route path="/orcamentos/detalhes/:id" element={<DetalhesOrcamento />} />
       <Route path="/orcamentos/editar/:id" element={<EditarOrcamento />} />
+      <Route path="/clientes" element={<Clientes />} />
 
     </Routes>
 

@@ -10,14 +10,18 @@ registerLocale('pt-BR', ptBR);
 const PaginaDeAgendamento: React.FC = () => {
   const [cliente, setCliente] = useState('');
   const [clienteExiste, setClienteExiste] = useState<boolean | null>(null);
+  const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [endereco, setEndereco] = useState('');
   const [dataSelecionada, setDataSelecionada] = useState<Date | null>(null);
   const [horario, setHorario] = useState('');
   const [observacoes, setObservacoes] = useState('');
   const [horariosDisponiveis, setHorariosDisponiveis] = useState<string[]>([]);
+  const [cpfClienteExistente, setCpfClienteExistente] = useState<string | null>(null);
 
   const hoje = new Date();
+  hoje.setHours(0, 0, 0, 0); // Zera horas para comparação só pela data
+
   const dataMaxima = new Date();
   dataMaxima.setDate(hoje.getDate() + 30);
 
@@ -28,16 +32,32 @@ const PaginaDeAgendamento: React.FC = () => {
     const verificarCliente = async () => {
       if (!cliente.trim()) {
         setClienteExiste(null);
+        setCpfClienteExistente(null);
         return;
       }
       try {
         const res = await fetch('http://localhost:3000/clientes');
         const lista = await res.json();
+
         const clienteEncontrado = lista.find((c: any) => c.nome.toLowerCase() === cliente.toLowerCase());
-        setClienteExiste(!!clienteEncontrado);
+
+        if (clienteEncontrado) {
+          setClienteExiste(true);
+          setCpfClienteExistente(clienteEncontrado.cpf);
+          setCpf('');
+          setEmail('');
+          setEndereco('');
+        } else {
+          setClienteExiste(false);
+          setCpfClienteExistente(null);
+          setCpf('');
+          setEmail('');
+          setEndereco('');
+        }
       } catch (err) {
         console.error('Erro ao verificar cliente');
         setClienteExiste(null);
+        setCpfClienteExistente(null);
       }
     };
     verificarCliente();
@@ -73,34 +93,53 @@ const PaginaDeAgendamento: React.FC = () => {
       return;
     }
 
-    const hojeSemHora = new Date(hoje);
-    hojeSemHora.setHours(0, 0, 0, 0);
+    // Data e hora atuais
+    const agora = new Date();
 
-    const dataMaximaSemHora = new Date(hoje);
-    dataMaximaSemHora.setDate(hoje.getDate() + 30);
-    dataMaximaSemHora.setHours(23, 59, 59, 999);
+    // Combinar dataSelecionada + horário selecionado em um Date completo
+    // O horário vem como string no formato "HH:mm" (ex: "14:30")
+    const [horaStr, minutoStr] = horario.split(':');
+    const dataHoraAgendamento = new Date(dataSelecionada);
+    dataHoraAgendamento.setHours(parseInt(horaStr, 10), parseInt(minutoStr, 10), 0, 0);
 
-    if (dataSelecionada < hojeSemHora) {
-      alert('A data não pode ser anterior a hoje.');
+    // Data/hora limite máxima (30 dias a partir de hoje 23:59:59)
+    const dataMaximaLimite = new Date();
+    dataMaximaLimite.setDate(hoje.getDate() + 30);
+    dataMaximaLimite.setHours(23, 59, 59, 999);
+
+    // Verificar se dataHoraAgendamento é no passado em relação a agora
+    if (dataHoraAgendamento < agora) {
+      alert('Não é permitido criar agendamento em data e hora passadas.');
       return;
     }
-    if (dataSelecionada > dataMaximaSemHora) {
-      alert('A data deve estar em até 30 dias a partir de hoje.');
+
+    if (dataHoraAgendamento > dataMaximaLimite) {
+      alert('A data e hora devem estar em até 30 dias a partir de hoje.');
       return;
+    }
+
+    if (clienteExiste === false) {
+      if (!cpf.trim()) {
+        alert('Por favor, informe o CPF para clientes novos.');
+        return;
+      }
     }
 
     try {
       const agendamento: any = {
         nome_cliente: cliente,
+        cpf_cliente: clienteExiste ? cpfClienteExistente : cpf,
         data: dataSelecionada.toISOString().split('T')[0],
         horario,
         observacoes,
-        email: clienteExiste === false ? email : undefined,
-        endereco: clienteExiste === false ? endereco : undefined,
       };
 
-      // Remover chaves com undefined
-      Object.keys(agendamento).forEach(key => agendamento[key] === undefined && delete agendamento[key]);
+      if (!clienteExiste) {
+        agendamento.email = email;
+        agendamento.endereco = endereco;
+      }
+
+      Object.keys(agendamento).forEach(key => (agendamento[key] == null || agendamento[key] === '') && delete agendamento[key]);
 
       const resAgendamento = await fetch('http://localhost:3000/agendamentos', {
         method: 'POST',
@@ -116,16 +155,20 @@ const PaginaDeAgendamento: React.FC = () => {
 
       alert(`Agendamento para ${cliente} em ${agendamento.data} às ${horario} criado com sucesso!`);
       setCliente('');
+      setCpf('');
       setEmail('');
       setEndereco('');
       setDataSelecionada(null);
       setHorario('');
       setObservacoes('');
+      setClienteExiste(null);
+      setCpfClienteExistente(null);
       navigate('/agendamento');
     } catch (err) {
       alert('Erro ao criar agendamento');
     }
   };
+
 
   return (
     <>
@@ -146,6 +189,17 @@ const PaginaDeAgendamento: React.FC = () => {
 
           {cliente && clienteExiste === false && (
             <>
+              <div className="form-group">
+                <label htmlFor="cpf">CPF</label>
+                <input
+                  type="text"
+                  id="cpf"
+                  className="input-field"
+                  value={cpf}
+                  onChange={(e) => setCpf(e.target.value)}
+                  required
+                />
+              </div>
               <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input
@@ -181,7 +235,7 @@ const PaginaDeAgendamento: React.FC = () => {
               locale="pt-BR"
               className="input-field"
               wrapperClassName="date-picker-wrapper"
-              minDate={hoje}
+              minDate={hoje}           // Bloqueia seleção de datas passadas no picker
               maxDate={dataMaxima}
               required
             />
