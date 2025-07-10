@@ -7,7 +7,8 @@ import Agendamento from '../pages/Agendamento';
 import ListarOrcamentos from '../pages/ListarOrcamentos';
 import DetalhesOrcamento from '../pages/DetalhesOrcamento';
 import EditarOrcamento from '../pages/EditarOrcamento';
-import Login from '../pages/Login'
+import Login from '../pages/Login';
+import SolicitaOrcamento from '../pages/SolicitaOrcamento';
 
 const AppRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const AppRoutes = () => {
       <Route path="/orcamentos" element={<ListarOrcamentos />} />
       <Route path="/orcamentos/detalhes/:id" element={<DetalhesOrcamento />} />
       <Route path="/orcamentos/editar/:id" element={<EditarOrcamento />} />
+      <Route path="/solicita-orcamento" element={<SolicitaOrcamento />} />
 
     </Routes>
 
