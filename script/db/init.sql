@@ -1,12 +1,14 @@
 -- 1. Enum: tipo de usuário
 CREATE TYPE tipo_usuario AS ENUM ('gerente', 'usuario');
 
--- 2. Tabela: cliente
 CREATE TABLE cliente (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    telefone VARCHAR(20),
-    endereco TEXT
+    email VARCHAR(100),
+    endereco TEXT,
+    CONSTRAINT email_valido CHECK (
+        email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$' 
+    )
 );
 
 -- 3. Tabela: administrador
@@ -26,7 +28,7 @@ CREATE TABLE agendamento (
     status VARCHAR(50) NOT NULL,
     observacoes TEXT,
     id_cliente INTEGER NOT NULL,
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id)
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id) ON DELETE CASCADE
 );
 
 -- 5. Tabela: atividade
@@ -36,7 +38,7 @@ CREATE TABLE atividade (
     descricao_pagamento TEXT,
     valor_total NUMERIC(10,2) NOT NULL,
     id_agendamento INTEGER NOT NULL,
-    FOREIGN KEY (id_agendamento) REFERENCES agendamento(id)
+    FOREIGN KEY (id_agendamento) REFERENCES agendamento(id) ON DELETE CASCADE
 );
 
 -- 6. Tabela: orcamento
@@ -44,7 +46,7 @@ CREATE TABLE orcamento (
     id SERIAL PRIMARY KEY,
     prazo_vigente DATE NOT NULL,
     id_atividade INTEGER UNIQUE NOT NULL,
-    FOREIGN KEY (id_atividade) REFERENCES atividade(id)
+    FOREIGN KEY (id_atividade) REFERENCES atividade(id) ON DELETE CASCADE
 );
 
 -- 7. Tabela: produto
@@ -59,7 +61,7 @@ CREATE TABLE servico (
     id SERIAL PRIMARY KEY,
     status VARCHAR(50) NOT NULL,
     id_atividade INTEGER UNIQUE NOT NULL,
-    FOREIGN KEY (id_atividade) REFERENCES atividade(id)
+    FOREIGN KEY (id_atividade) REFERENCES atividade(id) ON DELETE CASCADE
 );
 
 -- 9. Tabela: venda
@@ -73,7 +75,7 @@ CREATE TABLE venda (
     id_produto INTEGER NOT NULL,
     medida VARCHAR(20) NOT NULL,
     FOREIGN KEY (id_admin) REFERENCES administrador(id),
-    FOREIGN KEY (id_servico) REFERENCES servico(id),
+    FOREIGN KEY (id_servico) REFERENCES servico(id) ON DELETE CASCADE,
     FOREIGN KEY (id_produto) REFERENCES produto(id)
 );
 
@@ -100,60 +102,72 @@ CREATE TABLE realiza (
     id_agendamento INTEGER,
     PRIMARY KEY (id_admin, id_agendamento),
     FOREIGN KEY (id_admin) REFERENCES administrador(id),
-    FOREIGN KEY (id_agendamento) REFERENCES agendamento(id)
+    FOREIGN KEY (id_agendamento) REFERENCES agendamento(id) ON DELETE CASCADE
 );
 
--- 1. Clientes
-INSERT INTO cliente (nome, telefone, endereco) VALUES
-('Residencial Jardim das Acácias', '(11) 98765-4321', 'Rua das Acácias, 100'),
-('Loja Espelhos & Vidros Ltda.', '(21) 99887-6543', 'Av. Principal, 500');
 
--- 2. Administradores (senhas devem ser bcrypt no app; aqui usamos placeholders)
+
+-- Inserir dados na tabela cliente
+INSERT INTO cliente (nome, email, endereco) VALUES
+('João Silva', 'joao.silva@email.com', 'Rua das Flores, 123'),
+('Maria Oliveira', 'maria.oliveira@email.com', 'Av. Brasil, 456'),
+('Carlos Pereira', 'carlos.pereira@email.com', 'Rua do Comércio, 789');
+
+-- Inserir dados na tabela administrador
 INSERT INTO administrador (nome, email, senha, tipo_usuario) VALUES
-('Ana Souza', 'ana@vidracaria.com', '$2a$08$admin12345678901234567890', 'gerente'),
-('Carlos Lima', 'carlos@vidracaria.com', '$2a$08$admin12345678901234567890', 'usuario');
+('Ana Gerente', 'ana.gerente@email.com', 'senhaAna123', 'gerente'),
+('Pedro Usuario', 'pedro.usuario@email.com', 'senhaPedro123', 'usuario');
 
--- 3. Agendamentos
+-- Inserir dados na tabela agendamento
 INSERT INTO agendamento (data, horario, status, observacoes, id_cliente) VALUES
-('2025-07-10', '09:00', 'confirmado', 'Instalação de vidro temperado na varanda', 1),
-('2025-07-12', '15:00', 'pendente', 'Orçamento para espelhos personalizados', 2);
+('2025-07-15', '09:00:00', 'agendado', 'Reunião inicial', 1),
+('2025-07-16', '14:30:00', 'confirmado', 'Visita técnica', 2),
+('2025-07-17', '11:00:00', 'cancelado', 'Cliente pediu cancelamento', 3);
 
--- 4. Atividades
+-- Inserir dados na tabela atividade
 INSERT INTO atividade (descricao_servico, descricao_pagamento, valor_total, id_agendamento) VALUES
-('Instalação de vidro temperado 10mm', 'PIX', 1200.00, 1),
-('Fornecimento e corte de espelhos sob medida', 'Cartão', 850.00, 2);
+('Instalação de vidros', 'Pagamento à vista', 1500.00, 1),
+('Manutenção preventiva', 'Pagamento parcelado', 800.00, 2),
+('Substituição de peças', 'Pagamento à vista', 500.00, 3);
 
--- 5. Orçamentos
+-- Inserir dados na tabela orcamento
 INSERT INTO orcamento (prazo_vigente, id_atividade) VALUES
-('2025-07-20', 1),
-('2025-07-25', 2);
+('2025-08-01', 1),
+('2025-08-15', 2),
+('2025-08-10', 3);
 
--- 6. Produtos
+-- Inserir dados na tabela produto
 INSERT INTO produto (nome, valor_m2) VALUES
-('Vidro Temperado 10mm', 150.00),
-('Espelho 6mm Lapidado', 120.00);
+('Vidro Temperado', 120.00),
+('Alumínio', 200.00),
+('Fita Vedação', 15.00);
 
--- 7. Serviços
+-- Inserir dados na tabela servico
 INSERT INTO servico (status, id_atividade) VALUES
-('concluído', 1),
-('pendente', 2);
+('em andamento', 1),
+('concluído', 2),
+('pendente', 3);
 
--- 8. Vendas (valores iguais aos da atividade para exemplo)
+-- Inserir dados na tabela venda
 INSERT INTO venda (data_venda, forma_pagamento, valor, id_admin, id_servico, id_produto, medida) VALUES
-('2025-07-10', 'PIX', 1200.00, 1, 1, 1, '5x2m'),
-('2025-07-12', 'Cartão', 850.00, 2, 2, 2, '3x2.5m');
+('2025-07-12', 'Cartão de crédito', 1800.00, 1, 1, 1, '10m²'),
+('2025-07-13', 'Boleto bancário', 850.00, 2, 2, 2, '4m²'),
+('2025-07-14', 'Dinheiro', 520.00, 1, 3, 3, '5m');
 
--- 9. Despesas
+-- Inserir dados na tabela despesa
 INSERT INTO despesa (tipo_despesa, descricao, data_cadastro) VALUES
-('Material de vidro', 'Compra de vidro temperado e espelhos', '2025-06-28'),
-('Equipamentos', 'Manutenção da máquina de corte de vidro', '2025-07-02');
+('Material', 'Compra de vidros e alumínio', '2025-07-01'),
+('Transporte', 'Frete para entrega de materiais', '2025-07-02'),
+('Manutenção', 'Manutenção do maquinário', '2025-07-03');
 
--- 10. administrador_despesa
+-- Inserir dados na tabela administrador_despesa
 INSERT INTO administrador_despesa (id_admin, id_despesa) VALUES
 (1, 1),
-(2, 2);
+(2, 2),
+(1, 3);
 
--- 11. realiza
+-- Inserir dados na tabela realiza
 INSERT INTO realiza (id_admin, id_agendamento) VALUES
 (1, 1),
-(2, 2);
+(2, 2),
+(1, 3);

@@ -8,20 +8,21 @@ router.get('/', async (req, res) => {
     try {
         const result = await pool.query(
             `SELECT
-                v.id_venda,
+                v.id,
                 c.nome AS cliente_nome,
                 p.nome AS produto_nome,
                 a.valor_total,
                 a.descricao_servico,
-                v.forma_pagamento, 
+                v.forma_pagamento,
                 v.valor,
                 v.data_venda
              FROM venda v
-             JOIN servico s ON v.id_servico = s.id_servico
-             JOIN atividade a ON s.id_atividade = a.id_atividade
-             JOIN agendamento ag ON a.id_agendamento = ag.id_agendamento
+             JOIN servico s ON v.id_servico = s.id
+             JOIN atividade a ON s.id_atividade = a.id
+             JOIN agendamento ag ON a.id_agendamento = ag.id
              JOIN cliente c ON ag.id_cliente = c.id
-             JOIN produto p ON v.id_produto = p.id_produto`
+             JOIN produto p ON v.id_produto = p.id
+             ORDER BY v.data_venda DESC`
         );
 
         if (result.rows.length === 0) {
@@ -31,7 +32,7 @@ router.get('/', async (req, res) => {
         res.json(result.rows);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Erro interno" });
+        res.status(500).json({ error: "Erro interno do servidor" });
     }
 });
 
@@ -41,24 +42,25 @@ router.get('/detalhes/:id', async (req, res) => {
     try {
         const result = await pool.query(
             `SELECT
-                v.id_venda,
+                v.id,
                 c.nome AS cliente_nome,
-                c.telefone AS cliente_telefone,
+                c.email AS cliente_email,
                 p.nome AS produto_nome,
                 a.valor_total,
                 a.descricao_servico,
                 v.medida,
-                v.forma_pagamento, 
+                v.forma_pagamento,
                 v.valor,
                 v.data_venda,
                 s.status AS status_servico
              FROM venda v
-             JOIN servico s ON v.id_servico = s.id_servico
-             JOIN atividade a ON s.id_atividade = a.id_atividade
-             JOIN agendamento ag ON a.id_agendamento = ag.id_agendamento
+             JOIN servico s ON v.id_servico = s.id
+             JOIN atividade a ON s.id_atividade = a.id
+             JOIN agendamento ag ON a.id_agendamento = ag.id
              JOIN cliente c ON ag.id_cliente = c.id
-             JOIN produto p ON v.id_produto = p.id_produto
-             WHERE v.id_venda = $1`, [id]
+             JOIN produto p ON v.id_produto = p.id
+             WHERE v.id = $1`,
+            [id]
         );
 
         if (result.rows.length === 0) {
@@ -68,7 +70,7 @@ router.get('/detalhes/:id', async (req, res) => {
         res.json(result.rows[0]);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Erro interno" });
+        res.status(500).json({ error: "Erro interno do servidor" });
     }
 });
 
@@ -80,15 +82,16 @@ router.post('/', async (req, res) => {
         valor,
         id_servico,
         id_produto,
-        medida
+        medida,
+        id_admin
     } = req.body;
 
     try {
         const result = await pool.query(
-            `INSERT INTO venda (data_venda, forma_pagamento, valor, id_servico, id_produto, medida)
-             VALUES (COALESCE($1, CURRENT_DATE), $2, $3, $4, $5, $6)
+            `INSERT INTO venda (data_venda, forma_pagamento, valor, id_servico, id_produto, medida, id_admin)
+             VALUES (COALESCE($1, CURRENT_DATE), $2, $3, $4, $5, $6, $7)
              RETURNING *`,
-            [data_venda, forma_pagamento, valor, id_servico, id_produto, medida]
+            [data_venda, forma_pagamento, valor, id_servico, id_produto, medida, id_admin]
         );
 
         res.status(201).json({ message: "Venda criada com sucesso", venda: result.rows[0] });
@@ -101,7 +104,15 @@ router.post('/', async (req, res) => {
 // Atualizar venda pelo id
 router.put('/detalhes/:id', async (req, res) => {
     const { id } = req.params;
-    const { forma_pagamento, medida, id_produto, id_servico, data_venda, valor, cpf_admin } = req.body;
+    const {
+        forma_pagamento,
+        medida,
+        id_produto,
+        id_servico,
+        data_venda,
+        valor,
+        id_admin
+    } = req.body;
 
     try {
         const result = await pool.query(
@@ -113,10 +124,10 @@ router.put('/detalhes/:id', async (req, res) => {
                 id_servico = COALESCE($4, id_servico),
                 data_venda = COALESCE($5, data_venda),
                 valor = COALESCE($6, valor),
-                cpf_admin = COALESCE($7, cpf_admin)
-             WHERE id_venda = $8
+                id_admin = COALESCE($7, id_admin)
+             WHERE id = $8
              RETURNING *`,
-            [forma_pagamento, medida, id_produto, id_servico, data_venda, valor, cpf_admin, id]
+            [forma_pagamento, medida, id_produto, id_servico, data_venda, valor, id_admin, id]
         );
 
         if (result.rows.length === 0) {
@@ -136,7 +147,7 @@ router.delete('/detalhes/:id', async (req, res) => {
 
     try {
         const result = await pool.query(
-            `DELETE FROM venda WHERE id_venda = $1 RETURNING *`,
+            `DELETE FROM venda WHERE id = $1 RETURNING *`,
             [id]
         );
 

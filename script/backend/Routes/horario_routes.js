@@ -6,14 +6,24 @@ const router = express.Router();
 // Lista de horários padrão (ajuste conforme sua necessidade)
 const horariosPadrao = [
     '08:00',
+    '08:30',
     '09:00',
+    '09:30',
     '10:00',
+    '10:30',
     '11:00',
+    '11:30',
+    '12:00',
+    '12:30',
     '13:00',
+    '13:30',
     '14:00',
+    '14:30',
     '15:00',
+    '15:30',
     '16:00'
 ];
+
 
 /**
  * @swagger
@@ -65,18 +75,35 @@ router.get('/horarios-disponiveis', async (req, res) => {
             [data]
         );
 
-        // Transforma o resultado em um array com apenas os horários no formato "HH:MM"
-        const horariosAgendados = agendamentosResult.rows.map(row => row.horario.substring(0, 5));
+        const horariosAgendados = agendamentosResult.rows.map(row => row.horario.substring(0, 5)); // ex: "08:00"
 
-        // Filtra os horários padrão que ainda não estão agendados
-        const horariosDisponiveis = horariosPadrao.filter(h => !horariosAgendados.includes(h));
+        const intervaloMinutos = 90;
 
-        // Retorna os horários disponíveis
+        // Função que converte "HH:MM" para minutos desde meia-noite
+        const converterParaMinutos = (hora) => {
+            const [h, m] = hora.split(':').map(Number);
+            return h * 60 + m;
+        };
+
+        // Filtra os horários padrão que respeitam o intervalo mínimo
+        const horariosDisponiveis = horariosPadrao.filter(horario => {
+            const horarioMin = converterParaMinutos(horario);
+
+            // Verifica se existe algum agendamento que esteja a menos de 30 minutos deste horário
+            const conflito = horariosAgendados.some(agend => {
+                const agendMin = converterParaMinutos(agend);
+                return Math.abs(horarioMin - agendMin) < intervaloMinutos;
+            });
+
+            return !conflito; // mantém apenas horários que NÃO têm conflito
+        });
+
         res.json(horariosDisponiveis);
     } catch (err) {
         console.error('Erro ao buscar horários disponíveis:', err);
         res.status(500).json({ error: 'Erro interno do servidor' });
     }
 });
+
 
 module.exports = router;

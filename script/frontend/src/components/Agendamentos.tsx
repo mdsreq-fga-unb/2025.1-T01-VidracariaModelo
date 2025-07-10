@@ -6,71 +6,106 @@ import { parse } from 'date-fns/parse';
 import { startOfWeek } from 'date-fns/startOfWeek';
 import { getDay } from 'date-fns/getDay';
 import { ptBR } from 'date-fns/locale/pt-BR';
-import './Agendamentos.css'; // Lembre-se de criar este arquivo de CSS
+import './Agendamentos.css';
 
-// --- Interface ---
-// Esta é a estrutura dos nossos dados mockados
 interface Agendamento {
   id: number;
   cliente: string;
   inicio: Date;
   fim: Date;
-  observacoes?: string; // Adicionei observações como opcional para o exemplo
+  observacoes?: string;
   status?: string;
+  criadoPor?: number; // ID do usuário que criou
 }
 
-// --- Configuração do Localizer ---
+// Localização do calendário
 const locales = { 'pt-BR': ptBR };
 const localizer = dateFnsLocalizer({ format, parse, startOfWeek, getDay, locales });
 
-// --- Componente Principal ---
 const Agendamentos: React.FC = () => {
-  // Dados mockados agora dentro de um estado para permitir a exclusão
   const [agendamentos, setAgendamentos] = useState<Agendamento[]>([]);
-
-  const [dataSelecionada, setDataSelecionada] = useState<Date>(new Date());
+  const [dataSelecionada, setDataSelecionada] = useState<Date>();
   const [view, setView] = useState<View>('month');
-
-  // Estados para controlar o modal principal
   const [modalAberto, setModalAberto] = useState(false);
   const [eventoSelecionado, setEventoSelecionado] = useState<Agendamento | null>(null);
-
-  // Estados para controlar o modal de confirmação
   const [confirmacaoAberta, setConfirmacaoAberta] = useState(false);
   const [acaoPendente, setAcaoPendente] = useState<'editar' | 'excluir' | null>(null);
+  const [filtroCliente, setFiltroCliente] = useState('');
+  const [filtroStatus, setFiltroStatus] = useState('');
 
   const navigate = useNavigate();
-  const [filtroCliente, setFiltroCliente] = useState('');
-  // Filtra os agendamentos do dia para a lista da esquerda
-  const agendamentosDoDia = useMemo(() => {
+
+  // Usuário logado
+  const token = localStorage.getItem("token");
+  let usuarioLogado: { tipo: string; id: number } = { tipo: '', id: -1 };
+  if (token) {
+    try {
+      const payloadBase64 = token.split('.')[1];
+      const payload = JSON.parse(atob(payloadBase64));
+      usuarioLogado = { tipo: payload.tipo_usuario, id: payload.id };
+    } catch (e) {
+      console.warn("Erro ao decodificar token");
+    }
+  }
+
+  const agendamentosFiltrados = useMemo(() => {
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    const limite = new Date(hoje);
+    limite.setDate(limite.getDate() + 7);
+
     return agendamentos
-      .filter((agendamento) =>
-        format(agendamento.inicio, 'yyyy-MM-dd') === format(dataSelecionada, 'yyyy-MM-dd')
-      )
-      .filter((agendamento) =>
-        agendamento.cliente.toLowerCase().includes(filtroCliente.toLowerCase())
-      );
-  }, [agendamentos, dataSelecionada, filtroCliente]);
-
-
-
-
+      .filter(ag => {
+        if (!dataSelecionada) {
+          if (usuarioLogado.tipo !== 'gerente') {
+            const limitePassado = new Date();
+            limitePassado.setMonth(limitePassado.getMonth() - 12);
+            if (ag.inicio < limitePassado) return false;
+          }
+          return ag.inicio >= hoje && ag.inicio <= limite;
+        } else {
+          const inicioDia = new Date(dataSelecionada);
+          inicioDia.setHours(0, 0, 0, 0);
+          const fimDia = new Date(dataSelecionada);
+          fimDia.setHours(23, 59, 59, 999);
+          return ag.inicio >= inicioDia && ag.inicio <= fimDia;
+        }
+      })
+      .filter(ag => ag.cliente.toLowerCase().includes(filtroCliente.toLowerCase()))
+      .filter(ag => {
+        if (!filtroStatus) return true;
+        return ag.status?.toLowerCase() === filtroStatus.toLowerCase();
+      })
+      .sort((a, b) => a.inicio.getTime() - b.inicio.getTime());
+  }, [agendamentos, filtroCliente, dataSelecionada, filtroStatus]);
 
   const formatarHora = (data: Date): string => format(data, 'HH:mm');
-  const handleSelecionarSlot = (slotInfo: { start: Date; }) => setDataSelecionada(slotInfo.start);
+  const handleSelecionarSlot = (slotInfo: { start: Date }) => setDataSelecionada(slotInfo.start);
   const handleNavegacao = (novaData: Date) => setDataSelecionada(novaData);
   const handleView = (novaView: View) => setView(novaView);
 
-  const eventPropGetter = (event: Agendamento) => ({
-    className: 'evento-calendario',
-    title: `${formatarHora(event.inicio)} - ${event.cliente}`
-  });
-
-  const handleCriarAgendamento = () => {
-    navigate("/agendamento/criar");
+  const eventPropGetter = (event: Agendamento) => {
+    let backgroundColor = 'gray';
+    if (event.status) {
+      switch (event.status.toLowerCase()) {
+        case 'concluido': backgroundColor = '#28a745'; break;
+        case 'cancelado': backgroundColor = '#dc3545'; break;
+        case 'agendado': backgroundColor = '#007bff'; break;
+      }
+    }
+    return {
+      style: {
+        backgroundColor,
+        color: 'white',
+        borderRadius: '4px',
+        border: 'none',
+        padding: '2px 5px',
+      }
+    };
   };
 
-  // LÓGICA DO MODAL
+  const handleCriarAgendamento = () => navigate("/agendamento/criar");
+
   const handleSelectEvent = (evento: Agendamento) => {
     setEventoSelecionado(evento);
     setModalAberto(true);
@@ -83,12 +118,41 @@ const Agendamentos: React.FC = () => {
     setAcaoPendente(null);
   };
 
+  const podeEditar = () => {
+    if (!eventoSelecionado) return false;
+    const agora = new Date();
+    const isDono = eventoSelecionado.criadoPor === usuarioLogado.id;
+    const isGerente = usuarioLogado.tipo === 'gerente';
+    return eventoSelecionado.inicio > agora && (isDono || isGerente);
+  };
+
   const handleEditar = () => {
+    if (!podeEditar()) {
+      alert("Você não tem permissão para remarcar este agendamento.");
+      return;
+    }
     setAcaoPendente('editar');
     setConfirmacaoAberta(true);
   };
 
   const handleExcluir = () => {
+    const usuario = getUsuarioFromToken();
+    if (!usuario || !eventoSelecionado) return;
+
+    const agora = new Date();
+    const diferencaHoras = (eventoSelecionado.inicio.getTime() - agora.getTime()) / (1000 * 60 * 60);
+
+    // RN14: Validação de 12h para usuários comuns
+    if (usuario.tipo_usuario !== 'gerente' && diferencaHoras < 12) {
+      alert("Cancelamento só é permitido com 12 horas de antecedência para usuários comuns.");
+      return;
+    }
+
+    if (eventoSelecionado.inicio < agora) {
+      alert("Não é possível cancelar agendamentos passados.");
+      return;
+    }
+
     setAcaoPendente('excluir');
     setConfirmacaoAberta(true);
   };
@@ -98,6 +162,19 @@ const Agendamentos: React.FC = () => {
     setAcaoPendente(null);
   };
 
+  const getUsuarioFromToken = () => {
+    const token = localStorage.getItem("token");
+    if (!token) return null;
+
+    try {
+      const payloadBase64 = token.split('.')[1];
+      return JSON.parse(atob(payloadBase64)) as { id: number; tipo_usuario: string };
+    } catch (e) {
+      console.error("Erro ao decodificar token:", e);
+      return null;
+    }
+  };
+
   const handleConfirmarAcao = async () => {
     if (!eventoSelecionado || !acaoPendente) return;
 
@@ -105,8 +182,19 @@ const Agendamentos: React.FC = () => {
       navigate(`/agendamento/editar/${eventoSelecionado.id}`);
     } else if (acaoPendente === 'excluir') {
       try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          alert("Sessão expirada. Faça login novamente.");
+          navigate("/login");
+          return;
+        }
+
         const res = await fetch(`http://localhost:3000/agendamentos/${eventoSelecionado.id}`, {
           method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
         });
 
         if (!res.ok) {
@@ -117,32 +205,80 @@ const Agendamentos: React.FC = () => {
 
         setAgendamentos(agendamentos.filter(ag => ag.id !== eventoSelecionado.id));
         alert("Agendamento excluído com sucesso!");
-      } catch (error) {
+      } catch (err) {
+        console.error("Erro na requisição:", err);
         alert('Erro ao tentar excluir o agendamento');
+      } finally {
+        fecharTudo();
       }
     }
-
-
-    fecharTudo();
   };
 
+  const handleMudarStatus = async () => {
+    if (!eventoSelecionado) return;
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Sessão expirada. Faça login novamente.");
+      navigate("/login");
+      return;
+    }
+
+    const statusAtual = eventoSelecionado.status?.toLowerCase();
+    const novoStatus = statusAtual === 'agendado' ? 'concluido'
+      : statusAtual === 'concluido' ? 'cancelado' : 'agendado';
+
+    try {
+      const res = await fetch(`http://localhost:3000/agendamentos/${eventoSelecionado.id}/status`, {
+        method: 'PATCH',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: novoStatus }),
+      });
+
+      if (!res.ok) {
+        const erro = await res.json();
+        alert(erro.error || 'Erro ao atualizar status');
+        return;
+      }
+
+      setAgendamentos(agendamentos.map(ag =>
+        ag.id === eventoSelecionado.id ? { ...ag, status: novoStatus } : ag
+      ));
+      setEventoSelecionado({ ...eventoSelecionado, status: novoStatus });
+      alert(`Status alterado para "${novoStatus}"`);
+    } catch (err) {
+      console.error("Erro na requisição:", err);
+      alert('Erro ao tentar atualizar o status');
+    }
+  };
 
   useEffect(() => {
     const buscarAgendamentos = async () => {
       try {
-        const res = await fetch('http://localhost:3000/agendamentos');
-        console.log("consultando API")
+
+        const res = await fetch('http://localhost:3000/agendamentos', {
+
+        });
+
+        if (res.status === 401) {
+          alert("Sessão expirada. Faça login novamente.");
+          navigate("/login");
+          return;
+        }
+
         const data = await res.json();
-        console.log("Dados recebidos da API:", data);
-        // Transforma os dados do backend para o formato do calendário
         const ags: Agendamento[] = data.map((item: any) => {
-          // Usa a data e o horário separadamente para criar um Date local
-          const [ano, mes, dia] = item.data.split('T')[0].split('-').map(Number);
-          const [hora, minuto, segundo] = item.horario.split(':').map(Number);
-          const inicio = new Date(ano, mes - 1, dia, hora, minuto, segundo);
-          const fim = new Date(inicio.getTime() + 60 * 60 * 1000); // 1h de duração
+          // Extrai só a parte YYYY-MM-DD da data (sem horário)
+          const dataISO = item.data.slice(0, 10); // "2025-07-10"
+
+          const inicio = new Date(`${dataISO}T${item.horario}`);
+          const fim = new Date(inicio.getTime() + 60 * 60 * 1000);
+
           return {
-            id: item.id_agendamento,
+            id: item.id,
             cliente: item.nome_cliente,
             inicio,
             fim,
@@ -150,20 +286,32 @@ const Agendamentos: React.FC = () => {
             status: item.status,
           };
         });
-        console.log("Agendamentos convertidos:", ags); // <-- Adicione este log
+
+
         setAgendamentos(ags);
       } catch (err) {
-        alert('Erro ao buscar agendamentos');
+        console.error("Erro ao buscar agendamentos:", err);
+        alert('Erro ao carregar agendamentos');
       }
     };
+
     buscarAgendamentos();
   }, []);
 
+  const resetarSelecao = () => setDataSelecionada(undefined);
 
-
+  const tituloLista = () => {
+    if (!dataSelecionada) {
+      const hoje = new Date();
+      const limite = new Date();
+      limite.setDate(hoje.getDate() + 7);
+      return `${format(hoje, 'dd/MM/yyyy')} até ${format(limite, 'dd/MM/yyyy')}`;
+    } else {
+      return `Dia ${format(dataSelecionada, 'dd/MM/yyyy')}`;
+    }
+  };
 
   return (
-
     <div className="container-geral">
       <div className="painel-agendamentos">
         <header className="cabecalho">
@@ -171,31 +319,38 @@ const Agendamentos: React.FC = () => {
           <button className="botao-novo-agendamento" onClick={handleCriarAgendamento}>+ Novo agendamento</button>
         </header>
 
-        <input
-          type="text"
-          placeholder="Buscar por cliente"
-          className="campo-busca"
-          value={filtroCliente}
-          onChange={(e) => setFiltroCliente(e.target.value)}
-        />
+        <input type="text" placeholder="Buscar por cliente" className="campo-busca" value={filtroCliente} onChange={(e) => setFiltroCliente(e.target.value)} />
 
 
         <main className="conteudo-principal">
           <div className="painel-esquerdo">
             <div className="lista-agendamentos-container">
-              <h2>Agendamentos {format(dataSelecionada, 'dd/MM/yyyy')}</h2>
+              <h2>{tituloLista()}</h2>
+
+              <select className="campo-busca" value={filtroStatus} onChange={(e) => setFiltroStatus(e.target.value)}>
+                <option value="">Todos os status</option>
+                <option value="agendado">Agendado</option>
+                <option value="concluido">Concluído</option>
+                <option value="cancelado">Cancelado</option>
+              </select>
+              <div className="d-flex justify-content-center">
+                <button className="btn btn-sm btn-light botao-resetar" onClick={resetarSelecao}>Mostrar todos</button>
+              </div>
+
               <ul className="lista-agendamentos">
-                {agendamentosDoDia.length > 0 ? (
-                  agendamentosDoDia.map((ag) => (
+                {agendamentosFiltrados.length > 0 ? agendamentosFiltrados.map((ag) => {
+                  const marcadorClasse = ag.status?.toLowerCase() !== 'concluido' ? 'marcador-vermelho' : 'marcador-verde';
+                  return (
                     <li key={ag.id} className="item-agendamento">
                       <div className="info-agendamento">
-                        <span>{`${formatarHora(ag.inicio)} - ${formatarHora(ag.fim)}`}</span>
+                        <span>{format(ag.inicio, 'dd/MM/yyyy')}</span>
                         <span>{ag.cliente}</span>
+                        <span>{`${formatarHora(ag.inicio)} - ${formatarHora(ag.fim)}`}</span>
                       </div>
-                      <span className="marcador-vermelho"></span>
+                      <span className={marcadorClasse}></span>
                     </li>
-                  ))
-                ) : (
+                  );
+                }) : (
                   <p className="sem-agendamentos">Nenhum agendamento para este dia.</p>
                 )}
               </ul>
@@ -210,7 +365,7 @@ const Agendamentos: React.FC = () => {
               endAccessor="fim"
               titleAccessor="cliente"
               style={{ height: '100%', width: '100%' }}
-              culture='pt-BR'
+              culture="pt-BR"
               messages={{ next: "Próximo", previous: "Anterior", today: "Hoje", month: "Mês", week: "Semana", day: "Dia", agenda: "Agenda", date: "Data", time: "Hora", event: "Evento" }}
               onSelectSlot={handleSelecionarSlot}
               selectable
@@ -224,27 +379,27 @@ const Agendamentos: React.FC = () => {
           </div>
         </main>
       </div>
-      <footer className="rodape"></footer>
 
-      {/* Renderização Condicional do Modal Principal */}
+      {/* MODAL */}
       {modalAberto && eventoSelecionado && (
         <div className="modal-backdrop" onClick={fecharTudo}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content bg-white" onClick={(e) => e.stopPropagation()}>
             <h2 className="modal-title">Agendamento</h2>
             <div className="modal-body">
               <p><strong>Cliente:</strong> {eventoSelecionado.cliente}</p>
               <p><strong>Data:</strong> {format(eventoSelecionado.inicio, 'dd/MM/yyyy')}</p>
               <p><strong>Horário:</strong> {format(eventoSelecionado.inicio, 'HH:mm')}</p>
-              {eventoSelecionado.observacoes && (
-                <p><strong>Observações:</strong> {eventoSelecionado.observacoes}</p>
-              )}
+              <p><strong>Status:</strong> <span style={{ color: eventoSelecionado.status?.toLowerCase() === 'concluido' ? 'green' : 'inherit', fontWeight: 'bold' }}>{eventoSelecionado.status}</span></p>
+              {eventoSelecionado.observacoes && <p><strong>Serviço:</strong> {eventoSelecionado.observacoes}</p>}
             </div>
+
+            <button className="btn btn-warning w-50 d-block mx-auto" onClick={handleMudarStatus}>Alterar status</button>
+
             <div className="modal-footer">
-              <button className="modal-button-edit" onClick={handleEditar}>Editar</button>
+              {podeEditar() && <button className="modal-button-edit" onClick={handleEditar}>Editar</button>}
               <button className="modal-button-delete" onClick={handleExcluir}>Excluir</button>
             </div>
 
-            {/* Renderização Condicional do Modal de Confirmação */}
             {confirmacaoAberta && (
               <div className="confirmacao-backdrop">
                 <div className="confirmacao-content">
@@ -260,9 +415,9 @@ const Agendamentos: React.FC = () => {
         </div>
       )}
     </div>
-
   );
-
 };
 
 export default Agendamentos;
+
+

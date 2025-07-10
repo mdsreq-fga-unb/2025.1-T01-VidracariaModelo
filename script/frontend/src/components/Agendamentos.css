@@ -5,31 +5,34 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #EAEAEA; 
+  background-color: #EAEAEA;
 }
 
 .painel-agendamentos {
   flex-grow: 1;
   padding: 2rem 4rem;
-  text-align: left  ;
+  text-align: left;
 }
 
 .painel-agendamentos h1 {
-  color:#333;
-  font-size:  2rem;
+  color: #333;
+  font-size: 2rem;
 }
 
 /* Cabeçalho */
 .cabecalho {
   display: flex;
-  flex-direction: column; /* 1. Empilha os itens verticalmente */
-  gap: 1rem; /* Adiciona um espaço de 16px entre os itens empilhados */
+  flex-direction: column;
+  /* 1. Empilha os itens verticalmente */
+  gap: 1rem;
+  /* Adiciona um espaço de 16px entre os itens empilhados */
   margin-bottom: 2rem;
 }
+
 .cabecalho h1 {
   font-size: 2.5rem;
   color: #333;
-  text-align: center; 
+  text-align: center;
   margin: 0;
 }
 
@@ -38,7 +41,8 @@
 }
 
 .botao-novo-agendamento {
-  background-color: #D90429; /* Vermelho do protótipo */
+  background-color: #D90429;
+  /* Vermelho do protótipo */
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -56,9 +60,11 @@
 /* Conteúdo Principal (Layout de 2 colunas) */
 .conteudo-principal {
   display: grid;
-  grid-template-columns: 350px 1fr; /* Coluna da esquerda fixa, direita flexível */
+  grid-template-columns: 350px 1fr;
+  /* Coluna da esquerda fixa, direita flexível */
   gap: 2rem;
-  height: 600px; /* Altura fixa para o container do calendário e da lista */
+  height: 600px;
+  /* Altura fixa para o container do calendário e da lista */
 }
 
 /* Painel Esquerdo */
@@ -75,7 +81,7 @@
   border-radius: 6px;
   font-size: 1rem;
   box-sizing: border-box;
-  
+
   /* Estilos atualizados */
   background-color: #FFFFFF;
   margin-bottom: 2rem;
@@ -85,8 +91,9 @@
   background-color: white;
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  overflow-y: auto; /* Adiciona scroll se a lista for grande */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  /* Adiciona scroll se a lista for grande */
   flex-grow: 1;
 }
 
@@ -128,11 +135,21 @@
 }
 
 .marcador-vermelho {
+  display: inline-block;
   width: 10px;
   height: 10px;
-  background-color: #D90429;
+  background-color: blue;
   border-radius: 50%;
 }
+
+.marcador-verde {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+}
+
 
 .sem-agendamentos {
   color: #888;
@@ -146,47 +163,50 @@
   color: #333;
   padding: 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Customização do evento no calendário */
 .rbc-event.evento-calendario {
-  background-color: #28a745; /* Verde para combinar com o protótipo */
+  background-color: #28a745;
+  /* Verde para combinar com o protótipo */
   border-color: #1e7e34;
 }
 
 /* Rodapé */
 .rodape {
   height: 50px;
-  background-color: #D90429; /* Vermelho do protótipo */
+  background-color: #D90429;
+  /* Vermelho do protótipo */
 }
 
 /* Adicione este bloco ao final do seu arquivo Agendamentos.css */
 
 /* --- Estilos do Modal --- */
-
 .modal-backdrop {
-  position: fixed; /* Cobre a tela inteira */
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente */
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Garante que fique sobre todo o conteúdo */
 }
 
 .modal-content {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  background-color: white;
+  /* cor sólida para o modal */
+  z-index: 1050;
+  padding: 20px;
+  border-radius: 0.5rem;
+  max-width: 500px;
   width: 90%;
-  max-width: 400px; /* Largura máxima do modal */
-  text-align: left;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  position: relative;
 }
+
+
+
 
 .modal-title {
   margin-top: 0;
@@ -211,8 +231,10 @@
 .modal-footer {
   margin-top: 2rem;
   display: flex;
-  justify-content: flex-end; /* Alinha os botões à direita */
-  gap: 1rem; /* Espaço entre os botões */
+  justify-content: flex-end;
+  /* Alinha os botões à direita */
+  gap: 1rem;
+  /* Espaço entre os botões */
 }
 
 .modal-footer button {
@@ -230,35 +252,41 @@
 }
 
 .modal-button-edit {
-  background-color: #28a745; /* Verde */
+  background-color: #28a745;
+  /* Verde */
   color: white;
 }
 
 .modal-button-delete {
-  background-color: #D90429; /* Vermelho */
+  background-color: #D90429;
+  /* Vermelho */
   color: white;
 }
 
 
 .confirmacao-backdrop {
-  position: absolute; /* Posiciona-se em relação ao .modal-content */
+  position: absolute;
+  /* Posiciona-se em relação ao .modal-content */
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente para focar */
+  background-color: rgba(255, 255, 255, 0.8);
+  /* Fundo branco semi-transparente para focar */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1001; /* Fica por cima do conteúdo do modal principal */
-  border-radius: 8px; /* Para alinhar com as bordas do modal pai */
+  z-index: 1001;
+  /* Fica por cima do conteúdo do modal principal */
+  border-radius: 8px;
+  /* Para alinhar com as bordas do modal pai */
 }
 
 .confirmacao-content {
   background: white;
   padding: 1.5rem 2rem;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   border: 1px solid #ddd;
   text-align: center;
 }
@@ -292,13 +320,15 @@
 }
 
 .confirmacao-sim {
-  background-color: #28a745; /* Verde */
+  background-color: #28a745;
+  /* Verde */
 }
 
 .confirmacao-nao {
-  background-color: #D90429; /* Vermelho */
+  background-color: #D90429;
+  /* Vermelho */
 }
 
 .modal-content {
-  position: relative; 
+  position: relative;
 }

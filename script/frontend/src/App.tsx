@@ -1,11 +1,10 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import AppRoutes from './routes/appRoutes';
 import logo from './assets/Logo2.png';
 import { AiOutlineUser, AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import "./App.css";
 import { Link, useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
-
 
 interface TokenPayload {
   id: number;
@@ -29,10 +28,26 @@ function getTipoUsuarioFromToken(): string | null {
 function App() {
   const [menuAberto, setMenuAberto] = useState(false);
   const navigate = useNavigate();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
     setMenuAberto(!menuAberto);
   };
+
+  // Fecha menu ao clicar fora
+  useEffect(() => {
+    function handleClickFora(event: MouseEvent) {
+      if (menuAberto && menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuAberto(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickFora);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickFora);
+    };
+  }, [menuAberto]);
 
   const tipoUsuario = getTipoUsuarioFromToken();
 
@@ -58,7 +73,10 @@ function App() {
       </header>
 
       {/* Menu Lateral */}
-      <div className={`menu-lateral ${menuAberto ? 'aberto' : ''}`}>
+      <div
+        ref={menuRef}
+        className={`menu-lateral ${menuAberto ? 'aberto' : ''}`}
+      >
         <AiOutlineClose
           size={30}
           className="botao-fechar"

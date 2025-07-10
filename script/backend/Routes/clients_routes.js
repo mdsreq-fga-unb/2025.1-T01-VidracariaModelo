@@ -40,17 +40,17 @@ router.get('/', async (req, res) => {
 
 /**
  * @swagger
- * /clientes/{cpf}:
+ * /clientes/{id}:
  *   get:
- *     summary: Busca cliente pelo CPF
+ *     summary: Busca cliente pelo ID
  *     tags: [Clientes]
  *     parameters:
  *       - in: path
- *         name: cpf
+ *         name: id
  *         required: true
  *         schema:
- *           type: string
- *         description: CPF do cliente
+ *           type: integer
+ *         description: ID do cliente
  *     responses:
  *       200:
  *         description: Cliente encontrado
@@ -59,11 +59,11 @@ router.get('/', async (req, res) => {
  *       500:
  *         description: Erro interno do servidor
  */
-router.get('/:cpf', async (req, res) => {
-    const cpf = req.params.cpf;
+router.get('/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
 
     try {
-        const result = await pool.query('SELECT * FROM cliente WHERE cpf = $1', [cpf]);
+        const result = await pool.query('SELECT * FROM cliente WHERE id = $1', [id]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Cliente não encontrado' });
@@ -89,14 +89,11 @@ router.get('/:cpf', async (req, res) => {
  *           schema:
  *             type: object
  *             required:
- *               - cpf
  *               - nome
  *             properties:
- *               cpf:
- *                 type: string
  *               nome:
  *                 type: string
- *               telefone:
+ *               email:
  *                 type: string
  *               endereco:
  *                 type: string
@@ -104,48 +101,43 @@ router.get('/:cpf', async (req, res) => {
  *       201:
  *         description: Cliente criado com sucesso
  *       400:
- *         description: CPF e nome são obrigatórios
- *       409:
- *         description: Cliente com esse CPF já existe
+ *         description: Nome é obrigatório
  *       500:
  *         description: Erro interno do servidor
  */
 router.post('/', async (req, res) => {
-    const { cpf, nome, telefone, endereco } = req.body;
+    const { nome, email, endereco } = req.body;
 
-    if (!cpf || !nome) {
-        return res.status(400).json({ error: 'CPF e nome são obrigatórios' });
+    if (!nome) {
+        return res.status(400).json({ error: 'Nome é obrigatório' });
     }
 
     try {
         const result = await pool.query(
-            'INSERT INTO cliente (cpf, nome, telefone, endereco) VALUES ($1, $2, $3, $4) RETURNING *',
-            [cpf, nome, telefone || null, endereco || null]
+            'INSERT INTO cliente (nome, email, endereco) VALUES ($1, $2, $3) RETURNING *',
+            [nome, email || null, endereco || null]
         );
 
         res.status(201).json(result.rows[0]);
     } catch (err) {
         console.error('Erro ao criar cliente:', err);
-        if (err.code === '23505') {
-            return res.status(409).json({ error: 'Cliente com esse CPF já existe' });
-        }
         res.status(500).json({ error: 'Erro interno do servidor' });
     }
 });
 
 /**
  * @swagger
- * /clientes/{cpf}:
+ * /clientes/{id}:
  *   put:
- *     summary: Atualiza dados de um cliente pelo CPF
+ *     summary: Atualiza dados de um cliente pelo ID
  *     tags: [Clientes]
  *     parameters:
  *       - in: path
- *         name: cpf
+ *         name: id
  *         required: true
  *         schema:
- *           type: string
- *         description: CPF do cliente
+ *           type: integer
+ *         description: ID do cliente
  *     requestBody:
  *       required: true
  *       content:
@@ -157,7 +149,7 @@ router.post('/', async (req, res) => {
  *             properties:
  *               nome:
  *                 type: string
- *               telefone:
+ *               email:
  *                 type: string
  *               endereco:
  *                 type: string
@@ -171,9 +163,9 @@ router.post('/', async (req, res) => {
  *       500:
  *         description: Erro interno do servidor
  */
-router.put('/:cpf', async (req, res) => {
-    const cpf = req.params.cpf;
-    const { nome, telefone, endereco } = req.body;
+router.put('/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
+    const { nome, email, endereco } = req.body;
 
     if (!nome) {
         return res.status(400).json({ error: 'Nome é obrigatório' });
@@ -181,8 +173,8 @@ router.put('/:cpf', async (req, res) => {
 
     try {
         const result = await pool.query(
-            'UPDATE cliente SET nome = $1, telefone = $2, endereco = $3 WHERE cpf = $4 RETURNING *',
-            [nome, telefone || null, endereco || null, cpf]
+            'UPDATE cliente SET nome = $1, email = $2, endereco = $3 WHERE id = $4 RETURNING *',
+            [nome, email || null, endereco || null, id]
         );
 
         if (result.rows.length === 0) {
@@ -198,17 +190,17 @@ router.put('/:cpf', async (req, res) => {
 
 /**
  * @swagger
- * /clientes/{cpf}:
+ * /clientes/{id}:
  *   delete:
- *     summary: Deleta um cliente pelo CPF
+ *     summary: Deleta um cliente pelo ID
  *     tags: [Clientes]
  *     parameters:
  *       - in: path
- *         name: cpf
+ *         name: id
  *         required: true
  *         schema:
- *           type: string
- *         description: CPF do cliente
+ *           type: integer
+ *         description: ID do cliente
  *     responses:
  *       200:
  *         description: Cliente deletado com sucesso
@@ -217,11 +209,11 @@ router.put('/:cpf', async (req, res) => {
  *       500:
  *         description: Erro interno do servidor
  */
-router.delete('/:cpf', async (req, res) => {
-    const cpf = req.params.cpf;
+router.delete('/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
 
     try {
-        const result = await pool.query('DELETE FROM cliente WHERE cpf = $1 RETURNING *', [cpf]);
+        const result = await pool.query('DELETE FROM cliente WHERE id = $1 RETURNING *', [id]);
 
         if (result.rows.length === 0) {
             return res.status(404).json({ error: 'Cliente não encontrado' });
