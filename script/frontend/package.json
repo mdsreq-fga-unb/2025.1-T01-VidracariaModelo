@@ -19,11 +19,13 @@
     "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
     "react-big-calendar": "^1.19.4",
+    "react-bootstrap": "^2.10.10",
     "react-datepicker": "^8.4.0",
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.6.2",
     "react-slick": "^0.30.3",
+    "react-to-pdf": "^2.0.1",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.1.19"
   },

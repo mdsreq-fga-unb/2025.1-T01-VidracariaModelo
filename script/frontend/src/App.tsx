@@ -89,6 +89,7 @@ function App() {
           {tipoUsuario === 'gerente' && (
             <>
               <li><Link to="/orcamentos" onClick={() => setMenuAberto(false)}>Orçamentos</Link></li>
+              <li><Link to="/vendas" onClick={() => setMenuAberto(false)}>Vendas</Link></li>
               <li><Link to="/clientes" onClick={() => setMenuAberto(false)}>Clientes</Link></li>
               <li><Link to="/agendamento" onClick={() => setMenuAberto(false)}>Agendamentos</Link></li>
 

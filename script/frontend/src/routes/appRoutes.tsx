@@ -9,6 +9,7 @@ import DetalhesOrcamento from '../pages/DetalhesOrcamento';
 import EditarOrcamento from '../pages/EditarOrcamento';
 import Login from '../pages/Login'
 import Clientes from '../pages/Clientes';
+import Vendas from '../pages/Vendas';
 
 
 const AppRoutes = () => {
@@ -24,6 +25,7 @@ const AppRoutes = () => {
       <Route path="/orcamentos/detalhes/:id" element={<DetalhesOrcamento />} />
       <Route path="/orcamentos/editar/:id" element={<EditarOrcamento />} />
       <Route path="/clientes" element={<Clientes />} />
+      <Route path="/vendas" element={<Vendas />} />
 
     </Routes>
 
