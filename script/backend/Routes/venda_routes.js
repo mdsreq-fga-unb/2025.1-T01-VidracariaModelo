@@ -2,11 +2,8 @@ const express = require('express');
 const pool = require('../Db');
 const router = express.Router();
 
-
-
-// RN50: Listar vendas com filtros
+// Listar vendas com filtros
 router.get('/', async (req, res) => {
-    // Filtros possíveis: cliente_cpf, produto_id, data_inicio, data_fim, forma_pagamento
     const { cliente_cpf, produto_id, data_inicio, data_fim, forma_pagamento } = req.query;
 
     let query = `
@@ -18,11 +15,11 @@ router.get('/', async (req, res) => {
             c.nome AS cliente_nome,
             c.cpf AS cliente_cpf
         FROM venda v
-        JOIN orcamento o ON v.id_orcamento = o.id
-        JOIN cliente c ON o.cpf_cliente = c.cpf
+        JOIN cliente c ON v.cpf_cliente = c.cpf
         LEFT JOIN venda_itens vi ON v.id = vi.id_venda
         WHERE 1=1
     `;
+
     const params = [];
     let paramIndex = 1;
 
@@ -51,8 +48,6 @@ router.get('/', async (req, res) => {
 
     try {
         const result = await pool.query(query, params);
-
-        // RN51: Calcular o total das vendas filtradas
         const totalVendas = result.rows.reduce((sum, venda) => sum + parseFloat(venda.valor), 0);
 
         res.json({
@@ -65,32 +60,32 @@ router.get('/', async (req, res) => {
     }
 });
 
-// RN52, RN54: Buscar venda pelo id com todos os detalhes (itens, pagamentos, etc.)
+// Buscar venda pelo id com todos os detalhes
 router.get('/detalhes/:id', async (req, res) => {
     const { id } = req.params;
+
     try {
-        // Busca os dados principais da venda
         const vendaQuery = pool.query(`
-             SELECT 
-        v.*, 
-        c.nome as cliente_nome, 
-        c.email as cliente_email, 
-        c.cpf as cliente_cpf
-    FROM venda v
-    JOIN orcamento o ON v.id_orcamento = o.id
-    JOIN cliente c ON o.cpf_cliente = c.cpf
-    WHERE v.id = $1
+            SELECT 
+                v.*, 
+                c.nome as cliente_nome, 
+                c.cpf as cliente_cpf,
+                c.email as cliente_email
+            FROM venda v
+            JOIN cliente c ON v.cpf_cliente = c.cpf
+            WHERE v.id = $1
         `, [id]);
 
-        // Busca os itens da venda
         const itensQuery = pool.query(`
-            SELECT vi.*, p.nome as produto_nome
+            SELECT 
+                vi.*, 
+                p.nome as produto_nome,
+                (vi.largura * vi.altura * vi.valor_unitario * 1.2) as valor_total_com_mdo
             FROM venda_itens vi
             JOIN produto p ON vi.id_produto = p.id
             WHERE vi.id_venda = $1
         `, [id]);
 
-        // Busca os pagamentos da venda
         const pagamentosQuery = pool.query('SELECT * FROM pagamentos WHERE id_venda = $1', [id]);
 
         const [vendaResult, itensResult, pagamentosResult] = await Promise.all([vendaQuery, itensQuery, pagamentosQuery]);
@@ -110,44 +105,106 @@ router.get('/detalhes/:id', async (req, res) => {
     }
 });
 
-// RN48, RN55, RN56, RN57: Criar nova venda
+// Criar nova venda
 router.post('/', async (req, res) => {
     const {
-        id_orcamento,
+        cpf_cliente,
+        data_venda = new Date(),
         forma_pagamento,
         origem,
-        itens // Espera um array de itens: [{id_produto, quantidade, valor_unitario, medida, descricao}]
+        itens,
+        pagamentos
     } = req.body;
 
-    if (!id_orcamento || !forma_pagamento || !itens || !Array.isArray(itens) || itens.length === 0) {
-        return res.status(400).json({ error: "Campos obrigatórios ausentes: id_orcamento, forma_pagamento e itens." });
+    if (!cpf_cliente || !forma_pagamento || !origem || !Array.isArray(itens) || itens.length === 0) {
+        return res.status(400).json({ error: "Campos obrigatórios ausentes" });
     }
 
-    // RN60: Recálculo automático do valor total
-    const valor_total = itens.reduce((sum, item) => sum + (item.quantidade * item.valor_unitario), 0);
+    // Calcular valor total considerando área (largura x altura) e mão de obra (20%)
+    const valor_total = itens.reduce((sum, item) => {
+        const area = (item.largura || 0) * (item.altura || 0);
+        const valorItem = area * (item.valor_unitario || 0) * 1.2; // +20% mão de obra
+        return sum + valorItem;
+    }, 0);
 
     const client = await pool.connect();
+
     try {
         await client.query('BEGIN');
 
+        // 1. Criar venda
         const vendaResult = await client.query(
-            `INSERT INTO venda (id_orcamento, forma_pagamento, valor, origem)
-             VALUES ($1, $2, $3, $4) RETURNING *`,
-            [id_orcamento, forma_pagamento, valor_total, origem]
+            `INSERT INTO venda (
+                data_venda,
+                forma_pagamento,
+                valor,
+                origem,
+                cpf_cliente
+            ) VALUES ($1, $2, $3, $4, $5) RETURNING *`,
+            [data_venda, forma_pagamento, valor_total, origem, cpf_cliente]
         );
-        const novaVenda = vendaResult.rows[0];
+        const id_venda = vendaResult.rows[0].id;
 
-        // Inserir os itens da venda
+        // 2. Inserir itens com largura, altura e valor_total
         for (const item of itens) {
+            const area = (item.largura || 0) * (item.altura || 0);
+            const valorItem = area * (item.valor_unitario || 0) * 1.2;
+
             await client.query(
-                `INSERT INTO venda_itens (id_venda, id_produto, quantidade, valor_unitario, medida, descricao)
-                 VALUES ($1, $2, $3, $4, $5, $6)`,
-                [novaVenda.id, item.id_produto, item.quantidade, item.valor_unitario, item.medida, item.descricao]
+                `INSERT INTO venda_itens (
+                    id_venda,
+                    id_produto,
+                    quantidade,
+                    valor_unitario,
+                    medida,
+                    descricao,
+                    largura,
+                    altura,
+                    valor_total
+                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+                [
+                    id_venda,
+                    item.id_produto,
+                    item.quantidade || 1,
+                    item.valor_unitario,
+                    item.medida,
+                    item.descricao,
+                    item.largura,
+                    item.altura,
+                    valorItem
+                ]
+            );
+        }
+
+        // 3. Pagamentos
+        if (pagamentos && Array.isArray(pagamentos)) {
+            for (const pagamento of pagamentos) {
+                await client.query(
+                    `INSERT INTO pagamentos (
+                        id_venda,
+                        data_pagamento,
+                        valor_pago,
+                        forma_pagamento,
+                        status
+                    ) VALUES ($1, $2, $3, $4, $5)`,
+                    [id_venda, pagamento.data_pagamento || data_venda, pagamento.valor_pago, pagamento.forma_pagamento, pagamento.status || 'Confirmado']
+                );
+            }
+        } else {
+            await client.query(
+                `INSERT INTO pagamentos (
+                    id_venda,
+                    data_pagamento,
+                    valor_pago,
+                    forma_pagamento,
+                    status
+                ) VALUES ($1, $2, $3, $4, $5)`,
+                [id_venda, data_venda, valor_total, forma_pagamento, 'Confirmado']
             );
         }
 
         await client.query('COMMIT');
-        res.status(201).json({ message: "Venda criada com sucesso", venda: novaVenda });
+        res.status(201).json({ message: "Venda criada com sucesso", venda: vendaResult.rows[0] });
     } catch (error) {
         await client.query('ROLLBACK');
         console.error(error);
@@ -157,66 +214,106 @@ router.post('/', async (req, res) => {
     }
 });
 
-// RN57, RN59, RN61: Atualizar venda
+// Atualizar venda
 router.put('/detalhes/:id', async (req, res) => {
     const { id } = req.params;
     const {
         forma_pagamento,
         origem,
-        itens,      // array de itens: { id_produto, quantidade, valor_unitario, medida, descricao }
-        pagamentos, // array de pagamentos: { data_pagamento, valor_pago, forma_pagamento, status }
+        itens,
+        pagamentos
     } = req.body;
 
-    if (!forma_pagamento || !origem || !Array.isArray(itens) || itens.length === 0 || !Array.isArray(pagamentos)) {
+    if (!forma_pagamento || !origem || !Array.isArray(itens) || itens.length === 0) {
         return res.status(400).json({ error: "Campos obrigatórios ausentes ou inválidos" });
     }
+
+    // Calcular valor total considerando área (largura x altura) e mão de obra (20%)
+    const valor_total = itens.reduce((sum, item) => {
+        const area = (item.largura || 0) * (item.altura || 0);
+        const valorItem = area * (item.valor_unitario || 0) * 1.2; // +20% mão de obra
+        return sum + valorItem;
+    }, 0);
 
     const client = await pool.connect();
 
     try {
         await client.query('BEGIN');
 
-        // Atualizar dados da venda (data_venda permanece)
-        // RN60: Recálculo automático do valor total
-        const valor_total = itens.reduce((sum, item) => sum + (item.quantidade * item.valor_unitario), 0);
-
-        // Atualizar dados da venda (data_venda permanece)
-        const vendaAtualizada = await client.query(
-            `UPDATE venda SET forma_pagamento = $1, origem = $2, valor = $3 WHERE id = $4 RETURNING *`,
+        const result = await client.query(
+            `UPDATE venda SET 
+                forma_pagamento = $1, 
+                origem = $2, 
+                valor = $3 
+             WHERE id = $4 RETURNING *`,
             [forma_pagamento, origem, valor_total, id]
         );
 
-
-        if (vendaAtualizada.rowCount === 0) {
+        if (result.rowCount === 0) {
             await client.query('ROLLBACK');
             return res.status(404).json({ error: "Venda não encontrada" });
         }
 
-        // Deletar itens e pagamentos antigos para essa venda
         await client.query('DELETE FROM venda_itens WHERE id_venda = $1', [id]);
-        await client.query('DELETE FROM pagamentos WHERE id_venda = $1', [id]);
-
-        // Inserir os novos itens
         for (const item of itens) {
+            const area = (item.largura || 0) * (item.altura || 0);
+            const valorItem = area * (item.valor_unitario || 0) * 1.2;
+
             await client.query(
-                `INSERT INTO venda_itens (id_venda, id_produto, quantidade, valor_unitario, medida, descricao)
-         VALUES ($1, $2, $3, $4, $5, $6)`,
-                [id, item.id_produto, item.quantidade, item.valor_unitario, item.medida, item.descricao]
+                `INSERT INTO venda_itens (
+                    id_venda,
+                    id_produto,
+                    quantidade,
+                    valor_unitario,
+                    medida,
+                    descricao,
+                    largura,
+                    altura,
+                    valor_total
+                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+                [
+                    id,
+                    item.id_produto,
+                    item.quantidade || 1,
+                    item.valor_unitario,
+                    item.medida,
+                    item.descricao,
+                    item.largura,
+                    item.altura,
+                    valorItem
+                ]
             );
         }
 
-        // Inserir os novos pagamentos
-        for (const pagamento of pagamentos) {
+        await client.query('DELETE FROM pagamentos WHERE id_venda = $1', [id]);
+        if (pagamentos && Array.isArray(pagamentos)) {
+            for (const pagamento of pagamentos) {
+                await client.query(
+                    `INSERT INTO pagamentos (
+                        id_venda,
+                        data_pagamento,
+                        valor_pago,
+                        forma_pagamento,
+                        status
+                    ) VALUES ($1, $2, $3, $4, $5)`,
+                    [id, pagamento.data_pagamento, pagamento.valor_pago, pagamento.forma_pagamento, pagamento.status || 'Confirmado']
+                );
+            }
+        } else {
             await client.query(
-                `INSERT INTO pagamentos (id_venda, data_pagamento, valor_pago, forma_pagamento, status)
-         VALUES ($1, $2, $3, $4, $5)`,
-                [id, pagamento.data_pagamento, pagamento.valor_pago, pagamento.forma_pagamento, pagamento.status || 'Confirmado']
+                `INSERT INTO pagamentos (
+                    id_venda,
+                    data_pagamento,
+                    valor_pago,
+                    forma_pagamento,
+                    status
+                ) VALUES ($1, $2, $3, $4, $5)`,
+                [id, new Date(), valor_total, forma_pagamento, 'Confirmado']
             );
         }
 
         await client.query('COMMIT');
         res.json({ message: 'Venda atualizada com sucesso' });
-
     } catch (error) {
         await client.query('ROLLBACK');
         console.error(error);
@@ -226,14 +323,11 @@ router.put('/detalhes/:id', async (req, res) => {
     }
 });
 
-
-// RN57: Deletar venda
+// Deletar venda
 router.delete('/detalhes/:id', async (req, res) => {
     const { id } = req.params;
 
     try {
-        // A deleção em cascata (ON DELETE CASCADE) cuidará das tabelas 'venda_itens' e 'pagamentos'.
-        // Seria bom também auditar a exclusão.
         const result = await pool.query('DELETE FROM venda WHERE id = $1 RETURNING *', [id]);
 
         if (result.rows.length === 0) {
@@ -248,4 +342,3 @@ router.delete('/detalhes/:id', async (req, res) => {
 });
 
 module.exports = router;
-

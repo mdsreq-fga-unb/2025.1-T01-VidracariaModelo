@@ -1,9 +1,9 @@
 -- 1. Enum: tipo de usuário
 CREATE TYPE tipo_usuario AS ENUM ('gerente', 'usuario');
 
--- 2. Tabela: cliente (cpf como PK)
+-- 2. Tabela: cliente
 CREATE TABLE cliente (
-    cpf VARCHAR(14) PRIMARY KEY, -- formato com pontos e traço
+    cpf VARCHAR(14) PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100),
     endereco TEXT,
@@ -52,7 +52,6 @@ CREATE TABLE atividade (
 );
 
 -- 7. Tabela: orcamento
--- 7. Tabela: orcamento (agora com cpf_cliente referenciando cliente)
 CREATE TABLE orcamento (
     id SERIAL PRIMARY KEY,
     prazo_vigente DATE NOT NULL,
@@ -61,7 +60,6 @@ CREATE TABLE orcamento (
     FOREIGN KEY (id_atividade) REFERENCES atividade(id) ON DELETE CASCADE,
     FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf) ON DELETE CASCADE
 );
-
 
 -- 8. Tabela: produto
 CREATE TABLE produto (
@@ -78,39 +76,50 @@ CREATE TABLE servico (
     FOREIGN KEY (id_atividade) REFERENCES atividade(id) ON DELETE CASCADE
 );
 
--- 10. Tabela: venda (com origem, version, e referência ao orçamento)
+-- 10. Tabela: venda (relaciona com cliente)
 CREATE TABLE venda (
     id SERIAL PRIMARY KEY,
     data_venda DATE DEFAULT CURRENT_DATE,
     forma_pagamento VARCHAR(50),
     valor NUMERIC(10,2),
-    origem VARCHAR(50), -- RN55
-    id_orcamento INTEGER REFERENCES orcamento(id), -- RN48
-    FOREIGN KEY (id_servico) REFERENCES servico(id) ON DELETE CASCADE
+    origem VARCHAR(50),
+    cpf_cliente VARCHAR(14) NOT NULL,
+    FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf) ON DELETE CASCADE
 );
 
--- 11. Tabela: venda_itens (substitui id_produto e medida)
+-- 11. Tabela: venda_itens (com campos para cálculo de área)
 CREATE TABLE venda_itens (
     id SERIAL PRIMARY KEY,
     id_venda INTEGER NOT NULL REFERENCES venda(id) ON DELETE CASCADE,
     id_produto INTEGER NOT NULL REFERENCES produto(id),
-    quantidade NUMERIC(10, 2) NOT NULL,
+    quantidade NUMERIC(10, 2) NOT NULL DEFAULT 1,
     valor_unitario NUMERIC(10, 2) NOT NULL,
-    medida VARCHAR(100), -- Ex: "2.50x1.20"
-    descricao TEXT
+    medida VARCHAR(100),
+    descricao TEXT,
+    largura NUMERIC(10, 2),
+    altura NUMERIC(10, 2),
+    valor_total NUMERIC(10, 2)
 );
 
--- 12. Tabela: pagamentos (relacionado à venda)
+-- 12. Tabela: pagamentos
 CREATE TABLE pagamentos (
     id SERIAL PRIMARY KEY,
     id_venda INTEGER NOT NULL REFERENCES venda(id) ON DELETE CASCADE,
     data_pagamento DATE NOT NULL DEFAULT CURRENT_DATE,
     valor_pago NUMERIC(10, 2) NOT NULL,
     forma_pagamento VARCHAR(50),
-    status VARCHAR(50) DEFAULT 'Confirmado' -- Ex: Confirmado, Pendente
+    status VARCHAR(50) DEFAULT 'Confirmado'
 );
 
-
+-- 13. Tabela: venda_audit_log
+CREATE TABLE venda_audit_log (
+    id SERIAL PRIMARY KEY,
+    id_venda INTEGER NOT NULL REFERENCES venda(id) ON DELETE CASCADE,
+    id_admin INTEGER NOT NULL REFERENCES administrador(id),
+    campo_alterado VARCHAR(100) NOT NULL,
+    valor_antigo TEXT,
+    valor_novo TEXT
+);
 
 -- 14. Tabela: despesa
 CREATE TABLE despesa (
@@ -120,7 +129,7 @@ CREATE TABLE despesa (
     data_cadastro DATE NOT NULL
 );
 
--- 15. Tabela: administrador_despesa (relação N:N entre administradores e despesas)
+-- 15. Tabela: administrador_despesa
 CREATE TABLE administrador_despesa (
     id_admin INTEGER,
     id_despesa INTEGER,
@@ -129,73 +138,17 @@ CREATE TABLE administrador_despesa (
     FOREIGN KEY (id_despesa) REFERENCES despesa(id)
 );
 
--- 1. Administradores
+-- Dados iniciais
 INSERT INTO administrador (nome, email, senha, tipo_usuario) VALUES
 ('Ana Gerente', 'ana@empresa.com', 'senha123', 'gerente'),
 ('Carlos Usuario', 'carlos@empresa.com', 'senha123', 'usuario');
 
--- 2. Clientes
 INSERT INTO cliente (cpf, nome, email, endereco) VALUES
 ('123.456.789-00', 'João da Silva', 'joao@gmail.com', 'Rua A, 123'),
 ('987.654.321-00', 'Maria Oliveira', 'maria@gmail.com', 'Av. B, 456');
 
--- 3. Agendamentos
-INSERT INTO agendamento (data, horario, status, observacoes, cpf_cliente) VALUES
-('2025-07-15', '10:00', 'confirmado', 'Orçamento de box', '123.456.789-00'),
-('2025-07-16', '14:00', 'agendado', 'Vidro temperado', '987.654.321-00');
-
--- 4. Relaciona administradores com agendamentos
-INSERT INTO realiza (id_admin, id_agendamento) VALUES
-(1, 1),
-(2, 2);
-
--- 5. Atividades
-INSERT INTO atividade (descricao_servico, descricao_pagamento, valor_total, id_agendamento) VALUES
-('Instalação de box de vidro', 'Pagamento em dinheiro', 450.00, 1),
-('Troca de janela', 'Parcelado no cartão', 780.00, 2);
-
--- 6. Orçamentos
--- 6. Orçamentos (corrigido com cpf_cliente)
-INSERT INTO orcamento (prazo_vigente, id_atividade, cpf_cliente) VALUES
-('2025-07-30', 1, '123.456.789-00'),
-('2025-07-25', 2, '987.654.321-00');
-
--- 7. Produtos
 INSERT INTO produto (nome, valor_m2) VALUES
 ('Vidro temperado 8mm', 120.00),
-('Espelho 4mm bisotê', 90.00);
-
--- 8. Serviços
-INSERT INTO servico (status, id_atividade) VALUES
-('concluido', 1),
-('em andamento', 2);
-
--- 9. Vendas
-INSERT INTO venda (data_venda, forma_pagamento, valor, origem, id_servico, id_orcamento) VALUES
-('2025-07-17', 'dinheiro', 450.00, 'whatsapp', 1, 1, 1, 1),
-('2025-07-18', 'cartão', 780.00, 'site', 1, 2, 2, 2);
-
--- 10. Itens da venda
-INSERT INTO venda_itens (id_venda, id_produto, quantidade, valor_unitario, medida, descricao) VALUES
-(1, 1, 2.5, 120.00, '2.50x1.00', 'Box para banheiro'),
-(2, 2, 3.0, 90.00, '1.50x2.00', 'Espelho para sala');
-
--- 11. Pagamentos
-INSERT INTO pagamentos (id_venda, data_pagamento, valor_pago, forma_pagamento, status) VALUES
-(1, '2025-07-17', 450.00, 'dinheiro', 'Confirmado'),
-(2, '2025-07-18', 780.00, 'cartão', 'Confirmado');
-
--- 12. Logs de alteração de vendas
-INSERT INTO venda_audit_log (id_venda, id_admin, campo_alterado, valor_antigo, valor_novo) VALUES
-(1, 1, 'valor', '400.00', '450.00'),
-(2, 2, 'forma_pagamento', 'boleto', 'cartão');
-
--- 13. Despesas
-INSERT INTO despesa (tipo_despesa, descricao, data_cadastro) VALUES
-('Aluguel', 'Pagamento do aluguel da loja', '2025-07-01'),
-('Material', 'Compra de vidro temperado', '2025-07-03');
-
--- 14. Relaciona administradores com despesas
-INSERT INTO administrador_despesa (id_admin, id_despesa) VALUES
-(1, 1),
-(2, 2);
+('Espelho 4mm bisotê', 90.00),
+('Vidro laminado 6mm', 150.00),
+('Box padrão', 200.00);

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Form, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPen, faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { useRef } from 'react';
+import { faPen, faTrash, faPlus, faTimes, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { usePDF } from 'react-to-pdf';
 
 type Venda = {
@@ -17,7 +16,6 @@ type Venda = {
 
 type DetalhesVenda = Venda & {
     origem?: string;
-    version?: number;
     itens: {
         id: number;
         id_produto: number;
@@ -26,6 +24,9 @@ type DetalhesVenda = Venda & {
         medida: string;
         descricao: string;
         produto_nome: string;
+        valor_total: number;
+        largura: number;  // Adicionado
+        altura: number;   // Adicionado
     }[];
     pagamentos: {
         id: number;
@@ -39,7 +40,12 @@ type DetalhesVenda = Venda & {
 type Produto = {
     id: number;
     nome: string;
-    valor_m2: number;
+    valor_m2: string;
+};
+
+type Cliente = {
+    cpf: string;
+    nome: string;
 };
 
 const Vendas: React.FC = () => {
@@ -47,174 +53,262 @@ const Vendas: React.FC = () => {
     const [total, setTotal] = useState<string>('0.00');
     const [detalhes, setDetalhes] = useState<DetalhesVenda | null>(null);
     const [showDetalhesModal, setShowDetalhesModal] = useState(false);
-
-    // Modal criar/editar
     const [showFormModal, setShowFormModal] = useState(false);
     const [formMode, setFormMode] = useState<'create' | 'edit'>('create');
+    const [produtos, setProdutos] = useState<Produto[]>([]);
+    const [clientes, setClientes] = useState<Cliente[]>([]);
+    const { toPDF, targetRef } = usePDF({ filename: `recibo-venda-${detalhes?.id || ''}.pdf` });
 
-    const detalhesRef = useRef<HTMLDivElement>(null);
-    const { toPDF, targetRef } = usePDF({ filename: `recibo-venda-${detalhes?.id || ''}.pdf` })
+
+    const [showFilters, setShowFilters] = useState(false);
+    const [filters, setFilters] = useState({
+        cliente_cpf: '',
+        data_inicio: '',
+        data_fim: '',
+        forma_pagamento: ''
+    })
 
     const [formData, setFormData] = useState<{
-        id?: number;
-        id_orcamento?: number;
-        forma_pagamento?: string;
-        origem?: string;
-        version?: number;
+        cpf_cliente?: string;
+        data_venda?: string;
+        forma_pagamento: string;
+        origem: string;
         itens: {
+            altura: number;
+            largura: number;
             id_produto?: number;
             quantidade?: number;
             valor_unitario?: number;
             medida?: string;
             descricao?: string;
+            valor_total?: number;
         }[];
-        pagamentos: {
+        pagamentos?: {
             data_pagamento?: string;
             valor_pago?: number;
             forma_pagamento?: string;
             status?: string;
         }[];
     }>({
+        forma_pagamento: '',
+        origem: '',
         itens: [],
-        pagamentos: [],
+        pagamentos: []
     });
-
-    const [produtos, setProdutos] = useState<Produto[]>([]);
 
     useEffect(() => {
         carregarVendas();
+        carregarProdutos();
+        carregarClientes();
     }, []);
 
-    const carregarVendas = () => {
-        fetch('http://localhost:3000/vendas')
-            .then(res => res.json())
-            .then(data => {
-                setVendas(data.vendas);
-                setTotal(data.total);
-            })
-            .catch(err => console.error("Erro ao buscar vendas:", err));
+
+    const carregarVendas = async (filtros = {}) => {
+        try {
+            // Construir query string com os filtros
+            const queryParams = new URLSearchParams();
+            for (const [key, value] of Object.entries(filtros)) {
+                if (value) {
+                    queryParams.append(key, value);
+                }
+            }
+
+            const url = `http://localhost:3000/vendas?${queryParams.toString()}`;
+            const res = await fetch(url);
+            const data = await res.json();
+            setVendas(data.vendas);
+            setTotal(data.total);
+        } catch (err) {
+            console.error("Erro ao buscar vendas:", err);
+            alert("Erro ao carregar vendas");
+        }
     };
+
+    // Função para aplicar os filtros
+    const aplicarFiltros = () => {
+        carregarVendas(filters);
+        setShowFilters(false);
+    };
+
+    // Função para limpar os filtros
+    const limparFiltros = () => {
+        setFilters({
+            cliente_cpf: '',
+            data_inicio: '',
+            data_fim: '',
+            forma_pagamento: ''
+        });
+        carregarVendas();
+        setShowFilters(false);
+    }
 
     const carregarProdutos = async () => {
         try {
             const res = await fetch('http://localhost:3000/produtos');
-            if (!res.ok) throw new Error("Erro ao carregar produtos");
             const data = await res.json();
             setProdutos(data);
         } catch (error) {
             console.error("Erro ao carregar produtos:", error);
-            alert("Erro ao carregar lista de produtos.");
+        }
+    };
+
+    const carregarClientes = async () => {
+        try {
+            const res = await fetch('http://localhost:3000/clientes');
+            const data = await res.json();
+            setClientes(data);
+        } catch (error) {
+            console.error("Erro ao carregar clientes:", error);
         }
     };
 
     const carregarDetalhes = async (id: number) => {
         try {
             const res = await fetch(`http://localhost:3000/vendas/detalhes/${id}`);
-            if (!res.ok) throw new Error("Erro ao carregar detalhes");
             const data = await res.json();
             setDetalhes(data);
             setShowDetalhesModal(true);
         } catch (err) {
             console.error("Erro ao carregar detalhes da venda:", err);
-            alert("Erro ao carregar detalhes da venda.");
+            alert("Erro ao carregar detalhes da venda");
         }
     };
 
     const abrirModalCriarVenda = () => {
         setFormMode('create');
-        setFormData({ itens: [], pagamentos: [] });
-        carregarProdutos();
+        setFormData({
+            forma_pagamento: '',
+            origem: '',
+            itens: [],
+            pagamentos: [],
+            data_venda: new Date().toISOString().split('T')[0]
+        });
         setShowFormModal(true);
     };
 
     const abrirModalEditarVenda = async (id: number) => {
         try {
             const res = await fetch(`http://localhost:3000/vendas/detalhes/${id}`);
-            if (!res.ok) throw new Error("Venda não encontrada");
             const venda = await res.json();
 
             setFormMode('edit');
             setFormData({
-                id: venda.id,
-                id_orcamento: venda.id_orcamento,
+                cpf_cliente: venda.cpf_cliente,
                 forma_pagamento: venda.forma_pagamento,
                 origem: venda.origem,
-                version: venda.version,
+                data_venda: venda.data_venda.split('T')[0],
                 itens: venda.itens.map((item: any) => ({
                     id_produto: item.id_produto,
-                    quantidade: item.quantidade,
+                    quantidade: 1,
                     valor_unitario: item.valor_unitario,
                     medida: item.medida,
                     descricao: item.descricao,
+                    largura: item.largura,  // Adicionando largura
+                    altura: item.altura     // Adicionando altura
                 })),
                 pagamentos: venda.pagamentos.map((pag: any) => ({
-                    data_pagamento: pag.data_pagamento.split('T')[0], // só a data para o input
+                    data_pagamento: pag.data_pagamento.split('T')[0],
                     valor_pago: pag.valor_pago,
                     forma_pagamento: pag.forma_pagamento,
                     status: pag.status,
                 })),
             });
 
-            await carregarProdutos();
+            // Armazenar o ID da venda que está sendo editada
+            setCurrentVendaId(id);
             setShowFormModal(true);
         } catch (error) {
             console.error("Erro ao carregar venda para editar", error);
-            alert("Erro ao carregar dados da venda para edição.");
+            alert("Erro ao carregar dados da venda para edição");
         }
     };
+    const calcularTotalVenda = () => {
+        if (!formData.itens || formData.itens.length === 0) return 0;
 
+        return formData.itens.reduce((total, item) => {
+            const largura = item.largura || 0;
+            const altura = item.altura || 0;
+            const area = largura * altura;
+            const valorUnitario = item.valor_unitario || 0;
+            const valorItem = area * valorUnitario * 1.2; // +20% mão de obra
+            return total + valorItem;
+        }, 0);
+    };
+
+    // Adicione este estado no início do componente
+    const [currentVendaId, setCurrentVendaId] = useState<number | null>(null);
+
+    // Modifique a função salvarVenda para usar o currentVendaId
     const salvarVenda = async () => {
-        if (
-            !formData.id_orcamento ||
-            !formData.forma_pagamento ||
-            !formData.itens ||
-            formData.itens.length === 0
-        ) {
-            alert("Preencha os campos obrigatórios (id_orcamento, forma_pagamento e itens).");
+        // Validação dos campos obrigatórios
+        if (!formData.cpf_cliente || !formData.forma_pagamento || !formData.itens || formData.itens.length === 0) {
+            alert("Preencha os campos obrigatórios (CPF do cliente, forma de pagamento e itens).");
             return;
         }
 
-        if (formMode === 'create') {
-            try {
-                const res = await fetch('http://localhost:3000/vendas', {
+        // Calcular o valor total da venda
+        const valorTotalVenda = calcularTotalVenda();
+
+        // Preparar os dados para enviar
+        const vendaData = {
+            cpf_cliente: formData.cpf_cliente,
+            data_venda: formData.data_venda,
+            forma_pagamento: formData.forma_pagamento,
+            origem: formData.origem,
+            valor: valorTotalVenda, // Adiciona o valor total calculado
+            itens: formData.itens.map(item => {
+                const largura = item.largura || 0;
+                const altura = item.altura || 0;
+                const area = largura * altura;
+                const valorUnitario = item.valor_unitario || 0;
+                const valorTotal = area * valorUnitario * 1.2; // +20% mão de obra
+
+                return {
+                    id_produto: item.id_produto,
+                    quantidade: 1,
+                    valor_unitario: item.valor_unitario,
+                    medida: item.medida,
+                    descricao: item.descricao,
+                    largura: item.largura,
+                    altura: item.altura,
+                    valor_total: valorTotal
+                }
+            }),
+            pagamentos: formData.pagamentos || []
+        };
+
+        // Restante da função permanece igual...
+        try {
+            let response;
+            if (formMode === 'create') {
+                response = await fetch('http://localhost:3000/vendas', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData),
+                    body: JSON.stringify(vendaData)
                 });
-                if (!res.ok) {
-                    const errData = await res.json();
-                    throw new Error(errData.error || "Erro ao criar venda");
-                }
-                alert("Venda criada com sucesso");
-                setShowFormModal(false);
-                carregarVendas();
-            } catch (error) {
-                console.error(error);
-                alert("Erro ao criar venda");
-            }
-        } else {
-            try {
-                if (!formData.id) {
-                    alert("ID da venda é obrigatório para edição");
-                    return;
+            } else {
+                if (!currentVendaId) {
+                    throw new Error('ID da venda não encontrado para edição');
                 }
 
-                const res = await fetch(`http://localhost:3000/vendas/detalhes/${formData.id}`, {
+                response = await fetch(`http://localhost:3000/vendas/detalhes/${currentVendaId}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData),
+                    body: JSON.stringify(vendaData)
                 });
-                if (!res.ok) {
-                    const errData = await res.json();
-                    throw new Error(errData.error || "Erro ao atualizar venda");
-                }
-                alert("Venda atualizada com sucesso");
-                setShowFormModal(false);
-                carregarVendas();
-            } catch (error) {
-                console.error(error);
-                alert("Erro ao atualizar venda");
             }
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Erro ao salvar venda');
+            }
+
+            alert(`Venda ${formMode === 'create' ? 'criada' : 'atualizada'} com sucesso!`);
+            setShowFormModal(false);
+            carregarVendas();
+        } catch (error) {
+            console.error(error);
+            alert(error || "Erro ao salvar venda");
         }
     };
 
@@ -222,196 +316,250 @@ const Vendas: React.FC = () => {
         if (window.confirm("Deseja realmente deletar esta venda?")) {
             try {
                 const res = await fetch(`http://localhost:3000/vendas/detalhes/${id}`, {
-                    method: 'DELETE',
+                    method: 'DELETE'
                 });
+
                 if (!res.ok) {
-                    const errData = await res.json();
-                    throw new Error(errData.error || "Erro ao deletar venda");
+                    throw new Error('Erro ao deletar venda');
                 }
+
+                alert("Venda deletada com sucesso!");
                 carregarVendas();
-                alert("Venda deletada com sucesso.");
             } catch (err) {
                 console.error("Erro ao deletar venda:", err);
-                alert("Erro ao deletar venda.");
+                alert("Erro ao deletar venda");
             }
         }
     };
 
     return (
-        <>
-            <div className="bg-light min-vh-100 py-5">
-                <div className="container">
-                    <div className="card shadow p-4">
-                        <div className="d-flex justify-content-between align-items-center mb-3">
-                            <h2 className="m-0">Vendas Realizadas</h2>
+        <div className="bg-light min-vh-100 py-5">
+            <div className="container">
+                <div className="card shadow p-4">
+                    <div className="d-flex justify-content-between align-items-center mb-3">
+                        <h2 className="m-0">Vendas Realizadas</h2>
+                        <div>
+                            <Button variant="secondary" onClick={() => setShowFilters(!showFilters)} className="me-2">
+                                <FontAwesomeIcon icon={showFilters ? faTimes : faFilter} className="me-2" />
+                                {showFilters ? 'Ocultar Filtros' : 'Filtrar'}
+                            </Button>
                             <Button variant="success" onClick={abrirModalCriarVenda}>
                                 <FontAwesomeIcon icon={faPlus} className="me-2" />
                                 Nova Venda
                             </Button>
                         </div>
+                    </div>
 
-                        <p className="text-end">
-                            <strong>Total:</strong> R$ {total}
-                        </p>
-
-                        <div className="table-responsive">
-                            <table className="table table-bordered table-hover">
-                                <thead className="table-light">
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Data</th>
-                                        <th>Valor</th>
-                                        <th>Forma de Pagamento</th>
-                                        <th>CPF</th>
-                                        <th>Cliente</th>
-                                        <th>Ações</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {vendas.map(venda => (
-                                        <tr key={venda.id}>
-                                            <td>{venda.id}</td>
-                                            <td>{new Date(venda.data_venda).toLocaleDateString()}</td>
-                                            <td>R$ {parseFloat(venda.valor)}</td>
-                                            <td>{venda.forma_pagamento}</td>
-                                            <td>{venda.cliente_cpf}</td>
-                                            <td>{venda.cliente_nome}</td>
-                                            <td>
-                                                <div className="d-flex gap-2">
-                                                    <Button
-                                                        size="sm"
-                                                        variant="primary"
-                                                        onClick={() => carregarDetalhes(venda.id)}
-                                                    >
-                                                        Ver Detalhes
-                                                    </Button>
-                                                    <Button
-                                                        size="sm"
-                                                        variant="warning"
-                                                        onClick={() => abrirModalEditarVenda(venda.id)}
-                                                    >
-                                                        <FontAwesomeIcon icon={faPen} />
-                                                    </Button>
-                                                    <Button
-                                                        size="sm"
-                                                        variant="danger"
-                                                        onClick={() => deletarVenda(venda.id)}
-                                                    >
-                                                        <FontAwesomeIcon icon={faTrash} />
-                                                    </Button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                    {/* Filtros */}
+                    {showFilters && (
+                        <div className="border p-3 mb-3 rounded">
+                            <h5>Filtrar Vendas</h5>
+                            <Row>
+                                <Col md={3}>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Cliente</Form.Label>
+                                        <Form.Select
+                                            value={filters.cliente_cpf}
+                                            onChange={e => setFilters({ ...filters, cliente_cpf: e.target.value })}
+                                        >
+                                            <option value="">Todos os clientes</option>
+                                            {clientes.map(cliente => (
+                                                <option key={cliente.cpf} value={cliente.cpf}>
+                                                    {cliente.nome} - {cliente.cpf}
+                                                </option>
+                                            ))}
+                                        </Form.Select>
+                                    </Form.Group>
+                                </Col>
+                                <Col md={3}>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Data Início</Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            value={filters.data_inicio}
+                                            onChange={e => setFilters({ ...filters, data_inicio: e.target.value })}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={3}>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Data Fim</Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            value={filters.data_fim}
+                                            onChange={e => setFilters({ ...filters, data_fim: e.target.value })}
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={3}>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Forma de Pagamento</Form.Label>
+                                        <Form.Select
+                                            value={filters.forma_pagamento}
+                                            onChange={e => setFilters({ ...filters, forma_pagamento: e.target.value })}
+                                        >
+                                            <option value="">Todas</option>
+                                            <option value="Dinheiro">Dinheiro</option>
+                                            <option value="Cartão de Crédito">Cartão de Crédito</option>
+                                            <option value="Cartão de Débito">Cartão de Débito</option>
+                                            <option value="Pix">Pix</option>
+                                            <option value="Boleto">Boleto</option>
+                                        </Form.Select>
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <div className="d-flex justify-content-end gap-2">
+                                <Button variant="outline-secondary" onClick={limparFiltros}>
+                                    Limpar Filtros
+                                </Button>
+                                <Button variant="primary" onClick={aplicarFiltros}>
+                                    Aplicar Filtros
+                                </Button>
+                            </div>
                         </div>
+                    )}
+
+                    <p className="text-end">
+                        <strong>Total:</strong> R$ {total}
+                    </p>
+
+                    <div className="table-responsive">
+                        <table className="table table-bordered table-hover">
+                            <thead className="table-light">
+                                <tr>
+
+                                    <th>Data</th>
+                                    <th>Valor</th>
+                                    <th>Forma de Pagamento</th>
+                                    <th>CPF</th>
+                                    <th>Cliente</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {vendas.map(venda => (
+                                    <tr key={venda.id}>
+
+                                        <td>{new Date(venda.data_venda).toLocaleDateString()}</td>
+                                        <td>R$ {parseFloat(venda.valor)}</td>
+                                        <td>{venda.forma_pagamento}</td>
+                                        <td>{venda.cliente_cpf}</td>
+                                        <td>{venda.cliente_nome}</td>
+                                        <td>
+                                            <div className="d-flex gap-2">
+                                                <Button
+                                                    size="sm"
+                                                    variant="primary"
+                                                    onClick={() => carregarDetalhes(venda.id)}
+                                                >
+                                                    Detalhes
+                                                </Button>
+                                                <Button
+                                                    size="sm"
+                                                    variant="warning"
+                                                    onClick={() => abrirModalEditarVenda(venda.id)}
+                                                >
+                                                    <FontAwesomeIcon icon={faPen} />
+                                                </Button>
+                                                <Button
+                                                    size="sm"
+                                                    variant="danger"
+                                                    onClick={() => deletarVenda(venda.id)}
+                                                >
+                                                    <FontAwesomeIcon icon={faTrash} />
+                                                </Button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
             {/* Modal de Detalhes */}
-            <Modal show={showDetalhesModal} onHide={() => setShowDetalhesModal(false)} centered size="lg">
-                <Modal.Header closeButton className="bg-light">
-                    <Modal.Title>
-                        <strong>Detalhes da Venda #{detalhes?.id}</strong>
-                    </Modal.Title>
+            <Modal
+                show={showDetalhesModal}
+                onHide={() => setShowDetalhesModal(false)}
+
+                centered
+                scrollable
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Detalhes da Venda #{detalhes?.id}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    <div ref={targetRef} className="p-3" style={{ fontSize: '12px', maxWidth: '800px', margin: '0 auto' }}>
-                        {/* Cabeçalho Compacto */}
-                        <div className="text-center mb-3">
-                            <h4 style={{ fontSize: '18px', marginBottom: '5px' }}>MARMORARIA LUXO</h4>
-                            <p style={{ fontSize: '10px', marginBottom: '5px' }}>CNPJ: 12.345.678/0001-99 • Rua Exemplo, 123 - Centro - São Paulo/SP</p>
-                            <h5 style={{ fontSize: '16px', margin: '10px 0', borderTop: '1px solid #000', borderBottom: '1px solid #000', padding: '5px 0' }}>
+                <Modal.Body ref={targetRef}>
+                    <div className="container px-3">
+                        <div className="text-center mb-4">
+                            <h4>VIDRAÇARIA MODELO</h4>
+                            <p className="small">CNPJ: 12.345.678/0001-99 • Rua Exemplo, 123 - Centro - GAMA/DF</p>
+                            <h5 className="border-top border-bottom py-2 my-3">
                                 RECIBO # {detalhes?.id}
                             </h5>
-                            <p style={{ fontSize: '10px' }}>
+                            <p className="small">
                                 {detalhes && new Date(detalhes.data_venda).toLocaleDateString('pt-BR')} • {detalhes?.forma_pagamento}
                             </p>
                         </div>
 
-                        {/* Dados do Cliente */}
-                        <div className="text-center mb-3">
-                            <p style={{ fontWeight: 'bold', marginBottom: '3px' }}>CLIENTE</p>
-                            <p style={{ marginBottom: '3px' }}>{detalhes?.cliente_nome}</p>
-                            <p style={{ fontSize: '10px' }}>CPF: {detalhes?.cliente_cpf}</p>
+                        <div className="mb-4">
+                            <h6 className="text-center fw-bold">CLIENTE</h6>
+                            <p className="text-center">{detalhes?.cliente_nome}</p>
+                            <p className="text-center small">CPF: {detalhes?.cliente_cpf}</p>
                         </div>
 
-                        {/* Itens da Venda - Tabela Compacta */}
-                        <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '15px' }}>
+                        <table className="table table-sm mb-4">
                             <thead>
-                                <tr style={{ borderBottom: '1px solid #000' }}>
-                                    <th style={{ width: '50%', textAlign: 'left', padding: '3px 0', fontSize: '11px' }}>PRODUTO</th>
-                                    <th style={{ width: '10%', textAlign: 'center', padding: '3px 0', fontSize: '11px' }}>QTD</th>
-                                    <th style={{ width: '20%', textAlign: 'right', padding: '3px 0', fontSize: '11px' }}>UNITÁRIO</th>
-                                    <th style={{ width: '20%', textAlign: 'right', padding: '3px 0', fontSize: '11px' }}>TOTAL</th>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th className="small text-center">Medidas</th>
+                                    <th className="text-end">Unitário</th>
+                                    <th className="text-end">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {detalhes?.itens.map(item => (
-                                    <tr key={item.id} style={{ borderBottom: '1px solid #eee' }}>
-                                        <td style={{ padding: '3px 0', fontSize: '11px' }}>
+                                    <tr key={item.id}>
+                                        <td>
                                             {item.produto_nome}
-                                            {item.descricao && (
-                                                <div style={{ fontSize: '9px', color: '#666' }}>{item.descricao}</div>
-                                            )}
+                                            {item.descricao && <div className="small text-muted">{item.descricao}</div>}
                                         </td>
-                                        <td style={{ textAlign: 'center', padding: '3px 0', fontSize: '11px' }}>
-                                            {item.quantidade} {item.medida || 'un'}
+                                        <td className="text-center small">
+                                            {item.largura}m x {item.altura}m
                                         </td>
-                                        <td style={{ textAlign: 'right', padding: '3px 0', fontSize: '11px' }}>
-                                            R$ {item.valor_unitario}
-                                        </td>
-                                        <td style={{ textAlign: 'right', padding: '3px 0', fontSize: '11px' }}>
-                                            R$ {(item.quantidade * item.valor_unitario)}
-                                        </td>
+                                        <td className="text-end small">R$ {item.valor_unitario}</td>
+                                        <td className="text-end small">R$ {item.valor_total}</td>
                                     </tr>
                                 ))}
                             </tbody>
                             <tfoot>
-                                <tr style={{ borderTop: '1px solid #000' }}>
-                                    <td colSpan={3} style={{ textAlign: 'right', padding: '5px 0', fontWeight: 'bold', fontSize: '11px' }}>
-                                        TOTAL:
-                                    </td>
-                                    <td style={{ textAlign: 'right', padding: '5px 0', fontWeight: 'bold', fontSize: '11px' }}>
-                                        R$ {detalhes && parseFloat(detalhes.valor)}
-                                    </td>
+                                <tr>
+                                    <th colSpan={3} className="text-end">TOTAL:</th>
+                                    <th className="text-end">R$ {detalhes?.valor}</th>
                                 </tr>
                             </tfoot>
                         </table>
 
-                        {/* Pagamentos - Tabela Compacta */}
-                        <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '15px' }}>
+                        <h6 className="mb-3">Pagamentos</h6>
+                        <table className="table table-sm">
                             <thead>
-                                <tr style={{ borderBottom: '1px solid #000' }}>
-                                    <th style={{ width: '25%', textAlign: 'center', padding: '3px 0', fontSize: '11px' }}>DATA</th>
-                                    <th style={{ width: '25%', textAlign: 'right', padding: '3px 0', fontSize: '11px' }}>VALOR</th>
-                                    <th style={{ width: '25%', textAlign: 'center', padding: '3px 0', fontSize: '11px' }}>FORMA</th>
-                                    <th style={{ width: '25%', textAlign: 'center', padding: '3px 0', fontSize: '11px' }}>STATUS</th>
+                                <tr>
+                                    <th>Data</th>
+                                    <th className="text-end">Valor</th>
+                                    <th>Forma</th>
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {detalhes?.pagamentos.map(pagamento => (
-                                    <tr key={pagamento.id} style={{ borderBottom: '1px solid #eee' }}>
-                                        <td style={{ textAlign: 'center', padding: '3px 0', fontSize: '11px' }}>
-                                            {new Date(pagamento.data_pagamento).toLocaleDateString('pt-BR')}
-                                        </td>
-                                        <td style={{ textAlign: 'right', padding: '3px 0', fontSize: '11px' }}>
-                                            R$ {pagamento.valor_pago}
-                                        </td>
-                                        <td style={{ textAlign: 'center', padding: '3px 0', fontSize: '11px' }}>
-                                            {pagamento.forma_pagamento}
-                                        </td>
-                                        <td style={{ textAlign: 'center', padding: '3px 0', fontSize: '11px' }}>
-                                            <span style={{
-                                                backgroundColor: pagamento.status === 'Pago' ? '#28a745' :
-                                                    pagamento.status === 'Pendente' ? '#ffc107' : '#dc3545',
-                                                color: pagamento.status === 'Pendente' ? '#000' : '#fff',
-                                                padding: '2px 5px',
-                                                borderRadius: '3px',
-                                                fontSize: '10px'
-                                            }}>
+                                    <tr key={pagamento.id}>
+                                        <td>{new Date(pagamento.data_pagamento).toLocaleDateString('pt-BR')}</td>
+                                        <td className="text-end">R$ {pagamento.valor_pago}</td>
+                                        <td>{pagamento.forma_pagamento}</td>
+                                        <td>
+                                            <span className={`badge ${pagamento.status === 'Pago' ? 'bg-success' :
+                                                pagamento.status === 'Pendente' ? 'bg-warning text-dark' : 'bg-danger'
+                                                }`}>
                                                 {pagamento.status}
                                             </span>
                                         </td>
@@ -420,261 +568,341 @@ const Vendas: React.FC = () => {
                             </tbody>
                         </table>
 
-                        {/* Rodapé Minimalista */}
-                        <div className="text-center" style={{ marginTop: '20px', fontSize: '10px' }}>
-                            <p style={{ marginBottom: '3px' }}>___________________________________________</p>
-                            <p style={{ marginBottom: '3px' }}>Assinatura do Responsável</p>
-                            <p style={{ marginBottom: '3px' }}>Marmoraria Luxo</p>
-                            <p style={{ marginBottom: '3px' }}>Data: {new Date().toLocaleDateString('pt-BR')}</p>
-                            <p style={{ fontStyle: 'italic' }}>Este documento não tem valor fiscal</p>
+                        <div className="text-center mt-4 small">
+                            <div className="border-top pt-2 mb-2">___________________________________________</div>
+                            <p>Assinatura do Responsável</p>
+                            <p>Vidraçaria Modelo</p>
+                            <p>Data: {new Date().toLocaleDateString('pt-BR')}</p>
+                            <p className="fst-italic">Este documento não tem valor fiscal</p>
                         </div>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowDetalhesModal(false)}>Fechar</Button>
-                    {detalhes && (
-                        <Button variant="success" onClick={() => toPDF()} size="sm">
-
-                            Gerar Recibo
-                        </Button>
-                    )}
+                    <Button variant="success" onClick={() => toPDF()}>Gerar Recibo</Button>
                 </Modal.Footer>
             </Modal>
 
-            {/* Modal Criar / Editar Venda */}
-            <Modal show={showFormModal} onHide={() => setShowFormModal(false)} centered scrollable>
+
+            {/* Modal Criar/Editar Venda */}
+            < Modal show={showFormModal} onHide={() => setShowFormModal(false)} >
                 <Modal.Header closeButton>
                     <Modal.Title>{formMode === 'create' ? 'Nova Venda' : 'Editar Venda'}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form>
-                        <div className="mb-3">
-                            <label>ID Orçamento *</label>
-                            <input
-                                type="number"
-                                className="form-control"
-                                value={formData.id_orcamento || ''}
-                                onChange={e => setFormData({ ...formData, id_orcamento: Number(e.target.value) })}
-                                disabled={formMode === 'edit'}
-                            />
-                        </div>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Cliente *</Form.Label>
+                            <Form.Select
+                                value={formData.cpf_cliente || ''}
+                                onChange={e => setFormData({ ...formData, cpf_cliente: e.target.value })}
+                                required
+                            >
+                                <option value="">Selecione um cliente</option>
+                                {clientes.map(cliente => (
+                                    <option key={cliente.cpf} value={cliente.cpf}>
+                                        {cliente.nome} - {cliente.cpf}
+                                    </option>
+                                ))}
+                            </Form.Select>
+                        </Form.Group>
 
-                        <div className="mb-3">
-                            <label>Origem</label>
-                            <select
-                                className="form-select"
-                                value={formData.origem || ''}
+                        <Form.Group className="mb-3">
+                            <Form.Label>Data da Venda</Form.Label>
+                            <Form.Control
+                                type="date"
+                                value={formData.data_venda || ''}
+                                onChange={e => setFormData({ ...formData, data_venda: e.target.value })}
+                            />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Forma de Pagamento *</Form.Label>
+                            <Form.Select
+                                value={formData.forma_pagamento}
+                                onChange={e => setFormData({ ...formData, forma_pagamento: e.target.value })}
+                                required
+                            >
+                                <option value="">Selecione...</option>
+                                <option value="Dinheiro">Dinheiro</option>
+                                <option value="Cartão de Crédito">Cartão de Crédito</option>
+                                <option value="Cartão de Débito">Cartão de Débito</option>
+                                <option value="Pix">Pix</option>
+                                <option value="Boleto">Boleto</option>
+                            </Form.Select>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Label>Origem</Form.Label>
+                            <Form.Select
+                                value={formData.origem}
                                 onChange={e => setFormData({ ...formData, origem: e.target.value })}
                             >
-                                <option value="">Nenhum</option>
+                                <option value="">Selecione...</option>
+                                <option value="Loja Física">Loja Física</option>
                                 <option value="Site">Site</option>
-                                <option value="Instagram">Instagram</option>
-                                <option value="Recomendação">Recomendação</option>
-                            </select>
-                        </div>
+                                <option value="Indicação">Indicação</option>
+                            </Form.Select>
+                        </Form.Group>
 
-                        <div className="mb-3">
-                            <label>Forma de Pagamento *</label>
-                            <select
-                                className="form-select"
-                                value={formData.forma_pagamento || ''}
-                                onChange={e => setFormData({ ...formData, forma_pagamento: e.target.value })}
-                            >
-                                <option value="">-- Selecione a forma de pagamento --</option>
-                                <option value="Crédito">Crédito</option>
-                                <option value="Débito">Débito</option>
-                                <option value="Pix">Pix</option>
-                                <option value="Dinheiro">Dinheiro</option>
-                            </select>
-                        </div>
+                        <h5 className="mt-4">Itens da Venda *</h5>
+                        {formData.itens.map((item, index) => {
+                            // Calcular área e valor total
+                            const largura = item.largura || 0;
+                            const altura = item.altura || 0;
+                            const area = largura * altura;
+                            const valorUnitario = item.valor_unitario || 0;
+                            const valorTotal = area * valorUnitario * 1.2; // +20% mão de obra
 
-                        <hr />
-                        <h5>Itens da Venda *</h5>
-                        {formData.itens.length === 0 && <p className="text-muted">Nenhum item adicionado.</p>}
-                        {formData.itens.map((item, idx) => (
-                            <div key={idx} className="border p-3 mb-3">
-                                <div className="mb-2">
-                                    <label>Produto *</label>
-                                    <select
-                                        className="form-select"
-                                        value={item.id_produto || ''}
-                                        onChange={e => {
-                                            const idProd = Number(e.target.value);
-                                            const produtoSelecionado = produtos.find(p => p.id === idProd);
-                                            const novosItens = [...formData.itens];
-                                            novosItens[idx].id_produto = idProd;
-                                            if (produtoSelecionado) {
-                                                novosItens[idx].valor_unitario = produtoSelecionado.valor_m2;
-                                            } else {
-                                                novosItens[idx].valor_unitario = 0;
-                                            }
-                                            setFormData({ ...formData, itens: novosItens });
+                            return (
+                                <div key={index} className="border p-3 mb-3">
+                                    <Form.Group className="mb-3">
+                                        <Form.Label>Produto *</Form.Label>
+                                        <Form.Select
+                                            value={item.id_produto || ''}
+                                            onChange={e => {
+                                                const newItens = [...formData.itens];
+                                                const produtoId = Number(e.target.value);
+                                                const produto = produtos.find(p => p.id === produtoId);
+
+                                                newItens[index] = {
+                                                    ...newItens[index],
+                                                    id_produto: produtoId,
+                                                    valor_unitario: produto ? parseFloat(produto.valor_m2) : 0
+                                                };
+                                                setFormData({ ...formData, itens: newItens });
+                                            }}
+                                            required
+                                        >
+                                            <option value="">Selecione um produto</option>
+                                            {produtos.map(produto => (
+                                                <option key={produto.id} value={produto.id}>
+                                                    {produto.nome} (R$ {produto.valor_m2}/m²)
+                                                </option>
+                                            ))}
+                                        </Form.Select>
+                                    </Form.Group>
+
+                                    <div className="row">
+                                        <Form.Group className="col-md-3 mb-3">
+                                            <Form.Label>Largura (m) *</Form.Label>
+                                            <Form.Control
+                                                type="number"
+                                                step="0.01"
+                                                min="0"
+                                                value={item.largura || ''}
+                                                onChange={e => {
+                                                    const newItens = [...formData.itens];
+                                                    newItens[index] = {
+                                                        ...newItens[index],
+                                                        largura: Number(e.target.value)
+                                                    };
+                                                    setFormData({ ...formData, itens: newItens });
+                                                }}
+                                                required
+                                            />
+                                        </Form.Group>
+
+                                        <Form.Group className="col-md-3 mb-3">
+                                            <Form.Label>Altura (m) *</Form.Label>
+                                            <Form.Control
+                                                type="number"
+                                                step="0.01"
+                                                min="0"
+                                                value={item.altura || ''}
+                                                onChange={e => {
+                                                    const newItens = [...formData.itens];
+                                                    newItens[index] = {
+                                                        ...newItens[index],
+                                                        altura: Number(e.target.value)
+                                                    };
+                                                    setFormData({ ...formData, itens: newItens });
+                                                }}
+                                                required
+                                            />
+                                        </Form.Group>
+
+                                        <Form.Group className="col-md-3 mb-3">
+                                            <Form.Label>Área (m²)</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                value={area}
+                                                readOnly
+                                            />
+                                        </Form.Group>
+
+                                        <Form.Group className="col-md-3 mb-3">
+                                            <Form.Label>Valor Unitário *</Form.Label>
+                                            <Form.Control
+                                                type="number"
+                                                step="0.01"
+                                                min="0"
+                                                value={valorUnitario}
+                                                onChange={e => {
+                                                    const newItens = [...formData.itens];
+                                                    newItens[index] = {
+                                                        ...newItens[index],
+                                                        valor_unitario: Number(e.target.value)
+                                                    };
+                                                    setFormData({ ...formData, itens: newItens });
+                                                }}
+                                                required
+                                            />
+                                        </Form.Group>
+                                    </div>
+
+                                    <div className="row">
+                                        <Form.Group className="col-md-6 mb-3">
+                                            <Form.Label>Valor Total (com 20% mão de obra)</Form.Label>
+                                            <Form.Control
+                                                type="text"
+                                                value={`R$ ${valorTotal}`}
+                                                readOnly
+                                            />
+                                        </Form.Group>
+
+                                        <Form.Group className="col-md-6 mb-3">
+                                            <Form.Label>Descrição</Form.Label>
+                                            <Form.Control
+                                                as="textarea"
+                                                rows={2}
+                                                value={item.descricao || ''}
+                                                onChange={e => {
+                                                    const newItens = [...formData.itens];
+                                                    newItens[index] = {
+                                                        ...newItens[index],
+                                                        descricao: e.target.value
+                                                    };
+                                                    setFormData({ ...formData, itens: newItens });
+                                                }}
+                                            />
+                                        </Form.Group>
+                                    </div>
+
+                                    <Button
+                                        variant="danger"
+                                        size="sm"
+                                        onClick={() => {
+                                            const newItens = formData.itens.filter((_, i) => i !== index);
+                                            setFormData({ ...formData, itens: newItens });
                                         }}
                                     >
-                                        <option value="">-- Selecione um produto --</option>
-                                        {produtos.map(produto => (
-                                            <option key={produto.id} value={produto.id}>
-                                                {produto.nome} (R$ {produto.valor_m2})
-                                            </option>
-                                        ))}
-                                    </select>
+                                        Remover Item
+                                    </Button>
                                 </div>
-
-                                <div className="mb-2">
-                                    <label>Quantidade *</label>
-                                    <input
-                                        type="number"
-                                        className="form-control"
-                                        value={item.quantidade || ''}
-                                        onChange={e => {
-                                            const novosItens = [...formData.itens];
-                                            novosItens[idx].quantidade = Number(e.target.value);
-                                            setFormData({ ...formData, itens: novosItens });
-                                        }}
-                                    />
-                                </div>
-
-                                <div className="mb-2">
-                                    <label>Valor Unitário *</label>
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        className="form-control"
-                                        value={item.valor_unitario || ''}
-                                        onChange={e => {
-                                            const novosItens = [...formData.itens];
-                                            novosItens[idx].valor_unitario = Number(e.target.value);
-                                            setFormData({ ...formData, itens: novosItens });
-                                        }}
-                                    />
-                                </div>
-
-                                <div className="mb-2">
-                                    <label>Medida</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        value={item.medida || ''}
-                                        onChange={e => {
-                                            const novosItens = [...formData.itens];
-                                            novosItens[idx].medida = e.target.value;
-                                            setFormData({ ...formData, itens: novosItens });
-                                        }}
-                                    />
-                                </div>
-
-                                <div className="mb-2">
-                                    <label>Descrição</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        value={item.descricao || ''}
-                                        onChange={e => {
-                                            const novosItens = [...formData.itens];
-                                            novosItens[idx].descricao = e.target.value;
-                                            setFormData({ ...formData, itens: novosItens });
-                                        }}
-                                    />
-                                </div>
-
-                                <Button
-                                    variant="danger"
-                                    size="sm"
-                                    onClick={() => {
-                                        const novosItens = formData.itens.filter((_, i) => i !== idx);
-                                        setFormData({ ...formData, itens: novosItens });
-                                    }}
-                                >
-                                    Remover Item
-                                </Button>
-                            </div>
-                        ))}
+                            );
+                        })}
 
                         <Button
-                            variant="secondary"
-                            size="sm"
-                            onClick={() => setFormData({ ...formData, itens: [...formData.itens, {}] })}
+                            variant="outline-primary"
+                            onClick={() => setFormData({
+                                ...formData,
+                                itens: [...formData.itens, {
+                                    id_produto: undefined,
+                                    largura: undefined,
+                                    altura: undefined,
+                                    valor_unitario: undefined,
+                                    valor_total: undefined,
+
+                                    descricao: ''
+                                }]
+                            })}
                         >
                             Adicionar Item
                         </Button>
+                        <div className="mt-3 p-3 bg-light rounded">
+                            <h5 className="text-end">
+                                Total da Venda: R$ {calcularTotalVenda()}
+                            </h5>
+                        </div>
+                        <h5 className="mt-4">Pagamentos</h5>
+                        {(formData.pagamentos || []).map((pagamento, index) => (
+                            <div key={index} className="border p-3 mb-3">
+                                <div className="row">
+                                    <Form.Group className="col-md-6 mb-3">
+                                        <Form.Label>Data do Pagamento</Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            value={pagamento.data_pagamento || ''}
+                                            onChange={e => {
+                                                const newPagamentos = [...(formData.pagamentos || [])];
+                                                newPagamentos[index] = {
+                                                    ...newPagamentos[index],
+                                                    data_pagamento: e.target.value
+                                                };
+                                                setFormData({ ...formData, pagamentos: newPagamentos });
+                                            }}
+                                        />
+                                    </Form.Group>
 
-                        <hr />
-                        <h5>Pagamentos</h5>
-                        {formData.pagamentos.length === 0 && <p className="text-muted">Nenhum pagamento adicionado.</p>}
-                        {formData.pagamentos.map((pagamento, idx) => (
-                            <div key={idx} className="border p-3 mb-3">
-                                <div className="mb-2">
-                                    <label>Data do Pagamento *</label>
-                                    <input
-                                        type="date"
-                                        className="form-control"
-                                        value={pagamento.data_pagamento || ''}
-                                        onChange={e => {
-                                            const novosPagamentos = [...formData.pagamentos];
-                                            novosPagamentos[idx].data_pagamento = e.target.value;
-                                            setFormData({ ...formData, pagamentos: novosPagamentos });
-                                        }}
-                                    />
+                                    <Form.Group className="col-md-6 mb-3">
+                                        <Form.Label>Valor Pago</Form.Label>
+                                        <Form.Control
+                                            type="number"
+                                            step="0.01"
+                                            min="0"
+                                            value={pagamento.valor_pago || ''}
+                                            onChange={e => {
+                                                const newPagamentos = [...(formData.pagamentos || [])];
+                                                newPagamentos[index] = {
+                                                    ...newPagamentos[index],
+                                                    valor_pago: Number(e.target.value)
+                                                };
+                                                setFormData({ ...formData, pagamentos: newPagamentos });
+                                            }}
+                                        />
+                                    </Form.Group>
                                 </div>
 
-                                <div className="mb-2">
-                                    <label>Valor Pago *</label>
-                                    <input
-                                        type="number"
-                                        step="0.01"
-                                        className="form-control"
-                                        value={pagamento.valor_pago || ''}
-                                        onChange={e => {
-                                            const novosPagamentos = [...formData.pagamentos];
-                                            novosPagamentos[idx].valor_pago = Number(e.target.value);
-                                            setFormData({ ...formData, pagamentos: novosPagamentos });
-                                        }}
-                                    />
-                                </div>
+                                <div className="row">
+                                    <Form.Group className="col-md-6 mb-3">
+                                        <Form.Label>Forma de Pagamento</Form.Label>
+                                        <Form.Select
+                                            value={pagamento.forma_pagamento || ''}
+                                            onChange={e => {
+                                                const newPagamentos = [...(formData.pagamentos || [])];
+                                                newPagamentos[index] = {
+                                                    ...newPagamentos[index],
+                                                    forma_pagamento: e.target.value
+                                                };
+                                                setFormData({ ...formData, pagamentos: newPagamentos });
+                                            }}
+                                        >
+                                            <option value="">Selecione...</option>
+                                            <option value="Dinheiro">Dinheiro</option>
+                                            <option value="Cartão de Crédito">Cartão de Crédito</option>
+                                            <option value="Cartão de Débito">Cartão de Débito</option>
+                                            <option value="Pix">Pix</option>
+                                            <option value="Boleto">Boleto</option>
+                                        </Form.Select>
+                                    </Form.Group>
 
-                                <div className="mb-2">
-                                    <label>Forma de Pagamento *</label>
-                                    <select
-                                        className="form-select"
-                                        value={pagamento.forma_pagamento || ''}
-                                        onChange={e => {
-                                            const novosPagamentos = [...formData.pagamentos];
-                                            novosPagamentos[idx].forma_pagamento = e.target.value;
-                                            setFormData({ ...formData, pagamentos: novosPagamentos });
-                                        }}
-                                    >
-                                        <option value="">-- Selecione a forma --</option>
-                                        <option value="Crédito">Crédito</option>
-                                        <option value="Débito">Débito</option>
-                                        <option value="Pix">Pix</option>
-                                        <option value="Dinheiro">Dinheiro</option>
-                                    </select>
-                                </div>
-
-                                <div className="mb-2">
-                                    <label>Status *</label>
-                                    <select
-                                        className="form-select"
-                                        value={pagamento.status || ''}
-                                        onChange={e => {
-                                            const novosPagamentos = [...formData.pagamentos];
-                                            novosPagamentos[idx].status = e.target.value;
-                                            setFormData({ ...formData, pagamentos: novosPagamentos });
-                                        }}
-                                    >
-                                        <option value="">-- Selecione o status --</option>
-                                        <option value="Pendente">Pendente</option>
-                                        <option value="Pago">Pago</option>
-                                        <option value="Cancelado">Cancelado</option>
-                                    </select>
+                                    <Form.Group className="col-md-6 mb-3">
+                                        <Form.Label>Status</Form.Label>
+                                        <Form.Select
+                                            value={pagamento.status || ''}
+                                            onChange={e => {
+                                                const newPagamentos = [...(formData.pagamentos || [])];
+                                                newPagamentos[index] = {
+                                                    ...newPagamentos[index],
+                                                    status: e.target.value
+                                                };
+                                                setFormData({ ...formData, pagamentos: newPagamentos });
+                                            }}
+                                        >
+                                            <option value="Pendente">Pendente</option>
+                                            <option value="Pago">Pago</option>
+                                            <option value="Cancelado">Cancelado</option>
+                                        </Form.Select>
+                                    </Form.Group>
                                 </div>
 
                                 <Button
                                     variant="danger"
                                     size="sm"
                                     onClick={() => {
-                                        const novosPagamentos = formData.pagamentos.filter((_, i) => i !== idx);
-                                        setFormData({ ...formData, pagamentos: novosPagamentos });
+                                        const newPagamentos = (formData.pagamentos || []).filter((_, i) => i !== index);
+                                        setFormData({ ...formData, pagamentos: newPagamentos });
                                     }}
                                 >
                                     Remover Pagamento
@@ -683,24 +911,31 @@ const Vendas: React.FC = () => {
                         ))}
 
                         <Button
-                            variant="secondary"
-                            size="sm"
-                            onClick={() => setFormData({ ...formData, pagamentos: [...formData.pagamentos, {}] })}
+                            variant="outline-primary"
+                            onClick={() => setFormData({
+                                ...formData,
+                                pagamentos: [...(formData.pagamentos || []), {
+                                    data_pagamento: '',
+                                    valor_pago: 0,
+                                    forma_pagamento: '',
+                                    status: 'Pendente'
+                                }]
+                            })}
                         >
                             Adicionar Pagamento
                         </Button>
-                    </form>
+                    </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowFormModal(false)}>
                         Cancelar
                     </Button>
                     <Button variant="primary" onClick={salvarVenda}>
-                        Salvar
+                        Salvar Venda
                     </Button>
                 </Modal.Footer>
-            </Modal>
-        </>
+            </Modal >
+        </div >
     );
 };
 
