@@ -6,50 +6,33 @@ const { enviarEmail } = require('../services/EmailServices');
 const router = express.Router();
 
 // Criar agendamento - RF01
-// ATENÇÃO: agora precisa enviar `cpf_cliente` no corpo da requisição
 router.post('/', async (req, res) => {
     const {
-        nome_cliente,
         cpf_cliente,
         data,
         horario,
-        status,
-        observacoes,
-        email = '',
-        endereco = ''
+        observacoes
     } = req.body;
 
-    if (!cpf_cliente || !nome_cliente || !data || !horario) {
-        return res.status(400).json({ error: 'cpf_cliente, nome_cliente, data e horario são obrigatórios' });
+    if (!cpf_cliente || !data || !horario) {
+        return res.status(400).json({ error: 'cpf_cliente, data e horario são obrigatórios' });
     }
 
     try {
-        // Busca o cliente pelo CPF
-        let clienteResult = await pool.query(
-            'SELECT cpf, email FROM cliente WHERE cpf = $1',
-            [cpf_cliente.toUpperCase().trim()]
+        const cpf = cpf_cliente.toUpperCase().trim();
+
+        // Verifica se o cliente existe
+        const clienteResult = await pool.query(
+            'SELECT nome, email FROM cliente WHERE cpf = $1',
+            [cpf]
         );
 
-        let cpf = cpf_cliente.toUpperCase().trim();
-        let emailCliente = email;
-
         if (clienteResult.rows.length === 0) {
-            // Converte para maiúsculo os campos antes de inserir
-            const nomeMaiusculo = nome_cliente.toUpperCase().trim();
-            const emailMaiusculo = email ? email.toUpperCase().trim() : null;
-            const enderecoMaiusculo = endereco ? endereco.toUpperCase().trim() : null;
-
-            const insertCliente = await pool.query(
-                'INSERT INTO cliente (cpf, nome, email, endereco) VALUES ($1, $2, $3, $4) RETURNING cpf',
-                [cpf, nomeMaiusculo, emailMaiusculo, enderecoMaiusculo]
-            );
-            cpf = insertCliente.rows[0].cpf;
-        } else {
-            // Se email não veio na requisição, usar o do banco
-            if (!emailCliente) {
-                emailCliente = clienteResult.rows[0].email;
-            }
+            return res.status(404).json({ error: 'Cliente não encontrado com o CPF informado' });
         }
+
+        const nome_cliente = clienteResult.rows[0].nome;
+        const emailCliente = clienteResult.rows[0].email;
 
         // Verifica se horário está disponível para a data
         const existe = await pool.query(
@@ -61,14 +44,14 @@ router.post('/', async (req, res) => {
             return res.status(400).json({ error: 'Horário já agendado' });
         }
 
-        // Insere o agendamento - status fixo 'agendado'
+        // Insere o agendamento
         const result = await pool.query(
             `INSERT INTO agendamento (data, horario, status, observacoes, cpf_cliente)
              VALUES ($1, $2, $3, $4, $5) RETURNING id`,
             [data, horario, 'agendado', observacoes || null, cpf]
         );
 
-        // Enviar email para o cliente
+        // Enviar email ao cliente
         if (emailCliente) {
             const assunto = 'Agendamento Criado com Sucesso';
             const texto = `Olá, ${nome_cliente}! Seu agendamento foi criado para o dia ${data} às ${horario}.`;
@@ -85,6 +68,7 @@ router.post('/', async (req, res) => {
         res.status(500).json({ error: 'Erro interno do servidor' });
     }
 });
+
 
 // Listar agendamentos - RF02
 router.get('/', async (req, res) => {

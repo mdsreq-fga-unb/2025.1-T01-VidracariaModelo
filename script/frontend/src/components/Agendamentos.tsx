@@ -7,6 +7,7 @@ import { startOfWeek } from 'date-fns/startOfWeek';
 import { getDay } from 'date-fns/getDay';
 import { ptBR } from 'date-fns/locale/pt-BR';
 import './Agendamentos.css';
+import { Form } from 'react-bootstrap';
 
 interface Agendamento {
   id: number;
@@ -30,6 +31,8 @@ const Agendamentos: React.FC = () => {
   const [acaoPendente, setAcaoPendente] = useState<'editar' | 'excluir' | null>(null);
   const [filtroCliente, setFiltroCliente] = useState('');
   const [filtroStatus, setFiltroStatus] = useState('');
+  const [status, setStatus] = useState('agendado');
+
 
   const navigate = useNavigate();
 
@@ -300,7 +303,10 @@ const Agendamentos: React.FC = () => {
   }, [navigate]);
 
   // Resetar filtro de data
-  const resetarSelecao = () => setDataSelecionada(undefined);
+  const resetarSelecao = () => {
+    setDataSelecionada(undefined);
+    setFiltroStatus('');
+  }
 
   // Título para lista lateral de agendamentos
   const tituloLista = () => {
@@ -335,17 +341,21 @@ const Agendamentos: React.FC = () => {
             <div className="lista-agendamentos-container">
               <h2>{tituloLista()}</h2>
 
-              <select
-                className="campo-busca"
-                value={filtroStatus}
-                onChange={(e) => setFiltroStatus(e.target.value)}
-              >
-                <option value="">Todos os status</option>
-                <option value="agendado">Agendado</option>
-                <option value="concluido">Concluído</option>
-                <option value="cancelado">Cancelado</option>
-                <option value="confirmado">Confirmado</option>
-              </select>
+              <Form.Group className="mb-3">
+                <Form.Label>Status do Agendamento</Form.Label>
+                <Form.Select
+                  id="status"
+                  value={filtroStatus}
+                  onChange={(e) => setFiltroStatus(e.target.value)}
+                >
+
+
+                  <option value="agendado">Agendado</option>
+                  <option value="concluido">Concluído</option>
+                  <option value="cancelado">Cancelado</option>
+                </Form.Select>
+              </Form.Group>
+
 
               <div className="d-flex justify-content-center">
                 <button className="btn btn-sm btn-warning botao-resetar" onClick={resetarSelecao}>

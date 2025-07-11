@@ -37,6 +37,12 @@ type DetalhesVenda = Venda & {
     }[];
 };
 
+type FiltrosVenda = {
+    cliente_cpf?: string;
+    data_inicio?: string;
+    data_fim?: string;
+    forma_pagamento?: string;
+};
 type Produto = {
     id: number;
     nome: string;
@@ -103,13 +109,13 @@ const Vendas: React.FC = () => {
     }, []);
 
 
-    const carregarVendas = async (filtros = {}) => {
+    const carregarVendas = async (filtros: FiltrosVenda = {}) => {
         try {
             // Construir query string com os filtros
             const queryParams = new URLSearchParams();
             for (const [key, value] of Object.entries(filtros)) {
                 if (value) {
-                    queryParams.append(key, value);
+                    queryParams.append(key, value.toString()); // Garante que o valor é string
                 }
             }
 
