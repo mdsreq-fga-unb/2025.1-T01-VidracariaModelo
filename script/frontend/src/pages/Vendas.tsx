@@ -74,8 +74,8 @@ const Vendas: React.FC = () => {
         forma_pagamento: string;
         origem: string;
         itens: {
-            altura: number;
-            largura: number;
+            altura?: number;
+            largura?: number;
             id_produto?: number;
             quantidade?: number;
             valor_unitario?: number;
