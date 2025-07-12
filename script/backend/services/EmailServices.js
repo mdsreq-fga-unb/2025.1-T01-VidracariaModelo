@@ -8,13 +8,14 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-async function enviarEmail(destinatario, assunto, texto, html) {
+async function enviarEmail(destinatario, assunto, texto, html, attachments = []) {
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: destinatario,
         subject: assunto,
         text: texto,
         html: html,
+        attachments: attachments, // Adiciona os anexos ao e-mail
     };
 
     try {

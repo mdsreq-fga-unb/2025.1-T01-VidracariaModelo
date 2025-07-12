@@ -1,6 +1,21 @@
 const express = require('express');
 const pool = require('../Db');
+const PDFDocument = require('pdfkit');
+const { enviarEmail } = require('../services/EmailServices'); // Assumindo que o serviço de email está aqui
 const router = express.Router();
+
+// Função para converter um stream de PDF em um buffer
+function pdfToBuffer(pdfDoc) {
+    return new Promise((resolve, reject) => {
+        const buffers = [];
+        pdfDoc.on('data', buffers.push.bind(buffers));
+        pdfDoc.on('end', () => {
+            const pdfData = Buffer.concat(buffers);
+            resolve(pdfData);
+        });
+        pdfDoc.on('error', reject);
+    });
+}
 
 // [CLIENTE] - Criar nova solicitação de orçamento
 router.post('/', async (req, res) => {
@@ -162,7 +177,7 @@ router.put('/:id', async (req, res) => {
             [status, observacoes, valor_ofertado, id]
         );
 
-        // 2. Deletar itens antigos
+        // 2. Deletar itens antigos para garantir consistência
         await client.query(`DELETE FROM solicitacao_orcamento_itens WHERE id_solicitacao = $1`, [id]);
 
         // 3. Inserir novos itens
@@ -178,6 +193,85 @@ router.put('/:id', async (req, res) => {
         }
 
         await client.query('COMMIT');
+
+        // 4. Se o status for 'Aprovado', gerar PDF e enviar email
+        if (status && status.toLowerCase() === 'aprovado' && valor_ofertado > 0) {
+            try {
+                // Buscar dados completos da solicitação para o PDF e email
+                const solicitacaoCompletaQuery = `
+                    SELECT s.*, c.nome as cliente_nome, c.email as cliente_email
+                    FROM solicitacao_orcamento s
+                    JOIN cliente c ON s.cpf_cliente = c.cpf
+                    WHERE s.id = $1
+                `;
+                const solicitacaoResult = await pool.query(solicitacaoCompletaQuery, [id]);
+                const solicitacao = solicitacaoResult.rows[0];
+
+                if (solicitacao && solicitacao.cliente_email) {
+                    // Gerar o PDF
+                    const doc = new PDFDocument({ margin: 50, size: 'A4' });
+
+                    // Cabeçalho
+                    doc.fontSize(20).text('Orçamento - Vidraçaria Modelo', { align: 'center' });
+                    doc.moveDown();
+
+                    // Informações do Cliente e Orçamento
+                    doc.fontSize(12).text(`Orçamento Nº: ${solicitacao.id}`, { continued: true, align: 'left' });
+                    doc.text(`Data: ${new Date(solicitacao.data_solicitacao).toLocaleDateString('pt-BR')}`, { align: 'right' });
+                    doc.text(`Cliente: ${solicitacao.cliente_nome}`);
+                    doc.text(`CPF: ${solicitacao.cpf_cliente}`);
+                    doc.moveDown();
+
+                    // Tabela de Itens
+                    doc.fontSize(14).text('Itens do Orçamento', { underline: true });
+                    doc.moveDown(0.5);
+                    const tableTop = doc.y;
+                    doc.fontSize(10).font('Helvetica-Bold');
+                    doc.text('Produto', 50, tableTop);
+                    doc.text('Qtd.', 280, tableTop);
+                    doc.text('Medidas (L x A)', 350, tableTop);
+                    doc.font('Helvetica');
+                    doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke();
+                    doc.moveDown(0.5);
+
+                    for (const item of itens) {
+                        const produtoInfo = await pool.query('SELECT nome FROM produto WHERE id = $1', [item.id_produto]);
+                        const y = doc.y;
+                        doc.text(produtoInfo.rows[0].nome, 50, y, { width: 220 });
+                        doc.text(item.quantidade, 280, y);
+                        doc.text(`${item.largura}m x ${item.altura}m`, 350, y);
+                        doc.moveDown(1.5);
+                    }
+                    doc.moveTo(50, doc.y).lineTo(550, doc.y).stroke();
+                    doc.moveDown();
+
+                    // Valor Total
+                    doc.fontSize(14).font('Helvetica-Bold').text(`Valor Total Ofertado: R$ ${parseFloat(solicitacao.valor_ofertado).toFixed(2)}`, { align: 'right' });
+                    doc.moveDown();
+
+                    // Observações
+                    if (solicitacao.observacoes) {
+                        doc.fontSize(12).font('Helvetica-Bold').text('Observações:');
+                        doc.font('Helvetica').text(solicitacao.observacoes);
+                    }
+
+                    doc.end();
+                    const pdfBuffer = await pdfToBuffer(doc);
+
+                    // Enviar o email com o anexo
+                    const assunto = `Seu Orçamento Nº ${solicitacao.id} foi Aprovado!`;
+                    const texto = `Olá, ${solicitacao.cliente_nome}! Seu orçamento foi aprovado. Veja o PDF em anexo para mais detalhes.`;
+                    const html = `<p>Olá, <b>${solicitacao.cliente_nome}</b>!</p><p>Seu orçamento de número <b>${solicitacao.id}</b> foi aprovado e está pronto para virar um pedido.</p><p>O documento com todos os detalhes está em anexo.</p><p>Atenciosamente,<br>Vidraçaria Modelo</p>`;
+                    const attachments = [{ filename: `orcamento_${solicitacao.id}.pdf`, content: pdfBuffer, contentType: 'application/pdf' }];
+
+                    await enviarEmail(solicitacao.cliente_email, assunto, texto, html, attachments);
+                }
+            } catch (emailError) {
+                console.error("Falha ao gerar PDF ou enviar email:", emailError);
+                // Não retorna erro ao cliente, pois a atualização do orçamento foi bem-sucedida. Apenas loga o erro.
+            }
+        }
+
         res.json({ message: "Solicitação de orçamento atualizada com sucesso!" });
 
     } catch (error) {
