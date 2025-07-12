@@ -31,7 +31,6 @@ const Agendamentos: React.FC = () => {
   const [acaoPendente, setAcaoPendente] = useState<'editar' | 'excluir' | null>(null);
   const [filtroCliente, setFiltroCliente] = useState('');
   const [filtroStatus, setFiltroStatus] = useState('');
-  const [status, setStatus] = useState('agendado');
 
 
   const navigate = useNavigate();

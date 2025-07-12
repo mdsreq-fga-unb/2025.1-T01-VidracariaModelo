@@ -138,6 +138,30 @@ CREATE TABLE administrador_despesa (
     FOREIGN KEY (id_despesa) REFERENCES despesa(id)
 );
 
+-- 16. Tabela: solicitacao_orcamento (cabeçalho da solicitação)
+CREATE TABLE solicitacao_orcamento (
+    id SERIAL PRIMARY KEY,
+    cpf_cliente VARCHAR(14) NOT NULL,
+    data_solicitacao DATE NOT NULL DEFAULT CURRENT_DATE,
+    status VARCHAR(50) NOT NULL DEFAULT 'Pendente', -- Ex: Pendente, Em Análise, Concluído
+    observacoes TEXT,
+    valor_ofertado NUMERIC(10, 2), -- Valor final definido pelo administrador
+    FOREIGN KEY (cpf_cliente) REFERENCES cliente(cpf) ON DELETE CASCADE
+);
+
+-- 17. Tabela: solicitacao_orcamento_itens (itens da solicitação)
+CREATE TABLE solicitacao_orcamento_itens (
+    id SERIAL PRIMARY KEY,
+    id_solicitacao INTEGER NOT NULL,
+    id_produto INTEGER NOT NULL,
+    largura NUMERIC(10, 2) NOT NULL,
+    altura NUMERIC(10, 2) NOT NULL,
+    quantidade INTEGER NOT NULL DEFAULT 1,
+    observacoes TEXT,
+    FOREIGN KEY (id_solicitacao) REFERENCES solicitacao_orcamento(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_produto) REFERENCES produto(id)
+);
+
 -- Dados iniciais
 INSERT INTO administrador (nome, email, senha, tipo_usuario) VALUES
 ('Ana Gerente', 'ana@empresa.com', 'senha123', 'gerente'),
