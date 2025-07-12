@@ -1,0 +1,107 @@
+/* Fundo da página, centralizando o conteúdo */
+.faqContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #EAEAEA; /* Cinza claro do protótipo */
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* O container branco que envolve o FAQ */
+.faqContent {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+/* Container para todos os itens do acordeão */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Espaçamento entre os itens */
+}
+
+/* Estilo de um único item (pergunta + resposta) */
+.item {
+  background-color: white;
+  border-radius: 8px;
+  border: 2px solid #F59E0B; /* Laranja/dourado do protótipo */
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  overflow: hidden; /* Essencial para a animação de altura */
+  transition: all 0.3s ease-in-out;
+}
+
+/* Estilo do cabeçalho de cada item (pergunta + ícone) */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.questionText {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  text-align: left;
+}
+
+/* A área da resposta */
+.answer {
+  /* A animação de "abrir" é feita com max-height */
+  max-height: 0;
+  transition: max-height 0.4s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+  color: #333;
+  text-align: left;
+}
+
+.answer p {
+  margin: 0;
+  padding-top: 1rem;
+  font-weight: 500; /* Deixando o texto da resposta um pouco mais forte como no protótipo */
+}
+
+/* Quando o item tem a classe .open, a resposta se expande */
+.item.open .answer {
+  max-height: 200px; /* Altura máxima que a resposta pode ter */
+  transition: max-height 0.5s ease-in-out;
+}
+
+/* Ícone de seta (criado com CSS puro) */
+.icon {
+  width: 10px;
+  height: 10px;
+  border-left: 2px solid #888;
+  border-bottom: 2px solid #888;
+  transform: rotate(-45deg); /* Posição inicial: seta para baixo */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Quando o item está aberto, o ícone gira */
+.item.open .icon {
+  transform: rotate(135deg); /* Posição aberta: seta para cima */
+}
+
+.statusMessage {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: center;
+  padding: 4rem;
+}

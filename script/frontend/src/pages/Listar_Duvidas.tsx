@@ -29,7 +29,7 @@ const ListarDuvidas: React.FC = () => {
   // 2. Criar uma variável booleana para deixar o código no JSX mais limpo.
   const isGerente = usuarioLogado?.tipo_usuario === 'gerente';
 
-  const handleCriarDuvida = () => navigate("/duvida/criar");
+  const handleCriarDuvida = () => navigate("/duvidas/criar");
 
   // 3. O useEffect agora tem a única responsabilidade de buscar os dados.
   useEffect(() => {
@@ -58,15 +58,16 @@ const ListarDuvidas: React.FC = () => {
 
 
   return (
+    <>
     <div className="page-container">
       <main className="main-content">
-        <div className="cabecalho-lista">
-          <h1 className="page-title">Lista de Dúvidas</h1>
+        <div className="cabecalho">
+          <h1 className="page-title">Lista de Dúvidas Cadastradas</h1>
           
           {/* 4. RENDERIZAÇÃO CONDICIONAL do botão */}
           {/* O botão só será exibido se a variável 'isGerente' for verdadeira. */}
           {isGerente && (
-            <button className="botao-novo" onClick={handleCriarDuvida}>
+            <button className="botao-novo-duvida" onClick={handleCriarDuvida}>
               + Nova Dúvida
             </button>
           )}
@@ -84,6 +85,11 @@ const ListarDuvidas: React.FC = () => {
         </div>
       </main>
     </div>
+    
+      <footer className="footerContainer1">
+        <div className="redStripe1" />
+      </footer>    
+    </>
   );
 };
 

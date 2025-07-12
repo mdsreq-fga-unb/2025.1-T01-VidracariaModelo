@@ -12,7 +12,7 @@ const OrcamentoItem: React.FC<DuvidaItemProps> = ({ id, duvida, resposta }) => {
   const navigate = useNavigate();
 
   const handleEditar = () => {
-    navigate(`/duvida/editar/${id}`);
+    navigate(`/duvidas/editar/${id}`);
   };
 
   return (

@@ -1,35 +1,351 @@
-/* Estilos gerais para a página */
-@import url('https://fonts.googleapis.com/css2?family=K2D:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+/* Importação da folha de estilos padrão do react-big-calendar */
+@import 'react-big-calendar/lib/css/react-big-calendar.css';
 
-.page-container {
-  display: flex;
-  justify-content: center; /* Centraliza o card na horizontal */
-  padding: 2rem;
-  background-color: #f7f7f7; /* Um cinza bem claro para o fundo da página */
-  min-height: 100vh;
-  font-family: 'K2D', sans-serif; 
-}
-
-/* O container branco que envolve a lista */
-.main-content {
-  width: 100%;
-  max-width: 800px;
-  background-color: white;
-  padding: 2.5rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-}
-
-/* Título "Lista de orçamentos solicitados" */
-.page-title {
-  font-size: 2.5rem; /* Tamanho maior */
-  font-weight: 600; /* Um pouco mais forte */
-  color: #2d2d2d;
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-
-.orcamentos-list {
+.container-geral {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+  background-color: #EAEAEA;
+}
+
+.painel-agendamentos {
+  flex-grow: 1;
+  padding: 2rem 4rem;
+  text-align: left;
+}
+
+.painel-agendamentos h1 {
+  color: #333;
+  font-size: 2rem;
+}
+
+/* Cabeçalho */
+.cabecalho-lista {
+  display: flex;
+  flex-direction: column;
+  /* 1. Empilha os itens verticalmente */
+  gap: 1rem;
+  /* Adiciona um espaço de 16px entre os itens empilhados */
+  margin-bottom: 2rem;
+  align-items: end;
+}
+
+.cabecalho-lista h1 {
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin: 0 !important;
+}
+
+.cabecalho-lista button {
+  align-self: flex-end;
+}
+
+.botao-novo-duvida {
+  background-color: #D90429;
+  /* Vermelho do protótipo */
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.botao-novo-duvida:hover {
+  background-color: #b00321;
+}
+
+/* Conteúdo Principal (Layout de 2 colunas) */
+.conteudo-principal {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  /* Coluna da esquerda fixa, direita flexível */
+  gap: 2rem;
+  height: 600px;
+  /* Altura fixa para o container do calendário e da lista */
+}
+
+/* Painel Esquerdo */
+.painel-esquerdo {
+  display: flex;
+  flex-direction: column;
+}
+
+.campo-busca {
+  width: 100%;
+  padding: 0.8rem;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+
+  /* Estilos atualizados */
+  background-color: #FFFFFF;
+  margin-bottom: 2rem;
+}
+
+.lista-container {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  /* Adiciona scroll se a lista for grande */
+  flex-grow: 1;
+  text-align: left;
+}
+
+.lista-container h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.lista-agendamentos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.item-agendamento {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.info-agendamento {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-agendamento span:first-child {
+  font-weight: bold;
+  color: #555;
+}
+
+.info-agendamento span:last-child {
+  color: #777;
+}
+
+.marcador-vermelho {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: blue;
+  border-radius: 50%;
+}
+
+.marcador-verde {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+}
+
+
+.sem-agendamentos {
+  color: #888;
+  text-align: center;
+  padding-top: 2rem;
+}
+
+/* Painel Direito (Calendário) */
+.painel-direito {
+  background-color: white;
+  color: #333;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Customização do evento no calendário */
+.rbc-event.evento-calendario {
+  background-color: #28a745;
+  /* Verde para combinar com o protótipo */
+  border-color: #1e7e34;
+}
+
+/* Rodapé */
+.rodape {
+  height: 500px;
+  background-color: #D90429;
+  /* Vermelho do protótipo */
+}
+
+/* Adicione este bloco ao final do seu arquivo Agendamentos.css */
+
+/* --- Estilos do Modal --- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1040;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  /* cor sólida para o modal */
+  z-index: 1050;
+  padding: 20px;
+  border-radius: 0.5rem;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+
+
+
+.modal-title {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.modal-body p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.modal-body p strong {
+  color: #333;
+}
+
+.modal-footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: flex-end;
+  /* Alinha os botões à direita */
+  gap: 1rem;
+  /* Espaço entre os botões */
+}
+
+.modal-footer button {
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.modal-footer button:hover {
+  opacity: 0.85;
+}
+
+.modal-button-edit {
+  background-color: #28a745;
+  /* Verde */
+  color: white;
+}
+
+.modal-button-delete {
+  background-color: #D90429;
+  /* Vermelho */
+  color: white;
+}
+
+
+.confirmacao-backdrop {
+  position: absolute;
+  /* Posiciona-se em relação ao .modal-content */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  /* Fundo branco semi-transparente para focar */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+  /* Fica por cima do conteúdo do modal principal */
+  border-radius: 8px;
+  /* Para alinhar com as bordas do modal pai */
+}
+
+.confirmacao-content {
+  background: white;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.confirmacao-content p {
+  margin: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.confirmacao-botoes {
+  display: flex;
+  gap: 1rem;
+}
+
+.confirmacao-botoes button {
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  color: white;
+}
+
+.confirmacao-botoes button:hover {
+  opacity: 0.85;
+}
+
+.confirmacao-sim {
+  background-color: #28a745;
+  /* Verde */
+}
+
+.confirmacao-nao {
+  background-color: #D90429;
+  /* Vermelho */
+}
+
+.modal-content {
+  position: relative;
+}
+
+.footerContainer1 {
+  position: relative; 
+  width: 100%; 
+  height: 100px; 
+}
+
+.redStripe1 {
+  position: absolute; 
+  bottom: 0; 
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background-color: #d90429;
 }

@@ -96,6 +96,7 @@ const PaginaDeDuvidas: React.FC = () => {
 
   // O formulário só é renderizado se o usuário for um gerente
   return (
+    <>
     <div className="agendamento-container">
        <button
           type="button"
@@ -133,6 +134,10 @@ const PaginaDeDuvidas: React.FC = () => {
         <Button type="submit" className="agendar-button">Salvar Dúvida</Button>
       </Form>
     </div>
+        <footer className="footerContainer1">
+        <div className="redStripe1" />
+      </footer>    
+    </>  
   );
 };
 
