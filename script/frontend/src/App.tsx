@@ -84,6 +84,7 @@ function App() {
         />
         <ul>
           <li><Link to="/" onClick={() => setMenuAberto(false)}>Início</Link></li>
+          <li><Link to="/duvidas" onClick={() => setMenuAberto(false)}>Dúvidas Frequentes</Link></li>
 
           {/* Só mostrar esses links se for gerente */}
           {tipoUsuario === 'gerente' && (
@@ -92,6 +93,7 @@ function App() {
               <li><Link to="/vendas" onClick={() => setMenuAberto(false)}>Vendas</Link></li>
               <li><Link to="/clientes" onClick={() => setMenuAberto(false)}>Clientes</Link></li>
               <li><Link to="/agendamento" onClick={() => setMenuAberto(false)}>Agendamentos</Link></li>
+              <li><Link to="/duvidas/listar" onClick={() => setMenuAberto(false)}>Dúvidas Cadastradas</Link></li>
 
             </>
           )}

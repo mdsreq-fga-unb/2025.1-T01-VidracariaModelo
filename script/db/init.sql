@@ -162,6 +162,13 @@ CREATE TABLE solicitacao_orcamento_itens (
     FOREIGN KEY (id_produto) REFERENCES produto(id)
 );
 
+-- 18. Tabela: Dúvidas frequentes e Repostas (itens da área de Dúvidas)
+CREATE TABLE duvidas_e_respostas (
+    id SERIAL PRIMARY KEY,
+    duvida TEXT NOT NULL,
+    resposta TEXT NOT NULL,
+);
+
 -- Dados iniciais
 INSERT INTO administrador (nome, email, senha, tipo_usuario) VALUES
 ('Ana Gerente', 'ana@empresa.com', 'senha123', 'gerente'),
@@ -176,3 +183,6 @@ INSERT INTO produto (nome, valor_m2) VALUES
 ('Espelho 4mm bisotê', 90.00),
 ('Vidro laminado 6mm', 150.00),
 ('Box padrão', 200.00);
+
+INSERT INTO duvidas_e_respostas( duvida, resposta) VALUES
+('Qual o valor de um vidro?', 'Tá saindo por 100000000');

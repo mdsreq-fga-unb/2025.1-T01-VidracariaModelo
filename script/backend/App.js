@@ -7,6 +7,7 @@ const clientesRoutes = require('./Routes/clients_routes');
 const horariosRoutes = require('./Routes/horario_routes');
 const vendasRoutes = require('./Routes/venda_routes');
 const Login = require('./Routes/Login_routes');
+const duvidasRoutes = require('./Routes/duvidas_routes');
 
 const app = express();
 
@@ -18,7 +19,8 @@ app.use('/clientes', clientesRoutes);
 app.use('/vendas', vendasRoutes);
 app.use('/produtos', require('./Routes/produtos_routes'));
 app.use('/orcamento', require('./Routes/solicitacao_orcamento_routes'));
-app.use('/auth', Login)
+app.use('/auth', Login);
+app.use('/duvidas', duvidasRoutes)
 
 app.use('/', horariosRoutes);
 
