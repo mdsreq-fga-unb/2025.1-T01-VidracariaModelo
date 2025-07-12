@@ -19,6 +19,7 @@ app.use('/clientes', clientesRoutes);
 app.use('/vendas', vendasRoutes);
 app.use('/produtos', require('./Routes/produtos_routes'));
 app.use('/orcamento', require('./Routes/solicitacao_orcamento_routes'));
+app.use('/dash', require('./Routes/Dash_routes'))
 app.use('/auth', Login);
 app.use('/duvidas', duvidasRoutes)
 

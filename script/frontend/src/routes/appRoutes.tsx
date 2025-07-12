@@ -15,6 +15,8 @@ import EditarDuvidas from '../pages/Editar_Duvidas';
 import DuvidasFrequentes from '../pages/Duvidas_publico';
 import CriarDuvidas from '../pages/Criar_Duvida';
 
+import Dashboard from '../pages/Dash';
+
 const AppRoutes = () => {
   return (
     <Routes>
@@ -33,6 +35,7 @@ const AppRoutes = () => {
       <Route path="/duvidas/listar" element={<ListarDuvidas />} />
       <Route path="/duvidas/editar/:id" element={<EditarDuvidas />} />
       <Route path="/duvidas" element={<DuvidasFrequentes />} />
+      <Route path="/dashboard" element={<Dashboard />} />
 
     </Routes>
 
