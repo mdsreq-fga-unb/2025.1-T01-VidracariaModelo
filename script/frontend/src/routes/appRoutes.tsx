@@ -14,6 +14,7 @@ import ListarDuvidas from '../pages/Listar_Duvidas';
 import EditarDuvidas from '../pages/Editar_Duvidas';
 import DuvidasFrequentes from '../pages/Duvidas_publico';
 import CriarDuvidas from '../pages/Criar_Duvida';
+import Solicitar_Orcamento from '../pages/Solicitar_Orçamento';
 
 import Dashboard from '../pages/Dash';
 
@@ -36,6 +37,7 @@ const AppRoutes = () => {
       <Route path="/duvidas/editar/:id" element={<EditarDuvidas />} />
       <Route path="/duvidas" element={<DuvidasFrequentes />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/solicitar-orcamento" element={<Solicitar_Orcamento />} />
 
     </Routes>
 

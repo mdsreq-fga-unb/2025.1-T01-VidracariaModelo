@@ -1,0 +1,210 @@
+/* Reutilize .page-container e .page-title de ListarOrcamentos.css */
+@import './ListarOrcamentos.css';
+
+.edit-main-content {
+  width: 100%;
+  max-width: 700px;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.page-subtitle {
+  text-align: center;
+  color: #666;
+  margin-top: -1.5rem;
+  margin-bottom: 2rem;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #e53935;
+  /* Cor principal da sua marca */
+  box-shadow: 0 0 0 2px rgba(229, 57, 53, 0.2);
+}
+
+.form-group select {
+  /* Adicione aqui */
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.form-actions button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.form-actions button:hover {
+  opacity: 0.85;
+}
+
+.cancel-button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.submit-button {
+  background-color: #ff8c00;
+  /* Laranja, como no print */
+  color: white;
+}
+
+.voltar-button {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+.voltar-button:hover {
+  background-color: #e0e0e0;
+}
+
+.form-group-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espaço entre a caixinha e o texto */
+  margin-bottom: 1.5rem; /* Espaço abaixo do grupo */
+}
+
+.form-group-checkbox label {
+  margin-bottom: 0; /* Remove a margem padrão do label */
+  font-weight: normal;
+}
+
+/* Adicione estas classes para estilizar a nova estrutura */
+.form-section {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  background-color: #fafafa;
+}
+
+.item-adder {
+  border-color: #c0c0c0;
+}
+
+.form-section h3 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.add-item-button {
+  background-color: #28a745; /* Verde */
+  color: white;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.items-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.items-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.remove-item-button {
+  background-color: transparent;
+  color: #dc3545; /* Vermelho */
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Adicione estas classes ao seu arquivo Solicitar_Orçamento.css */
+
+/* Container principal para os campos de medidas, se quiser alinhar lado a lado */
+.form-group-medidas {
+  display: flex;
+  flex-direction: column; /* Empilha os campos verticalmente */
+  gap: 0.75rem; /* Espaço entre os campos */
+}
+/* Estilo padrão para todos os inputs e selects do formulário */
+.form-input {
+  /* Modelo de Caixa */
+  width: 100%; /* Ocupa toda a largura do container pai */
+  padding: 0.8rem 1rem;
+  box-sizing: border-box; /* Garante que o padding não aumente a largura total */
+
+  /* Tipografia */
+  font-size: 1rem;
+  color: #333; /* Cor do texto escura */
+
+  /* Aparência */
+  background-color: #FFFFFF; /* Fundo branco */
+  border: 1px solid #D1D5DB; /* Borda cinza clara, como no protótipo */
+  border-radius: 8px; /* Bordas arredondadas */
+  
+  /* Comportamento */
+  transition: border-color 0.2s, box-shadow 0.2s; /* Efeito suave no foco */
+}
+
+/* Efeito visual quando o campo está em foco (selecionado) */
+.form-input:focus {
+  outline: none; /* Remove a borda azul padrão do navegador */
+  border-color: #F59E0B; /* Borda laranja para combinar com o tema */
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2); /* Um brilho suave */
+}
