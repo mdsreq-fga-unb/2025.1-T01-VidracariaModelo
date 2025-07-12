@@ -387,7 +387,7 @@ const Agendamentos: React.FC = () => {
           <div className="painel-direito">
             <Calendar
               localizer={localizer}
-              events={agendamentosFiltrados}
+              events={agendamentos}
               startAccessor="inicio"
               endAccessor="fim"
               titleAccessor="cliente"

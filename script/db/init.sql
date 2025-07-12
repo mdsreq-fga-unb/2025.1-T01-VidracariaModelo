@@ -125,8 +125,9 @@ CREATE TABLE venda_audit_log (
 CREATE TABLE despesa (
     id SERIAL PRIMARY KEY,
     tipo_despesa VARCHAR(100) NOT NULL,
+    valor NUMERIC(10, 2) NOT NULL,
     descricao TEXT,
-    data_cadastro DATE NOT NULL
+    data_despesa DATE NOT NULL DEFAULT CURRENT_DATE
 );
 
 -- 15. Tabela: administrador_despesa
@@ -166,23 +167,75 @@ CREATE TABLE solicitacao_orcamento_itens (
 CREATE TABLE duvidas_e_respostas (
     id SERIAL PRIMARY KEY,
     duvida TEXT NOT NULL,
-    resposta TEXT NOT NULL,
+    resposta TEXT NOT NULL
 );
 
 -- Dados iniciais
+-- A senha para todos os administradores é 'senha123' (hash bcrypt)
 INSERT INTO administrador (nome, email, senha, tipo_usuario) VALUES
-('Ana Gerente', 'ana@empresa.com', 'senha123', 'gerente'),
-('Carlos Usuario', 'carlos@empresa.com', 'senha123', 'usuario');
+('Ana Gerente', 'ana@empresa.com', '$2a$08$zG.i4n5F06eIelHnCqTj0.t2lJcAmVwISbA5i5gJcW2zJg5a.Yn.S', 'gerente'),
+('Carlos Usuario', 'carlos@empresa.com', '$2a$08$zG.i4n5F06eIelHnCqTj0.t2lJcAmVwISbA5i5gJcW2zJg5a.Yn.S', 'usuario'),
+('Beatriz Vendas', 'bia@empresa.com', '$2a$08$zG.i4n5F06eIelHnCqTj0.t2lJcAmVwISbA5i5gJcW2zJg5a.Yn.S', 'usuario');
 
 INSERT INTO cliente (cpf, nome, email, endereco) VALUES
-('123.456.789-00', 'João da Silva', 'joao@gmail.com', 'Rua A, 123'),
-('987.654.321-00', 'Maria Oliveira', 'maria@gmail.com', 'Av. B, 456');
+('123.456.789-00', 'João da Silva', 'joao@gmail.com', 'Rua A, 123, São Paulo-SP'),
+('987.654.321-00', 'Maria Oliveira', 'maria@gmail.com', 'Av. B, 456, Rio de Janeiro-RJ'),
+('111.222.333-44', 'Carlos Pereira', 'carlos.p@example.com', 'Rua C, 789, Brasília-DF'),
+('444.555.666-77', 'Fernanda Costa', 'fernanda@outlook.com', 'Praça D, 101, Belo Horizonte-MG'),
+('777.888.999-00', 'Ricardo Souza', 'ricardo.souza@yahoo.com', 'Alameda E, 202, Curitiba-PR');
 
 INSERT INTO produto (nome, valor_m2) VALUES
 ('Vidro temperado 8mm', 120.00),
 ('Espelho 4mm bisotê', 90.00),
 ('Vidro laminado 6mm', 150.00),
-('Box padrão', 200.00);
+('Box padrão', 200.00),
+('Guarda-corpo de vidro', 250.00),
+('Porta de vidro de correr', 300.00),
+('Tampo de mesa de vidro 10mm', 180.00),
+('Mão de obra (taxa)', 50.00);
+
+-- Solicitações de Orçamento de Exemplo
+INSERT INTO solicitacao_orcamento (cpf_cliente, status, observacoes, valor_ofertado, data_solicitacao) VALUES
+('111.222.333-44', 'Aprovado', 'Orçamento para janela da cozinha e espelho do banheiro.', 550.80, '2024-05-20'),
+('444.555.666-77', 'Pendente', 'Gostaria de um orçamento para um guarda-corpo na varanda.', null, '2024-06-10'),
+('777.888.999-00', 'Concluido', 'Orçamento para porta de vidro.', 1200.00, '2024-04-15');
+
+INSERT INTO solicitacao_orcamento_itens (id_solicitacao, id_produto, largura, altura, quantidade, observacoes) VALUES
+(1, 1, 1.50, 1.00, 1, 'Janela para cozinha.'),
+(1, 2, 0.80, 1.20, 1, 'Espelho para banheiro.'),
+(2, 5, 3.00, 1.10, 1, 'Guarda-corpo para varanda do apartamento.'),
+(3, 6, 2.0, 2.1, 1, 'Porta de correr para a sala');
+
+-- Vendas de Exemplo
+INSERT INTO venda (data_venda, forma_pagamento, valor, origem, cpf_cliente) VALUES
+('2025-05-15', 'Cartão de Crédito', 1140.00, 'Loja Física', '123.456.789-00'),
+('2025-06-01', 'Pix', 900.00, 'Indicação', '987.654.321-00');
+
+INSERT INTO venda_itens (id_venda, id_produto, quantidade, valor_unitario, medida, descricao, largura, altura, valor_total) VALUES
+(1, 6, 1, 300.00, 'un', 'Porta de vidro para a sala', 2.00, 2.10, 1140.00),
+(2, 7, 1, 180.00, 'un', 'Tampo de mesa para sala de jantar', 1.60, 0.90, 900.00);
+
+INSERT INTO pagamentos (id_venda, data_pagamento, valor_pago, forma_pagamento) VALUES
+(1, '2025-05-15', 1140.00, 'Cartão de Crédito'),
+(2, '2025-06-01', 900.00, 'Pix');
 
 INSERT INTO duvidas_e_respostas( duvida, resposta) VALUES
-('Qual o valor de um vidro?', 'Tá saindo por 100000000');
+('Qual o prazo de entrega?', 'O prazo de entrega varia de 7 a 15 dias úteis, dependendo do produto e da complexidade da instalação.'),
+('Vocês fazem instalação?', 'Sim, todos os nossos orçamentos incluem a instalação completa realizada por nossa equipe técnica especializada.'),
+('Quais formas de pagamento vocês aceitam?', 'Aceitamos Pix, cartões de crédito e débito. Para projetos maiores, oferecemos opções de parcelamento.');
+
+-- Adicionando dados de despesas para teste do dashboard
+INSERT INTO despesa (tipo_despesa, valor, descricao, data_despesa) VALUES
+('Fornecedores', 1500.00, 'Compra de chapa de vidro 8mm', '2025-05-10'),
+('Marketing', 350.00, 'Impulsionamento de posts em redes sociais', '2025-05-20'),
+('Salários', 5500.00, 'Pagamento de salários do mês', '2025-06-05'),
+('Aluguel', 2000.00, 'Aluguel da loja', '2025-06-05');
+
+-- Agendamentos de Exemplo
+INSERT INTO agendamento (data, horario, status, observacoes, cpf_cliente) VALUES
+('2024-07-20', '10:00:00', 'Agendado', 'Visita técnica para medição de box.', '777.888.999-00'),
+('2024-07-22', '14:00:00', 'Agendado', 'Orçamento para fechamento de varanda.', '444.555.666-77');
+
+-- Vinculando agendamentos a administradores
+INSERT INTO realiza (id_admin, id_agendamento) VALUES
+(2, 1), (3, 2);

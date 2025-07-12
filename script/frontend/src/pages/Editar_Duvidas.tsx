@@ -17,16 +17,18 @@ const getUsuarioFromToken = () => {
 const PaginaDeDuvidas: React.FC = () => {
   const [duvida_desc, setDuvida] = useState('');
   const [resposta, setResposta] = useState('');
-  const [carregando, setCarregando] = useState(true); 
+  const [carregando, setCarregando] = useState(true);
 
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
+
+
   const navigate = useNavigate();
 
   // --- LÓGICA DO BOTÃO "SALVAR" ---
   // Corrigido para receber o evento e prevenir o comportamento padrão do form
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault(); 
-    
+    event.preventDefault();
+
     const duvida = {
       duvida: duvida_desc,
       resposta: resposta,
@@ -36,9 +38,9 @@ const PaginaDeDuvidas: React.FC = () => {
       const token = localStorage.getItem("token");
       const res = await fetch(`http://localhost:3000/duvidas/${id}`, {
         method: 'PUT',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}` 
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(duvida),
       });
@@ -79,9 +81,9 @@ const PaginaDeDuvidas: React.FC = () => {
     // 1. PRIMEIRO, VERIFICAR A PERMISSÃO
     const usuario = getUsuarioFromToken();
     if (!usuario || usuario.tipo_usuario !== 'gerente') {
-        alert("Acesso negado. Você precisa ser um gerente para editar dúvidas.");
-        navigate('/duvidas/listar');
-        return; // Interrompe a execução se o usuário não tiver permissão
+      alert("Acesso negado. Você precisa ser um gerente para editar dúvidas.");
+      navigate('/duvidas/listar');
+      return; // Interrompe a execução se o usuário não tiver permissão
     }
 
     // 2. SE TIVER PERMISSÃO, BUSCAR OS DADOS DA DÚVIDA
@@ -112,7 +114,7 @@ const PaginaDeDuvidas: React.FC = () => {
     return <div>Carregando...</div>;
   }
 
-  // O JSX FICA AQUI, NO CORPO PRINCIPAL DO COMPONENTE
+
   return (
     <>
       <div className="agendamento-container">
@@ -136,7 +138,7 @@ const PaginaDeDuvidas: React.FC = () => {
           <div className="form-group">
             <label htmlFor="resposta">Resposta:</label>
             <textarea id="resposta" className="textarea-field" value={resposta} onChange={(e) => setResposta(e.target.value)} />
-          </div>          
+          </div>
 
           <div className="botoes-container">
             <button type="button" className="excluir-button" onClick={handleExcluirClick}>
