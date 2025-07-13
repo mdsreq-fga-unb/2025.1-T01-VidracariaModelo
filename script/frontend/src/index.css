@@ -13,6 +13,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  /* 
+    Define o tamanho da fonte base para 62.5%.
+    Isso faz com que 1rem = 10px (padrão do navegador 16px * 0.625 = 10px),
+    facilitando a conversão de px para rem em todo o projeto.
+  */
+  font-size: 62.5%;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -23,6 +32,8 @@ a:hover {
 }
 
 body {
+  /* Define o tamanho da fonte padrão do corpo para 1.6rem (equivalente a 16px) */
+  font-size: 1.6rem;
   margin: 0;
   place-items: center;
   min-width: 320px;
