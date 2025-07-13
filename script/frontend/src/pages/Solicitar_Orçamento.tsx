@@ -29,6 +29,7 @@ const SolicitarOrcamento: React.FC = () => {
   const [endereco, setEndereco] = useState('');
   const [observacoesGerais, setObservacoesGerais] = useState('');
   const [aceitaEmail, setAceitaEmail] = useState(false);
+  const API_URL = import.meta.env.VITE_URL_BASE;
 
 
   // 2. Estado para a lista de itens que o usuário adiciona
@@ -50,7 +51,7 @@ const SolicitarOrcamento: React.FC = () => {
   useEffect(() => {
     const buscarProdutos = async () => {
       try {
-        const res = await fetch('http://localhost:3000/produtos');
+        const res = await fetch(`${API_URL}/produtos`);
         if (!res.ok) throw new Error('Falha ao carregar produtos');
         const data = await res.json();
         setProdutos(data);
@@ -105,7 +106,7 @@ const SolicitarOrcamento: React.FC = () => {
 
   const buscarCliente = async (CPF: string) => {
     try {
-      const res = await fetch(`http://localhost:3000/clientes/${CPF}`);
+      const res = await fetch(`${API_URL}/clientes/${CPF}`);
 
       if (!res.ok) {
         // Se o status não for 200, por exemplo 404 ou 500
@@ -159,7 +160,7 @@ const SolicitarOrcamento: React.FC = () => {
           endereco: endereco || null, // Envia nulo se o endereço estiver vazio
         };
 
-        const resCliente = await fetch('http://localhost:3000/clientes', {
+        const resCliente = await fetch(`${API_URL}/clientes`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(novoClientePayload),
@@ -179,7 +180,7 @@ const SolicitarOrcamento: React.FC = () => {
         itens: [], // Remove 'nome_produto' antes de enviar
       };
 
-      const resOrcamento = await fetch('http://localhost:3000/orcamento', {
+      const resOrcamento = await fetch(`${API_URL}/orcamento`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orcamentoPayload),

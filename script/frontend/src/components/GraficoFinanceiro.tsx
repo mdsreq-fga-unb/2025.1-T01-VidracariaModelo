@@ -18,6 +18,7 @@ const GraficoFinanceiro: React.FC<GraficoFinanceiroProps> = ({ dataInicio, dataF
 
     const [dados, setDados] = useState<MesFinanceiro[]>([]);
     const [loading, setLoading] = useState(true);
+    const API_URL = import.meta.env.VITE_URL_BASE;
 
     useEffect(() => {
         const carregarDados = async () => {
@@ -28,7 +29,7 @@ const GraficoFinanceiro: React.FC<GraficoFinanceiroProps> = ({ dataInicio, dataF
                 if (dataInicio) queryParams.append("data_inicio", dataInicio);
                 if (dataFim) queryParams.append("data_fim", dataFim);
 
-                const res = await fetch(`http://localhost:3000/dash/summary?${queryParams.toString()}`, {
+                const res = await fetch(`${API_URL}/dash/summary?${queryParams.toString()}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

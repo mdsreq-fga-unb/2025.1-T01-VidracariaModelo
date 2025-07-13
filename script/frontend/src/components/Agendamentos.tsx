@@ -32,6 +32,7 @@ const Agendamentos: React.FC = () => {
   const [filtroCliente, setFiltroCliente] = useState('');
   const [filtroStatus, setFiltroStatus] = useState('');
 
+  const API_URL = import.meta.env.VITE_URL_BASE;
 
   const navigate = useNavigate();
 
@@ -197,7 +198,7 @@ const Agendamentos: React.FC = () => {
           return;
         }
 
-        const res = await fetch(`http://localhost:3000/agendamentos/${eventoSelecionado.id}`, {
+        const res = await fetch(`${API_URL}/agendamentos/${eventoSelecionado.id}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -237,7 +238,7 @@ const Agendamentos: React.FC = () => {
       : statusAtual === 'concluido' ? 'cancelado' : 'agendado';
 
     try {
-      const res = await fetch(`http://localhost:3000/agendamentos/${eventoSelecionado.id}/status`, {
+      const res = await fetch(`${API_URL}/agendamentos/${eventoSelecionado.id}/status`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -267,7 +268,7 @@ const Agendamentos: React.FC = () => {
   useEffect(() => {
     const buscarAgendamentos = async () => {
       try {
-        const res = await fetch('http://localhost:3000/agendamentos');
+        const res = await fetch(`${API_URL}/agendamentos`);
 
         if (res.status === 401) {
           alert("Sessão expirada. Faça login novamente.");

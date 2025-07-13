@@ -65,7 +65,7 @@ const Vendas: React.FC = () => {
     const [clientes, setClientes] = useState<Cliente[]>([]);
     const { toPDF, targetRef } = usePDF({ filename: `recibo-venda-${detalhes?.id || ''}.pdf` });
 
-
+    const API_URL = import.meta.env.VITE_URL_BASE;
     const [showFilters, setShowFilters] = useState(false);
     const [filters, setFilters] = useState({
         cliente_cpf: '',
@@ -119,7 +119,7 @@ const Vendas: React.FC = () => {
                 }
             }
 
-            const url = `http://localhost:3000/vendas?${queryParams.toString()}`;
+            const url = `${API_URL}/vendas?${queryParams.toString()}`;
             const res = await fetch(url);
             const data = await res.json();
             setVendas(data.vendas);
@@ -150,7 +150,7 @@ const Vendas: React.FC = () => {
 
     const carregarProdutos = async () => {
         try {
-            const res = await fetch('http://localhost:3000/produtos');
+            const res = await fetch(`${API_URL}/produtos`);
             const data = await res.json();
             setProdutos(data);
         } catch (error) {
@@ -160,7 +160,7 @@ const Vendas: React.FC = () => {
 
     const carregarClientes = async () => {
         try {
-            const res = await fetch('http://localhost:3000/clientes');
+            const res = await fetch(`${API_URL}/clientes`);
             const data = await res.json();
             setClientes(data);
         } catch (error) {
@@ -170,7 +170,7 @@ const Vendas: React.FC = () => {
 
     const carregarDetalhes = async (id: number) => {
         try {
-            const res = await fetch(`http://localhost:3000/vendas/detalhes/${id}`);
+            const res = await fetch(`${API_URL}/vendas/detalhes/${id}`);
             const data = await res.json();
             setDetalhes(data);
             setShowDetalhesModal(true);
@@ -194,7 +194,7 @@ const Vendas: React.FC = () => {
 
     const abrirModalEditarVenda = async (id: number) => {
         try {
-            const res = await fetch(`http://localhost:3000/vendas/detalhes/${id}`);
+            const res = await fetch(`${API_URL}/vendas/detalhes/${id}`);
             const venda = await res.json();
 
             setFormMode('edit');
@@ -287,7 +287,7 @@ const Vendas: React.FC = () => {
         try {
             let response;
             if (formMode === 'create') {
-                response = await fetch('http://localhost:3000/vendas', {
+                response = await fetch(`${API_URL}/vendas`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(vendaData)
@@ -297,7 +297,7 @@ const Vendas: React.FC = () => {
                     throw new Error('ID da venda não encontrado para edição');
                 }
 
-                response = await fetch(`http://localhost:3000/vendas/detalhes/${currentVendaId}`, {
+                response = await fetch(`${API_URL}}/vendas/detalhes/${currentVendaId}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(vendaData)
@@ -321,7 +321,7 @@ const Vendas: React.FC = () => {
     const deletarVenda = async (id: number) => {
         if (window.confirm("Deseja realmente deletar esta venda?")) {
             try {
-                const res = await fetch(`http://localhost:3000/vendas/detalhes/${id}`, {
+                const res = await fetch(`${API_URL}/vendas/detalhes/${id}`, {
                     method: 'DELETE'
                 });
 

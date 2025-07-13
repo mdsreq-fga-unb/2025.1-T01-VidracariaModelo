@@ -35,6 +35,7 @@ interface OrcamentoEditavel {
 const EditarOrcamento: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_URL_BASE;
 
   const [orcamento, setOrcamento] = useState<OrcamentoEditavel | null>(null);
   const [produtos, setProdutos] = useState<Produto[]>([]);
@@ -46,8 +47,8 @@ const EditarOrcamento: React.FC = () => {
       try {
         setCarregando(true);
         const [resOrcamento, resProdutos] = await Promise.all([
-          fetch(`http://localhost:3000/orcamento/${id}`),
-          fetch('http://localhost:3000/produtos')
+          fetch(`${API_URL}/orcamento/${id}`),
+          fetch(`${API_URL}/produtos`)
         ]);
 
         if (!resOrcamento.ok) throw new Error('Falha ao carregar o orçamento.');
@@ -122,7 +123,7 @@ const EditarOrcamento: React.FC = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/orcamento/${id}`, {
+      const res = await fetch(`${API_URL}orcamento/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

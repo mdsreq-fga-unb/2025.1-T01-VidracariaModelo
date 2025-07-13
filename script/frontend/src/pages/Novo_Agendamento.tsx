@@ -15,6 +15,7 @@ const PaginaDeAgendamento: React.FC = () => {
   const [horario, setHorario] = useState('');
   const [observacoes, setObservacoes] = useState('');
   const [horariosDisponiveis, setHorariosDisponiveis] = useState<string[]>([]);
+  const API_URL = import.meta.env.VITE_URL_BASE;
 
   const hoje = new Date();
   hoje.setHours(0, 0, 0, 0);
@@ -26,7 +27,7 @@ const PaginaDeAgendamento: React.FC = () => {
   useEffect(() => {
     const buscarClientes = async () => {
       try {
-        const res = await fetch('http://localhost:3000/clientes');
+        const res = await fetch(`${API_URL}/clientes`);
         const data = await res.json();
         setClientes(data);
       } catch (error) {
@@ -45,7 +46,7 @@ const PaginaDeAgendamento: React.FC = () => {
       }
       const dataStr = dataSelecionada.toISOString().split('T')[0];
       try {
-        const res = await fetch(`http://localhost:3000/horarios-disponiveis?data=${dataStr}`);
+        const res = await fetch(`${API_URL}/horarios-disponiveis?data=${dataStr}`);
         const data = await res.json();
         setHorariosDisponiveis(data);
         setHorario('');
@@ -92,7 +93,7 @@ const PaginaDeAgendamento: React.FC = () => {
         observacoes,
       };
 
-      const res = await fetch('http://localhost:3000/agendamentos', {
+      const res = await fetch(`${API_URL}/agendamentos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(agendamento),
