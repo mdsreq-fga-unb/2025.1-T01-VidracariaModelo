@@ -1,21 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Solicitar_Orçamento.css';
 
-// Interface para os produtos buscados da API
-interface Produto {
-  id: number;
-  nome: string;
-}
-
-// Interface para um item na nossa lista de orçamento
-interface ItemOrcamento {
-  id_produto: number;
-  nome_produto: string; // Guardamos o nome para exibir na lista
-  largura: number;
-  altura: number;
-  quantidade: number;
-}
 
 const SolicitarOrcamento: React.FC = () => {
   const navigate = useNavigate();
@@ -32,77 +18,14 @@ const SolicitarOrcamento: React.FC = () => {
   const API_URL = import.meta.env.VITE_URL_BASE;
 
 
-  // 2. Estado para a lista de itens que o usuário adiciona
-  const [itens, setItens] = useState<ItemOrcamento[]>([]);
 
-  // 3. Estado para controlar os campos do item que está sendo adicionado no momento
-  const [itemAtual, setItemAtual] = useState({
-    id_produto: '',
-    largura: '',
-    altura: '',
-    quantidade: 1,
-  });
 
-  // 4. Estado para a lista de produtos que vem da API
-  const [produtos, setProdutos] = useState<Produto[]>([]);
-  const [carregandoProdutos, setCarregandoProdutos] = useState(true);
 
-  // Busca os produtos da API quando o componente é montado
-  useEffect(() => {
-    const buscarProdutos = async () => {
-      try {
-        const res = await fetch(`${API_URL}/produtos`);
-        if (!res.ok) throw new Error('Falha ao carregar produtos');
-        const data = await res.json();
-        setProdutos(data);
-      } catch (err) {
-        console.error("Erro ao buscar produtos:", err);
-        alert('Não foi possível carregar a lista de produtos.');
-      } finally {
-        setCarregandoProdutos(false);
-      }
-    };
-    buscarProdutos();
-  }, []);
+
 
   // --- FUNÇÕES DE MANIPULAÇÃO ---
 
   // Manipula mudanças nos campos do item que está sendo criado
-  const handleItemChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    const valorFinal = value === '' ? '' : Number(value);
-    setItemAtual(prev => ({ ...prev, [name]: valorFinal }));
-  };
-
-  // Adiciona o item atual à lista de orçamento
-  const handleAddItem = () => {
-    // Validação
-    if (!itemAtual.id_produto || !itemAtual.largura || !itemAtual.altura) {
-      alert('Por favor, selecione um produto e preencha a largura e altura.');
-      return;
-    }
-
-    const produtoSelecionado = produtos.find(p => p.id === parseInt(itemAtual.id_produto));
-    if (!produtoSelecionado) return;
-
-    const novoItem: ItemOrcamento = {
-      id_produto: parseInt(itemAtual.id_produto),
-      nome_produto: produtoSelecionado.nome,
-      largura: parseFloat(itemAtual.largura),
-      altura: parseFloat(itemAtual.altura),
-      quantidade: parseInt(String(itemAtual.quantidade), 10),
-    };
-
-    setItens(prevItens => [...prevItens, novoItem]);
-
-    // Limpa os campos para o próximo item
-    setItemAtual({
-      id_produto: '',
-      largura: '',
-      altura: '',
-      quantidade: 1,
-    });
-  };
 
   const buscarCliente = async (CPF: string) => {
     try {
@@ -128,10 +51,7 @@ const SolicitarOrcamento: React.FC = () => {
     }
   };
 
-  // Remove um item da lista
-  const handleRemoveItem = (indexToRemove: number) => {
-    setItens(prevItens => prevItens.filter((_, index) => index !== indexToRemove));
-  };
+
 
   // Envia a solicitação completa para o backend
   const handleSubmit = async (e: React.FormEvent) => {
