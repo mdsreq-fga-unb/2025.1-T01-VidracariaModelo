@@ -21,7 +21,7 @@ const PaginaDeAgendamento: React.FC = () => {
   const navigate = useNavigate();
 
   const carregandoAgendamento = useRef(true);
-
+  const API_URL = import.meta.env.VITE_URL_BASE;
 
 
   // --- LÓGICA DO BOTÃO "SALVAR" ---
@@ -40,7 +40,7 @@ const PaginaDeAgendamento: React.FC = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/agendamentos/${id}`, {
+      const res = await fetch(`${API_URL}/agendamentos/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(agendamento),
@@ -62,7 +62,7 @@ const PaginaDeAgendamento: React.FC = () => {
     if (!confirmar || !id) return;
 
     try {
-      const res = await fetch(`http://localhost:3000/agendamentos/${id}`, {
+      const res = await fetch(`${API_URL}/agendamentos/${id}`, {
         method: 'DELETE',
       });
 
@@ -87,7 +87,7 @@ const PaginaDeAgendamento: React.FC = () => {
       const dataStr = dataSelecionada.toISOString().split('T')[0];
 
       try {
-        const res = await fetch(`http://localhost:3000/horarios-disponiveis?data=${dataStr}`);
+        const res = await fetch(`${API_URL}/horarios-disponiveis?data=${dataStr}`);
         const data = await res.json();
         setHorariosDisponiveis(data);
 
@@ -108,7 +108,7 @@ const PaginaDeAgendamento: React.FC = () => {
   useEffect(() => {
     const buscarAgendamento = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/agendamentos/${id}`);
+        const res = await fetch(`${API_URL}/agendamentos/${id}`);
         if (!res.ok) throw new Error("Erro ao buscar agendamento");
 
         const data = await res.json();

@@ -15,11 +15,12 @@ const ListarOrcamentos: React.FC = () => {
   const [orcamentos, setOrcamentos] = useState<Orcamento[]>([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState('');
+  const API_URL = import.meta.env.VITE_URL_BASE;
 
   useEffect(() => {
     const buscarOrcamentos = async () => {
       try {
-        const res = await fetch('http://localhost:3000/orcamento');
+        const res = await fetch(`${API_URL}/orcamento`);
         if (!res.ok) {
           throw new Error('Erro ao buscar orçamentos');
         }

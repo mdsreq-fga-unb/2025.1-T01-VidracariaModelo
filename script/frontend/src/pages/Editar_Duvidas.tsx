@@ -18,6 +18,7 @@ const PaginaDeDuvidas: React.FC = () => {
   const [duvida_desc, setDuvida] = useState('');
   const [resposta, setResposta] = useState('');
   const [carregando, setCarregando] = useState(true);
+  const API_URL = import.meta.env.VITE_URL_BASE;
 
   const { id } = useParams<{ id: string }>();
 
@@ -36,7 +37,7 @@ const PaginaDeDuvidas: React.FC = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:3000/duvidas/${id}`, {
+      const res = await fetch(`${API_URL}/duvidas/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +62,7 @@ const PaginaDeDuvidas: React.FC = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:3000/duvidas/${id}`, {
+      const res = await fetch(`${API_URL}/duvidas/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -91,7 +92,7 @@ const PaginaDeDuvidas: React.FC = () => {
       if (!id) return;
 
       try {
-        const res = await fetch(`http://localhost:3000/duvidas/${id}`);
+        const res = await fetch(`${API_URL}/duvidas/${id}`);
         if (!res.ok) throw new Error("Erro ao buscar dúvida");
 
         const data = await res.json();

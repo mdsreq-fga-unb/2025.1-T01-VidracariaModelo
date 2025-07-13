@@ -21,7 +21,7 @@ function pdfToBuffer(pdfDoc) {
 router.post('/', async (req, res) => {
     const { cpf_cliente, observacoes, itens } = req.body;
 
-    if (!cpf_cliente || !Array.isArray(itens) || itens.length === 0) {
+    if (!cpf_cliente || !Array.isArray(itens)) {
         return res.status(400).json({ error: "Campos obrigatórios ausentes: cpf_cliente e itens." });
     }
 

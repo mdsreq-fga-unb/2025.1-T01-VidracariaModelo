@@ -13,12 +13,14 @@ const FaqAccordion: React.FC = () => {
   // 2. Estado para armazenar as dúvidas vindas da API
   const [duvidas, setDuvidas] = useState<Duvida[]>([]);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  
+
   // Estados para uma melhor experiência do usuário durante a chamada da API
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState<string | null>(null);
-  
+
   const navigate = useNavigate(); // Inicializando o hook de navegação
+
+  const API_URL = import.meta.env.VITE_URL_BASE;
 
   // 3. O useEffect agora tem a única responsabilidade de buscar os dados.
   useEffect(() => {
@@ -26,8 +28,8 @@ const FaqAccordion: React.FC = () => {
       try {
         setCarregando(true); // Inicia o carregamento
         setErro(null);       // Limpa erros anteriores
-        
-        const res = await fetch('http://localhost:3000/duvidas');
+
+        const res = await fetch(`${API_URL}/duvidas`);
 
         if (res.status === 401) {
           alert("Sessão expirada. Faça login novamente.");
@@ -36,7 +38,7 @@ const FaqAccordion: React.FC = () => {
         }
 
         if (!res.ok) {
-            throw new Error('Falha ao buscar os dados das dúvidas.');
+          throw new Error('Falha ao buscar os dados das dúvidas.');
         }
 
         const data = await res.json();
@@ -69,39 +71,39 @@ const FaqAccordion: React.FC = () => {
 
   return (
     <>
-    <div className={styles.faqContainer}>
-      <div className={styles.faqContent}>
-        <h1 className={styles.title}>FAQ</h1>
-        <h2 className={styles.subtitle}>Como podemos te ajudar ?</h2>
-        
-        <div className={styles.accordion}>
-          {/* 4. Mapeando os dados do estado 'duvidas' que veio da API */}
-          {duvidas.map((item, index) => {
-            const isOpen = openIndex === index;
-            
-            return (
-              <div
-                key={item.id} // Usando o 'id' da API como key, que é mais confiável
-                className={`${styles.item} ${isOpen ? styles.open : ''}`}
-                onClick={() => handleItemClick(index)}
-              >
-                <div className={styles.header}>
-                  {/* Usando 'item.duvida' e 'item.resposta' da API */}
-                  <span className={styles.questionText}>{item.duvida}</span>
-                  <span className={styles.icon}></span>
+      <div className={styles.faqContainer}>
+        <div className={styles.faqContent}>
+          <h1 className={styles.title}>FAQ</h1>
+          <h2 className={styles.subtitle}>Como podemos te ajudar ?</h2>
+
+          <div className={styles.accordion}>
+            {/* 4. Mapeando os dados do estado 'duvidas' que veio da API */}
+            {duvidas.map((item, index) => {
+              const isOpen = openIndex === index;
+
+              return (
+                <div
+                  key={item.id} // Usando o 'id' da API como key, que é mais confiável
+                  className={`${styles.item} ${isOpen ? styles.open : ''}`}
+                  onClick={() => handleItemClick(index)}
+                >
+                  <div className={styles.header}>
+                    {/* Usando 'item.duvida' e 'item.resposta' da API */}
+                    <span className={styles.questionText}>{item.duvida}</span>
+                    <span className={styles.icon}></span>
+                  </div>
+                  <div className={styles.answer}>
+                    <p>{item.resposta}</p>
+                  </div>
                 </div>
-                <div className={styles.answer}>
-                  <p>{item.resposta}</p>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
-          <footer className="footerContainer1">
+      <footer className="footerContainer1">
         <div className="redStripe1" />
-      </footer>    
+      </footer>
     </>
   );
 };

@@ -28,7 +28,7 @@ A solução proposta consiste em um sistema web para a Vidraçaria Modelo, com f
 
 2. Painel Administrativo de Orçamentos/Visualização e gerenciamento de orçamentos por parte dos administradores.
 
-3. Notificações AutomatizadasAlertas via e-mail ou WhatsApp para agendamentos, confirmações e alterações.
+3. Notificações Automatizadas com Alertas via e-mail ou WhatsApp para agendamentos, confirmações e alterações.
 
 4. Histórico de Orçamentos e Serviços/Consulta de registros de atendimentos anteriores por parte do cliente.
 
@@ -58,10 +58,10 @@ A solução proposta consiste em um sistema web para a Vidraçaria Modelo, com f
 
 ### 2.3 Tecnologias a Serem Utilizadas
 
-- **Prototipação:** Figma e LucidChart
+- **Prototipação:** Figma e BrModelo
 - **Frontend:** React.js
-- **Backend:** Node.js
-- **Banco de dados:** MySQL
+- **Backend:** Node.js 
+- **Banco de dados:** PostgreSQL
 
 ### 2.4 Pesquisa de Mercado e Análise Competitiva
 No ramo das vidraçarias são exemplos de concorrentes desta plataforma o site da
@@ -90,7 +90,7 @@ Quanto ao prazo, estima-se que a plataforma possa ser desenvolvida em um períod
 No aspecto competência da equipe, os membros estão familiarizados com as práticas de desenvolvimento e estão engajados no projeto, tendo experiência na construção de soluções
 web voltadas para empresas, como é o site para a Vidraçaria Modelo. 
 
-Em termos de mercado, a proposta está bem alinhada com uma demanda crescente por digitalização de pequenos negócios. A falta de concorrência com soluções completas no setor de vidraçarias representa uma oportunidade concreta de diferenciação e ganho competitivo.Portanto, a solução é viável, sustentável e tem grande potencial de retorno para a Vidraçaria
+Em termos de mercado, a proposta está bem alinhada com uma demanda crescente por digitalização de pequenos negócios. A falta de concorrência com soluções completas no setor de vidraçarias representa uma oportunidade concreta de diferenciação e ganho competitivo. Portanto, a solução é viável, sustentável e tem grande potencial de retorno para a Vidraçaria
 Modelo.
 
 ### 2.6 Impacto da Solução
@@ -100,3 +100,4 @@ Modelo.
 
 
 **Eficiência na gestão de orçamentos e controle da carga de trabalho:** A solução permitirá um maior controle das demandas por parte da empresa, diminuindo a incidência de orçamentos não atendidos e vendas não captadas.
+

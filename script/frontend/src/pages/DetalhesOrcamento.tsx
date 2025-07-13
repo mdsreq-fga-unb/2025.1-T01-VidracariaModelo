@@ -31,8 +31,12 @@ interface OrcamentoDetalhado {
 }
 
 // Função utilitária para formatar a classe CSS do status
-const formatStatusClass = (status: string) =>
-  status.toLowerCase().replace(/ /g, '-');
+const formatStatusClass = (status: string) => {
+  if (status.toLowerCase() === 'aprovado') {
+    return 'aprovado'; // Classe para cor verde
+  }
+  return 'negado'; // Classe para cor vermelha para todos os outros status
+};
 
 // Componente para mostrar cada item do orçamento na tabela
 const ItemOrcamentoRow: React.FC<{ item: ItemOrcamento }> = ({ item }) => (
@@ -52,11 +56,11 @@ const DetalhesOrcamento: React.FC = () => {
   const [orcamento, setOrcamento] = useState<OrcamentoDetalhado | null>(null);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState('');
-
+  const API_URL = import.meta.env.VITE_URL_BASE;
   useEffect(() => {
     const buscarOrcamento = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/orcamento/${id}`);
+        const res = await fetch(`${API_URL}/orcamento/${id}`);
         if (!res.ok) throw new Error('Erro ao buscar o orçamento');
 
         const data: OrcamentoDetalhado = await res.json();

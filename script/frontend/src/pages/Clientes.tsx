@@ -19,9 +19,13 @@ const Clientes = () => {
         endereco: ''
     });
 
+    const API_URL = import.meta.env.VITE_URL_BASE;
+
+
+
     const buscarClientes = async () => {
         try {
-            const res = await fetch('http://localhost:3000/clientes');
+            const res = await fetch(`${API_URL}/clientes`);
             const data = await res.json();
             setClientes(data);
         } catch (error) {
@@ -64,14 +68,14 @@ const Clientes = () => {
 
             if (clienteExiste) {
                 // Atualizar
-                await fetch(`http://localhost:3000/clientes/${cpf}`, {
+                await fetch(`${API_URL}clientes/${cpf}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(clienteSelecionado)
                 });
             } else {
                 // Criar novo
-                await fetch('http://localhost:3000/clientes', {
+                await fetch(`${API_URL}/clientes`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(clienteSelecionado)
@@ -91,7 +95,7 @@ const Clientes = () => {
             return;
         }
         try {
-            const res = await fetch(`http://localhost:3000/clientes/${cpf}`, {
+            const res = await fetch(`${API_URL}/clientes/${cpf}`, {
                 method: 'DELETE'
             });
             if (!res.ok) {

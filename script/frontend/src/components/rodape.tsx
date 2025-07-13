@@ -3,10 +3,13 @@ import './rodape.css';
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import characterImage from '../assets/Boneco.png';
 import ActionButton from './Botao_Arredondado';
+import { useNavigate } from 'react-router-dom';
 
 const Footer: React.FC = () => {
+  const navigate = useNavigate();
   const handleOrcamentoClick = () => {
     console.log("Botão de orçamento clicado!");
+    navigate('/solicitar-orcamento');
   };
 
   return (
@@ -23,9 +26,9 @@ const Footer: React.FC = () => {
           <span />
           <span />
         </div>
-        <ActionButton 
-          text="Solicite um orçamento agora!" 
-          onClick={handleOrcamentoClick} 
+        <ActionButton
+          text="Solicite um orçamento agora!"
+          onClick={handleOrcamentoClick}
         />
       </div>
 

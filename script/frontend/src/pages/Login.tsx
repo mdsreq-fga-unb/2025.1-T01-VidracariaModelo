@@ -9,6 +9,7 @@ const Login = () => {
     const [senha, setSenha] = useState('');
     const [erro, setErro] = useState('');
     const [jaLogado, setJaLogado] = useState(false);
+    const API_URL = import.meta.env.VITE_URL_BASE;
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -33,7 +34,7 @@ const Login = () => {
         setErro('');
 
         try {
-            const response = await fetch('http://localhost:3000/auth/login', {
+            const response = await fetch(`${API_URL}/auth/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, senha }),

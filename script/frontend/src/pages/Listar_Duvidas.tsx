@@ -25,6 +25,7 @@ const ListarDuvidas: React.FC = () => {
   const navigate = useNavigate();
 
   const usuarioLogado = getUsuarioFromToken();
+  const API_URL = import.meta.env.VITE_URL_BASE;
 
   // 2. Criar uma variável booleana para deixar o código no JSX mais limpo.
   const isGerente = usuarioLogado?.tipo_usuario === 'gerente';
@@ -35,7 +36,7 @@ const ListarDuvidas: React.FC = () => {
   useEffect(() => {
     const buscarDuvidas = async () => {
       try {
-        const res = await fetch('http://localhost:3000/duvidas');
+        const res = await fetch(`${API_URL}/duvidas`);
 
         // Esta verificação de token expirado está ótima!
         if (res.status === 401) {
@@ -59,36 +60,36 @@ const ListarDuvidas: React.FC = () => {
 
   return (
     <>
-    <div className="page-container">
-      <main className="main-content">
-        <div className="cabecalho">
-          <h1 className="page-title">Lista de Dúvidas Cadastradas</h1>
-          
-          {/* 4. RENDERIZAÇÃO CONDICIONAL do botão */}
-          {/* O botão só será exibido se a variável 'isGerente' for verdadeira. */}
-          {isGerente && (
-            <button className="botao-novo-duvida" onClick={handleCriarDuvida}>
-              + Nova Dúvida
-            </button>
-          )}
-        </div>
-       
-        <div className="lista-container">
-          {duvidas.map(duvida => (
-            <DuvidaItem
-              key={duvida.id} 
-              id={duvida.id}
-              duvida={duvida.duvida}
-              resposta={duvida.resposta}
-            />
-          ))}
-        </div>
-      </main>
-    </div>
-    
+      <div className="page-container">
+        <main className="main-content">
+          <div className="cabecalho">
+            <h1 className="page-title">Lista de Dúvidas Cadastradas</h1>
+
+            {/* 4. RENDERIZAÇÃO CONDICIONAL do botão */}
+            {/* O botão só será exibido se a variável 'isGerente' for verdadeira. */}
+            {isGerente && (
+              <button className="botao-novo-duvida" onClick={handleCriarDuvida}>
+                + Nova Dúvida
+              </button>
+            )}
+          </div>
+
+          <div className="lista-container">
+            {duvidas.map(duvida => (
+              <DuvidaItem
+                key={duvida.id}
+                id={duvida.id}
+                duvida={duvida.duvida}
+                resposta={duvida.resposta}
+              />
+            ))}
+          </div>
+        </main>
+      </div>
+
       <footer className="footerContainer1">
         <div className="redStripe1" />
-      </footer>    
+      </footer>
     </>
   );
 };
