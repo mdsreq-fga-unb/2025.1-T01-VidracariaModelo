@@ -36,7 +36,7 @@ A escolha do **RAD (Rapid Application Development)** como estratégia prioritár
   Considerando o calendário acadêmico, o tempo disponível para desenvolvimento é limitado. O RAD é adequado para projetos com prazos curtos, pois foca em entregas incrementais e ajustáveis sem a necessidade de ciclos de desenvolvimento longos.
  
 
-## Referencias: 
+## Referências: 
 MARSICANO, George. Requisitos de Software: Fundamentos, Evolução e Praticas 2025. Material interno não publicado.
 
 ## Histórico de Versões
@@ -45,3 +45,4 @@ MARSICANO, George. Requisitos de Software: Fundamentos, Evolução e Praticas 20
 |------------|-----|------------------------------------|----------------|--------------------------|
 | 19/04/2025 | 1.0 | Criação do documento               | Cayo Alencar  | Igor Daniel |
 | 26/05/2025 | 1.1 | Atualizações e alterações |João Filipe, Pedro Henrique   | Cayo Alencar         |
+| 13/07/2025 | 1.2 | Atualizações e alterações | Samara Alves   | Pedro Henrique         |
