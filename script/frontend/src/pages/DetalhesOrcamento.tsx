@@ -31,8 +31,12 @@ interface OrcamentoDetalhado {
 }
 
 // Função utilitária para formatar a classe CSS do status
-const formatStatusClass = (status: string) =>
-  status.toLowerCase().replace(/ /g, '-');
+const formatStatusClass = (status: string) => {
+  if (status.toLowerCase() === 'aprovado') {
+    return 'aprovado'; // Classe para cor verde
+  }
+  return 'negado'; // Classe para cor vermelha para todos os outros status
+};
 
 // Componente para mostrar cada item do orçamento na tabela
 const ItemOrcamentoRow: React.FC<{ item: ItemOrcamento }> = ({ item }) => (
