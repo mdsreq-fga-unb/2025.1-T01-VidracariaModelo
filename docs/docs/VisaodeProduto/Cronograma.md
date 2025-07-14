@@ -21,6 +21,58 @@ Este cronograma é uma **versão premilinar** do projeto.
 |          | Construção Rápida        | Codificação dos Protótipos                                             | 12/07/2025  | 14/07/2025  | 2              | Desenvolvimento dos protótipos 6 e 8               |
 |          | Entrega / Release 4      | Implantação do sistema                                                 | 15/07/2025  | 15/07/2025  | 1              | Entrega dos Protótipos implementados               |
 
+## Ciclos do Projeto
+
+### 🔹 Ciclo 1
+- **Protótipo 5**
+  - Requisito Funcional <br> **RF19** - Contatar empresa
+  - WSJF: 14
+
+---
+
+- **Protótipo 7**
+  - Requisito Não Funcional <br> **RNF4** - Exibir categoria <br> **RNF6** - Exibir produtos e serviços cadastrados no portfólio online da empresa
+  - WSJF: 14
+
+---
+
+### 🔹 Ciclo 2
+- **Protótipo 1**
+  - Requisitos Funcionais<br> **RF1** - Realizar agendamento <br> **RF2** - Visualizar serviços agendados <br> **RF3** - Remarcar agendamento <br> **RF4** - Cancelar agendamento
+  - WSJF: 8–13
+
+---
+
+- **Protótipo 2**
+  - Requisitos Funcionais <br> **RF5** - Criar orçamento <br> **RF6** - Listar orçamentos <br> **RF7** - Editar orçamentos
+  - Requisito Não Funcional<br> **RNF 5** - Exibir FAQ
+  - WSJF: 8–13
+
+---
+
+### 🔹 Ciclo 3
+- **Protótipo 3**
+  - Requisitos Funcionais <br> **RF8** - Criar Venda <br> **RF9** - Listar vendas <br> **RF10** - Visualizar venda
+   <br> **RF11** - Editar venda
+  - WSJF: 5–7
+
+  ---
+
+- **Protótipo 4**
+  - Requisitos Funcionais: <br> **RF12** - Registrar recibo <br> **RF13** - Editar recibo <br> **RF14** - Exportar recibo
+  - WSJF: 5–7
+
+---
+
+### 🔹 Ciclo 4
+- **Protótipo 6**
+  - Requisitos Funcionais <br> **RF23** - Criar perfil do cliente <br> **RF24** - Editar informações do cliente <br> **RF25** - Excluir perfil do cliente
+  - WSJF: 3–4
+---
+- **Protótipo 8**
+  - Requisito Não Funcional <br> **RNF5** - Exibir FAQ
+  - WSJF: 3–4
+
 
 ## Histórico de Versões
 
@@ -32,6 +84,7 @@ Este cronograma é uma **versão premilinar** do projeto.
 | 10/06/2025 | 1.3 | Atualizações e refatoração das datas e atividades|Cayo  | Ígor        |
 | 22/06/2025 | 1.4 | Atualizações e refatoração das datas e atividades|Samara Alves  | Cayo       |
 | 23/06/2025 | 1.5 | Atualizações e refatoração das datas e atividades|Pedro Henrique  | Cayo       |
+| 23/06/2025 | 1.5 | Atualizações |Samara Alves  | Ígor       |
 
 
 

@@ -1,4 +1,4 @@
-## Definition of Ready (DoR)
+## **Definition of Ready (DoR)**
 
 - O requisito possui um **título claro e descritivo**.
 
@@ -18,7 +18,7 @@
 
 ---
 
-## Definition of Done (DoD)
+## **Definition of Done (DoD)**
 
 - **Entrega um incremento da especificação do produto?**  
   O requisito contribui com clareza para a evolução do entendimento do sistema e está alinhado aos objetivos do negócio.
