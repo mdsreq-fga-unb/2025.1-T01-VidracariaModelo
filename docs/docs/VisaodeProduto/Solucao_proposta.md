@@ -32,7 +32,7 @@ A solução proposta consiste em um sistema web para a Vidraçaria Modelo, com f
 
 4. Histórico de Orçamentos e Serviços/Consulta de registros de atendimentos anteriores por parte do cliente.
 
-5. Cadastro e Autenticação de Usuários/Login com perfis distintos: cliente, técnico e administrador.
+5. Cadastro e Autenticação de Usuários/Login com perfis distintos: cliente e administrador.
 
 6. Canal de Comunicação Direta com a Empresa/Integração com WhatsApp, formulário de contato e redes sociais.
 
@@ -85,7 +85,7 @@ A solução da Vidraçaria Modelo irá se diferenciar das demais por em uma só 
 ### 2.5 Análise de Viabilidade
 A solução proposta apresenta uma boa viabilidade técnica, uma vez que as tecnologias necessárias para seu desenvolvimento são conhecidas pela equipe de desenvolvimento. O projeto prevê o uso de tecnologias web modernas e de fácil integração, garantindo uma plataforma responsiva intuitiva e escalável.
 
-Quanto ao prazo, estima-se que a plataforma possa ser desenvolvida em um período de quatro meses, considerando as etapas de planejamento de requisitos, design do usuário, construção rápida e entrega. O grupo utilizaria iterações, com uma entrega única no final do desenvolvimento. Tal cronograma é considerado viável, uma vez que os integrantes já trabalharam sob circunstâncias semelhantes anteriormente.
+Quanto ao prazo, estima-se que a plataforma seja desenvolvida em aproximadamente quatro meses, abrangendo as etapas de planejamento de requisitos, design do usuário, construção rápida e entrega. O grupo adotará uma abordagem iterativa ao longo do processo, realizando validações internas a cada ciclo, com entregas iterativas a cada ciclo, e a entrega final ocorre de forma única ao término do desenvolvimento. Esse cronograma é considerado viável, considerando a experiência prévia dos integrantes em projetos com características semelhantes.
 
 No aspecto competência da equipe, os membros estão familiarizados com as práticas de desenvolvimento e estão engajados no projeto, tendo experiência na construção de soluções
 web voltadas para empresas, como é o site para a Vidraçaria Modelo. 
