@@ -38,6 +38,11 @@ Abaixo estão algumas das telas prototipadas separadas por seus ciclos:
 ![Nova Dúvida](../imagens/prototipos/novaduvida.png)
 ![Painel](../imagens/prototipos/painel.png)
 
+# Diagrama entidade-Relacionamento
+
+Durante os ciclos o diagrama entidade relacionamento teve mudanças e se estabelece a versão final:
+![DER](../imagens/prototipos/der_vidraçaria.png)
+
 
 
 
