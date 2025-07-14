@@ -104,10 +104,6 @@ Membros da equipe revisam requisitos uns dos outros para verificar coerência, v
 
 Técnica formal e mais rigorosa de revisão, feita em grupo e seguindo um roteiro.
 
----
-
-## *Organização e Atualização*
-
 ### 🧠 DEEP (Backlog DEEP – *Detailed, Emergent, Estimated, Prioritized*)
 
 Critérios para manter um backlog saudável:
@@ -120,6 +116,10 @@ Critérios para manter um backlog saudável:
 | P     | Priorizado por valor e necessidade                  |
 
 ---
+
+## *Organização e Atualização*
+
+
 
 ### 🗂️ MoSCoW – Técnica de Priorização
 
