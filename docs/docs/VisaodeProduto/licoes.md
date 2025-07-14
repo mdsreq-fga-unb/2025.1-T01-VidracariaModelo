@@ -27,6 +27,14 @@ Na Unidade 3, estudamos técnicas voltadas para a organização e validação de
 
 **Solução:** Com as apresentações em sala de aula, conseguimos identificar os erros cometidos e, a partir disso, realizar as correções necessárias nos documentos.
 
+## Unidade 4
+
+Na unidade 4, foi possível compreender com mais profundidade o papel dos Casos de Uso na definição dos requisitos funcionais de um sistema, contribuindo para uma comunicação mais clara entre os envolvidos no projeto. Aprendemos como estruturar corretamente um caso de uso, incluindo os diferentes fluxos (principal, alternativos e de exceção), além das pré e pós-condições e possíveis requisitos complementares. Ficou claro a importância de identificar corretamente os atores e seus relacionamentos com os casos de uso, garantindo uma modelagem mais precisa e alinhada às necessidades do sistema.
+
+**Desafio:** Desenvolver da maneira correta o Caso de Uso.
+
+**Solução:** Devido a última apresentação, o grupo conseguiu absorver as informações passadas pelo professor e conseguimos fazer as mudanças necessárias para que ficasse mais completo.
+
 
 
 ## Histórico de Versões
@@ -36,7 +44,7 @@ Na Unidade 3, estudamos técnicas voltadas para a organização e validação de
 | 19/04/2025 | 1.0 | Criação do documento               | Igor Daniel  | Maria Eduarda |
 | 26/05/2025 | 1.1 | Atualizações e alterações | Pedro Henrique   | Samara Alves         |
 | 23/06/2025 | 1.2 | Atualizações e alterações | Pedro Henrique   | Cayo Alencar         |
-
+| 23/06/2025 | 1.3 | Atualizações e alterações | Pedro Henrique   | Cayo Alencar         |
 
 
 ---
