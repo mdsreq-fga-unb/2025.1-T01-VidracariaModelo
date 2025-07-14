@@ -3,17 +3,18 @@
 ## 3.1 Estratégia Priorizada
 - **Abordagem de desenvolvimento de software**: Hibrido
 - **Ciclo de vida**: Adaptativo 
-- **Processo de engenharia de software**: RAD
+- **Processo de engenharia de software**: RAD|
+
 
 ## 3.2 Quadro Comparativo: RAD vs XP
 
-| Critério | **RAD** | **XP** |
-|----------|--------|--------|
-| **Estrutura de organização de requisitos** | Requisitos de Negócio, Modelos de Interface, Modelos de Dados, Processos | Histórias de Usuário, Critérios de Aceitação |
-| **Forças** | Redução no tempo de elicitação, Visualização precoce, Alta satisfação do usuário, Detecção precoce de problemas | Alta adaptabilidade, Feedbacks rápidos e contínuos, Validação precoce, Redução de documentação |
-| **Limitações** | Menos adequado para sistemas complexos, Risco de foco em interfaces, Dependência de ferramentas CASE, Necessidade de comprometimento intenso | Dependência do envolvimento do cliente, Desafio com documentação para conformidade, Escalabilidade limitada |
-| **Cenários Adequados para Uso** | Sistemas de informação corporativos, Projetos com prazos curtos, Requisitos difíceis de articular, Validação de conceito | Projetos com requisitos voláteis, Ambiente que prioriza feedback rápido, Sistemas que evoluem incrementalmente, Equipes pequenas com cliente presente |
-| **Tendências** | Integração com DevOps, Ferramentas low-code/no-code, Adaptação para mobile-first, Evolução para COD | Integração com outros frameworks, Adoção de práticas técnicas específicas, Adaptações para equipes distribuídas |
+| **Critério**                         | **RAD (Rapid Application Development)**                                                                 | **XP (Extreme Programming)**                                                                 |
+|--------------------------------------|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
+| **Organização dos Requisitos**       | - Requisitos de Negócio <br> - Modelos de Interface <br> - Modelos de Dados <br> - Processos                                 | - Histórias de Usuário <br> - Critérios de Aceitação                                                 |
+| **Principais Forças**                | - Redução no tempo de elicitação  <br> - Visualização precoce  <br> - Alta satisfação do usuário  <br> - Detecção precoce de problemas | - Alta adaptabilidade  <br> - Feedbacks rápidos e contínuos  <br> - Validação precoce  <br> - Redução da documentação |
+| **Principais Limitações**            | - Menos adequado para sistemas complexos  <br> - Risco de foco excessivo em interfaces  <br> - Dependência de ferramentas CASE  <br> - Necessidade de comprometimento intenso | - Forte dependência do cliente  <br> - Dificuldades com documentação para conformidade  <br> - Escalabilidade limitada |
+| **Cenários Adequados**               | - Sistemas corporativos  <br> - Projetos com prazos curtos  <br> - Requisitos difíceis de articular  <br> - Validação de conceito | - Projetos com requisitos voláteis  <br> - Ambientes com foco em feedback rápido  <br> - Sistemas que evoluem incrementalmente  <br> - Equipes pequenas com cliente presente |
+| **Tendências Atuais**                | - Integração com DevOps  <br> - Adoção de ferramentas low-code/no-code  <br> - Adaptação mobile-first  <br> - Evolução para abordagens híbridas com métodos ágeis | - Integração com outros frameworks ágeis (Scrum, Kanban)  <br> - Adoção de práticas técnicas específicas  <br> - Adaptações para equipes distribuídas |
 
 
 

@@ -14,10 +14,10 @@
 
 ### > Ferramentas de Comunicação:
 
-**WhatsApp:**  
+- **WhatsApp:**  
 A ferramenta será utilizada com dois propósitos principais: facilitar a comunicação diária entre os membros da equipe de desenvolvimento e permitir uma comunicação ágil com os stakeholders. O software possibilita a segmentação dos destinatários por meio da criação de grupos específicos, além de oferecer recursos como envio de mensagens, links e arquivos. O WhatsApp será o canal central para avisos sobre novos pedidos de revisão e para discussões rápidas no decorrer do projeto.
 
-**Discord:**  
+- **Discord:**  
 A plataforma Discord será utilizada para a realização das reuniões por vídeo, incluindo as de *Planejamento* , além das reuniões de validação com os stakeholders. Nessas reuniões, serão centralizadas as validações das entregas realizadas, o planejamento das próximas Iterações ou Fases de execução, a revisão das tarefas atribuídas e a troca de feedbacks sobre os acertos e pontos de melhoria da equipe. As reuniões informais, isto é, que não foram oficializadas pelo Líder de Projeto ou que visam apenas realizar atividades de Iteração, também serão realizadas pela plataforma.
 
 ### > Métodos de Frequência de Reuniões:
@@ -54,5 +54,6 @@ Ao final de cada iteração, as funcionalidades também passarão pela Definitio
 | 19/04/2025 | 1.0    | Adição do Tópico 6.2       | Maria Eduarda  | Pedro Henrique |   
 | 19/04/2025 | 1.1    | Inclusão tópico 6.1 e 6.3                 | Pedro Henrique | Maria Eduarda  |  
 | 26/05/2025 | 1.2    | Inclusão tópico 6.1 e 6.3                 | Samara Alves | Maria Eduarda  | 
+| 13/07/2025 | 1.3    | Atualizações              | Samara Alves | Cayo Alencar  | 
 
 

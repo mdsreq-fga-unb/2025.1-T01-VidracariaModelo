@@ -1,4 +1,4 @@
-## Requisitos Funcionais (RF)
+## **Requisitos Funcionais (RF)**
 |**ID**|**TÍTULO**|**DESCRIÇÃO**|**REGRA DE NEGÓCIO**|**OBJETIVO ESPECÍFICO**|
 | :- | :- | :- | :- | :- |
 |**RF01**|Realizar agendamento|O sistema deve permitir a seleção de data e horário disponíveis para marcar um compromisso|**RN** **02**,**03**,**04**,**05**,**06**,**39**,**102**,**104**|Objetivo 2: Otimizar gestão de orçamentos e agendamentos.|
@@ -30,7 +30,7 @@
 |**RF27**|Gerar gráfico comparativo financeiro|O sistema deve gerar um gráfico de receitas (vendas) vs despesas mensal para apoiar a tomada de decisão financeira.|**RN** **108**, **82** |Objetivo 4: Aprimorar gestão financeira e de vendas.|
 
 
-## Requisitos Não Funcionais (RNF)
+## **Requisitos Não Funcionais (RNF)**
 | ID    | Nome do Requisito                                              | Descrição do Requisito                                                                                                        | Classificação URPS |
 |-------|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|--------------------|
 | RNF1  | Consultar histórico de despesas                                | As consultas ao histórico de despesas devem ter tempo de resposta inferior a 2 segundos.                                      | Performance        |
@@ -41,114 +41,114 @@
 | RNF6  | Exibir produtos e serviços cadastrados no portfólio online da empresa |Exibir os produtos e serviços cadastrados no portfólio online da empresa.| Usabilidade   |
 
 
-## Regras de Negócio (RN)
+## **Regras de Negócio (RN)**
 | ID | Regra de Negócio |
 |---|---|
-|  RN01 | Os agendamentos listados têm que ter sido feitos no máximo com uma semana. |
-| RN02 | Agendamentos só podem ser feitos em horários disponíveis e dentro do expediente da empresa. |
-| RN03 | Deve haver um intervalo mínimo de 30 minutos entre dois compromissos consecutivos. |
-| RN04 | O sistema deve permitir agendamentos com no máximo 30 dias de antecedência. |
-| RN05 | O sistema deve confirmar o agendamento por meio de notificação no WhatsApp. |
-| RN06 | A data e o horário inseridos devem ser validados antes da confirmação do agendamento. |
-| RN07 | Apenas usuários com perfil de administrador podem visualizar os agendamentos de todos os usuários. |
-| RN08 | O sistema deve permitir a seleção de uma data específica para exibir os agendamentos correspondentes. |
-| RN09 | Os agendamentos devem ser exibidos em ordem cronológica (do mais cedo para o mais tarde). |
-| RN10 | Cada agendamento listado deve apresentar no mínimo: nome do cliente, horário, serviço agendado e status (confirmado, cancelado, realizado). |
-| RN11 | A lista de agendamentos deve ser atualizada automaticamente ou por meio de recarga manual para refletir alterações feitas por outros usuários. |
-| RN12 | O administrador deve poder filtrar os agendamentos por status (ex.: apenas confirmados ou apenas cancelados). |
-| RN13 | A visualização de agendamentos passados deve ser permitida apenas para fins administrativos e por um período de até 12 meses. |
-| RN14 | Clientes podem cancelar agendamentos com no mínimo 12h de antecedência. |
-| RN15 | Apenas o usuário que criou o agendamento ou um administrador pode realizar a remarcação. |
-| RN16 | O novo horário escolhido deve estar livre, sem conflitos com outros agendamentos do mesmo recurso (profissional, sala, etc.). |
-| RN17 | Cada agendamento pode ser remarcado no máximo 4 vezes. |
-| RN18 | O sistema deve manter um histórico com data e hora de cada remarcação, incluindo quem a realizou. |
-| RN19 | O sistema deve enviar uma notificação ao cliente confirmando a nova data e horário. |
-| RN20 | A nova data/hora deve obedecer às mesmas regras de agendamento padrão, como horários permitidos e intervalos mínimos. |
-| RN21 | Não é permitido remarcar um compromisso para uma data ou horário anterior ao atual. |
-| RN22 | A remarcação deve manter as informações originais do serviço, alterando apenas a data e hora. |
-| RN23 | Agendamentos cancelados geram notificações para o cliente e o administrador. |
-| RN24 | O cancelamento deve ser feito com no mínimo 6 horas de antecedência do horário agendado, salvo exceções administrativas. |
-| RN25 | O sistema deve registrar a data, hora e responsável pelo cancelamento. |
-| RN26 | Não é permitido cancelar compromissos cuja data e horário já tenham passado. |
-| RN27 | Ao cancelar um compromisso, o horário correspondente deve ser automaticamente liberado para novos agendamentos. |
-| RN28 | Se o cliente não comparecer ao compromisso e não cancelar dentro do prazo, o sistema deve marcar automaticamente como "cancelado por ausência" e registrar isso no histórico. |
-| RN29 | O sistema deve alertar automaticamente sobre agendamentos não confirmados nos próximos 3 dias. |
-| RN30 | Apenas usuários autenticados com perfil autorizado podem criar orçamentos no sistema. |
-| RN31 | Os orçamentos devem expirar em no máximo 15 dias. |
-| RN32 | Orçamentos devem estar associados a um cliente e podem ser filtrados por cliente, status, etc. |
-| RN33 | Um orçamento só pode ser criado se contiver: nome do cliente, descrição dos serviços, descrição dos materiais, valor estimado e dados da vidraçaria (CNPJ, endereço, nome, assinatura). |
-| RN34 | Cada orçamento criado deve receber um número ou código único gerado automaticamente pelo sistema. |
-| RN35 | O orçamento deve estar vinculado a um cliente específico e aos serviços correspondentes disponíveis no sistema. |
-| RN36 | Um orçamento pode ter os seguintes status: rascunho, enviado, aprovado, rejeitado, expirado ou cancelado. |
-| RN37 | Apenas usuários autenticados com perfil autorizado (ex.: administradores, atendentes) podem visualizar a lista completa de orçamentos. |
-| RN38 | Cada orçamento deve aparecer na lista apenas com os campos nome do cliente, descrição do serviço, data de abertura e status. |
-| RN39 | Um agendamento deve incluir endereço e um campo para incluir o link da localização do local do serviço. |
-| RN40 | A listagem deve permitir filtragem por: cliente, data de criação, status e intervalo de valores. |
-| RN41 | Ao clicar em um orçamento na lista, o sistema deve exibir os detalhes completos da proposta. |
-| RN42 | O sistema deve permitir busca textual (por nome de cliente, número do orçamento ou descrição do serviço). |
-| RN43 | Somente usuários com perfil de administrador ou responsável pelo orçamento podem editar. |
-| RN44 | Orçamentos com status “aprovado”, “rejeitado”, “expirado” ou “cancelado” são bloqueados para edição. |
-| RN45 | Todas as edições devem ser registradas em log com data/hora, nome do usuário e o conteúdo alterado. |
-| RN46 | Caso o orçamento já tenha sido enviado ao cliente, o sistema deve solicitar ou permitir o reenvio da proposta editada. |
-| RN47 | Se a edição não for concluída em até 20 minutos, o sistema cancela a operação para evitar travamentos ou dados inconsistentes. |
-| RN48 | Vendas e recibos devem estar relacionados a um cliente e orçamento. |
-| RN49 | Apenas administradores podem criar, editar ou excluir recibos já registrados. |
-| RN50 | A listagem deve permitir filtrar por: data da venda (intervalo), cliente, produto ou serviço vendido, forma de pagamento. |
-| RN51 | Deve ser exibido o total em valor das vendas listadas com base nos filtros aplicados. |
-| RN52 | Deve ser possível clicar em uma venda da lista para visualizar todos os detalhes: itens vendidos, impostos, pagamentos, notas fiscais. |
-| RN53 | Apenas usuários com perfis autorizados (ex.: administrador, financeiro, vendas) podem acessar os detalhes completos de uma venda. |
-| RN54 | O sistema deve exibir os pagamentos registrados para aquela venda, com datas, valores e status. |
-| RN55 | Uma venda deve ter todos os dados de um orçamento e incluir origem (WhatsApp, presencial, Instagram, site), forma de pagamento. |
-| RN56 | Cada venda registrada deve receber um ID único e sequencial para fins de rastreamento e controle. |
-| RN57 | Apenas administradores podem registrar, editar ou excluir vendas. |
-| RN58 | Toda despesa registrada deve ser categorizada para compor relatórios financeiros. |
-| RN59 | O sistema deve impedir que dois usuários editem a mesma venda ao mesmo tempo. |
-| RN60 | Sempre que os itens ou valores forem alterados, o sistema deve recalcular automaticamente. |
-| RN61 | Toda edição deve ser registrada com nome do usuário que editou, data e hora, e campos modificados (antes e depois). |
-| RN62 | O recibo deve estar vinculado a uma venda registrada ou a um serviço previamente concluído no sistema. |
-| RN63 | O recibo deve conter, no mínimo: nome ou razão social do cliente, descrição do serviço prestado, valor pago, data da prestação do serviço, forma de pagamento, nome e CPF/CNPJ do emissor e do cliente (empresa ou profissional). |
-| RN64 | Cada recibo gerado deve receber um número único e sequencial, controlado automaticamente pelo sistema. |
-| RN65 | Após o envio do recibo, qualquer alteração exigirá cancelamento e emissão de um novo recibo. |
-| RN66 | Em edições de valor, cliente ou data do serviço, o sistema deve solicitar justificativa do usuário. |
-| RN67 | O sistema só poderá exportar um recibo se ele já tiver sido criado e salvo com todos os dados obrigatórios preenchidos. |
-| RN68 | O recibo será exportado exclusivamente em formato PDF, com layout padronizado. |
-| RN69 | O PDF deve conter logo e dados da empresa (nome, CNPJ, endereço, contato), definidos na configuração do sistema. |
-| RN70 | Apenas usuários com perfil autorizado (ex.: financeiro, administrador) podem exportar recibos. |
-| RN71 | O arquivo PDF deve ser nomeado de forma padronizada, por exemplo: recibo_<número>_<cliente>.pdf. |
-| RN72 | Após a exportação final e envio ao cliente, o recibo pode ser bloqueado para edição, exigindo cancelamento e novo registro para alterações. |
-| RN73 | Todo serviço (venda e orçamento) deve ser associado ao cliente. |
-| RN74 | Apenas usuários com perfil financeiro, administrador ou autorizado podem registrar novas despesas. |
-| RN75 | Toda despesa deve incluir: categoria da despesa (ex.: aluguel, material, transporte), valor, data da despesa, forma de pagamento (dinheiro, cartão, transferência etc.), descrição/resumo da despesa. |
-| RN76 | O valor da despesa deve ser maior que zero e informado com no máximo duas casas decimais. |
-| RN77 | O sistema pode permitir o upload de um comprovante (foto, PDF, nota fiscal) associado à despesa. |
-| RN78 | O sistema deve registrar o usuário responsável por cada despesa e a data/hora do lançamento. |
-| RN79 | Alterações em campos como valor, data ou categoria devem exigir uma justificativa do usuário, que será registrada. |
-| RN80 | Apenas usuários com perfil administrador ou autorizado podem editar despesas já registradas. |
-| RN81 | Somente administradores podem criar e/ou consultar gráfico financeiro. |
-| RN82 | Somente administradores podem criar e/ou consultar gráficos de desempenho. |
-| RN83 | Os dados devem ser listados por padrão em ordem cronológica (mais recente primeiro), com opção de alterar a ordenação. |
-| RN84 | O sistema deve exibir automaticamente: soma total das despesas listadas e subtotais por categoria. |
-| RN85 | O nome do arquivo deve seguir um padrão claro, como: despesas_<período>.pdf ou despesas_<período>.xlsx. |
-| RN86 | O PDF deve incluir logo e dados da empresa. |
-| RN87 | Toda vez que um agendamento for realizado ou um orçamento for realizado ou uma venda for feita, o sistema deve registrar automaticamente uma entrada no histórico de interações do cliente. |
-| RN88 | Cada log deve ter: data/hora da atividade e descrição da atividade. |
-| RN89 | Toda interação deve estar vinculada a um cliente identificado no sistema. |
-| RN90 | Os botões ou links para contato devem estar visíveis em áreas estratégicas do sistema/site, como rodapé, página inicial e página de atendimento ou suporte. |
-| RN91 | O sistema deve permitir o redirecionamento para um formulário personalizado hospedado no Google Forms, para envio de solicitações, orçamentos ou dúvidas. |
-| RN92 | Deve ser fornecido um link direto para o perfil da empresa no Instagram, abrindo em nova aba ou aplicativo. |
-| RN93 | Apenas usuários com perfil de administrador ou com permissão específica podem cadastrar, editar ou remover perguntas da FAQ. |
-| RN94 | Cada item de FAQ deve conter obrigatoriamente: pergunta (título), resposta (conteúdo), categoria (opcional, para organização por temas). |
-| RN95 | A pergunta deve ter no mínimo 10 caracteres, e a resposta, no mínimo 20 caracteres, para garantir clareza e completude. |
-| RN96 | Toda exclusão de avaliação deve ser registrada com uma justificativa, seja ela: conteúdo inadequado, comentário ofensivo, informação falsa ou solicitação do próprio cliente. |
-| RN97 | O cliente pode solicitar a exclusão da própria avaliação, mediante autenticação e confirmação. |
-| RN98 | Somente administradores podem incluir ou editar anotações internas no perfil do cliente. |
-| RN99 | Clientes podem avaliar serviços após sua conclusão. |
-| RN100 | Os agendamentos podem ser cancelados por administradores e pelos clientes. |
-| RN101 | Apenas os administradores podem criar, editar ou excluir perfis de cliente. |
-| RN102 | O sistema deve exibir calendário com dias e horários já ocupados e disponíveis para agendamento. |
-| RN103 | O sistema deve exibir um resumo do orçamento solicitado pelo cliente. |
-| RN104 | O sistema deve fornecer notificações sempre que um novo agendamento for feito para garantir acompanhamento. |
-| RN105 | A avaliação deve conter obrigatoriamente: nota (ex.: de 1 a 5 estrelas ou pontos) e comentário com no mínimo 20 caracteres. |
-| RN106 | O comentário deve ter um limite máximo de, por exemplo, 500 caracteres para garantir objetividade. |
-| RN107 | Apenas o perfil do cliente deve ser excluído, preservando o log de interações. |
-| RN108 | Os gráficos gerados pelo sistema devem ser do tipo “barras”. |
+|  **RN01** | Os agendamentos listados têm que ter sido feitos no máximo com uma semana. |
+| **RN02** | Agendamentos só podem ser feitos em horários disponíveis e dentro do expediente da empresa. |
+| **RN03** | Deve haver um intervalo mínimo de 30 minutos entre dois compromissos consecutivos. |
+| **RN04** | O sistema deve permitir agendamentos com no máximo 30 dias de antecedência. |
+| **RN05** | O sistema deve confirmar o agendamento por meio de notificação no WhatsApp. |
+| **RN06** | A data e o horário inseridos devem ser validados antes da confirmação do agendamento. |
+| **RN07** | Apenas usuários com perfil de administrador podem visualizar os agendamentos de todos os usuários. |
+| **RN08** | O sistema deve permitir a seleção de uma data específica para exibir os agendamentos correspondentes. |
+| **RN09** | Os agendamentos devem ser exibidos em ordem cronológica (do mais cedo para o mais tarde). |
+| **RN10** | Cada agendamento listado deve apresentar no mínimo: nome do cliente, horário, serviço agendado e status (confirmado, cancelado, realizado). |
+| **RN11** | A lista de agendamentos deve ser atualizada automaticamente ou por meio de recarga manual para refletir alterações feitas por outros usuários. |
+| **RN12** | O administrador deve poder filtrar os agendamentos por status (ex.: apenas confirmados ou apenas cancelados). |
+| **RN13** | A visualização de agendamentos passados deve ser permitida apenas para fins administrativos e por um período de até 12 meses. |
+| **RN14** | Clientes podem cancelar agendamentos com no mínimo 12h de antecedência. |
+| **RN15** | Apenas o usuário que criou o agendamento ou um administrador pode realizar a remarcação. |
+| **RN16** | O novo horário escolhido deve estar livre, sem conflitos com outros agendamentos do mesmo recurso (profissional, sala, etc.). |
+| **RN17** | Cada agendamento pode ser remarcado no máximo 4 vezes. |
+| **RN18** | O sistema deve manter um histórico com data e hora de cada remarcação, incluindo quem a realizou. |
+| **RN19** | O sistema deve enviar uma notificação ao cliente confirmando a nova data e horário. |
+| **RN20** | A nova data/hora deve obedecer às mesmas regras de agendamento padrão, como horários permitidos e intervalos mínimos. |
+| **RN21** | Não é permitido remarcar um compromisso para uma data ou horário anterior ao atual. |
+| **RN22** | A remarcação deve manter as informações originais do serviço, alterando apenas a data e hora. |
+| **RN23** | Agendamentos cancelados geram notificações para o cliente e o administrador. |
+| **RN24** | O cancelamento deve ser feito com no mínimo 6 horas de antecedência do horário agendado, salvo exceções administrativas. |
+| **RN25** | O sistema deve registrar a data, hora e responsável pelo cancelamento. |
+| **RN26** | Não é permitido cancelar compromissos cuja data e horário já tenham passado. |
+| **RN27** | Ao cancelar um compromisso, o horário correspondente deve ser automaticamente liberado para novos agendamentos. |
+| **RN28** | Se o cliente não comparecer ao compromisso e não cancelar dentro do prazo, o sistema deve marcar automaticamente como "cancelado por ausência" e registrar isso no histórico. |
+| **RN29** | O sistema deve alertar automaticamente sobre agendamentos não confirmados nos próximos 3 dias. |
+| **RN30** | Apenas usuários autenticados com perfil autorizado podem criar orçamentos no sistema. |
+| **RN31** | Os orçamentos devem expirar em no máximo 15 dias. |
+| **RN32** | Orçamentos devem estar associados a um cliente e podem ser filtrados por cliente, status, etc. |
+| **RN33** | Um orçamento só pode ser criado se contiver: nome do cliente, descrição dos serviços, descrição dos materiais, valor estimado e dados da vidraçaria (CNPJ, endereço, nome, assinatura). |
+| **RN34** | Cada orçamento criado deve receber um número ou código único gerado automaticamente pelo sistema. |
+| **RN35** | O orçamento deve estar vinculado a um cliente específico e aos serviços correspondentes disponíveis no sistema. |
+| **RN36** | Um orçamento pode ter os seguintes status: rascunho, enviado, aprovado, rejeitado, expirado ou cancelado. |
+| **RN37** | Apenas usuários autenticados com perfil autorizado (ex.: administradores, atendentes) podem visualizar a lista completa de orçamentos. |
+| **RN38** | Cada orçamento deve aparecer na lista apenas com os campos nome do cliente, descrição do serviço, data de abertura e status. |
+| **RN39** | Um agendamento deve incluir endereço e um campo para incluir o link da localização do local do serviço. |
+| **RN40** | A listagem deve permitir filtragem por: cliente, data de criação, status e intervalo de valores. |
+| **RN41** | Ao clicar em um orçamento na lista, o sistema deve exibir os detalhes completos da proposta. |
+| **RN42** | O sistema deve permitir busca textual (por nome de cliente, número do orçamento ou descrição do serviço). |
+| **RN43** | Somente usuários com perfil de administrador ou responsável pelo orçamento podem editar. |
+| **RN44** | Orçamentos com status “aprovado”, “rejeitado”, “expirado” ou “cancelado” são bloqueados para edição. |
+| **RN45** | Todas as edições devem ser registradas em log com data/hora, nome do usuário e o conteúdo alterado. |
+| **RN46** | Caso o orçamento já tenha sido enviado ao cliente, o sistema deve solicitar ou permitir o reenvio da proposta editada. |
+| **RN47** | Se a edição não for concluída em até 20 minutos, o sistema cancela a operação para evitar travamentos ou dados inconsistentes. |
+| **RN48** | Vendas e recibos devem estar relacionados a um cliente e orçamento. |
+| **RN49** | Apenas administradores podem criar, editar ou excluir recibos já registrados. |
+| **RN50** | A listagem deve permitir filtrar por: data da venda (intervalo), cliente, produto ou serviço vendido, forma de pagamento. |
+| **RN51** | Deve ser exibido o total em valor das vendas listadas com base nos filtros aplicados. |
+| **RN52** | Deve ser possível clicar em uma venda da lista para visualizar todos os detalhes: itens vendidos, impostos, pagamentos, notas fiscais. |
+| **RN53** | Apenas usuários com perfis autorizados (ex.: administrador, financeiro, vendas) podem acessar os detalhes completos de uma venda. |
+| **RN54** | O sistema deve exibir os pagamentos registrados para aquela venda, com datas, valores e status. |
+| **RN55** | Uma venda deve ter todos os dados de um orçamento e incluir origem (WhatsApp, presencial, Instagram, site), forma de pagamento. |
+| **RN56** | Cada venda registrada deve receber um ID único e sequencial para fins de rastreamento e controle. |
+| **RN57** | Apenas administradores podem registrar, editar ou excluir vendas. |
+| **RN58** | Toda despesa registrada deve ser categorizada para compor relatórios financeiros. |
+| **RN59** | O sistema deve impedir que dois usuários editem a mesma venda ao mesmo tempo. |
+| **RN60** | Sempre que os itens ou valores forem alterados, o sistema deve recalcular automaticamente. |
+| **RN61** | Toda edição deve ser registrada com nome do usuário que editou, data e hora, e campos modificados (antes e depois). |
+| **RN62** | O recibo deve estar vinculado a uma venda registrada ou a um serviço previamente concluído no sistema. |
+| **RN63** | O recibo deve conter, no mínimo: nome ou razão social do cliente, descrição do serviço prestado, valor pago, data da prestação do serviço, forma de pagamento, nome e CPF/CNPJ do emissor e do cliente (empresa ou profissional). |
+| **RN64** | Cada recibo gerado deve receber um número único e sequencial, controlado automaticamente pelo sistema. |
+| **RN65** | Após o envio do recibo, qualquer alteração exigirá cancelamento e emissão de um novo recibo. |
+| **RN66** | Em edições de valor, cliente ou data do serviço, o sistema deve solicitar justificativa do usuário. |
+| **RN67** | O sistema só poderá exportar um recibo se ele já tiver sido criado e salvo com todos os dados obrigatórios preenchidos. |
+| **RN68** | O recibo será exportado exclusivamente em formato PDF, com layout padronizado. |
+| **RN69** | O PDF deve conter logo e dados da empresa (nome, CNPJ, endereço, contato), definidos na configuração do sistema. |
+| **RN70** | Apenas usuários com perfil autorizado (ex.: financeiro, administrador) podem exportar recibos. |
+| **RN71** | O arquivo PDF deve ser nomeado de forma padronizada, por exemplo: recibo_<número>_<cliente>.pdf. |
+| **RN72** | Após a exportação final e envio ao cliente, o recibo pode ser bloqueado para edição, exigindo cancelamento e novo registro para alterações. |
+| **RN73** | Todo serviço (venda e orçamento) deve ser associado ao cliente. |
+| **RN74** | Apenas usuários com perfil financeiro, administrador ou autorizado podem registrar novas despesas. |
+| **RN75** | Toda despesa deve incluir: categoria da despesa (ex.: aluguel, material, transporte), valor, data da despesa, forma de pagamento (dinheiro, cartão, transferência etc.), descrição/resumo da despesa. |
+| **RN76** | O valor da despesa deve ser maior que zero e informado com no máximo duas casas decimais. |
+| **RN77** | O sistema pode permitir o upload de um comprovante (foto, PDF, nota fiscal) associado à despesa. |
+| **RN78** | O sistema deve registrar o usuário responsável por cada despesa e a data/hora do lançamento. |
+| **RN79** | Alterações em campos como valor, data ou categoria devem exigir uma justificativa do usuário, que será registrada. |
+| **RN80** | Apenas usuários com perfil administrador ou autorizado podem editar despesas já registradas. |
+| **RN81** | Somente administradores podem criar e/ou consultar gráfico financeiro. |
+| **RN82** | Somente administradores podem criar e/ou consultar gráficos de desempenho. |
+| **RN83** | Os dados devem ser listados por padrão em ordem cronológica (mais recente primeiro), com opção de alterar a ordenação. |
+| **RN84** | O sistema deve exibir automaticamente: soma total das despesas listadas e subtotais por categoria. |
+| **RN85** | O nome do arquivo deve seguir um padrão claro, como: despesas_<período>.pdf ou despesas_<período>.xlsx. |
+| **RN86** | O PDF deve incluir logo e dados da empresa. |
+| **RN87** | Toda vez que um agendamento for realizado ou um orçamento for realizado ou uma venda for feita, o sistema deve registrar automaticamente uma entrada no histórico de interações do cliente. |
+| **RN88** | Cada log deve ter: data/hora da atividade e descrição da atividade. |
+| **RN89** | Toda interação deve estar vinculada a um cliente identificado no sistema. |
+| **RN90** | Os botões ou links para contato devem estar visíveis em áreas estratégicas do sistema/site, como rodapé, página inicial e página de atendimento ou suporte. |
+| **RN91** | O sistema deve permitir o redirecionamento para um formulário personalizado hospedado no Google Forms, para envio de solicitações, orçamentos ou dúvidas. |
+| **RN92** | Deve ser fornecido um link direto para o perfil da empresa no Instagram, abrindo em nova aba ou aplicativo. |
+| **RN93** | Apenas usuários com perfil de administrador ou com permissão específica podem cadastrar, editar ou remover perguntas da FAQ. |
+| **RN94** | Cada item de FAQ deve conter obrigatoriamente: pergunta (título), resposta (conteúdo), categoria (opcional, para organização por temas). |
+| **RN95** | A pergunta deve ter no mínimo 10 caracteres, e a resposta, no mínimo 20 caracteres, para garantir clareza e completude. |
+| **RN96** | Toda exclusão de avaliação deve ser registrada com uma justificativa, seja ela: conteúdo inadequado, comentário ofensivo, informação falsa ou solicitação do próprio cliente. |
+| **RN97** | O cliente pode solicitar a exclusão da própria avaliação, mediante autenticação e confirmação. |
+| **RN98** | Somente administradores podem incluir ou editar anotações internas no perfil do cliente. |
+| **RN99** | Clientes podem avaliar serviços após sua conclusão. |
+| **RN100** | Os agendamentos podem ser cancelados por administradores e pelos clientes. |
+| **RN101** | Apenas os administradores podem criar, editar ou excluir perfis de cliente. |
+| **RN102** | O sistema deve exibir calendário com dias e horários já ocupados e disponíveis para agendamento. |
+| **RN103** | O sistema deve exibir um resumo do orçamento solicitado pelo cliente. |
+| **RN104** | O sistema deve fornecer notificações sempre que um novo agendamento for feito para garantir acompanhamento. |
+| **RN105** | A avaliação deve conter obrigatoriamente: nota (ex.: de 1 a 5 estrelas ou pontos) e comentário com no mínimo 20 caracteres. |
+| **RN106** | O comentário deve ter um limite máximo de, por exemplo, 500 caracteres para garantir objetividade. |
+| **RN107** | Apenas o perfil do cliente deve ser excluído, preservando o log de interações. |
+| **RN108** | Os gráficos gerados pelo sistema devem ser do tipo “barras”. |
