@@ -45,4 +45,4 @@ Abaixo estão algumas das telas prototipadas separadas por seus ciclos:
 
 🔗 **Acesse os protótipos de alta fidelidade no Figma:**
 
-[Protótipos no Figma](https://www.figma.com/design/reBg5nLQBs1u2xvyafPvku/Vidra%C3%A7aria_modelo?node-id=23-7&p=f&t=xFDGaivhsfXPTbTd-0)
+[Protótipos no Figma](https://www.figma.com/proto/reBg5nLQBs1u2xvyafPvku/Vidra%C3%A7aria_modelo?node-id=520-570&t=GoIGJh2PbjXE0PNC-1)
