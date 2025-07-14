@@ -1,23 +1,21 @@
-🔹 RF01 – Realizar agendamento
-Regras de Negócio não implementadas:
 
-RN39: Um agendamento deve incluir endereço e um campo para incluir o link da localização do local do serviço.
+RN 05 - Corrigir para Email
+RN 15 - Apenas Administradot pode remarcar
 
-🔹 RF02 – Visualizar serviços agendados
-Regras de Negócio não implementadas:
+RN 17 - Apagar
+RN 18 - Apagar
+RN 24 - Apagar
+Rn 25 - Apagar
 
-RN29: O sistema deve alertar automaticamente sobre agendamentos não confirmados nos próximos 3 dias.
+RN 30 - Apagar
+RN 31 - Apagar
 
-🔹 RF03 – Remarcar agendamento
-Regras de Negócio não implementadas (todas):
+RN 33 - corrigir de acordo com o formulario de solicitacao de orcamento
+RN 45 - apagar
+RN 46 - Apagar
+RN 47 - Apagar
 
-RN14: Clientes podem cancelar agendamentos com no mínimo 12h de antecedência. ( cliente nao tem acesso ao sistema )
-RN15: Apenas o usuário que criou o agendamento ou um administrador pode realizar a remarcação.
-RN17: Cada agendamento pode ser remarcado no máximo 4 vezes.
-RN18: O sistema deve manter um histórico com data e hora de cada remarcação, incluindo quem a realizou.
-
-
-🔹 RF04 – Cancelar agendamento
-Regras de Negócio não implementadas:
-RN28: Se o cliente não comparecer ao compromisso e não cancelar dentro do prazo, o sistema deve marcar automaticamente como "cancelado por ausência".
-
+Rn 48 - orcameto nao se relaicona com venda, venda é vend, orcamento é orcamento 
+RN 55 - apagar
+RN 59 - errado 
+RN 61 - apagar

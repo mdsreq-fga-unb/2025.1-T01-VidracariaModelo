@@ -123,7 +123,7 @@ const EditarOrcamento: React.FC = () => {
     };
 
     try {
-      const res = await fetch(`${API_URL}orcamento/${id}`, {
+      const res = await fetch(`${API_URL}/orcamento/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
