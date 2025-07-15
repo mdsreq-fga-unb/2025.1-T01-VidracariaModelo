@@ -24,10 +24,10 @@
 |**RF21**|Excluir Avaliação|O sistema deve permitir a exclusão de avaliações realizadas pelo cliente para manter a integridade das informações publicadas.|**RN** **30**, **59** |Objetivo 1: Sofisticar o marketing e proporcionando posicionamento online.|
 |**RF22**|Publicar avaliação|O sistema deve permitir que o usuário publique uma avaliação com nota e comentário para registrar sua opinião sobre os serviços.|**RN** **24**, **25** |Objetivo 1: Sofisticar o marketing e proporcionando posicionamento online.|
 |**RF23**|Criar perfil do cliente|O sistema deve permitir a criação de perfis de cliente para armazenar seus dados e histórico de interações.|**RN** **46**, **61**, **73** |Objetivo 4: Aprimorar gestão financeira e de vendas.|
-|**RF24**|Editar informações do cliente|O sistema deve permitir a edição das informações básicas de identificação e contato dos clientes para manter os dados atualizados.|**RN** **73**, **98** |Objetivo 4: Aprimorar gestão financeira e de vendas.|
+|**RF24**|Editar informações do cliente|O sistema deve permitir a edição das informações básicas de identificação e contato dos clientes para manter os dados atualizados.|**RN** **61**,**73** |Objetivo 4: Aprimorar gestão financeira e de vendas.|
 |**RF25**|Excluir perfil do cliente|O sistema deve permitir a exclusão das informações do perfil do cliente para atender solicitações de privacidade.|**RN** **17**, **73** |Objetivo 4: Aprimorar gestão financeira e de vendas.|
-|**RF26**|Gerar gráfico de desempenho|O sistema deve gerar um gráfico com métricas como orçamento, conversões e atendimentos para apoiar o planejamento estratégico.|**RN** **81**, **108**|Objetivo 3: Viabilizar gestão de demandas.|
-|**RF27**|Gerar gráfico comparativo financeiro|O sistema deve gerar um gráfico de receitas (vendas) vs despesas mensal para apoiar a tomada de decisão financeira.|**RN** **18**, **108** |Objetivo 4: Aprimorar gestão financeira e de vendas.|
+|**RF26**|Gerar gráfico de desempenho|O sistema deve gerar um gráfico com métricas como orçamento, conversões e atendimentos para apoiar o planejamento estratégico.|**RN** **18**, **81**|Objetivo 3: Viabilizar gestão de demandas.|
+|**RF27**|Gerar gráfico comparativo financeiro|O sistema deve gerar um gráfico de receitas (vendas) vs despesas mensal para apoiar a tomada de decisão financeira.|**RN** **18**, **58** |Objetivo 4: Aprimorar gestão financeira e de vendas.|
 
 
 ## **Requisitos Não Funcionais (RNF)**

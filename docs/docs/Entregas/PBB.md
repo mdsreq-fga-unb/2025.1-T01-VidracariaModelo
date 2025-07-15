@@ -7,7 +7,7 @@ O Canvas de Product Backlog Building da empresa "HealthNet" foi realizada em equ
 
 O Canvas PBB pode ser visualizado abaixo:
 
-![PDF em anexo](../imagens/PBB.pdf)
+![PDF em anexo](../imagens/PBB_-_HealthNet.webp)
 
 ## 1.3. Critérios de Aceitação das Histórias de Usuários - HealthNet
 
