@@ -84,7 +84,7 @@ Este cronograma é uma **versão premilinar** do projeto.
 | 10/06/2025 | 1.3 | Atualizações e refatoração das datas e atividades|Cayo  | Ígor        |
 | 22/06/2025 | 1.4 | Atualizações e refatoração das datas e atividades|Samara Alves  | Cayo       |
 | 23/06/2025 | 1.5 | Atualizações e refatoração das datas e atividades|Pedro Henrique  | Cayo       |
-| 23/06/2025 | 1.5 | Atualizações |Samara Alves  | Ígor       |
+| 14/07/2025 | 1.6 | Atualizações |Samara Alves  | Ígor       |
 
 
 
