@@ -1,0 +1,2016 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mdsreq-fga-unb.github.io/2025.1-T01-VidracariaModelo/docs/VisaodeProduto/Engenharia_de_Requisitos/">
+      
+      
+        <link rel="prev" href="../Estrategias/">
+      
+      
+        <link rel="next" href="../Cronograma/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>4. Engenharia de Requisitos - VidracariaModelo</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#elicitacao-e-descoberta" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="VidracariaModelo" class="md-header__button md-logo" aria-label="VidracariaModelo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VidracariaModelo
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. Engenharia de Requisitos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="VidracariaModelo" class="md-nav__button md-logo" aria-label="VidracariaModelo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VidracariaModelo
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Visão de Projeto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Visão de Projeto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cenario_atual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Cenário Atual do Cliente e do Negócio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Solucao_proposta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Solução Proposta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Estrategias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Estratégias de Engenharia de Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    4. Engenharia de Requisitos
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Engenharia de Requisitos
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elicitacao-e-descoberta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elicitação e Descoberta
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Elicitação e Descoberta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brainstorming" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Brainstorming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 Prompt IA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrevista-com-o-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      👥 Entrevista com o cliente
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analise-e-consenso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Análise e Consenso
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Análise e Consenso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brainstorming_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Brainstorming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrevista" class="md-nav__link">
+    <span class="md-ellipsis">
+      👥 Entrevista
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negociacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤝 Negociação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-ia_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 Prompt IA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declaração
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Declaração">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documento-de-visao-de-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      📄 Documento de Visão de Produto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#especificacao-de-requisitos-aro-atores-requisitos-e-objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📑 Especificação de Requisitos ARO (Atores, Requisitos e Objetivos)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#representacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Representação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Representação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagramas" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Diagramas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prototipagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      🖼️ Prototipagem
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacao-e-validacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificação e Validação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verificação e Validação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analise-de-qualidade-de-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Análise de Qualidade de Requisitos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-done-dod" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Definition of Done (DoD)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-ready-dor" class="md-nav__link">
+    <span class="md-ellipsis">
+      🟡 Definition of Ready (DoR)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-ia_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 Prompt IA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revisao-por-pares" class="md-nav__link">
+    <span class="md-ellipsis">
+      👥 Revisão por Pares
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspecao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Inspeção
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deep-backlog-deep-detailed-emergent-estimated-prioritized" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 DEEP (Backlog DEEP – Detailed, Emergent, Estimated, Prioritized)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organizacao-e-atualizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organização e Atualização
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Organização e Atualização">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#moscow-tecnica-de-priorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗂️ MoSCoW – Técnica de Priorização
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pontos-por-historias-wsjf-weighted-shortest-job-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Pontos por Histórias: WSJF (Weighted Shortest Job First)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versões
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Cronograma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5.Cronograma e Entregas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Interacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6.Interação entre Equipe e Cliente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../licoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Lições Aprendidas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Requisitos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Requisitos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requisitos/requisitos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Lista de requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Backlog/baclog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Backlog de requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOR_DOD/dor_dod/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DOR e DOD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Prototipo/prototipo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Protótipos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Entregas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Entregas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/PBB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PBB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/USM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    USM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/Caso_de_Uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Caso de Uso
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Atas de Reunião
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de Reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/15_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15/04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/29_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    29/04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/06_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    06/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/13_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/20_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    20/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/27_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    27/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/02_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    02/06
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/10_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10/06
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/10_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10/07
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#elicitacao-e-descoberta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Elicitação e Descoberta
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Elicitação e Descoberta">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brainstorming" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Brainstorming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-ia" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 Prompt IA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrevista-com-o-cliente" class="md-nav__link">
+    <span class="md-ellipsis">
+      👥 Entrevista com o cliente
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analise-e-consenso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Análise e Consenso
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Análise e Consenso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brainstorming_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 Brainstorming
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#entrevista" class="md-nav__link">
+    <span class="md-ellipsis">
+      👥 Entrevista
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negociacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤝 Negociação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-ia_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 Prompt IA
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declaração
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Declaração">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#documento-de-visao-de-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      📄 Documento de Visão de Produto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#especificacao-de-requisitos-aro-atores-requisitos-e-objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      📑 Especificação de Requisitos ARO (Atores, Requisitos e Objetivos)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#representacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Representação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Representação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diagramas" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Diagramas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prototipagem" class="md-nav__link">
+    <span class="md-ellipsis">
+      🖼️ Prototipagem
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verificacao-e-validacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verificação e Validação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verificação e Validação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#analise-de-qualidade-de-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Análise de Qualidade de Requisitos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-done-dod" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Definition of Done (DoD)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definition-of-ready-dor" class="md-nav__link">
+    <span class="md-ellipsis">
+      🟡 Definition of Ready (DoR)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prompt-ia_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 Prompt IA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#revisao-por-pares" class="md-nav__link">
+    <span class="md-ellipsis">
+      👥 Revisão por Pares
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inspecao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Inspeção
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deep-backlog-deep-detailed-emergent-estimated-prioritized" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧠 DEEP (Backlog DEEP – Detailed, Emergent, Estimated, Prioritized)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organizacao-e-atualizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organização e Atualização
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Organização e Atualização">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#moscow-tecnica-de-priorizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      🗂️ MoSCoW – Técnica de Priorização
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pontos-por-historias-wsjf-weighted-shortest-job-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Pontos por Histórias: WSJF (Weighted Shortest Job First)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versões
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>4. Engenharia de Requisitos</h1>
+
+<h2 id="elicitacao-e-descoberta"><em>Elicitação e Descoberta</em></h2>
+<h3 id="brainstorming">🧠 Brainstorming</h3>
+<p>Técnica de geração livre de ideias, usada para levantar funcionalidades, problemas ou soluções com a participação de stakeholders, desenvolvedores e usuários.</p>
+<p><strong>Objetivo:</strong> explorar diferentes visões, mesmo sem filtrar ou julgar.</p>
+<hr />
+<h3 id="prompt-ia">🤖 Prompt IA</h3>
+<p>Uso de ferramentas de IA (como ChatGPT) para explorar ideias iniciais, levantar possíveis funcionalidades, ou simular entrevistas com clientes ou usuários.</p>
+<p><strong>Objetivo:</strong> acelerar a geração de requisitos iniciais com apoio automatizado.</p>
+<hr />
+<h3 id="entrevista-com-o-cliente">👥 Entrevista com o cliente</h3>
+<p>Conversa estruturada ou semiestruturada com stakeholders para entender necessidades, problemas e objetivos do sistema.</p>
+<p><strong>Objetivo:</strong> captar requisitos diretos da fonte.</p>
+<hr />
+<h2 id="analise-e-consenso"><em>Análise e Consenso</em></h2>
+<h3 id="brainstorming_1">🧠 Brainstorming</h3>
+<p>Usado aqui para <em>discutir</em> e <em>refinar</em> requisitos levantados, promovendo uma visão compartilhada entre stakeholders e equipe.</p>
+<hr />
+<h3 id="entrevista">👥 Entrevista</h3>
+<p>Aprofundamento nas entrevistas anteriores para esclarecer requisitos complexos, técnicos ou sensíveis.</p>
+<hr />
+<h3 id="negociacao">🤝 Negociação</h3>
+<p>Processo de ajustar requisitos conflitantes ou que excedem recursos disponíveis (tempo, custo, tecnologia).</p>
+<p><strong>Exemplo:</strong> o cliente quer uma funcionalidade agora, mas ela será priorizada para a próxima versão por impacto no cronograma.</p>
+<hr />
+<h3 id="prompt-ia_1">🤖 Prompt IA</h3>
+<p>Auxílio na análise de requisitos, verificação de clareza, identificação de possíveis inconsistências ou lacunas.</p>
+<h2 id="declaracao"><em>Declaração</em></h2>
+<h3 id="documento-de-visao-de-produto">📄 Documento de Visão de Produto</h3>
+<p>Documento que descreve o propósito, escopo, público-alvo e funcionalidades principais do sistema.<br />
+<em>Serve como norteador estratégico do projeto.</em></p>
+<h2 id="especificacao-de-requisitos-aro-atores-requisitos-e-objetivos">📑 Especificação de Requisitos ARO (Atores, Requisitos e Objetivos)</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Elemento</strong></th>
+<th><strong>Descrição</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ação</strong></td>
+<td>O que o sistema fará (verbo no infinitivo: cadastrar, listar, validar, emitir, etc.).</td>
+</tr>
+<tr>
+<td><strong>Recurso</strong></td>
+<td>Qual entidade ou item será manipulado (ex: cliente, pedido, agendamento, recibo).</td>
+</tr>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td>Qual é a finalidade do requisito (ex: para registrar vendas, para controle financeiro, para histórico do cliente).</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="representacao"><em>Representação</em></h2>
+<h3 id="diagramas">📊 Diagramas</h3>
+<p>Incluem:</p>
+<ul>
+<li><em>Diagrama Entidade Relacionamento (DER)</em></li>
+<li><em>Diagrama lógico do Banco de Dados</em></li>
+<li><em>Diagramas de fluxo de uso</em></li>
+</ul>
+<h3 id="prototipagem">🖼️ Prototipagem</h3>
+<p>Criação de <em>interfaces simuladas</em> (alta fidelidade) para validar requisitos com usuários antes da codificação.<br />
+<strong>Ferramenta:</strong> Figma.</p>
+<hr />
+<h2 id="verificacao-e-validacao"><em>Verificação e Validação</em></h2>
+<h3 id="analise-de-qualidade-de-requisitos">🔍 Análise de Qualidade de Requisitos</h3>
+<p>Avaliação se os requisitos são <strong>completos, consistentes, claros, testáveis, rastreáveis</strong> e <strong>sem ambiguidade</strong>.</p>
+<h3 id="definition-of-done-dod">✅ Definition of Done (DoD)</h3>
+<p>Critérios que definem quando um requisito está completamente implementado e pronto para entrega.<br />
+<strong>Exemplo:</strong> Testado, documentado, aprovado pelo PO.</p>
+<h3 id="definition-of-ready-dor">🟡 Definition of Ready (DoR)</h3>
+<p>Critérios mínimos para que um requisito esteja pronto para ser implementado.<br />
+<strong>Exemplo:</strong> Está bem descrito, tem critérios de aceitação, foi priorizado.</p>
+<h3 id="prompt-ia_2">🤖 Prompt IA</h3>
+<p>Validação automática ou semi-automática de requisitos: clareza, ambiguidade, exemplos de teste.</p>
+<h3 id="revisao-por-pares">👥 Revisão por Pares</h3>
+<p>Membros da equipe revisam requisitos uns dos outros para verificar coerência, viabilidade e clareza.</p>
+<h3 id="inspecao">🧪 Inspeção</h3>
+<p>Técnica formal e mais rigorosa de revisão, feita em grupo e seguindo um roteiro.</p>
+<h3 id="deep-backlog-deep-detailed-emergent-estimated-prioritized">🧠 DEEP (Backlog DEEP – <em>Detailed, Emergent, Estimated, Prioritized</em>)</h3>
+<p>Critérios para manter um backlog saudável:</p>
+<table>
+<thead>
+<tr>
+<th>Letra</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D</td>
+<td>Detalhado o suficiente</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Requisitos emergem conforme entendimento cresce</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Estimado com esforço ou pontos</td>
+</tr>
+<tr>
+<td>P</td>
+<td>Priorizado por valor e necessidade</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="organizacao-e-atualizacao"><em>Organização e Atualização</em></h2>
+<h3 id="moscow-tecnica-de-priorizacao">🗂️ MoSCoW – Técnica de Priorização</h3>
+<table>
+<thead>
+<tr>
+<th>Letra</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M</td>
+<td>Must have (deve ter)</td>
+</tr>
+<tr>
+<td>S</td>
+<td>Should have (deveria ter)</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Could have (poderia ter)</td>
+</tr>
+<tr>
+<td>W</td>
+<td>Won’t have (não terá agora)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="pontos-por-historias-wsjf-weighted-shortest-job-first">📊 Pontos por Histórias: WSJF (Weighted Shortest Job First)</h3>
+<p>Usado para priorizar requisitos com base em <strong>valor de negócio, urgência, risco e esforço</strong>.<br />
+<strong>Fórmula:</strong></p>
+<p><strong>WSJF = (Valor do negócio + Urgência + Redução de risco) / Tamanho (Esforço)</strong></p>
+<p>Mais alto = maior prioridade.</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>Fases do Processo</strong></th>
+<th style="text-align: left;"><strong>Atividades ER</strong></th>
+<th style="text-align: left;"><strong>Prática</strong></th>
+<th style="text-align: left;"><strong>Técnica</strong></th>
+<th style="text-align: left;"><strong>Resultado Esperado</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Planejamento de requisitos</strong></td>
+<td style="text-align: left;">Elicitação e Descoberta</td>
+<td style="text-align: left;">Elicitação de requisitos</td>
+<td style="text-align: left;">Brainstorming, Prompt IA, Entrevista com cliente</td>
+<td style="text-align: left;">Identificação de requisitos</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Análise e Consenso</td>
+<td style="text-align: left;">Priorização dos Requisitos</td>
+<td style="text-align: left;">MosCow, wsjf, Entrevista, Prompt IA</td>
+<td style="text-align: left;">Priorização atribuindo um valor técnico aos requisitos</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Declaração</td>
+<td style="text-align: left;">Registro dos Requisitos</td>
+<td style="text-align: left;">Especificação de requisitos ARO</td>
+<td style="text-align: left;">Requisitos registrados de forma clara e concisa</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Organização e Atualização</td>
+<td style="text-align: left;">Construção do Backlog</td>
+<td style="text-align: left;">DEEP</td>
+<td style="text-align: left;">Organização dos requisitos resultando em um Backlog</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Verificação e Validação</td>
+<td style="text-align: left;">Verificação e validação dos requisitos</td>
+<td style="text-align: left;">Prompt IA, Revisão por pares, Análise de qualidade de requisitos</td>
+<td style="text-align: left;">Organização dos requisitos resultando em um Backlog</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>User Design</strong></td>
+<td style="text-align: left;">Representação</td>
+<td style="text-align: left;">Criação de Protótipos</td>
+<td style="text-align: left;">Prototipagem, Diagramas</td>
+<td style="text-align: left;">Protótipos e diagramas que deverão representar os requisitos e como eles devem agir</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Verificação e Validação</td>
+<td style="text-align: left;">Validação dos protótipos com base nos requisitos</td>
+<td style="text-align: left;">Análise de Qualidade de Requisitos, DoR, revisão por pares</td>
+<td style="text-align: left;">Confirmação que os requisitos estão prontos para o desenvolvimento</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Organização e atualização</td>
+<td style="text-align: left;">Priorização e detalhamento dos requisitos</td>
+<td style="text-align: left;">MosCoW, Wjsf</td>
+<td style="text-align: left;">Revisão dos requisitos a partir dos protótipos</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Construção</strong></td>
+<td style="text-align: left;">Verificação e validação</td>
+<td style="text-align: left;">Inspeção</td>
+<td style="text-align: left;">Revisão por pares</td>
+<td style="text-align: left;">Encontrar defeitos e problemas</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Verificação e validação de produto</td>
+<td style="text-align: left;">Inspeção</td>
+<td style="text-align: left;">DoD</td>
+<td style="text-align: left;">Validar o produto desenvolvido</td>
+</tr>
+</tbody>
+</table>
+<h2 id="historico-de-versoes">Histórico de Versões</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor</th>
+<th>Revisores</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>19/04/2025</td>
+<td>1.0</td>
+<td>Criação do documento</td>
+<td>Samara Alves</td>
+<td>Maria Eduarda</td>
+</tr>
+<tr>
+<td>26/05/2025</td>
+<td>1.1</td>
+<td>Atualizações e alterações</td>
+<td>Igor Daniel, Pedro Henrique</td>
+<td>Cayo Alencar</td>
+</tr>
+<tr>
+<td>13/07/2025</td>
+<td>1.2</td>
+<td>Atualizações e alterações</td>
+<td>Samara Alves</td>
+<td>Maria Eduarda</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.tabs.link", "header.autohide", "navigation.instant", "navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>

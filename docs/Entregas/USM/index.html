@@ -1,0 +1,3230 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mdsreq-fga-unb.github.io/2025.1-T01-VidracariaModelo/docs/Entregas/USM/">
+      
+      
+        <link rel="prev" href="../PBB/">
+      
+      
+        <link rel="next" href="../Caso_de_Uso/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>USM - VidracariaModelo</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#11-user-story-map" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="VidracariaModelo" class="md-header__button md-logo" aria-label="VidracariaModelo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VidracariaModelo
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              USM
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="VidracariaModelo" class="md-nav__button md-logo" aria-label="VidracariaModelo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VidracariaModelo
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Visão de Projeto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Visão de Projeto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Cenario_atual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Cenário Atual do Cliente e do Negócio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Solucao_proposta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Solução Proposta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Estrategias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Estratégias de Engenharia de Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Engenharia_de_Requisitos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Engenharia de Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Cronograma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5.Cronograma e Entregas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Interacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6.Interação entre Equipe e Cliente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/licoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Lições Aprendidas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Requisitos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Requisitos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../requisitos/requisitos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Lista de requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Backlog/baclog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Backlog de requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOR_DOD/dor_dod/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DOR e DOD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Prototipo/prototipo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Protótipos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Entregas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Entregas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PBB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PBB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    USM
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    USM
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-user-story-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 User Story Map
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-estudo-de-caso-comuneventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Estudo de caso - ComunEventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-atividades-por-personas-comuneventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Atividades por personas - ComunEventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-detalhamento-por-backnone-comuneventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Detalhamento por Backnone - ComunEventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb01-gerenciar-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB01 - Gerenciar eventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-criar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Criar Evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Criar Evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us01-cadastrar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US01 - Cadastrar Evento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us02-definir-tipo-de-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US02 - Definir Tipo de Evento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-divulgar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Divulgar evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Divulgar evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us03-gerar-links-de-divulgacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US03 - Gerar links de divulgação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us04-criar-materiais" class="md-nav__link">
+    <span class="md-ellipsis">
+      US04 - Criar materiais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us05-criar-campanhas-de-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      US05 - Criar campanhas de email
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-gerenciar-inscricoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Gerenciar Inscrições
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Gerenciar Inscrições">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us06-gerar-visualizar-lista-de-inscritos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US06 - Gerar visualizar lista de inscritos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us07-receber-pagamento-de-inscricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US07 - Receber pagamento de inscrição
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us08-editar-lista-de-inscritos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US08 - Editar lista de inscritos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-gerenciar-fornecimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Gerenciar Fornecimento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Gerenciar Fornecimento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us09-criar-termos-e-compromissos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US09 - Criar termos e compromissos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us10-comunicar-com-fornecedores" class="md-nav__link">
+    <span class="md-ellipsis">
+      US10 - Comunicar com fornecedores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us11-visualizar-datas-e-detalhes-do-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US11 - Visualizar datas e detalhes do evento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us12-visualizar-termos-e-compromissos-acordados" class="md-nav__link">
+    <span class="md-ellipsis">
+      US12 - Visualizar termos e compromissos acordados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us13-enviar-propostas" class="md-nav__link">
+    <span class="md-ellipsis">
+      US13 - Enviar propostas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb02-gerenciar-voluntarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB02 - Gerenciar Voluntários
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-coordenar-voluntarios-e-fornecedores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Coordenar Voluntários e Fornecedores
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Coordenar Voluntários e Fornecedores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us14-recrutar-voluntarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      US14 - Recrutar voluntários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us15-comunicar-com-voluntarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      US15 - Comunicar com voluntários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us16-atribuir-tarefas-para-voluntarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      US16 - Atribuir tarefas para voluntarios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us17-gerar-certificados-de-participacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US17 - Gerar certificados de participação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-realizar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Realizar Evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Realizar Evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us18-notificar-participantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      US18 - Notificar participantes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-coletar-feedback-do-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Coletar Feedback do Evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Coletar Feedback do Evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us19-enviar-formulario-de-avaliacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US19 - Enviar formulario de avaliação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb03-participar-de-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB03 - Participar de Eventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-buscar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Buscar Evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Buscar Evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us20-filtrar-por-tipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      US20 - Filtrar por tipo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us21-filtrar-por-categoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      US21 - Filtrar por categoria
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us22-filtrar-eventos-por-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      US22 - Filtrar eventos por data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us23-filtrar-por-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      US23 - Filtrar por local
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us24-recomendar-eventos-personalizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      US24 - Recomendar eventos personalizados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-inscreve-se-em-um-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Inscreve-se em um evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Inscreve-se em um evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us25-preencher-formulario-de-inscricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US25 - Preencher formulario de inscrição
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us26-efetuar-pagamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US26 - Efetuar pagamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us27-notificar-a-confirmacao-de-inscricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US27 - Notificar a confirmação de inscrição
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us28-receber-confirmacao-de-pagamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US28 - Receber confirmação de pagamento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-notificacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Notificações
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Notificações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us29-receber-avisos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US29 - Receber avisos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us30-receber-informacoes-do-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US30 - Receber informações do evento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us31-criar-evento-no-calendario" class="md-nav__link">
+    <span class="md-ellipsis">
+      US31 - Criar evento no calendário
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us32-receber-divulgacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      US32 - Receber divulgações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-dar-feedback-sobre-o-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Dar feedback sobre o evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Dar feedback sobre o evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us33-avaliar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US33 - Avaliar evento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb04-garantir-o-fornecimento-de-produtosservicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB04 - Garantir o fornecimento de produtos/serviços
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-solicitacoes-de-orcamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber solicitações de orçamento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber solicitações de orçamento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us34-enviar-orcamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US34 - Enviar orçamentos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us35-negociar-datas" class="md-nav__link">
+    <span class="md-ellipsis">
+      US35 - Negociar datas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us36-negociar-valores" class="md-nav__link">
+    <span class="md-ellipsis">
+      US36 - Negociar valores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-gerenciar-pedidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Gerenciar Pedidos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Gerenciar Pedidos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us37-formalizar-contratos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US37 - Formalizar contratos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us38-saber-detalhes-do-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US38 - Saber detalhes do evento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber feedback
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber feedback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us39-receber-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      US39 - Receber feedback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb05-patrocinar-um-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB05 - Patrocinar um evento
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-contato-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Contato inicial
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Contato inicial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us40-receber-pitch-proposta" class="md-nav__link">
+    <span class="md-ellipsis">
+      US40 - Receber Pitch / Proposta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-estabelecer-comunicacao-com-o-organizador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Estabelecer comunicação com o organizador
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Estabelecer comunicação com o organizador">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us41-comunica-se-com-o-organizador" class="md-nav__link">
+    <span class="md-ellipsis">
+      US41 - Comunica-se com o organizador
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us42-receber-pitch-proposta" class="md-nav__link">
+    <span class="md-ellipsis">
+      US42 - Receber Pitch / Proposta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-feedback-do-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber feedback do evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber feedback do evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us43-receber-relatorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      US43 - Receber relatório
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us44-receber-feedback-enviados" class="md-nav__link">
+    <span class="md-ellipsis">
+      US44 - Receber feedback enviados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us45-receber-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      US45 - Receber feedback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb06-voluntariar-para-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB06 - Voluntariar para eventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-ver-vagas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Ver vagas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Ver vagas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us46-inscrever-se-em-um-processo-de-recrutamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US46 - Inscrever se em um processo de recrutamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us47-visualizar-inscricoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      US47 - Visualizar inscrições
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-confirmacoes-de-selecionado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber confirmações de selecionado
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber confirmações de selecionado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us48-confirmacao-por-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      US48 - Confirmação por email
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us49-confirma-presenca-de-participacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US49 - Confirma presença de participação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-treinamento-para-o-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber treinamento para o evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber treinamento para o evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us50-capacitar-se-para-o-evento-por-meio-de-videos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US50 - Capacitar-se para o evento por meio de videos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us51-visualizar-tarefas-e-responsabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      US51 - Visualizar tarefas e responsabilidades
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-estabelecer-comuniacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Estabelecer comuniação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Estabelecer comuniação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us52-comunicar-se-com-a-organizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US52 - Comunicar-se com a organização
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us53-comunicar-se-com-os-patrocinadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      US53 - Comunicar-se com os patrocinadores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-feedback_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber feedback
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber feedback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us54-receber-certificado" class="md-nav__link">
+    <span class="md-ellipsis">
+      US54 - Receber certificado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Caso_de_Uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Caso de Uso
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Atas de Reunião
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de Reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/15_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15/04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/29_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    29/04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/06_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    06/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/13_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/20_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    20/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/27_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    27/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/02_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    02/06
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/10_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10/06
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/10_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10/07
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-user-story-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 User Story Map
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-estudo-de-caso-comuneventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Estudo de caso - ComunEventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-atividades-por-personas-comuneventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Atividades por personas - ComunEventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-detalhamento-por-backnone-comuneventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Detalhamento por Backnone - ComunEventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb01-gerenciar-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB01 - Gerenciar eventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-criar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Criar Evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Criar Evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us01-cadastrar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US01 - Cadastrar Evento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us02-definir-tipo-de-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US02 - Definir Tipo de Evento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-divulgar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Divulgar evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Divulgar evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us03-gerar-links-de-divulgacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US03 - Gerar links de divulgação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us04-criar-materiais" class="md-nav__link">
+    <span class="md-ellipsis">
+      US04 - Criar materiais
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us05-criar-campanhas-de-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      US05 - Criar campanhas de email
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-gerenciar-inscricoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Gerenciar Inscrições
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Gerenciar Inscrições">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us06-gerar-visualizar-lista-de-inscritos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US06 - Gerar visualizar lista de inscritos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us07-receber-pagamento-de-inscricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US07 - Receber pagamento de inscrição
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us08-editar-lista-de-inscritos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US08 - Editar lista de inscritos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-gerenciar-fornecimento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Gerenciar Fornecimento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Gerenciar Fornecimento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us09-criar-termos-e-compromissos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US09 - Criar termos e compromissos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us10-comunicar-com-fornecedores" class="md-nav__link">
+    <span class="md-ellipsis">
+      US10 - Comunicar com fornecedores
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us11-visualizar-datas-e-detalhes-do-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US11 - Visualizar datas e detalhes do evento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us12-visualizar-termos-e-compromissos-acordados" class="md-nav__link">
+    <span class="md-ellipsis">
+      US12 - Visualizar termos e compromissos acordados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us13-enviar-propostas" class="md-nav__link">
+    <span class="md-ellipsis">
+      US13 - Enviar propostas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb02-gerenciar-voluntarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB02 - Gerenciar Voluntários
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-coordenar-voluntarios-e-fornecedores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Coordenar Voluntários e Fornecedores
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Coordenar Voluntários e Fornecedores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us14-recrutar-voluntarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      US14 - Recrutar voluntários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us15-comunicar-com-voluntarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      US15 - Comunicar com voluntários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us16-atribuir-tarefas-para-voluntarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      US16 - Atribuir tarefas para voluntarios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us17-gerar-certificados-de-participacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US17 - Gerar certificados de participação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-realizar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Realizar Evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Realizar Evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us18-notificar-participantes" class="md-nav__link">
+    <span class="md-ellipsis">
+      US18 - Notificar participantes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-coletar-feedback-do-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Coletar Feedback do Evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Coletar Feedback do Evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us19-enviar-formulario-de-avaliacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US19 - Enviar formulario de avaliação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb03-participar-de-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB03 - Participar de Eventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-buscar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Buscar Evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Buscar Evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us20-filtrar-por-tipo" class="md-nav__link">
+    <span class="md-ellipsis">
+      US20 - Filtrar por tipo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us21-filtrar-por-categoria" class="md-nav__link">
+    <span class="md-ellipsis">
+      US21 - Filtrar por categoria
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us22-filtrar-eventos-por-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      US22 - Filtrar eventos por data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us23-filtrar-por-local" class="md-nav__link">
+    <span class="md-ellipsis">
+      US23 - Filtrar por local
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us24-recomendar-eventos-personalizados" class="md-nav__link">
+    <span class="md-ellipsis">
+      US24 - Recomendar eventos personalizados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-inscreve-se-em-um-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Inscreve-se em um evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Inscreve-se em um evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us25-preencher-formulario-de-inscricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US25 - Preencher formulario de inscrição
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us26-efetuar-pagamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US26 - Efetuar pagamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us27-notificar-a-confirmacao-de-inscricao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US27 - Notificar a confirmação de inscrição
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us28-receber-confirmacao-de-pagamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US28 - Receber confirmação de pagamento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-notificacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Notificações
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Notificações">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us29-receber-avisos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US29 - Receber avisos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us30-receber-informacoes-do-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US30 - Receber informações do evento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us31-criar-evento-no-calendario" class="md-nav__link">
+    <span class="md-ellipsis">
+      US31 - Criar evento no calendário
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us32-receber-divulgacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      US32 - Receber divulgações
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-dar-feedback-sobre-o-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Dar feedback sobre o evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Dar feedback sobre o evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us33-avaliar-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US33 - Avaliar evento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb04-garantir-o-fornecimento-de-produtosservicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB04 - Garantir o fornecimento de produtos/serviços
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-solicitacoes-de-orcamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber solicitações de orçamento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber solicitações de orçamento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us34-enviar-orcamentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US34 - Enviar orçamentos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us35-negociar-datas" class="md-nav__link">
+    <span class="md-ellipsis">
+      US35 - Negociar datas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us36-negociar-valores" class="md-nav__link">
+    <span class="md-ellipsis">
+      US36 - Negociar valores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-gerenciar-pedidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Gerenciar Pedidos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Gerenciar Pedidos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us37-formalizar-contratos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US37 - Formalizar contratos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us38-saber-detalhes-do-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US38 - Saber detalhes do evento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber feedback
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber feedback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us39-receber-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      US39 - Receber feedback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb05-patrocinar-um-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB05 - Patrocinar um evento
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-contato-inicial" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Contato inicial
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Contato inicial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us40-receber-pitch-proposta" class="md-nav__link">
+    <span class="md-ellipsis">
+      US40 - Receber Pitch / Proposta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-estabelecer-comunicacao-com-o-organizador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Estabelecer comunicação com o organizador
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Estabelecer comunicação com o organizador">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us41-comunica-se-com-o-organizador" class="md-nav__link">
+    <span class="md-ellipsis">
+      US41 - Comunica-se com o organizador
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us42-receber-pitch-proposta" class="md-nav__link">
+    <span class="md-ellipsis">
+      US42 - Receber Pitch / Proposta
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-feedback-do-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber feedback do evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber feedback do evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us43-receber-relatorio" class="md-nav__link">
+    <span class="md-ellipsis">
+      US43 - Receber relatório
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us44-receber-feedback-enviados" class="md-nav__link">
+    <span class="md-ellipsis">
+      US44 - Receber feedback enviados
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us45-receber-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      US45 - Receber feedback
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bb06-voluntariar-para-eventos" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 BB06 - Voluntariar para eventos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-ver-vagas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Ver vagas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Ver vagas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us46-inscrever-se-em-um-processo-de-recrutamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      US46 - Inscrever se em um processo de recrutamento
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us47-visualizar-inscricoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      US47 - Visualizar inscrições
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-confirmacoes-de-selecionado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber confirmações de selecionado
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber confirmações de selecionado">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us48-confirmacao-por-email" class="md-nav__link">
+    <span class="md-ellipsis">
+      US48 - Confirmação por email
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us49-confirma-presenca-de-participacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US49 - Confirma presença de participação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-treinamento-para-o-evento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber treinamento para o evento
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber treinamento para o evento">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us50-capacitar-se-para-o-evento-por-meio-de-videos" class="md-nav__link">
+    <span class="md-ellipsis">
+      US50 - Capacitar-se para o evento por meio de videos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us51-visualizar-tarefas-e-responsabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      US51 - Visualizar tarefas e responsabilidades
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-estabelecer-comuniacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Estabelecer comuniação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Estabelecer comuniação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us52-comunicar-se-com-a-organizacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US52 - Comunicar-se com a organização
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us53-comunicar-se-com-os-patrocinadores" class="md-nav__link">
+    <span class="md-ellipsis">
+      US53 - Comunicar-se com os patrocinadores
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#atividade-receber-feedback_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Atividade: Receber feedback
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Atividade: Receber feedback">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us54-receber-certificado" class="md-nav__link">
+    <span class="md-ellipsis">
+      US54 - Receber certificado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>USM</h1>
+
+<h3 id="11-user-story-map"><strong>1.1 User Story Map</strong></h3>
+<p>Um User Story Map é uma ferramenta visual que ajuda equipes a entender e organizar o trabalho de desenvolvimento de software sob a perspectiva do usuário. Imagine-o como um grande painel, geralmente físico (post-its e parede) ou digital, onde as atividades do usuário são mapeadas em uma linha do tempo horizontal, e as funcionalidades do sistema que suportam essas atividades são dispostas verticalmente.</p>
+<h3 id="12-estudo-de-caso-comuneventos"><strong>1.2 Estudo de caso - ComunEventos</strong></h3>
+<p>A ComunEventos é uma startup criada por três jovens empreendedores com o propósito de transformar a organização de eventos comunitários. A ideia é melhorar tanto a forma como esses eventos são organizados quanto a experiência de quem participa, seja como voluntário, patrocinador, fornecedor ou público.</p>
+<p>A proposta é simples: reunir em um só lugar todas as ferramentas que facilitam a organização, a comunicação e o envolvimento das pessoas. Além de ajudar na organização, a plataforma também quer aproximar a comunidade, incentivar parcerias com fornecedores e patrocinadores locais e valorizar quem se dedica voluntariamente para fazer os eventos acontecerem.</p>
+<p>Outro ponto importante é que a ComunEventos quer ser uma solução acessível, diferente de outras ferramentas no mercado que costumam ser caras e pouco práticas para quem organiza eventos menores ou comunitários.</p>
+<p>O objetivo final é facilitar a realização desses encontros, fortalecer a participação da comunidade e criar uma experiência melhor para todos os envolvidos, desde quem ajuda a organizar até quem vai lá só para curtir o evento.</p>
+<h3 id="13-atividades-por-personas-comuneventos"><strong>1.3 Atividades por personas - ComunEventos</strong></h3>
+<p><strong>Lengenda</strong> </p>
+<table>
+<thead>
+<tr>
+<th>Cor</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span style="color:gold">Amarelo</span></td>
+<td>Objetivos</td>
+</tr>
+<tr>
+<td><span style="color:blue">Azul</span></td>
+<td>Atividades</td>
+</tr>
+<tr>
+<td><span style="color:gray">Cinza</span></td>
+<td>MVP</td>
+</tr>
+<tr>
+<td><span style="color:green">Verde</span></td>
+<td>Release</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Organizador do Evento</strong> </p>
+<p><img alt="Organizador do Evento" src="../../imagens/Organizador.png" /></p>
+<p><strong>Participante</strong> </p>
+<p><img alt="Participante" src="../../imagens/Participante.png" /></p>
+<p><strong>Fornecedor</strong> </p>
+<p><img alt="Fornecedor" src="../../imagens/Fornecedor.png" /></p>
+<p><strong>Patrocinador</strong> </p>
+<p><img alt="Patrocinador" src="../../imagens/Patrocinador.png" /></p>
+<p><strong>Voluntário</strong> </p>
+<p><img alt="Voluntário" src="../../imagens/Voluntario.png" /></p>
+<p>O Usm completo está disponível no link: <a href="https://miro.com/welcomeonboard/Q0RVWkFOUlhaTlFiWDZqK09mUHRKbi9xSnA0bWJqYXBXTEZBYnVqNzRJYTlCL0dRVzdZbWhLVURldFRxRnJ0Uzcva0ZlenpYWmlvcElSUDlkY2ZBSUlrVFF1ZjMySUo0dUhFUkVFTjR5R0JOeHNMaWVtTnZ4YS9NNTVmTWx6VXByVmtkMG5hNDA3dVlncnBvRVB2ZXBnPT0hdjE=?share_link_id=299698948754">USM</a></p>
+<iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVIo3DYio=/?embedMode=view_only_without_ui&moveToViewport=-12073,-4943,29910,12501&embedId=669625604583" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+
+<h3 id="14-detalhamento-por-backnone-comuneventos"><strong>1.4 Detalhamento por Backnone - ComunEventos</strong></h3>
+<h3 id="bb01-gerenciar-eventos">🎯 BB01 - Gerenciar eventos</h3>
+<hr />
+<h3 id="atividade-criar-evento">Atividade: <strong>Criar Evento</strong></h3>
+<h4 id="us01-cadastrar-evento">US01 - Cadastrar Evento</h4>
+<p>Eu, como <strong>organizador</strong>, quero cadastrar um novo evento inserindo título, local, data e descrição.</p>
+<h4 id="us02-definir-tipo-de-evento">US02 - Definir Tipo de Evento</h4>
+<p>Eu, como <strong>organizador</strong>, quero definir o tipo do evento para organizá-lo corretamente.</p>
+<hr />
+<h3 id="atividade-divulgar-evento">Atividade: <strong>Divulgar evento</strong></h3>
+<h4 id="us03-gerar-links-de-divulgacao">US03 - Gerar links de divulgação</h4>
+<p>Eu, como <strong>organizador</strong>, quero gerar links de divulgação e compartilhá-los nas redes sociais.</p>
+<h4 id="us04-criar-materiais">US04 - Criar materiais</h4>
+<p>Eu, como <strong>organizador</strong>, quero gerar materiais (cartazes digitais, convites) para a divulgação e compartilhá-los nas redes sociais.</p>
+<h4 id="us05-criar-campanhas-de-email">US05 - Criar campanhas de email</h4>
+<p>Eu, como <strong>organizador</strong>, quero criar campanhas de e-mail para atrair participantes.</p>
+<hr />
+<h3 id="atividade-gerenciar-inscricoes">Atividade: <strong>Gerenciar Inscrições</strong></h3>
+<h4 id="us06-gerar-visualizar-lista-de-inscritos">US06 - Gerar visualizar lista de inscritos</h4>
+<p>Eu, como <strong>organizador</strong>, quero visualizar a lista de inscritos para ter controle sobre o público.</p>
+<h4 id="us07-receber-pagamento-de-inscricao">US07 - Receber pagamento de inscrição</h4>
+<p>Eu, como <strong>organizador</strong>, quero receber o pagamento das inscrições. </p>
+<h4 id="us08-editar-lista-de-inscritos">US08 - Editar lista de inscritos</h4>
+<p>Eu, como <strong>organizador</strong>, quero editar a lista de inscritos para ter controle sobre o público.</p>
+<hr />
+<h3 id="atividade-gerenciar-fornecimento">Atividade: <strong>Gerenciar Fornecimento</strong></h3>
+<h4 id="us09-criar-termos-e-compromissos">US09 - Criar termos e compromissos</h4>
+<p>Eu, como <strong>organizador</strong>, quero criar termos e compromissos diretamente na plataforma. </p>
+<h4 id="us10-comunicar-com-fornecedores">US10 - Comunicar com fornecedores</h4>
+<p>Eu, como <strong>organizador</strong>, quero manter comunicação com fornecedores.</p>
+<h4 id="us11-visualizar-datas-e-detalhes-do-evento">US11 - Visualizar datas e detalhes do evento</h4>
+<p>Eu, como <strong>organizador</strong>, quero ser lembrado das datas e detalhes da entrega.</p>
+<h4 id="us12-visualizar-termos-e-compromissos-acordados">US12 - Visualizar termos e compromissos acordados</h4>
+<p>Eu, como <strong>organizador</strong>, quero visualizar compromissos e termos acordados.</p>
+<h4 id="us13-enviar-propostas">US13 - Enviar propostas</h4>
+<p>Eu, como <strong>organizador</strong>, quero enviar propostas a patrocionadores diretanebte pela plataforma. </p>
+<hr />
+<h3 id="bb02-gerenciar-voluntarios">🎯 BB02 - Gerenciar Voluntários</h3>
+<hr />
+<h3 id="atividade-coordenar-voluntarios-e-fornecedores">Atividade: <strong>Coordenar Voluntários e Fornecedores</strong></h3>
+<h4 id="us14-recrutar-voluntarios">US14 - Recrutar voluntários</h4>
+<p>Eu, como <strong>organizador</strong>, quero recrutar e gerenciar voluntários diretamente na plataforma. </p>
+<h4 id="us15-comunicar-com-voluntarios">US15 - Comunicar com voluntários</h4>
+<p>Eu, como <strong>organizador</strong>, quero manter comunicação com os voluntários selecionados.</p>
+<h4 id="us16-atribuir-tarefas-para-voluntarios">US16 - Atribuir tarefas para voluntarios</h4>
+<p>Eu, como <strong>organizador</strong>, quero atribuir tarefas a voluntários.</p>
+<h4 id="us17-gerar-certificados-de-participacao">US17 - Gerar certificados de participação</h4>
+<p>Eu, como <strong>organizador</strong>, quero gerar certificados de participação para os voluntários. </p>
+<hr />
+<h3 id="atividade-realizar-evento">Atividade: <strong>Realizar Evento</strong></h3>
+<h4 id="us18-notificar-participantes">US18 - Notificar participantes</h4>
+<p>Eu, como <strong>organizador</strong>, quero notificar os participantes sobre qualquer mudança que ocorrer durante o evento. </p>
+<hr />
+<h3 id="atividade-coletar-feedback-do-evento">Atividade: <strong>Coletar Feedback do Evento</strong></h3>
+<h4 id="us19-enviar-formulario-de-avaliacao">US19 - Enviar formulario de avaliação</h4>
+<p>Eu, como <strong>organizador</strong>, quero enviar formulários de avaliação para medir o sucesso do evento após a sua realização. </p>
+<hr />
+<h3 id="bb03-participar-de-eventos">🎯 BB03 - Participar de Eventos</h3>
+<hr />
+<h3 id="atividade-buscar-evento">Atividade: <strong>Buscar Evento</strong></h3>
+<h4 id="us20-filtrar-por-tipo">US20 - Filtrar por tipo</h4>
+<p>Eu, como <strong>participante</strong>, quero navegar na plataforma por eventos por "tipo".</p>
+<h4 id="us21-filtrar-por-categoria">US21 - Filtrar por categoria</h4>
+<p>Eu, como <strong>participante</strong>, quero navegar na plataforma por eventos por "categoria".</p>
+<h4 id="us22-filtrar-eventos-por-data">US22 - Filtrar eventos por data</h4>
+<p>Eu, como <strong>participante</strong>, quero navegar na plataforma por eventos por "data".</p>
+<h4 id="us23-filtrar-por-local">US23 - Filtrar por local</h4>
+<p>Eu, como <strong>participante</strong>, quero navegar na plataforma por eventos por "local".</p>
+<h4 id="us24-recomendar-eventos-personalizados">US24 - Recomendar eventos personalizados</h4>
+<p>Eu, como <strong>participante</strong>, quero ver eventos recomendados com base no meu perfil.</p>
+<hr />
+<h3 id="atividade-inscreve-se-em-um-evento">Atividade: <strong>Inscreve-se em um evento</strong></h3>
+<h4 id="us25-preencher-formulario-de-inscricao">US25 - Preencher formulario de inscrição</h4>
+<p>Eu, como <strong>participante</strong>, quero me inscrever em eventos  facilmente em poucos cliques ( 3/5 cliques ).
+ </p>
+<h4 id="us26-efetuar-pagamento">US26 - Efetuar pagamento</h4>
+<p>Eu, como <strong>participante</strong>, quero pagar meu ingresso na própria plataforma na qual me inscrevi para o evento.</p>
+<h4 id="us27-notificar-a-confirmacao-de-inscricao">US27 - Notificar a confirmação de inscrição</h4>
+<p>Eu, como <strong>participante</strong>, quero ser notificado sobre a confirmação da minha inscrição no evento.</p>
+<h4 id="us28-receber-confirmacao-de-pagamento">US28 - Receber confirmação de pagamento</h4>
+<p>Eu, como <strong>participante</strong>, quero receber um comprovante de pagamento realizado via email para a confirmação do meu pagamento. </p>
+<hr />
+<h3 id="atividade-notificacoes">Atividade: <strong>Notificações</strong></h3>
+<h4 id="us29-receber-avisos">US29 - Receber avisos</h4>
+<p>Eu, como <strong>participante</strong>, desejo receber avisos de mudanças sobre data, local e dia do evento no qual vou participar. 
+ </p>
+<h4 id="us30-receber-informacoes-do-evento">US30 - Receber informações do evento</h4>
+<p>Eu, como <strong>participante</strong>, quero receber informações do evento, como um mapa e a programação do dia via email.  </p>
+<h4 id="us31-criar-evento-no-calendario">US31 - Criar evento no calendário</h4>
+<p>Eu, como <strong>participante</strong>, quero que após a confirmação de inscrição, ou de pagamento quando necessário, que o evento seja adicionado automaticamente a minha agenda correspondente ao email que foi enviado para a inscrição. </p>
+<h4 id="us32-receber-divulgacoes">US32 - Receber divulgações</h4>
+<p>Eu, como <strong>participante</strong>, quero receber divulgações de patrocinadores. </p>
+<hr />
+<h3 id="atividade-dar-feedback-sobre-o-evento">Atividade: <strong>Dar feedback sobre o evento</strong></h3>
+<h4 id="us33-avaliar-evento">US33 - Avaliar evento</h4>
+<p>Eu, como <strong>participante</strong>, quero avaliar o evento após a minha participação.</p>
+<hr />
+<h3 id="bb04-garantir-o-fornecimento-de-produtosservicos">🎯 BB04 - Garantir o fornecimento de produtos/serviços</h3>
+<hr />
+<h3 id="atividade-receber-solicitacoes-de-orcamento">Atividade: <strong>Receber solicitações de orçamento</strong></h3>
+<h4 id="us34-enviar-orcamentos">US34 - Enviar orçamentos</h4>
+<p>Eu, como <strong>fornecedor</strong>, quero receber convites de eventos e enviar orçamentos.</p>
+<h4 id="us35-negociar-datas">US35 - Negociar datas</h4>
+<p>Eu, como <strong>fornecedor</strong>, quero negociar datas diretamente com os organizadores.</p>
+<h4 id="us36-negociar-valores">US36 - Negociar valores</h4>
+<p>Eu, como <strong>fornecedor</strong>, quero negociar valores diretamente com os organizadores.</p>
+<hr />
+<h3 id="atividade-gerenciar-pedidos">Atividade: <strong>Gerenciar Pedidos</strong></h3>
+<h4 id="us37-formalizar-contratos">US37 - Formalizar contratos</h4>
+<p>Eu, como <strong>fornecedor</strong>, quero formalizar os contratos com os organizadores de evento com datas, valores e produtos definidos para o fornecimento no dia do evento. </p>
+<h4 id="us38-saber-detalhes-do-evento">US38 - Saber detalhes do evento</h4>
+<p>Eu, como <strong>fornecedor</strong>, quero ter contato direto com o organizador para saber detalhes do evento  e acesso exclusivo ao evento. </p>
+<hr />
+<h3 id="atividade-receber-feedback">Atividade: <strong>Receber feedback</strong></h3>
+<h4 id="us39-receber-feedback">US39 - Receber feedback</h4>
+<p>Eu, como <strong>fornecedor</strong>, desejo receber um feedback sobre o evento.</p>
+<hr />
+<h3 id="bb05-patrocinar-um-evento">🎯 BB05 - Patrocinar um evento</h3>
+<hr />
+<h3 id="atividade-contato-inicial">Atividade: <strong>Contato inicial</strong></h3>
+<h4 id="us40-receber-pitch-proposta">US40 - Receber Pitch / Proposta</h4>
+<p>Eu, como <strong>patrocinador</strong>, quero receber um Pitch ou uma apresentação me informando sobre detalhes e benefícios de patrocinar o evento. </p>
+<hr />
+<h3 id="atividade-estabelecer-comunicacao-com-o-organizador">Atividade: <strong>Estabelecer comunicação com o organizador</strong></h3>
+<h4 id="us41-comunica-se-com-o-organizador">US41 - Comunica-se com o organizador</h4>
+<p>Eu, como <strong>patrocinador</strong>, quero ter uma comunicação direta com o organizador.</p>
+<h4 id="us42-receber-pitch-proposta">US42 - Receber Pitch / Proposta</h4>
+<p>Eu, como <strong>patrocinador</strong>, quero me certificar que os meus logotipos e estante esteja no evento de maneira correta.</p>
+<hr />
+<h3 id="atividade-receber-feedback-do-evento">Atividade: <strong>Receber feedback do evento</strong></h3>
+<h4 id="us43-receber-relatorio">US43 - Receber relatório</h4>
+<p>Eu, como <strong>patrocinador</strong>, quero receber relatórios sobre o alcance do patrocínio no evento. </p>
+<h4 id="us44-receber-feedback-enviados">US44 - Receber feedback enviados</h4>
+<p>Eu, como <strong>patrocinador</strong>, quero receber os feeedbacks enviados após o evento dos participantes do evento. </p>
+<h4 id="us45-receber-feedback">US45 - Receber feedback</h4>
+<p>Eu, como <strong>patrocinador</strong>, desejo receber um feedback sobre o evento.</p>
+<hr />
+<h3 id="bb06-voluntariar-para-eventos">🎯 BB06 - Voluntariar para eventos</h3>
+<hr />
+<h3 id="atividade-ver-vagas">Atividade: <strong>Ver vagas</strong></h3>
+<h4 id="us46-inscrever-se-em-um-processo-de-recrutamento">US46 - Inscrever se em um processo de recrutamento</h4>
+<p>Eu, como <strong>voluntário</strong>, quero me inscrever em um processo de recrutamento para eventos de maneira dinâmica. </p>
+<h4 id="us47-visualizar-inscricoes">US47 - Visualizar inscrições</h4>
+<p>Eu, como <strong>voluntário</strong>, desejo visualizar as inscrições na qual realizei para participar de processos de seleções para voluntariado em eventos. 
+ </p>
+<hr />
+<h3 id="atividade-receber-confirmacoes-de-selecionado">Atividade: <strong>Receber confirmações de selecionado</strong></h3>
+<h4 id="us48-confirmacao-por-email">US48 - Confirmação por email</h4>
+<p>Eu, como <strong>voluntário</strong>, desejo receber uma confirmação via email da minha seleção para o voluntariado para qual me inscrevi e fui selecionada.  
+ </p>
+<h4 id="us49-confirma-presenca-de-participacao">US49 - Confirma presença de participação</h4>
+<p>Eu, como <strong>voluntário</strong>, desejo confirmar a minha participação de voluntariado para o evento através de um formulário de confirmação. 
+ </p>
+<hr />
+<h3 id="atividade-receber-treinamento-para-o-evento">Atividade: <strong>Receber treinamento para o evento</strong></h3>
+<h4 id="us50-capacitar-se-para-o-evento-por-meio-de-videos">US50 - Capacitar-se para o evento por meio de videos</h4>
+<p>Eu, como <strong>voluntário</strong>, quero me capacitar para o voluntariado do  por meio de vídeos educacionais. 
+ </p>
+<h4 id="us51-visualizar-tarefas-e-responsabilidades">US51 - Visualizar tarefas e responsabilidades</h4>
+<p>Eu, como <strong>voluntário</strong>, quero visualizar as minhas tarefas e responsabilidades durante o evento que estou participando/trabalhando. 
+ </p>
+<hr />
+<h3 id="atividade-estabelecer-comuniacao">Atividade: <strong>Estabelecer comuniação</strong></h3>
+<h4 id="us52-comunicar-se-com-a-organizacao">US52 - Comunicar-se com a organização</h4>
+<p>Eu, como <strong>voluntário</strong>, desejo ter uma comunicação clara e direta com a organização do evento.  
+ </p>
+<h4 id="us53-comunicar-se-com-os-patrocinadores">US53 - Comunicar-se com os patrocinadores</h4>
+<p>Eu, como <strong>voluntário</strong>, desejo ter um canal de comunicação com os patrocinadores para auxilia-los durante o evento. 
+ </p>
+<hr />
+<h3 id="atividade-receber-feedback_1">Atividade: <strong>Receber feedback</strong></h3>
+<h4 id="us54-receber-certificado">US54 - Receber certificado</h4>
+<p>Eu, como <strong>voluntário</strong>, desejo receber um certificado comprovando as horas de serviços voluntário. 
+ </p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.tabs.link", "header.autohide", "navigation.instant", "navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>

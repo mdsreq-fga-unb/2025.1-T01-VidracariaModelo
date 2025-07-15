@@ -1,0 +1,1884 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mdsreq-fga-unb.github.io/2025.1-T01-VidracariaModelo/docs/requisitos/requisitos/">
+      
+      
+        <link rel="prev" href="../../VisaodeProduto/licoes/">
+      
+      
+        <link rel="next" href="../../Backlog/baclog/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>1. Lista de requisitos - VidracariaModelo</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#requisitos-funcionais-rf" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="VidracariaModelo" class="md-header__button md-logo" aria-label="VidracariaModelo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VidracariaModelo
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1. Lista de requisitos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="VidracariaModelo" class="md-nav__button md-logo" aria-label="VidracariaModelo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VidracariaModelo
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mdsreq-fga-unb/2025.1-T01-VidracariaModelo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Visão de Projeto
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Visão de Projeto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Cenario_atual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Cenário Atual do Cliente e do Negócio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Solucao_proposta/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Solução Proposta
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Estrategias/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Estratégias de Engenharia de Software
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Engenharia_de_Requisitos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Engenharia de Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Cronograma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5.Cronograma e Entregas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/Interacao/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6.Interação entre Equipe e Cliente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VisaodeProduto/licoes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Lições Aprendidas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Requisitos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Requisitos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    1. Lista de requisitos
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Lista de requisitos
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-funcionais-rf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos Funcionais (RF)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-nao-funcionais-rnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos Não Funcionais (RNF)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regras-de-negocio-rn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regras de Negócio (RN)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Backlog/baclog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Backlog de requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOR_DOD/dor_dod/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DOR e DOD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Prototipo/prototipo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Protótipos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Entregas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Entregas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4º Entrega
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/PBB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PBB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/USM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    USM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Entregas/Caso_de_Uso/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Caso de Uso
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Atas de Reunião
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de Reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/15_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15/04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/29_04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    29/04
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/06_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    06/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/13_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/20_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    20/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/27_05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    27/05
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/02_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    02/06
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/10_06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10/06
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Atas/10_07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10/07
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-funcionais-rf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos Funcionais (RF)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-nao-funcionais-rnf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos Não Funcionais (RNF)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regras-de-negocio-rn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regras de Negócio (RN)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>1. Lista de requisitos</h1>
+
+<h2 id="requisitos-funcionais-rf"><strong>Requisitos Funcionais (RF)</strong></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>ID</strong></th>
+<th style="text-align: left;"><strong>TÍTULO</strong></th>
+<th style="text-align: left;"><strong>DESCRIÇÃO</strong></th>
+<th style="text-align: left;"><strong>REGRA DE NEGÓCIO</strong></th>
+<th style="text-align: left;"><strong>OBJETIVO ESPECÍFICO</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>RF01</strong></td>
+<td style="text-align: left;">Realizar agendamento</td>
+<td style="text-align: left;">O sistema deve permitir a seleção de data e horário disponíveis para marcar um compromisso</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>02</strong>,<strong>03</strong>,<strong>04</strong>,<strong>06</strong>,<strong>31</strong>,<strong>47</strong></td>
+<td style="text-align: left;">Objetivo 2: Otimizar gestão de orçamentos e agendamentos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF02</strong></td>
+<td style="text-align: left;">Visualizar serviços agendados</td>
+<td style="text-align: left;">O sistema deve listar os agendamentos realizados para os administradores visualizarem os compromissos do dia.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>01</strong>, <strong>07</strong>, <strong>08</strong>, <strong>09</strong>, <strong>10</strong>, <strong>11</strong>, <strong>12</strong>, <strong>13</strong></td>
+<td style="text-align: left;">Objetivo 2: Otimizar gestão de orçamentos e agendamentos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF03</strong></td>
+<td style="text-align: left;">Remarcar agendamento</td>
+<td style="text-align: left;">O sistema deve permitir a remarcação de agendamentos para programar compromissos com clientes.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>14</strong>, <strong>16</strong>, <strong>19</strong>, <strong>20</strong>, <strong>21</strong>, <strong>22</strong></td>
+<td style="text-align: left;">Objetivo 2: Otimizar gestão de orçamentos e agendamentos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF04</strong></td>
+<td style="text-align: left;">Cancelar agendamento</td>
+<td style="text-align: left;">O sistema deve permitir o cancelamento dos agendamentos para ajustes na agenda de compromissos.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>23</strong>, <strong>26</strong>, <strong>27</strong>, <strong>28</strong>, <strong>30</strong></td>
+<td style="text-align: left;">Objetivo 2: Otimizar gestão de orçamentos e agendamentos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF05</strong></td>
+<td style="text-align: left;">Criar orçamento</td>
+<td style="text-align: left;">O sistema deve permitir a criação de orçamentos para registrar propostas de serviços no site.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>32</strong>, <strong>34</strong>, <strong>35</strong>, <strong>36</strong>, <strong>73</strong></td>
+<td style="text-align: left;">Objetivo 2: Otimizar gestão de orçamentos e agendamentos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF06</strong></td>
+<td style="text-align: left;">Listar orçamentos</td>
+<td style="text-align: left;">O sistema deve listar orçamentos solicitados para facilitar o acompanhamento das propostas.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>37</strong>, <strong>38</strong>, <strong>40</strong>, <strong>41</strong>, <strong>42</strong></td>
+<td style="text-align: left;">Objetivo 2: Otimizar gestão de orçamentos e agendamentos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF07</strong></td>
+<td style="text-align: left;">Editar orçamentos</td>
+<td style="text-align: left;">O sistema deve permitir edição de valores, prazos e observações para atualizar os dados do orçamento conforme necessário.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>43</strong>, <strong>44</strong></td>
+<td style="text-align: left;">Objetivo 2: Otimizar gestão de orçamentos e agendamentos.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF08</strong></td>
+<td style="text-align: left;">Criar Venda</td>
+<td style="text-align: left;">O sistema deve permitir o registro de uma venda.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>56</strong>, <strong>73</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF09</strong></td>
+<td style="text-align: left;">Listar vendas</td>
+<td style="text-align: left;">O sistema deve apresentar a lista de vendas feitas pela empresa para controle comercial.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>49</strong>, <strong>50</strong>, <strong>51</strong>, <strong>52</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF10</strong></td>
+<td style="text-align: left;">Visualizar venda</td>
+<td style="text-align: left;">O sistema deve permitir a visualização dos detalhes da venda para consulta de informações.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>53</strong>, <strong>54</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF11</strong></td>
+<td style="text-align: left;">Editar venda</td>
+<td style="text-align: left;">O sistema deve permitir edição dos detalhes da venda para correção de dados.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>49</strong>, <strong>60</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF12</strong></td>
+<td style="text-align: left;">Registrar recibo</td>
+<td style="text-align: left;">O sistema deve permitir o registro de recibos com dados do serviço prestado para gerar comprovantes.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>62</strong>, <strong>63</strong>, <strong>64</strong>, <strong>65</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF13</strong></td>
+<td style="text-align: left;">Editar recibo</td>
+<td style="text-align: left;">O sistema deve permitir alteração dos dados registrados em um recibo para correções.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>57</strong>, <strong>65</strong>, <strong>66</strong>, <strong>72</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF14</strong></td>
+<td style="text-align: left;">Exportar recibo</td>
+<td style="text-align: left;">O sistema deve gerar arquivo PDF com os dados do recibo preenchido para emissão de comprovantes.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>58</strong>, <strong>67</strong>, <strong>68</strong>, <strong>69</strong>, <strong>70</strong>, <strong>71</strong>, <strong>72</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF15</strong></td>
+<td style="text-align: left;">Registrar despesas</td>
+<td style="text-align: left;">O sistema deve permitir que usuários registrem novas despesas para controle financeiro.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>57</strong>, <strong>74</strong>, <strong>75</strong>, <strong>76</strong>, <strong>77</strong>, <strong>78</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF16</strong></td>
+<td style="text-align: left;">Editar despesas</td>
+<td style="text-align: left;">O sistema deve permitir edição de despesas conforme as permissões para correção ou atualização de registros.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>79</strong>, <strong>80</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF17</strong></td>
+<td style="text-align: left;">Exportar despesas</td>
+<td style="text-align: left;">O sistema deve gerar relatório em PDF e XLS com os dados registrados das despesas para controle e análise financeira.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>83</strong>, <strong>84</strong>, <strong>85</strong>, <strong>86</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF18</strong></td>
+<td style="text-align: left;">Registrar interações com cliente</td>
+<td style="text-align: left;">O sistema deve registrar um log de serviços já requisitados pelo cliente contendo informações sobre pagamento e detalhes do serviço prestado para acompanhamento do histórico de atendimento.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>87</strong>, <strong>88</strong>, <strong>89</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF19</strong></td>
+<td style="text-align: left;">Contatar empresa</td>
+<td style="text-align: left;">O sistema deve permitir comunicação por WhatsApp através de um link direto, formulário do Google e link direto para redes sociais (Instagram) para facilitar o contato com os clientes.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>90</strong>, <strong>91</strong>, <strong>92</strong></td>
+<td style="text-align: left;">Objetivo 1: Sofisticar o marketing e proporcionando posicionamento online.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF20</strong></td>
+<td style="text-align: left;">Cadastrar perguntas frequentes na FAQ</td>
+<td style="text-align: left;">O sistema deve permitir que os administradores adicionem as perguntas frequentes na área de FAQ para auxiliar o cliente.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>29</strong>, <strong>39</strong>, <strong>93</strong></td>
+<td style="text-align: left;">Objetivo 1: Sofisticar o marketing e proporcionando posicionamento online.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF21</strong></td>
+<td style="text-align: left;">Excluir Avaliação</td>
+<td style="text-align: left;">O sistema deve permitir a exclusão de avaliações realizadas pelo cliente para manter a integridade das informações publicadas.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>30</strong>, <strong>59</strong></td>
+<td style="text-align: left;">Objetivo 1: Sofisticar o marketing e proporcionando posicionamento online.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF22</strong></td>
+<td style="text-align: left;">Publicar avaliação</td>
+<td style="text-align: left;">O sistema deve permitir que o usuário publique uma avaliação com nota e comentário para registrar sua opinião sobre os serviços.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>24</strong>, <strong>25</strong></td>
+<td style="text-align: left;">Objetivo 1: Sofisticar o marketing e proporcionando posicionamento online.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF23</strong></td>
+<td style="text-align: left;">Criar perfil do cliente</td>
+<td style="text-align: left;">O sistema deve permitir a criação de perfis de cliente para armazenar seus dados e histórico de interações.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>46</strong>, <strong>61</strong>, <strong>73</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF24</strong></td>
+<td style="text-align: left;">Editar informações do cliente</td>
+<td style="text-align: left;">O sistema deve permitir a edição das informações básicas de identificação e contato dos clientes para manter os dados atualizados.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>61</strong>,<strong>73</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF25</strong></td>
+<td style="text-align: left;">Excluir perfil do cliente</td>
+<td style="text-align: left;">O sistema deve permitir a exclusão das informações do perfil do cliente para atender solicitações de privacidade.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>17</strong>, <strong>73</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF26</strong></td>
+<td style="text-align: left;">Gerar gráfico de desempenho</td>
+<td style="text-align: left;">O sistema deve gerar um gráfico com métricas como orçamento, conversões e atendimentos para apoiar o planejamento estratégico.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>18</strong>, <strong>81</strong></td>
+<td style="text-align: left;">Objetivo 3: Viabilizar gestão de demandas.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RF27</strong></td>
+<td style="text-align: left;">Gerar gráfico comparativo financeiro</td>
+<td style="text-align: left;">O sistema deve gerar um gráfico de receitas (vendas) vs despesas mensal para apoiar a tomada de decisão financeira.</td>
+<td style="text-align: left;"><strong>RN</strong> <strong>18</strong>, <strong>58</strong></td>
+<td style="text-align: left;">Objetivo 4: Aprimorar gestão financeira e de vendas.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="requisitos-nao-funcionais-rnf"><strong>Requisitos Não Funcionais (RNF)</strong></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Nome do Requisito</th>
+<th>Descrição do Requisito</th>
+<th>Classificação URPS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RNF1</td>
+<td>Consultar histórico de despesas</td>
+<td>As consultas ao histórico de despesas devem ter tempo de resposta inferior a 2 segundos.</td>
+<td>Performance</td>
+</tr>
+<tr>
+<td>RNF2</td>
+<td>Garantir Lei Geral de Proteção de Dados</td>
+<td>O sistema deve garantir a segurança das informações e a conformidade com a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018) nos artigos 6, 7, 18.</td>
+<td>Implementação</td>
+</tr>
+<tr>
+<td>RNF3</td>
+<td>Adaptar a diferentes telas</td>
+<td>A interface deve se adaptar dinamicamente aos tamanhos de tela: 720x1280, 1080x1920 e 1920x1080.</td>
+<td>Interface</td>
+</tr>
+<tr>
+<td>RNF4</td>
+<td>Exibir categorias</td>
+<td>A interface da página principal deverá introduzir os usuários às principais informações para as demais navegações: Portfólio da vidraçaria, além do rodapé e cabeçalho com as demais navegações.</td>
+<td>Usabilidade</td>
+</tr>
+<tr>
+<td>RNF5</td>
+<td>Exibir FAQ</td>
+<td>Exibir uma área de dúvidas frequentes sobre serviços e processos.</td>
+<td>Usabilidade</td>
+</tr>
+<tr>
+<td>RNF6</td>
+<td>Exibir produtos e serviços cadastrados no portfólio online da empresa</td>
+<td>Exibir os produtos e serviços cadastrados no portfólio online da empresa.</td>
+<td>Usabilidade</td>
+</tr>
+</tbody>
+</table>
+<h2 id="regras-de-negocio-rn"><strong>Regras de Negócio (RN)</strong></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Regra de Negócio</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RN01</strong></td>
+<td>Os agendamentos listados têm que ter sido feitos no máximo com uma semana.</td>
+</tr>
+<tr>
+<td><strong>RN02</strong></td>
+<td>Agendamentos só podem ser feitos em horários disponíveis e dentro do expediente da empresa.</td>
+</tr>
+<tr>
+<td><strong>RN03</strong></td>
+<td>Deve haver um intervalo mínimo de 30 minutos entre dois compromissos consecutivos.</td>
+</tr>
+<tr>
+<td><strong>RN04</strong></td>
+<td>O sistema deve permitir agendamentos com no máximo 30 dias de antecedência.</td>
+</tr>
+<tr>
+<td><strong>RN05</strong></td>
+<td>O sistema deve confirmar o agendamento por meio de notificação no Email.</td>
+</tr>
+<tr>
+<td><strong>RN06</strong></td>
+<td>A data e o horário inseridos devem ser validados antes da confirmação do agendamento.</td>
+</tr>
+<tr>
+<td><strong>RN07</strong></td>
+<td>Apenas usuários com perfil de administrador podem visualizar os agendamentos de todos os usuários.</td>
+</tr>
+<tr>
+<td><strong>RN08</strong></td>
+<td>O sistema deve permitir a seleção de uma data específica para exibir os agendamentos correspondentes.</td>
+</tr>
+<tr>
+<td><strong>RN09</strong></td>
+<td>Os agendamentos devem ser exibidos em ordem cronológica (do mais cedo para o mais tarde).</td>
+</tr>
+<tr>
+<td><strong>RN10</strong></td>
+<td>Cada agendamento listado deve apresentar no mínimo: nome do cliente, horário, serviço agendado e status (confirmado, cancelado, realizado).</td>
+</tr>
+<tr>
+<td><strong>RN11</strong></td>
+<td>A lista de agendamentos deve ser atualizada automaticamente ou por meio de recarga manual para refletir alterações feitas por outros usuários.</td>
+</tr>
+<tr>
+<td><strong>RN12</strong></td>
+<td>O administrador deve poder filtrar os agendamentos por status (ex.: apenas confirmados ou apenas cancelados).</td>
+</tr>
+<tr>
+<td><strong>RN13</strong></td>
+<td>A visualização de agendamentos passados deve ser permitida apenas para fins administrativos e por um período de até 12 meses.</td>
+</tr>
+<tr>
+<td><strong>RN14</strong></td>
+<td>Clientes podem cancelar agendamentos com no mínimo 12h de antecedência.</td>
+</tr>
+<tr>
+<td><strong>RN15</strong></td>
+<td>Apenas o administrador que criou o agendamento pode realizar a remarcação.</td>
+</tr>
+<tr>
+<td><strong>RN16</strong></td>
+<td>O novo horário escolhido deve estar livre, sem conflitos com outros agendamentos do mesmo recurso (profissional, sala, etc.).</td>
+</tr>
+<tr>
+<td><strong>RN17</strong></td>
+<td>Apenas o perfil do cliente deve ser excluído, preservando o log de interações.</td>
+</tr>
+<tr>
+<td><strong>RN18</strong></td>
+<td>Os gráficos gerados pelo sistema devem ser do tipo “barras”.</td>
+</tr>
+<tr>
+<td><strong>RN19</strong></td>
+<td>O sistema deve enviar uma notificação ao cliente confirmando a nova data e horário.</td>
+</tr>
+<tr>
+<td><strong>RN20</strong></td>
+<td>A nova data/hora deve obedecer às mesmas regras de agendamento padrão, como horários permitidos e intervalos mínimos.</td>
+</tr>
+<tr>
+<td><strong>RN21</strong></td>
+<td>Não é permitido remarcar um compromisso para uma data ou horário anterior ao atual.</td>
+</tr>
+<tr>
+<td><strong>RN22</strong></td>
+<td>A remarcação deve manter as informações originais do serviço, alterando apenas a data e hora.</td>
+</tr>
+<tr>
+<td><strong>RN23</strong></td>
+<td>Agendamentos cancelados geram notificações para o cliente e o administrador.</td>
+</tr>
+<tr>
+<td><strong>RN24</strong></td>
+<td>A avaliação deve conter obrigatoriamente: nota (ex.: de 1 a 5 estrelas ou pontos) e comentário com no mínimo 20 caracteres.</td>
+</tr>
+<tr>
+<td><strong>RN25</strong></td>
+<td>O comentário deve ter um limite máximo de, por exemplo, 500 caracteres para garantir objetividade.</td>
+</tr>
+<tr>
+<td><strong>RN26</strong></td>
+<td>Não é permitido cancelar compromissos cuja data e horário já tenham passado.</td>
+</tr>
+<tr>
+<td><strong>RN27</strong></td>
+<td>Ao cancelar um compromisso, o horário correspondente deve ser automaticamente liberado para novos agendamentos.</td>
+</tr>
+<tr>
+<td><strong>RN28</strong></td>
+<td>Se o cliente não comparecer ao compromisso e não cancelar dentro do prazo, o sistema deve marcar automaticamente como "cancelado por ausência" e registrar isso no histórico.</td>
+</tr>
+<tr>
+<td><strong>RN29</strong></td>
+<td>A pergunta deve ter no mínimo 10 caracteres, e a resposta, no mínimo 20 caracteres, para garantir clareza e completude.</td>
+</tr>
+<tr>
+<td><strong>RN30</strong></td>
+<td>Toda exclusão de avaliação deve ser registrada com uma justificativa, seja ela: conteúdo inadequado, comentário ofensivo, informação falsa ou solicitação do próprio cliente.</td>
+</tr>
+<tr>
+<td><strong>RN31</strong></td>
+<td>O sistema deve fornecer notificações sempre que um novo agendamento for feito para garantir acompanhamento.</td>
+</tr>
+<tr>
+<td><strong>RN32</strong></td>
+<td>Orçamentos devem estar associados a um cliente e podem ser filtrados por cliente, status, etc.</td>
+</tr>
+<tr>
+<td><strong>RN33</strong></td>
+<td>Um orçamento só pode ser criado se contiver: CPF, nome completo do cliente, email, endereço e observações gerais (opcional).</td>
+</tr>
+<tr>
+<td><strong>RN34</strong></td>
+<td>Cada orçamento criado deve receber um número ou código único gerado automaticamente pelo sistema.</td>
+</tr>
+<tr>
+<td><strong>RN35</strong></td>
+<td>O orçamento deve estar vinculado a um cliente específico e aos serviços correspondentes disponíveis no sistema.</td>
+</tr>
+<tr>
+<td><strong>RN36</strong></td>
+<td>Um orçamento pode ter os seguintes status: rascunho, enviado, aprovado, rejeitado, expirado ou cancelado.</td>
+</tr>
+<tr>
+<td><strong>RN37</strong></td>
+<td>Apenas usuários autenticados com perfil autorizado (ex.: administradores, atendentes) podem visualizar a lista completa de orçamentos.</td>
+</tr>
+<tr>
+<td><strong>RN38</strong></td>
+<td>Cada orçamento deve aparecer na lista apenas com os campos nome do cliente, descrição do serviço, data de abertura e status.</td>
+</tr>
+<tr>
+<td><strong>RN39</strong></td>
+<td>Cada item de FAQ deve conter obrigatoriamente: pergunta (título), resposta (conteúdo), categoria (opcional, para organização por temas).</td>
+</tr>
+<tr>
+<td><strong>RN40</strong></td>
+<td>A listagem deve permitir filtragem por: cliente, data de criação, status e intervalo de valores.</td>
+</tr>
+<tr>
+<td><strong>RN41</strong></td>
+<td>Ao clicar em um orçamento na lista, o sistema deve exibir os detalhes completos da proposta.</td>
+</tr>
+<tr>
+<td><strong>RN42</strong></td>
+<td>O sistema deve permitir busca textual (por nome de cliente, número do orçamento ou descrição do serviço).</td>
+</tr>
+<tr>
+<td><strong>RN43</strong></td>
+<td>Somente usuários com perfil de administrador ou responsável pelo orçamento podem editar.</td>
+</tr>
+<tr>
+<td><strong>RN44</strong></td>
+<td>Orçamentos com status “aprovado”, “rejeitado”, “expirado” ou “cancelado” são bloqueados para edição.</td>
+</tr>
+<tr>
+<td><strong>RN45</strong></td>
+<td>Os agendamentos podem ser cancelados por administradores e pelos clientes.</td>
+</tr>
+<tr>
+<td><strong>RN46</strong></td>
+<td>Apenas os administradores podem criar, editar ou excluir perfis de cliente.</td>
+</tr>
+<tr>
+<td><strong>RN47</strong></td>
+<td>O sistema deve exibir calendário com dias e horários já ocupados e disponíveis para agendamento.</td>
+</tr>
+<tr>
+<td><strong>RN48</strong></td>
+<td>Vendas e recibos devem estar relacionados a um cliente.</td>
+</tr>
+<tr>
+<td><strong>RN49</strong></td>
+<td>Apenas administradores podem criar, editar ou excluir recibos já registrados.</td>
+</tr>
+<tr>
+<td><strong>RN50</strong></td>
+<td>A listagem deve permitir filtrar por: data da venda (intervalo), cliente, produto ou serviço vendido, forma de pagamento.</td>
+</tr>
+<tr>
+<td><strong>RN51</strong></td>
+<td>Deve ser exibido o total em valor das vendas listadas com base nos filtros aplicados.</td>
+</tr>
+<tr>
+<td><strong>RN52</strong></td>
+<td>Deve ser possível clicar em uma venda da lista para visualizar todos os detalhes: itens vendidos, impostos, pagamentos, notas fiscais.</td>
+</tr>
+<tr>
+<td><strong>RN53</strong></td>
+<td>Apenas usuários com perfis autorizados (ex.: administrador, financeiro, vendas) podem acessar os detalhes completos de uma venda.</td>
+</tr>
+<tr>
+<td><strong>RN54</strong></td>
+<td>O sistema deve exibir os pagamentos registrados para aquela venda, com datas, valores e status.</td>
+</tr>
+<tr>
+<td><strong>RN55</strong></td>
+<td>Clientes podem avaliar serviços após sua conclusão.</td>
+</tr>
+<tr>
+<td><strong>RN56</strong></td>
+<td>Cada venda registrada deve receber um ID único e sequencial para fins de rastreamento e controle.</td>
+</tr>
+<tr>
+<td><strong>RN57</strong></td>
+<td>Apenas administradores podem registrar, editar ou excluir vendas.</td>
+</tr>
+<tr>
+<td><strong>RN58</strong></td>
+<td>Toda despesa registrada deve ser categorizada para compor relatórios financeiros.</td>
+</tr>
+<tr>
+<td><strong>RN59</strong></td>
+<td>O cliente pode solicitar a exclusão da própria avaliação, mediante autenticação e confirmação.</td>
+</tr>
+<tr>
+<td><strong>RN60</strong></td>
+<td>Sempre que os itens ou valores forem alterados, o sistema deve recalcular automaticamente.</td>
+</tr>
+<tr>
+<td><strong>RN61</strong></td>
+<td>Somente administradores podem incluir ou editar anotações internas no perfil do cliente.</td>
+</tr>
+<tr>
+<td><strong>RN62</strong></td>
+<td>O recibo deve estar vinculado a uma venda registrada ou a um serviço previamente concluído no sistema.</td>
+</tr>
+<tr>
+<td><strong>RN63</strong></td>
+<td>O recibo deve conter, no mínimo: nome ou razão social do cliente, descrição do serviço prestado, valor pago, data da prestação do serviço, forma de pagamento, nome e CPF/CNPJ do emissor e do cliente (empresa ou profissional).</td>
+</tr>
+<tr>
+<td><strong>RN64</strong></td>
+<td>Cada recibo gerado deve receber um número único e sequencial, controlado automaticamente pelo sistema.</td>
+</tr>
+<tr>
+<td><strong>RN65</strong></td>
+<td>Após o envio do recibo, qualquer alteração exigirá cancelamento e emissão de um novo recibo.</td>
+</tr>
+<tr>
+<td><strong>RN66</strong></td>
+<td>Em edições de valor, cliente ou data do serviço, o sistema deve solicitar justificativa do usuário.</td>
+</tr>
+<tr>
+<td><strong>RN67</strong></td>
+<td>O sistema só poderá exportar um recibo se ele já tiver sido criado e salvo com todos os dados obrigatórios preenchidos.</td>
+</tr>
+<tr>
+<td><strong>RN68</strong></td>
+<td>O recibo será exportado exclusivamente em formato PDF, com layout padronizado.</td>
+</tr>
+<tr>
+<td><strong>RN69</strong></td>
+<td>O PDF deve conter logo e dados da empresa (nome, CNPJ, endereço, contato), definidos na configuração do sistema.</td>
+</tr>
+<tr>
+<td><strong>RN70</strong></td>
+<td>Apenas usuários com perfil autorizado (ex.: financeiro, administrador) podem exportar recibos.</td>
+</tr>
+<tr>
+<td><strong>RN71</strong></td>
+<td>O arquivo PDF deve ser nomeado de forma padronizada, por exemplo: recibo_<número>_<cliente>.pdf.</td>
+</tr>
+<tr>
+<td><strong>RN72</strong></td>
+<td>Após a exportação final e envio ao cliente, o recibo pode ser bloqueado para edição, exigindo cancelamento e novo registro para alterações.</td>
+</tr>
+<tr>
+<td><strong>RN73</strong></td>
+<td>Todo serviço (venda e orçamento) deve ser associado ao cliente.</td>
+</tr>
+<tr>
+<td><strong>RN74</strong></td>
+<td>Apenas usuários com perfil financeiro, administrador ou autorizado podem registrar novas despesas.</td>
+</tr>
+<tr>
+<td><strong>RN75</strong></td>
+<td>Toda despesa deve incluir: categoria da despesa (ex.: aluguel, material, transporte), valor, data da despesa, forma de pagamento (dinheiro, cartão, transferência etc.), descrição/resumo da despesa.</td>
+</tr>
+<tr>
+<td><strong>RN76</strong></td>
+<td>O valor da despesa deve ser maior que zero e informado com no máximo duas casas decimais.</td>
+</tr>
+<tr>
+<td><strong>RN77</strong></td>
+<td>O sistema pode permitir o upload de um comprovante (foto, PDF, nota fiscal) associado à despesa.</td>
+</tr>
+<tr>
+<td><strong>RN78</strong></td>
+<td>O sistema deve registrar o usuário responsável por cada despesa e a data/hora do lançamento.</td>
+</tr>
+<tr>
+<td><strong>RN79</strong></td>
+<td>Alterações em campos como valor, data ou categoria devem exigir uma justificativa do usuário, que será registrada.</td>
+</tr>
+<tr>
+<td><strong>RN80</strong></td>
+<td>Apenas usuários com perfil administrador ou autorizado podem editar despesas já registradas.</td>
+</tr>
+<tr>
+<td><strong>RN81</strong></td>
+<td>Somente administradores podem criar e/ou consultar gráfico financeiro.</td>
+</tr>
+<tr>
+<td><strong>RN82</strong></td>
+<td>Somente administradores podem criar e/ou consultar gráficos de desempenho.</td>
+</tr>
+<tr>
+<td><strong>RN83</strong></td>
+<td>Os dados devem ser listados por padrão em ordem cronológica (mais recente primeiro), com opção de alterar a ordenação.</td>
+</tr>
+<tr>
+<td><strong>RN84</strong></td>
+<td>O sistema deve exibir automaticamente: soma total das despesas listadas e subtotais por categoria.</td>
+</tr>
+<tr>
+<td><strong>RN85</strong></td>
+<td>O nome do arquivo deve seguir um padrão claro, como: despesas_<período>.pdf ou despesas_<período>.xlsx.</td>
+</tr>
+<tr>
+<td><strong>RN86</strong></td>
+<td>O PDF deve incluir logo e dados da empresa.</td>
+</tr>
+<tr>
+<td><strong>RN87</strong></td>
+<td>Toda vez que um agendamento for realizado ou um orçamento for realizado ou uma venda for feita, o sistema deve registrar automaticamente uma entrada no histórico de interações do cliente.</td>
+</tr>
+<tr>
+<td><strong>RN88</strong></td>
+<td>Cada log deve ter: data/hora da atividade e descrição da atividade.</td>
+</tr>
+<tr>
+<td><strong>RN89</strong></td>
+<td>Toda interação deve estar vinculada a um cliente identificado no sistema.</td>
+</tr>
+<tr>
+<td><strong>RN90</strong></td>
+<td>Os botões ou links para contato devem estar visíveis em áreas estratégicas do sistema/site, como rodapé, página inicial e página de atendimento ou suporte.</td>
+</tr>
+<tr>
+<td><strong>RN91</strong></td>
+<td>O sistema deve permitir o redirecionamento para um formulário personalizado hospedado no Google Forms, para envio de solicitações, orçamentos ou dúvidas.</td>
+</tr>
+<tr>
+<td><strong>RN92</strong></td>
+<td>Deve ser fornecido um link direto para o perfil da empresa no Instagram, abrindo em nova aba ou aplicativo.</td>
+</tr>
+<tr>
+<td><strong>RN93</strong></td>
+<td>Apenas usuários com perfil de administrador ou com permissão específica podem cadastrar, editar ou remover perguntas da FAQ.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "content.tabs.link", "header.autohide", "navigation.instant", "navigation.top", "navigation.tracking"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>
