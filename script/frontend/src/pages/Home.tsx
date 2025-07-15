@@ -6,6 +6,7 @@ import Botao_arredondado from "../components/Botao_Arredondado";
 import Botao_quadrado from "../components/Botao_Quadrado";
 import Rodape from "../components/rodape";
 import "./Home.css"
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -14,7 +15,7 @@ const Home = () => {
     new URL("../assets/carrossel/Box.jpg", import.meta.url).href,
     new URL("../assets/carrossel/Churrasqueira.jpg", import.meta.url).href,
     new URL("../assets/carrossel/Escada.jpg", import.meta.url).href,
-];
+  ];
 
   const localizacaoRef = useRef<HTMLDivElement>(null);
   const handleLocalizacaoClick = () => {
@@ -34,7 +35,7 @@ const Home = () => {
         block: 'start',
       });
     }
-  }; 
+  };
 
   const contatosRef = useRef<HTMLDivElement>(null);
   const handleContatosClick = () => {
@@ -44,43 +45,46 @@ const Home = () => {
         block: 'start',
       });
     }
-  }; 
+  };
 
   return (
     <div className="home-container">
       <div className="carrossel-section">
         <div className="info-carrossel-section">
-            <div className="quadrado-descricao">
-              <h1>Vidraçaria Modelo</h1>
-    
-              <p>A Vidraçaria Modelo é uma empresa do setor de construção civil especializada em instalação e manutenção de vidros comuns e temperados  com mais de 15 anos de história no mercado. Prestamos serviços para pessoas jurídicas e pessoas físicas.
-              </p>
-            </div>
-            <div className="botao-orcamento-carrossel">
-              <Botao_arredondado 
-                text = "Solicite um Orçamento!"/>
-            </div>
-        </div>
-          <div className="carrosel">
-            <Carrossel 
-            images={carrosselImgs}
-            altText="Produtos em destaque"/>
+          <div className="quadrado-descricao">
+            <h1>Vidraçaria Modelo</h1>
+
+            <p>A Vidraçaria Modelo é uma empresa do setor de construção civil especializada em instalação e manutenção de vidros comuns e temperados  com mais de 15 anos de história no mercado. Prestamos serviços para pessoas jurídicas e pessoas físicas.
+            </p>
           </div>
-          
+          <div className="botao-orcamento-carrossel">
+            <Link to={'/solicitar-orcamento'}>
+              <Botao_arredondado
+                text="Solicite um Orçamento!" />
+            </Link>
+
+          </div>
+        </div>
+        <div className="carrosel">
+          <Carrossel
+            images={carrosselImgs}
+            altText="Produtos em destaque" />
+        </div>
+
       </div>
       <div className="botoes-section">
-        <Botao_quadrado 
-          text = "Localização"
+        <Botao_quadrado
+          text="Localização"
           onClick={handleLocalizacaoClick}
-          />
-        <Botao_quadrado 
-          text = "Serviços"
+        />
+        <Botao_quadrado
+          text="Serviços"
           onClick={handleServicosClick}
-          />
-        <Botao_quadrado 
-          text = "Contato"
+        />
+        <Botao_quadrado
+          text="Contato"
           onClick={handleContatosClick}
-          />    
+        />
 
       </div>
       <section ref={localizacaoRef}>
@@ -93,10 +97,10 @@ const Home = () => {
           <Servicos />
         </div>
       </section>
-      <section ref = {contatosRef}>
-      <div className="rodape-section">
-        <Rodape />
-      </div>
+      <section ref={contatosRef}>
+        <div className="rodape-section">
+          <Rodape />
+        </div>
       </section>
     </div>
   );
