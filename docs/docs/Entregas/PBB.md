@@ -16,6 +16,8 @@ O Canvas PBB pode ser visualizado abaixo:
 </div>
 <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGqI3k-Naw&#x2F;0td_UOMTVlHZC9-GoYHCyA&#x2F;view?utm_content=DAGqI3k-Naw&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">PBB - HealthNet</a>
 
+![PBB - HealthNet](../imagens/Captura de tela de 2025-07-14 22-20-00.png)
+
 ## 1.3. Critérios de Aceitação das Histórias de Usuários - HealthNet
 
 > **US01: Eu, como médico, quero acessar um prontuário eletrônico unificado, para que eu tenha uma visão completa do histórico clínico dos pacientes, independentemente da unidade onde foram atendidos.**
