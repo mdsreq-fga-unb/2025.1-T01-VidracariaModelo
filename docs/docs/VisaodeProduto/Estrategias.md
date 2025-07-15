@@ -3,7 +3,7 @@
 ## 3.1 Estratégia Priorizada
 - **Abordagem de desenvolvimento de software**: Hibrido
 - **Ciclo de vida**: Adaptativo 
-- **Processo de engenharia de software**: RAD|
+- **Processo de engenharia de software**: RAD
 
 
 ## 3.2 Quadro Comparativo: RAD vs XP
